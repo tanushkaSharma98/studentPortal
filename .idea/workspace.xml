@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4b33136-3f4f-4899-bf8a-59352a0ff7f1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/root files/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/root files/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/root files/index.js" beforeDir="false" />
-    </list>
+    <list default="true" id="f4b33136-3f4f-4899-bf8a-59352a0ff7f1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,22 +53,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rohan/Desktop/Student-Teacher-Portal&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/rohan/Desktop/Student-Teacher-Portal/client/src/root files",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.start.executor": "Run",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\rohan\Desktop\Student-Teacher-Portal\client\src\root files" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\rohan\Desktop\Student-Teacher-Portal\client\src\root files" />
       <recent name="C:\Users\rohan\Desktop\Student-Teacher-Portal\client" />
@@ -120,6 +117,7 @@
       <workItem from="1726135934626" duration="381000" />
       <workItem from="1726136348366" duration="1924000" />
       <workItem from="1726140485254" duration="721000" />
+      <workItem from="1726141784775" duration="302000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -193,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726138300164</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Merge branch 'main' of https://github.com/Rohan-218/Student-Teacher-Portal">
+      <option name="closed" value="true" />
+      <created>1726142017978</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1726142017978</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,8 +208,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Add Backend and Frontend Folder" />
-    <MESSAGE value="Merge branch 'main' of https://github.com/Rohan-218/Student-Teacher-Portal" />
     <MESSAGE value="Run npm install" />
-    <option name="LAST_COMMIT_MESSAGE" value="Run npm install" />
+    <MESSAGE value="Merge branch 'main' of https://github.com/Rohan-218/Student-Teacher-Portal" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'main' of https://github.com/Rohan-218/Student-Teacher-Portal" />
   </component>
 </project>
