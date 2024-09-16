@@ -1,25 +1,61 @@
-require('dotenv').config();
-const { Sequelize } = require('sequelize');
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const dotenv = require('dotenv');
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  dialect: 'postgres',
-  dialectOptions: {
-    ssl: false  // SSL is off
-  },
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: process.env.DB_TIMEOUT * 1000,
-    idle: 10000,
-  },
+// Initialize Express app
+const app = express();
+
+// Middleware
+app.use(cors()); // Enable CORS
+app.use(morgan('dev')); // Logging middleware for dev environment
+app.use(bodyParser.json()); // Parse JSON request bodies
+app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded data
+
+// Import routes
+const authRoutes = require('./routes/authRoutes');
+const profileRoutes = require('./routes/profileRoutes');
+const studentRoutes = require('./routes/studentRoutes');
+const teacherRoutes = require('./routes/teacherRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+const studentManagementRoutes = require('./routes/studentManagementRoutes');
+const teacherManagementRoutes = require('./routes/teacherManagementRoutes');
+const subjectRoutes = require('./routes/subjectRoutes');
+const branchRoutes = require('./routes/branchRoutes');
+const examRoutes = require('./routes/examRoutes');
+
+// Use routes
+app.use('/api/auth', authRoutes);
+app.use('/api/profile', profileRoutes);
+app.use('/api/students', studentRoutes);
+app.use('/api/teachers', teacherRoutes);
+app.use('/api/admin', adminRoutes);
+<<<<<<< Updated upstream
+app.use('/api/subjects', subjectRoutes);
+app.use('/api/branches', branchRoutes);
+app.use('/api/exams', examRoutes);
+=======
+app.use('/api/admin/students', studentManagementRoutes);
+app.use('/api/admin/teacher', teacherManagementRoutes);
+app.use('/api/admin/subjects', subjectRoutes);
+app.use('/api/admin/branches', branchRoutes);
+app.use('/api/admin/exams', examRoutes);
+>>>>>>> Stashed changes
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).json({
+    error: {
+      message: err.message,
+    },
+  });
 });
 
-sequelize.authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
+// Handle 404 - Resource Not Found
+app.use((req, res, next) => {
+  res.status(404).json({ message: 'Route not found' });
+});
+
+module.exports = app;
