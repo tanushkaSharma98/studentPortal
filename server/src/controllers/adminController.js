@@ -17,4 +17,24 @@ const getAdmins = async (req, res) => {
   }
 };
 
-module.exports = { getAdmins };
+const createAdmin = async (req, res) => {
+  const { name, email, password } = req.body;
+
+  try {
+      // Call the service to create the user and admin
+      const result = await adminService.registerAdmin(name, email, password);
+
+      // Return success response
+      return res.status(201).json({
+          message: 'Admin created successfully',
+          data: result
+      });
+  } catch (error) {
+      console.error('Error in controller:', error);
+      return res.status(500).json({
+          message: 'Failed to create admin'
+      });
+  }
+};
+
+module.exports = { getAdmins, createAdmin };
