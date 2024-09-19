@@ -2,10 +2,10 @@ const { getMarks} = require('../models/studentMarksModel'); // Import the Marks 
 const { getMarksPerformance } = require('../models/studentMarksPerformanceModel'); // Import the Performance model directly
 
 // Service method to get student marks by student ID and subject ID
-exports.getStudentMarks = async (studentId, subjectId, examId) => {
+exports.getStudentMarks = async (userId, subjectId, examId) => {
   try {
     // Fetch marks from the database
-    const marks = await getMarks(studentId, subjectId, examId);
+    const marks = await getMarks(userId, subjectId, examId);
     return marks;
   } catch (error) {
     console.error('Error in getStudentMarks service:', error);
@@ -13,10 +13,10 @@ exports.getStudentMarks = async (studentId, subjectId, examId) => {
   }
 };
 
-exports.getStudentPerformance = async (studentId) => {
+exports.getStudentPerformance = async (userId) => {
   try {
     // Fetch marks from the database
-    const marks = await getMarksPerformance(studentId);
+    const marks = await getMarksPerformance(userId);
     return marks;
   } catch (error) {
     console.error('Error in getStudentMarks service:', error);
