@@ -1,7 +1,7 @@
 const app = require('./app.js');
 
 // Set the port
-const PORT = 5000;
+const PORT = 3000;
 
 // Start the server
 app.listen(PORT, () => {
