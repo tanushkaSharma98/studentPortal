@@ -4,6 +4,7 @@ const { secretKey } = require('../config/config.js');
 // Function to create User and Admin in a single operation
 const createUserAndAdmin = async (name, email, password) => {
     try {
+        
         // Start a transaction to ensure atomicity
         const result = await sequelize.transaction(async (t) => {
             // 1. Insert into the `users` table (raw SQL query with encrypted password)
