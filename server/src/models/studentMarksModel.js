@@ -1,6 +1,6 @@
 const sequelize = require('../config/dbConfig');  
 
-exports.getMarks = async (studentId, subjectId, examId) => {
+exports.getMarks = async (userId, subjectId, examId) => {
     try {
         console.log('Executing query to fetch student marks...');
         const results = await sequelize.query(`
@@ -18,13 +18,13 @@ exports.getMarks = async (studentId, subjectId, examId) => {
             JOIN 
                 exam_type e ON m.exam_id = e.exam_id
             WHERE 
-                m.student_id = :studentId
+                m.student_id = (SELECT student_id FROM student WHERE user_id = :userId)
             AND 
                 m.subject_id = :subjectId
             AND
                 m.exam_id = :examId
         `, {
-            replacements: { studentId, subjectId, examId },
+            replacements: { userId, subjectId, examId },
             type: sequelize.QueryTypes.SELECT  // Ensure QueryTypes is used correctly
         });
 
