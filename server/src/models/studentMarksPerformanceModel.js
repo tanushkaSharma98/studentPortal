@@ -3,6 +3,8 @@ const sequelize = require('../config/dbConfig');
 exports.getMarksPerformance = async (userId) => {
     try {
         console.log('Executing query to fetch student marks...');
+        
+        // Fetch the student's marks
         const results = await sequelize.query(`
             SELECT 
                 m.percentage,
@@ -19,9 +21,14 @@ exports.getMarksPerformance = async (userId) => {
             WHERE 
                 m.student_id = (SELECT student_id FROM student WHERE user_id = :userId)
         `, {
-            replacements: { userId },
-            type: sequelize.QueryTypes.SELECT  // Ensure QueryTypes is used correctly
+            replacements: { userId: userId },
+            type: sequelize.QueryTypes.SELECT
         });
+
+        // If the student was not found or no marks are returned
+        if (!results || results.length === 0) {
+            throw new Error('Student not found or no marks available for this user.');
+        }
 
         return results;
     } catch (error) {
