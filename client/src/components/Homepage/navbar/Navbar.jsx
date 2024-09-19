@@ -1,47 +1,42 @@
 import React from 'react';
-import { Link } from 'react-scroll'; // Import Link from react-scroll
+import { Link as ScrollLink } from 'react-scroll'; // Import Link from react-scroll for smooth scrolling
+import { Link as RouterLink, useLocation } from 'react-router-dom'; // Import Link from react-router-dom
 import './Navbar.css'; // Import the CSS file
 
 const Navbar = () => {
+  const location = useLocation(); // Get the current path
+
+  // Determine if we are on the home page
+  const isHomePage = location.pathname === '/';
+
   return (
     <nav>
       <ul>
         <li>XYZ UNIVERSITY</li>
 
+        {/* Home Link: Use react-router-dom Link for routing */}
         <li>
-          <Link
-            to="home"
-            smooth={true}
-            duration={500}
-            className="nav-link"
-          >
+          <RouterLink to="/" className="nav-link">
             Home
-          </Link>
+          </RouterLink>
         </li>
 
+        {/* About Us Link: Use react-router-dom Link for routing */}
         <li>
-          <Link
-            to="about"
-            smooth={true}
-            duration={500}
-            className="nav-link"
-          >
+          <RouterLink to="/about-us" className="nav-link">
             About Us
-          </Link>
+          </RouterLink>
         </li>
 
+        {/* Contact Link: Use react-router-dom Link for routing */}
         <li>
-          <Link
-            to="contact"
-            smooth={true}
-            duration={500}
-            className="nav-link"
-          >
+          <RouterLink to="/contact" className="nav-link">
             Contact
-          </Link>
+          </RouterLink>
         </li>
 
-        <li  className="profile-container">
+        {/* Profile */}
+        <li className="profile-container">
           <img
             src="https://st.depositphotos.com/1537427/3571/v/450/depositphotos_35717211-stock-illustration-vector-user-icon.jpg"
             alt="Profile"
@@ -54,4 +49,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
