@@ -4,7 +4,71 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4b33136-3f4f-4899-bf8a-59352a0ff7f1" name="Changes" comment="" />
+    <list default="true" id="f4b33136-3f4f-4899-bf8a-59352a0ff7f1" name="Changes" comment="Merge branch 'main' of https://github.com/Rohan-218/Student-Teacher-Portal">
+      <change afterPath="$PROJECT_DIR$/client1/src/api/adminApi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/api/authService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/api/studentApi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/api/teacherApi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Admin/AdminDashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Admin/AdminLogin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Admin/AdminRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Authentication/LoginRedirect.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Common/Footer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Common/Header.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Common/PrivateRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Common/UserLogin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/about-us/AboutUs.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/about-us/AboutUs.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/contact-us/Contact.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/contact-us/Contact.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/navbar/Navbar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/navbar/Navbar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Student/StudentDasboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Student/StudentRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Teacher/TeacherDashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/components/Teacher/TecherRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/contexts/AuthenticationContext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/contexts/UserContext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/hooks/useAuth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/hooks/useFetch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/pages/Admin/AdminDashboardPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/pages/Admin/AdminLoginPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/pages/HomePage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/pages/LoginPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/pages/Student/StudentDashboardPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/pages/Teacher/TeacherdashBoardpage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/routes/AdminRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/routes/AppRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/routes/StudentRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/routes/TeacherRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/services/apiService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/services/localStorageservice.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client1/src/services/sessionService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Homepage/AboutUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Homepage/AboutUs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Homepage/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Homepage/App.test.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Homepage/Contact.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Homepage/Contact.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Homepage/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Homepage/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Homepage/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Homepage/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/root files/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +82,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
@@ -56,15 +125,20 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Rakshita",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/rohan/Desktop/Student-Teacher-Portal/client/src/root files",
+    "last_opened_file_path": "C:/Users/rohan/Desktop/Student-Teacher-Portal",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "npm.preview.executor": "Run",
     "npm.start.executor": "Run",
+    "ts.external.directory.path": "C:\\Users\\rohan\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -79,7 +153,27 @@
       <recent name="C:\Users\rohan\Desktop\Student-Teacher-Portal" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.dev">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="preview" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="preview" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
@@ -92,6 +186,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.preview" />
+        <item itemvalue="npm.dev" />
         <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
@@ -118,6 +214,9 @@
       <workItem from="1726136348366" duration="1924000" />
       <workItem from="1726140485254" duration="721000" />
       <workItem from="1726141784775" duration="302000" />
+      <workItem from="1726719548224" duration="639000" />
+      <workItem from="1726720218423" duration="594000" />
+      <workItem from="1726721892224" duration="50000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />

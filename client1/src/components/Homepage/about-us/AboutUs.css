@@ -1,0 +1,45 @@
+/* .about{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+.about {
+    padding: 65px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .photo-space {
+    width: 150px;
+    height: 150px;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    font-size: 16px;
+    color: white;
+  }
+  
+  .description {
+    flex: 1;
+  }
+  
+  .description h2 {
+    margin-bottom: 10px;
+  }
+  
+  .description p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  

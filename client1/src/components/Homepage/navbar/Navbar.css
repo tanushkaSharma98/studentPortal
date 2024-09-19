@@ -1,0 +1,46 @@
+/* Navbar.css */
+
+nav {
+    padding: 11px;
+    background-color: #282c34;
+    color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    margin-left: 20px;
+  }
+  
+  li:first-child {
+    margin-right: auto;
+    font-weight: bold;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .nav-link:hover {
+    text-decoration: underline;
+  }
+  
+  .profile-img {
+    height: 30px;
+    border-radius: 50%;
+  }
+  .profile-container {
+    margin-right:30px; /* Pushes the profile image to the far right */
+  }

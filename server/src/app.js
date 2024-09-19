@@ -31,17 +31,16 @@ app.use('/api/profile', profileRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/teachers', teacherRoutes);
 app.use('/api/admin', adminRoutes);
-<<<<<<< Updated upstream
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/branches', branchRoutes);
 app.use('/api/exams', examRoutes);
-=======
+
 app.use('/api/admin/students', studentManagementRoutes);
 app.use('/api/admin/teacher', teacherManagementRoutes);
 app.use('/api/admin/subjects', subjectRoutes);
 app.use('/api/admin/branches', branchRoutes);
 app.use('/api/admin/exams', examRoutes);
->>>>>>> Stashed changes
+
 
 // Error handling middleware
 app.use((err, req, res, next) => {

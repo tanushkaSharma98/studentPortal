@@ -1,0 +1,27 @@
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 99vh;
+    text-align: center;
+  }
+  
+  .large-text {
+    font-size: 48px;
+  }
+  .text {
+    font-size: 48px;
+  }
+  .button{
+    padding:10px 20px;
+    font-size:20px;
+    background-color:gray;
+    border:none;
+    cursor:pointer;
+    margin-top: 20px;
+    
+  }
+  .button:hover{
+    background-color:#162b42;
+    color: white;
+  }
