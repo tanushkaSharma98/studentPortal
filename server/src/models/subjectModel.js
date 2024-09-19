@@ -37,6 +37,10 @@ const getSubjects = async (filters = {}) => {
             query += ' AND bs.semester = ?';
             replacements.push(filters.semester);
         }
+        if (filters.subject_name) {
+            query += ' AND s.subject_name = ?';
+            replacements.push(filters.subject_name);
+        }
 
         // Execute the raw SQL query
         const results = await sequelize.query(query, {
