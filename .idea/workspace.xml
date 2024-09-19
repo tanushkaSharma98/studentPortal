@@ -4,70 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4b33136-3f4f-4899-bf8a-59352a0ff7f1" name="Changes" comment="Merge branch 'main' of https://github.com/Rohan-218/Student-Teacher-Portal">
-      <change afterPath="$PROJECT_DIR$/client1/src/api/adminApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/api/authService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/api/studentApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/api/teacherApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Admin/AdminDashboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Admin/AdminLogin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Admin/AdminRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Authentication/LoginRedirect.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Common/Footer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Common/Header.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Common/PrivateRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Common/UserLogin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/about-us/AboutUs.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/about-us/AboutUs.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/contact-us/Contact.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/contact-us/Contact.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/navbar/Navbar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Homepage/navbar/Navbar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Student/StudentDasboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Student/StudentRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Teacher/TeacherDashboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/components/Teacher/TecherRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/contexts/AuthenticationContext.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/contexts/UserContext.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/hooks/useAuth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/hooks/useFetch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/pages/Admin/AdminDashboardPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/pages/Admin/AdminLoginPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/pages/HomePage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/pages/LoginPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/pages/Student/StudentDashboardPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/pages/Teacher/TeacherdashBoardpage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/routes/AdminRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/routes/AppRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/routes/StudentRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/routes/TeacherRoutes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/services/apiService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/services/localStorageservice.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client1/src/services/sessionService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/logo512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Homepage/AboutUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Homepage/AboutUs.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Homepage/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Homepage/App.test.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Homepage/Contact.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Homepage/Contact.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Homepage/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Homepage/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Homepage/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Homepage/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/root files/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/app.js" afterDir="false" />
+    <list default="true" id="f4b33136-3f4f-4899-bf8a-59352a0ff7f1" name="Changes" comment="commit">
+      <change afterPath="$PROJECT_DIR$/server/src/controllers/studentMarksController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/models/studentMarksModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/models/studentMarksPerformanceModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/models/tokenBlacklistModel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/services/studentMarksService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,26 +64,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Rakshita&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rohan/Desktop/Student-Teacher-Portal&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;npm.preview.executor&quot;: &quot;Run&quot;,
-    &quot;npm.start.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\rohan\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/rohan/Desktop/Student-Teacher-Portal",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "npm.preview.executor": "Run",
+    "npm.start.executor": "Run",
+    "ts.external.directory.path": "C:\\Users\\rohan\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\rohan\Desktop\Student-Teacher-Portal\client\src\root files" />
@@ -217,6 +159,7 @@
       <workItem from="1726719548224" duration="639000" />
       <workItem from="1726720218423" duration="594000" />
       <workItem from="1726721892224" duration="50000" />
+      <workItem from="1726723637962" duration="333000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -298,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726142017978</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="initial commit">
+      <option name="closed" value="true" />
+      <created>1726723920698</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1726723920698</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,6 +260,7 @@
     <MESSAGE value="Add Backend and Frontend Folder" />
     <MESSAGE value="Run npm install" />
     <MESSAGE value="Merge branch 'main' of https://github.com/Rohan-218/Student-Teacher-Portal" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'main' of https://github.com/Rohan-218/Student-Teacher-Portal" />
+    <MESSAGE value="initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
   </component>
 </project>
