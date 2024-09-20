@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
-
-import { loginUser } from '../../../services/authService.js';
-
 import { useNavigate } from 'react-router-dom';
-
 import './login.css';
 
 const Login = () => {
@@ -12,67 +8,58 @@ const Login = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-
-//     // Debugging log: Check email and password
-//     console.log('Attempting login with', email, password);
-
-//     if (!email || !password) {
-//       setMessage('Email and password are required.');
-//       return;
-//     }
-
-//     // Mock validation logic
-//     if (email !== 'user@example.com') {
-//       setMessage('Email not found.');
-//     } else if (password !== 'password123') {
-//       setMessage('Incorrect password.');
-//     } else {
-//       setMessage('Login successful!');
-      
-//       // Debugging log: Confirm login success and navigation
-//       console.log('Login successful, navigating to /student-dashboard');
-      
-//       // Navigate after a short delay to show success message
-//       setTimeout(() => {
-//         console.log('Navigating to /student-dashboard');
-//         navigate('/student-dashboard');
-//       }, 1000);
-//     }
-//   };
-const handleSubmit = async (e) => {
+  const onSubmitForm = async (e) => {
     e.preventDefault();
+    
+    // Reset message
+    setMessage('');
+
     try {
-      const data = await loginUser(email, password);
-      // Handle successful login
-      console.log('Login successful:', data);
-    } catch (error) {
-      setError('Invalid email or password');
+      const body = { email, password };
+      const response = await fetch("http://localhost:3000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        // Assuming API sends a token or success message
+        setMessage('Login successful!');
+        setTimeout(() => {
+          navigate('/student-dashboard');
+        }, 1000);
+      } else {
+        // Set the error message based on API response
+        setMessage(result.message || 'Login failed.');
+      }
+    } catch (err) {
+      console.error(err.message);
+      setMessage('An error occurred during login.');
     }
   };
-
 
   return (
     <div className="login-container">
       <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={onSubmitForm}>
         <div className="input-group">
           <label>Email:</label>
-          <input 
-            type="email" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
+          <input
+            type="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
           />
         </div>
         <div className="input-group">
           <label>Password:</label>
-          <input 
-            type="password" 
-            value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
-            required 
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
         <button type="submit" className="button">Login</button>
