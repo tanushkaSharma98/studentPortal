@@ -28,7 +28,7 @@ const subjectRoutes = require('./routes/subjectRoutes.js');
 // // Use routes
 app.use('/api/auth', authRoutes);
 // app.use('/api/profile', profileRoutes);
-app.use(authenticate); 
+app.use(authenticate);
 // Authenticate middleware;
 app.use('/api/students', studentRoutes);
 // app.use('/api/teachers', teacherRoutes);
