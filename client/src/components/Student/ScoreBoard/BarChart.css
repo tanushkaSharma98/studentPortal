@@ -1,0 +1,5 @@
+.chart-container {
+    width: 50%; /* Adjust width as needed */
+    height: 250px; /* Adjust height as needed */
+    margin: auto; /* Center the chart */
+}
