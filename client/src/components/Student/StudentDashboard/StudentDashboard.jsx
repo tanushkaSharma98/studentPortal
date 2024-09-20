@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const StudentData = () => {
   const [studentData, setStudentData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // React Router's navigation hook for redirecting
 
   useEffect(() => {
     // Fetch the student data from the API using fetch
@@ -35,6 +37,14 @@ const StudentData = () => {
     fetchStudentData();
   }, []);
 
+  const handleLogout = () => {
+    // Remove the token from local storage
+    localStorage.removeItem('token');
+
+    // Redirect the user to the login page
+    navigate('/login');
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -42,26 +52,31 @@ const StudentData = () => {
     <div>
       <h2>Student Information</h2>
       {studentData ? (
-        <table>
-          <tbody>
-            <tr>
-              <td><strong>Name:</strong></td>
-              <td>{studentData.student_name}</td>
-            </tr>
-            <tr>
-              <td><strong>College ID:</strong></td>
-              <td>{studentData.enrollment_no}</td>
-            </tr>
-            <tr>
-              <td><strong>Branch:</strong></td>
-              <td>{studentData.branch_name}</td>
-            </tr>
-            <tr>
-              <td><strong>Semester:</strong></td>
-              <td>{studentData.semester}</td>
-            </tr>
-          </tbody>
-        </table>
+        <>
+          <table>
+            <tbody>
+              <tr>
+                <td><strong>Name:</strong></td>
+                <td>{studentData.student_name}</td>
+              </tr>
+              <tr>
+                <td><strong>College ID:</strong></td>
+                <td>{studentData.enrollment_no}</td>
+              </tr>
+              <tr>
+                <td><strong>Branch:</strong></td>
+                <td>{studentData.branch_name}</td>
+              </tr>
+              <tr>
+                <td><strong>Semester:</strong></td>
+                <td>{studentData.semester}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          {/* Logout Button */}
+          <button onClick={handleLogout} className="button logout-button">Logout</button>
+        </>
       ) : (
         <div>No student data available</div>
       )}

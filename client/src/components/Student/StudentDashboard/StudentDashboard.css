@@ -64,3 +64,17 @@
 .performance-section {
     margin-top: 30px;
 }
+
+.logout-button {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .logout-button:hover {
+    background-color: darkred;
+  }
+  
