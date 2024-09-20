@@ -6,6 +6,7 @@ import AboutUs from './components/Homepage/about-us/AboutUs.jsx';
 import Contact from './components/Homepage/contact-us/Contact.jsx';
 import Login from './components/Authentication/Login.jsx';
 import StudentDashboard from './components/Student/StudentDashboard/StudentDashboard.jsx';
+
 function App() {
   return (
     <Router>
@@ -23,6 +24,8 @@ function App() {
 
           {/* Route for Contact Us page */}
           <Route path="/contact" element={<Contact />} />
+
+          {/* Student Dashboard */}
           <Route path="/student-dashboard" element={<StudentDashboard />} />
         </Routes>
       </div>

@@ -1,31 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AboutUs from './about-us/AboutUs.jsx';
+import Contact from './contact-us/Contact.jsx';
 import './index.css';
 
 const Index = () => {
-  const navigate = useNavigate(); // React Router's navigation hook
-
-  // Check for token in localStorage when the component mounts
-   // Dependency array includes 'navigate' to avoid stale closure
+  const aboutRef = useRef(null);  // Ref for About Us section
+  const contactRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleLoginClick = () => {
-
-      const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     
-      if (token) {
-        // If token is present, redirect to the student dashboard
-        navigate('/student-dashboard');
-      } else 
-        navigate('/login');
-     // Navigate to the login page if the user clicks the login button
+    if (token) {
+      // Redirect to student dashboard if token exists
+      navigate('/student-dashboard');
+    } else {
+      // Navigate to login page if no token
+      navigate('/login');
+    }
   };
 
   return (
-    <div className="centered-container">
-      <div>
+    <div className="homepage-container">
+      <div id="top" className="centered-container">
         <h1 className="large-text">Welcome to</h1>
         <h1 className="text">XYZ UNIVERSITY</h1>
         <button className="button" onClick={handleLoginClick}>LOGIN</button>
+      </div>
+      
+      <div ref={aboutRef} id="about-us">
+        <AboutUs />
+      </div>
+
+      <div ref={contactRef} id="contact">
+        <Contact />
       </div>
     </div>
   );
