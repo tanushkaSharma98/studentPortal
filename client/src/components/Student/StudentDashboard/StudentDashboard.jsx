@@ -8,16 +8,26 @@ const StudentData = () => {
   useEffect(() => {
     // Fetch the student data from the API using fetch
     const fetchStudentData = async () => {
+      const token = localStorage.getItem('token'); // Retrieve the token from local storage
+
       try {
-        const response = await fetch('https://api.example.com/student'); // Replace with actual API endpoint
+        const response = await fetch('http://localhost:3000/api/students/profile', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
+          },
+        });
+
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
+
         const data = await response.json();
         setStudentData(data);
-        setLoading(false);
       } catch (err) {
         setError(err.message);
+      } finally {
         setLoading(false);
       }
     };
@@ -36,15 +46,15 @@ const StudentData = () => {
           <tbody>
             <tr>
               <td><strong>Name:</strong></td>
-              <td>{studentData.name}</td>
+              <td>{studentData.student_name}</td>
             </tr>
             <tr>
               <td><strong>College ID:</strong></td>
-              <td>{studentData.college_id}</td>
+              <td>{studentData.enrollment_no}</td>
             </tr>
             <tr>
               <td><strong>Branch:</strong></td>
-              <td>{studentData.branch}</td>
+              <td>{studentData.branch_name}</td>
             </tr>
             <tr>
               <td><strong>Semester:</strong></td>

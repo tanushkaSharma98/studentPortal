@@ -2,7 +2,19 @@ const sequelize = require('../config/dbConfig');
 
 
 exports.getStudentDetailsById = async (userId) => {
-    const query = 'SELECT * FROM student WHERE user_id = :userId';
+    const query = `
+        SELECT
+            s.student_name,
+            s.enrollment_no,
+            s.contact_no,
+            s.semester,
+            b.branch_name
+        FROM
+            student s
+        JOIN
+            branch b ON s.branch_id = b.branch_id
+        WHERE user_id = :userId
+    `;
     try {
         const result = await sequelize.query(query, {
             replacements: { userId }, // Using replacements to pass userId

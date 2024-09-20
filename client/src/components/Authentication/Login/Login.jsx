@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {jwtDecode} from 'jwt-decode'; // Import jwt-decode
 import './login.css';
 
 const Login = () => {
@@ -10,7 +11,7 @@ const Login = () => {
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
-    
+
     // Reset message
     setMessage('');
 
@@ -23,13 +24,28 @@ const Login = () => {
       });
 
       const result = await response.json();
+      console.log(result); // Log the entire response for inspection
 
       if (response.ok) {
-        // Assuming API sends a token or success message
-        setMessage('Login successful!');
-        setTimeout(() => {
-          navigate('/student-dashboard');
-        }, 1000);
+        // Get the token from the response
+        const token = result.token;
+        console.log('Token:', token); // Log the token for debugging
+
+        if (token) {
+          // Store the token in local storage
+          localStorage.setItem('token', token);
+          
+          // Decode the token to get user_id
+          const decodedToken = jwtDecode(token);
+          console.log('User ID:', decodedToken.user_id); // Log the user_id
+
+          setMessage('Login successful!');
+          setTimeout(() => {
+            navigate('/student-dashboard');
+          }, 1000);
+        } else {
+          setMessage('Token not received.');
+        }
       } else {
         // Set the error message based on API response
         setMessage(result.message || 'Login failed.');
