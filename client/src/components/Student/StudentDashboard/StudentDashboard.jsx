@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../../Homepage/navbar/Navbar.jsx';
+import Navbar from '../../Common/navbar/Navbar.jsx';
 import './StudentDashboard.css';
 import { Line } from 'react-chartjs-2'; // for charts, install Chart.js: npm install react-chartjs-2 chart.js
 
