@@ -44,7 +44,7 @@ const StudentScoreboard = () => {
   return (
     <div className="scoreboard-section">
       <div className="header">
-        <h1>Student Scoreboard</h1>
+        <h1>Scoreboard</h1>
         <div className="exam-bar" onClick={toggleDropdown}>
           <span>Exam</span>
           <button className="dropdown-button">
