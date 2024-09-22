@@ -12,13 +12,13 @@ const Index = () => {
   const handleLoginClick = () => {
     const token = localStorage.getItem('token');
     
-    if (token) {
-      // Redirect to student dashboard if token exists
-      navigate('/student-dashboard');
-    } else {
+    // if (token) {
+    //   // Redirect to student dashboard if token exists
+    //   navigate('/student-dashboard');
+    // } else {
       // Navigate to login page if no token
       navigate('/login');
-    }
+    // }
   };
 
   return (

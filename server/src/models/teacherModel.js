@@ -3,17 +3,24 @@ const sequelize = require('../config/dbConfig');
 
 exports.getTeacherDetailsById = async (userId) => {
     const query = `
-        SELECT
-            s.student_name,
-            s.enrollment_no,
-            s.contact_no,
-            s.semester,
-            b.branch_name
-        FROM
-            student s
-        JOIN
-            branch b ON s.branch_id = b.branch_id
-        WHERE user_id = :userId
+       SELECT 
+                t.teacher_name,
+                t.designation,
+                t.contact_no,
+                u.email,
+                array_agg(s.subject_name) AS subjects
+            FROM 
+                teacher t
+            INNER JOIN 
+                users u ON t.user_id = u.user_id
+            INNER JOIN 
+                subject_teacher st ON t.teacher_id = st.teacher_id
+            INNER JOIN 
+                subject s ON st.subject_id = s.subject_id
+            WHERE 
+                t.user_id = :userId
+            GROUP BY 
+                t.teacher_name, t.designation, t.contact_no, u.email
     `;
     try {
         const result = await sequelize.query(query, {
