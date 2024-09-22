@@ -44,7 +44,7 @@ const StudentAttendance = () => {
 
   return (
     <div className="attendance-section">
-      <h1>Student Attendance</h1>
+      <h1> Attendance</h1>
       {subjects.map((subject) => (
         <div key={subject.code} className="subject-bar">
           <div className="subject-header" onClick={() => toggleSubject(subject.code)}>
