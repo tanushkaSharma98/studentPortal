@@ -4,7 +4,7 @@ const sequelize = require('../config/dbConfig');
 exports.getTeacherDetailsById = async (userId) => {
     const query = `
         SELECT
-            s.student_name,
+            t.teacher_name,
             s.enrollment_no,
             s.contact_no,
             s.semester,

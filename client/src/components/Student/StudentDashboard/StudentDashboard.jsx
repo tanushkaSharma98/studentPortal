@@ -1,89 +1,163 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import BarChart from '../ScoreBoard/BarChart';
+import React, { useState } from 'react';
+import Navbar from '../../Common/navbar/Navbar.jsx';
+import './StudentDashboard.css';
+import BarChart from '../ScoreBoard/BarChart.jsx';
+import { Line } from 'react-chartjs-2'; // for charts, install Chart.js: npm install react-chartjs-2 chart.js
 
-const StudentData = () => {
-  const [studentData, setStudentData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate(); // React Router's navigation hook for redirecting
+// Import required Chart.js components
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    LineElement,
+    PointElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
 
-  useEffect(() => {
-    // Fetch the student data from the API using fetch
-    const fetchStudentData = async () => {
-      const token = localStorage.getItem('token'); // Retrieve the token from local storage
+// Register the components
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    LineElement,
+    PointElement,
+    Title,
+    Tooltip,
+    Legend
+);
 
-      try {
-        const response = await fetch('http://localhost:3000/api/students/profile', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
-          },
-        });
+const StudentDashboard = () => {
+    // State to manage which section to display
+    const [view, setView] = useState('dashboard');
 
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json();
-        setStudentData(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
+    const profileData = {
+        name: "John Doe",
+        id: "20221001",
+        email: "john.doe@example.com",
+        contact: "9876543210",
+        branch: "Computer Science",
+        semester: "6",
+        profilePicture: "https://via.placeholder.com/150"
     };
 
-    fetchStudentData();
-  }, []);
+    const marksData = [
+        { subject: "Mathematics", marks: 85 },
+        { subject: "Physics", marks: 78 },
+        { subject: "Chemistry", marks: 88 },
+        { subject: "Computer Science", marks: 90 }
+    ];
 
-  const handleLogout = () => {
-    // Remove the token from local storage
-    localStorage.removeItem('token');
+    const attendanceData = [
+        { subject: "Mathematics", attendance: 75 },
+        { subject: "Physics", attendance: 80 },
+        { subject: "Chemistry", attendance: 60 },
+        { subject: "Computer Science", attendance: 95 }
+    ];
 
-    // Redirect the user to the login page
-    navigate('/login');
-  };
+    const performanceData = {
+        labels: ["Semester 1", "Semester 2", "Semester 3", "Semester 4", "Semester 5", "Semester 6"],
+        datasets: [
+            {
+                label: 'Marks',
+                data: [75, 80, 85, 82, 88, 90],
+                fill: false,
+                backgroundColor: 'rgb(75, 192, 192)',
+                borderColor: 'rgba(75, 192, 192, 0.2)',
+            },
+        ],
+    };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+    // Function to render selected view
+    const renderView = () => {
+        switch(view) {
+            case 'dashboard':
+                return (
+                    <div className="profile-section">
+                        <img src={profileData.profilePicture} alt="Profile" />
+                        <h2>{profileData.name}</h2>
+                        <p><strong>ID:</strong> {profileData.id}</p>
+                        <p><strong>Email:</strong> {profileData.email}</p>
+                        <p><strong>Contact:</strong> {profileData.contact}</p>
+                        <p><strong>Branch:</strong> {profileData.branch}</p>
+                        <p><strong>Semester:</strong> {profileData.semester}</p>
+                    </div>
+                );
+            case 'scoreboard':
+                return (
+                    <div className="marks-section">
+                        <h2>Scoreboard</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Marks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {marksData.map((subject, index) => (
+                                    <tr key={index}>
+                                        <td>{subject.subject}</td>
+                                        <td>{subject.marks}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                );
+            case 'attendance':
+                return (
+                    <div className="attendance-section">
+                        <h2>Attendance</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Subject</th>
+                                    <th>Attendance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {attendanceData.map((subject, index) => (
+                                    <tr key={index} className={subject.attendance < 75 ? 'low-attendance' : ''}>
+                                        <td>{subject.subject}</td>
+                                        <td>{subject.attendance}%</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <p className="warning-message">* Warning: Below 75% attendance</p>
+                    </div>
+                );
+            default:
+                return null;
+        }
+    };
 
-  return (
-    <div>
-      <h2>Student Information</h2>
-      {studentData ? (
-        <>
-          <table>
-            <tbody>
-              <tr>
-                <td><strong>Name:</strong></td>
-                <td>{studentData.student_name}</td>
-              </tr>
-              <tr>
-                <td><strong>College ID:</strong></td>
-                <td>{studentData.enrollment_no}</td>
-              </tr>
-              <tr>
-                <td><strong>Branch:</strong></td>
-                <td>{studentData.branch_name}</td>
-              </tr>
-              <tr>
-                <td><strong>Semester:</strong></td>
-                <td>{studentData.semester}</td>
-              </tr>
-            </tbody>
-          </table>
+    return (
+        <div className="student-dashboard">
+            <Navbar />
 
-          {/* Logout Button */}
-          <button onClick={handleLogout} className="button logout-button">Logout</button>
-        </>
-      ) : (
-        <div>No student data available</div>
-      )}
-      <BarChart />
-    </div>
-  );
+            {/* Sidebar with navigation buttons */}
+            <div className="dashboard-container">
+                <div className="sidebar">
+                    <button onClick={() => setView('dashboard')}>Dashboard</button>
+                    <button onClick={() => setView('scoreboard')}>Scoreboard</button>
+                    <button onClick={() => setView('attendance')}>Attendance</button>
+                </div>
+
+                {/* Content section */}
+                <div className="content-section">
+                    {renderView()}
+                </div>
+            </div>
+
+            {/* Performance Trends Section */}
+            <div className="performance-section">
+                <h2><BarChart /></h2>
+                <Line data={performanceData} />
+            </div>
+        </div>
+    );
 };
 
-export default StudentData;
+export default StudentDashboard;
