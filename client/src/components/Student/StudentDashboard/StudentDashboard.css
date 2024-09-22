@@ -1,80 +1,46 @@
-.student-dashboard {
-    display: flex;
-    flex-direction: row;
-}
-
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-    padding: 20px;
-    background-color: #f0f0f0;
-}
-
-.sidebar button {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: left;
-}
-
-.sidebar button:hover {
-    background-color: #0056b3;
-}
-
 .content {
-    flex: 1;
+    margin-left: 260px; /* Adjust the margin to match the sidebar width */
     padding: 20px;
-}
-
-.profile-section {
-    display: flex;
+    text-align: center;
     flex-direction: column;
-    align-items: center;
-}
-
-.profile-section img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-}
-
-.profile-details {
-    margin-top: 10px;
-    text-align: left;
-}
-
-.profile-details p {
-    margin: 5px 0;
-    font-size: 16px;
-}
-
-.marks-section, .attendance-section {
+    justify-content: center; /* Center content vertically */
+    align-items: center;     /* Center content horizontally */
+  }
+  /* .student-details {
     margin-top: 20px;
-}
-
-.low-attendance {
-    color: red;
-}
-
-.performance-section {
-    margin-top: 30px;
-}
-
-.logout-button {
-    background-color: red;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
+    padding: 40px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: left; /* Align text to the left 
+  } */
+  .student-details {
+    width: 90%; /* Cover the full width */
+    height: 70%; /* Adjust height to account for header, if any */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: left; /* Center content horizontally */
+    text-align: left; /* Align text to the left */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
   }
   
-  .logout-button:hover {
-    background-color: darkred;
+  h1 {
+    padding-top: 25px; /* Adjust as needed */
+  }
+
+  .student-details p {
+    margin: 15px 10px; /* Add some margin between details */
+  }
+  .profile-photo {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Maintain aspect ratio */
+    border-radius: 50%; /* Make it circular */
+    margin-bottom: 20px; /* Space between photo and details */
+    border: 2px solid #ccc; /* Optional border */
   }
   
