@@ -50,7 +50,7 @@ const AboutUs = () => {
         <div className="photo-space">Principal Photo</div>
         <div className="description">
           <h2>Principal</h2>
-          <p>Our principal, Mrs. DEF, leads with passion and a commitment to educational excellence.</p>
+          <p>Our principal, Mrs. DEE, I am dyslexic.</p>
         </div>
       </div>
 
@@ -59,7 +59,7 @@ const AboutUs = () => {
         <div className="photo-space">Vice Principal Photo</div>
         <div className="description">
           <h2>Vice Principal</h2>
-          <p>Mr. GHI, our vice principal, supports the principal in managing the academic programs and faculty.</p>
+          <p>Mr. GHI, our vice principal, I a'int nobodies bitch.</p>
         </div>
       </div>
     </div>
