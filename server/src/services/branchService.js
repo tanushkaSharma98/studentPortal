@@ -4,12 +4,12 @@ const { updateBranchStatus } = require('../models/changeBranchIsActiveModel');
 
 exports.getBranch = async (filters) => {
     try {
-      // Fetch subjects from the database
+      // Fetch branch detail from the database
       const branch = await getBranch(filters);
         return branch;
     } catch (error) {
-        console.error('Error in fetchSubjects service:', error);
-        throw new Error('Unable to retrieve subject details from database');
+        console.error('Error in fetchBranch service:', error);
+        throw new Error('Unable to retrieve branch details from database');
     }
   };
 
