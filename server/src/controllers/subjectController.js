@@ -1,4 +1,4 @@
-const { getSubjects } = require('../services/subjectService');
+const { getSubjects, registerSubject, changeSubjectStatus } = require('../services/subjectService');
 
 exports.getSubjects = async (req, res) => {
     try {
@@ -22,3 +22,55 @@ exports.getSubjects = async (req, res) => {
         return res.status(500).json({ message: 'Failed to retrieve subjects due to server error' });
     }
 };
+
+exports.createSubject = async (req, res) => {
+    const { subjectName, subjectCode, subjectInitials, branchName, semester, teacherName} = req.body;
+
+    try {
+        // Check if the user is an admin (user_type 0 or 3)
+        const userType = req.user.user_type;
+        if (userType !== 0 && userType !== 3) {
+            return res.status(403).json({ message: 'Access denied. Only admins can create subjects.' });
+        }
+
+        // Call the service to create the subject
+        const result = await registerSubject( subjectName, subjectCode, subjectInitials, branchName, semester, teacherName);
+
+        // Return success response
+        return res.status(201).json({
+            message: 'Subject created successfully',
+            data: result
+        });
+    } catch (error) {
+        console.error('Error in controller:', error);
+        return res.status(500).json({
+            message: 'Failed to add Subject'
+        });
+    }
+};
+
+exports.updateSubjectIsActive = async (req, res) => {
+    const { subject_id, is_active } = req.body;
+  
+    try {
+      // Check if the user is a super admin (user_type 0)
+      const userType = req.user.user_type;
+      if (userType !== 0 && userType !== 3) {
+        return res.status(403).json({ message: 'Access denied. Only admins can update subject status.' });
+      }
+  
+      // Call the service to update the status
+      const result = await changeSubjectStatus(subject_id, is_active);
+  
+      // Return success response
+      return res.status(200).json({
+        message: 'Subject status updated successfully',
+        data: result
+      });
+    } catch (error) {
+      console.error('Error in controller:', error);
+      return res.status(500).json({
+        message: 'Failed to update subject status'
+      });
+    }
+  };

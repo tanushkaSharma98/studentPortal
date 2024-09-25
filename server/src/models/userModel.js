@@ -13,6 +13,7 @@ const getUserByEmail = async (email) => {
               users
           WHERE 
               email = :email
+              AND is_active = TRUE
       `;
       const result = await sequelize.query(query, {
           replacements: {email, secretKey: secretKey},
