@@ -22,7 +22,7 @@ const adminRoutes = require('./routes/adminRoutes.js');
 const studentManagementRoutes = require('./routes/studentManagementRoutes.js');
 // const teacherManagementRoutes = require('./routes/teacherManagementRoutes.js');
 const subjectRoutes = require('./routes/subjectRoutes.js');
-// const branchRoutes = require('./routes/branchRoutes.js');
+const branchRoutes = require('./routes/branchRoutes.js');
 // const examRoutes = require('./routes/examRoutes.js');
 
 // // Use routes
@@ -36,7 +36,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/admin/students', studentManagementRoutes);
 // app.use('/api/admin/teacher', teacherManagementRoutes);
 app.use('/api/admin/subjects', subjectRoutes);
-// app.use('/api/admin/branches', branchRoutes);
+app.use('/api/admin/branches', branchRoutes);
 // app.use('/api/admin/exams', examRoutes);
 
 // Error handling middleware
