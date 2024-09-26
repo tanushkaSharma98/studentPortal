@@ -3,7 +3,7 @@ const { getBranch, registerBranch, getBranchStudentCount, getBranchCount, change
 exports.getBranch = async (req, res) => {
     try {
         // Extract filters from query parameters
-        const { branch_name, semester} = req.body;
+        const { branch_name, semester} = req.query;
 
         const branch = await getBranch({
             branch_name: branch_name || null,
