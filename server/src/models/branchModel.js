@@ -55,3 +55,10 @@ exports.getBranch = async (filters = {}) => {
         throw new Error('Error fetching branch: ' + error.message);
     }
 };
+
+exports.getBranchCount= async () => {
+    const result = await sequelize.query('SELECT COUNT(*) AS count FROM branch WHERE is_active = true', {
+        type: sequelize.QueryTypes.SELECT
+      });
+      return result[0].count;
+};

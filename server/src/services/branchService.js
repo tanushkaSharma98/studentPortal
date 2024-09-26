@@ -1,4 +1,4 @@
-const { getBranch } = require('../models/branchModel'); // Import the Subject model directly
+const { getBranch, getBranchCount } = require('../models/branchModel'); // Import the Subject model directly
 const { createBranch } = require('../models/createBranchModel');
 const { updateBranchStatus } = require('../models/changeBranchIsActiveModel');
 
@@ -13,6 +13,16 @@ exports.getBranch = async (filters) => {
     }
   };
 
+exports.getBranchCount = async () => {
+    try {
+      const branchCount = await getBranchCount();
+      return branchCount;
+    } catch (error) {
+      console.error("Error fetching branch count:", error);
+      throw new Error("Failed to fetch branch count.");
+    }
+};
+  
   exports.registerBranch = async ( branchName ) => {
     try {
         // Call the model function to create a user and admin
