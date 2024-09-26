@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const {authenticate, isTokenBlacklisted} = require('./middleware/authMiddleware.js');
+const { authenticate } = require('./middleware/authMiddleware.js');
 
 // Initialize Express app
 const app = express();

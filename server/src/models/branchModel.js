@@ -26,8 +26,8 @@ exports.getBranch = async (filters = {}) => {
         // Dynamic conditions
         const replacements = [];
         if (filters.branch_name) {
-            query += ' AND b.branch_name = ?';
-            replacements.push(filters.branch_name);
+            query += ' AND b.branch_name ILIKE ?';
+            replacements.push(`%${filters.branch_name}%`);
         }
         if (filters.semester) {
             query += ' AND bs.semester = ?';

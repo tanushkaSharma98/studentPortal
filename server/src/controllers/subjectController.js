@@ -1,4 +1,4 @@
-const { getSubjects, registerSubject, changeSubjectStatus } = require('../services/subjectService');
+const { getSubjects, registerSubject, getSubjectCount, changeSubjectStatus } = require('../services/subjectService');
 
 exports.getSubjects = async (req, res) => {
     try {
@@ -20,6 +20,19 @@ exports.getSubjects = async (req, res) => {
     } catch (error) {
         console.error('Error fetching subjects:', error);
         return res.status(500).json({ message: 'Failed to retrieve subjects due to server error' });
+    }
+};
+
+exports.getSubjectCount= async (req, res) => {
+    try {
+        const userType = req.user.user_type;
+        if (userType !== 0 && userType !== 3) {
+            return res.status(403).json({ message: 'Access denied. Only admins can see subject data.' });
+    }
+        const count = await getSubjectCount();
+        res.status(200).json({ subjectCount: count });
+        } catch (error) {
+        res.status(500).json({ error: 'Error fetching subject count' });
     }
 };
 

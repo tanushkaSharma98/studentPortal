@@ -1,4 +1,4 @@
-const { getSubjects} = require('../models/subjectModel'); // Import the Subject model directly
+const { getSubjects, getSubjectCount} = require('../models/subjectModel'); // Import the Subject model directly
 const { createSubject } = require('../models/createSubjectModel');
 const { updateSubjectStatus } = require('../models/changeSubjectIsActiveModel');
 
@@ -12,6 +12,16 @@ exports.getSubjects = async (filters) => {
         throw new Error('Unable to retrieve subject details from database');
     }
   };
+
+exports.getSubjectCount = async () => {
+    try {
+      const subjectCount = await getSubjectCount();
+      return subjectCount;
+    } catch (error) {
+      console.error("Error fetching subject count:", error);
+      throw new Error("Failed to fetch subject count.");
+    }
+};
 
   exports.registerSubject = async ( subjectName, subjectCode, subjectInitials, branchName, semester, teacherName) => {
     try {

@@ -1,6 +1,6 @@
 const sequelize = require('../config/dbConfig');  // Ensure the path to your dbConfig file is correct
 
-const getSubjects = async (filters = {}) => {
+exports.getSubjects = async (filters = {}) => {
     try {
         console.log('Executing query to fetch subjects...');
 
@@ -38,8 +38,8 @@ const getSubjects = async (filters = {}) => {
             replacements.push(filters.semester);
         }
         if (filters.subject_name) {
-            query += ' AND s.subject_name = ?';
-            replacements.push(filters.subject_name);
+            query += ' AND s.subject_name ILIKE ?';
+            replacements.push(`%${filters.subject_name}%`);
         }
 
         // Execute the raw SQL query
@@ -54,6 +54,9 @@ const getSubjects = async (filters = {}) => {
     }
 };
 
-module.exports = {
-    getSubjects
+exports.getSubjectCount= async () => {
+    const result = await sequelize.query('SELECT COUNT(*) AS count FROM subject WHERE is_active = true', {
+        type: sequelize.QueryTypes.SELECT
+      });
+      return result[0].count;
 };
