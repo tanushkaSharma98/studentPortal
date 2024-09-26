@@ -60,7 +60,7 @@ const getAttendanceTrend = async (student_id) => {
             WHERE student_id = :student_id
         ),
         subject_list AS (
-            SELECT s.subject_id, s.subject_code, s.subject_name
+            SELECT s.subject_id, s.sub_initials, s.subject_code, s.subject_name
             FROM branch_sem_sub bss
             JOIN subject s ON bss.subject_id = s.subject_id
             JOIN student_info si ON bss.branch_id = si.branch_id AND bss.semester = si.semester
@@ -68,22 +68,24 @@ const getAttendanceTrend = async (student_id) => {
         latest_attendance AS (
             SELECT
                 a.subject_id,
-                a.attended_lecture,
                 a.percentage,
+                ar.total_lectures,  -- Fetching total lectures from attendance_record
                 a.updated_at
             FROM attendance a
-            JOIN (
-                SELECT
-                    subject_id,
-                    MAX(attendance_record_id) AS latest_id
+            JOIN attendance_record ar ON a.attendance_record_id = ar.attendance_record_id
+            WHERE a.student_id = :student_id
+            AND a.attendance_record_id = (
+                SELECT MAX(attendance_record_id)
                 FROM attendance
                 WHERE student_id = :student_id
-                GROUP BY subject_id
-            ) latest ON a.subject_id = latest.subject_id AND a.attendance_record_id = latest.latest_id
+                    AND subject_id = a.subject_id
+            )
         )
         SELECT
             sl.subject_name,
-            la.percentage
+            sl.sub_initials,
+            la.percentage,
+            COALESCE(la.total_lectures, 0) AS total_lectures  -- Adding total lectures
         FROM subject_list sl
         LEFT JOIN latest_attendance la ON sl.subject_id = la.subject_id;
     `;

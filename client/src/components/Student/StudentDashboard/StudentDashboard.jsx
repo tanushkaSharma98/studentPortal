@@ -5,6 +5,7 @@ import StudentSidebar from '../StudentSidebar/StudentSidebar.jsx';
 import StudentScoreboard from '../StudentScoreBoard/StudentScoreBoard.jsx';
 import Barchart from '../StudentScoreBoard/BarChart.jsx';
 import StudentAttendance from '../StudentAttendance/StudentAttendance.jsx';
+import AttendanceTrendChart from '../StudentAttendance/BarChart.jsx';
 
 const StudentDashboard = () => {
   const dashboardRef = useRef(null);
@@ -95,6 +96,7 @@ const StudentDashboard = () => {
         </section>
         <section ref={attendanceRef}>
           <StudentAttendance />
+          <AttendanceTrendChart />
         </section>
       </div>
     </div>
