@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link as ScrollLink } from 'react-scroll'; // For smooth scrolling
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'; // For routing
 import './Navbar.css'; // Import the CSS file
@@ -27,53 +27,60 @@ const Navbar = () => {
     }
   };
 
+  const isLoggedIn = !!localStorage.getItem('token'); // Check if the user is logged in
+
+  // Reset showLogout state when the component mounts or location changes
+  useEffect(() => {
+    setShowLogout(false); // Hide logout button on page load or navigation
+  }, [location]);
+
+  const handleScrollOrNavigate = (target) => {
+    if (isHomePage) {
+      // If on the homepage, scroll to the section
+      return <ScrollLink to={target} smooth={true} duration={500} className="nav-link" />;
+    } else {
+      // If not on the homepage, navigate to the appropriate component
+      navigate(target);
+    }
+  };
+
   return (
     <nav>
       <ul>
         <li className="logo">XYZ UNIVERSITY</li>
 
-        {/* Home Link: Use react-scroll or react-router-dom based on the page */}
+        {/* Home Link */}
+        <li>
+          <RouterLink to="/" className="nav-link">
+            Home
+          </RouterLink>
+        </li>
+
+        {/* About Us Link */}
         <li>
           {isHomePage ? (
-            <ScrollLink to="top" smooth={true} duration={500} className="nav-link">
-              Home
+            <ScrollLink to="about-us" smooth={true} duration={500} className="nav-link">
+              About Us
             </ScrollLink>
           ) : (
-            <RouterLink to="/" className="nav-link">
-              Home
+            <RouterLink to="/about-us" className="nav-link">
+              About Us
             </RouterLink>
           )}
         </li>
 
-        {/* About Us Link: Use react-scroll Link for smooth scrolling */}
-        {isHomePage ? (
-          <li>
-            <ScrollLink to="about-us" smooth={true} duration={500} className="nav-link">
-              About Us
-            </ScrollLink>
-          </li>
-        ) : (
-          <li>
-            <RouterLink to="/about-us" className="nav-link">
-              About Us
-            </RouterLink>
-          </li>
-        )}
-
-        {/* Contact Link: Use react-scroll Link for smooth scrolling */}
-        {isHomePage ? (
-          <li>
+        {/* Contact Link */}
+        <li>
+          {isHomePage ? (
             <ScrollLink to="contact" smooth={true} duration={500} className="nav-link">
               Contact
             </ScrollLink>
-          </li>
-        ) : (
-          <li>
+          ) : (
             <RouterLink to="/contact" className="nav-link">
               Contact
             </RouterLink>
-          </li>
-        )}
+          )}
+        </li>
 
         {/* Profile */}
         <li className="profile-container" onClick={toggleLogout}>
@@ -82,11 +89,17 @@ const Navbar = () => {
             alt="Profile"
             className="profile-img"
           />
-          {/* Conditionally render the logout button */}
-          {showLogout && (
+          {/* Show Logout button only when logged in and clicked on profile */}
+          {isLoggedIn && showLogout && (
             <button onClick={handleLogout} className="button logout-button">
               Logout
             </button>
+          )}
+          {/* Show Login button only when not logged in and clicked on profile */}
+          {!isLoggedIn && showLogout && (
+            <RouterLink to="/login" className="button login-button">
+              Login
+            </RouterLink>
           )}
         </li>
       </ul>

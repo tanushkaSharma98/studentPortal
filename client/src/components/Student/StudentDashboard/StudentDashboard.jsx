@@ -70,14 +70,6 @@ const StudentDashboard = () => {
     fetchStudentData();
   }, []);
 
-  const handleLogout = () => {
-    // Remove the token from local storage
-    localStorage.removeItem('token');
-
-    // Redirect the user to the login page
-    navigate('/login');
-  };
-
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -96,7 +88,6 @@ const StudentDashboard = () => {
          {/* <p><strong>Email ID:</strong> {studentDetails.email}</p>  */}
             <p><strong>Contact No:</strong>{studentData.contact_no}</p>
           </div>
-          <button onClick={handleLogout} className="button logout-button">Logout</button>
         </section>
         <section ref={scoreboardRef}>
           <StudentScoreboard />

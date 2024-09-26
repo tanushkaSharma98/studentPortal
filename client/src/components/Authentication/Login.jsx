@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode'; // Import jwt-decode
+import jwtDecode from 'jwt-decode'; // Correct import
 import './login.css';
 
 const Login = () => {
@@ -11,49 +11,42 @@ const Login = () => {
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
-
-    // Reset message
-    setMessage('');
+    setMessage(''); // Reset message on new attempt
 
     try {
-      const body = { email, password };
       const response = await fetch("http://localhost:3000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
+        body: JSON.stringify({ email, password })
       });
 
       const result = await response.json();
-      console.log(result); // Log the entire response for inspection
 
       if (response.ok) {
-        // Get the token from the response
-        const token = result.token;
-        console.log('Token:', token); // Log the token for debugging
-
-        if (token) {
-          // Store the token in local storage
-          localStorage.setItem('token', token);
-          
-          // Decode the token to get user_id
-          const decodedToken = jwtDecode(token);
-          console.log('User ID:', decodedToken.user_id); // Log the user_id
-
-          setMessage('Login successful!');
-          setTimeout(() => {
-            navigate('/student-dashboard');
-          }, 1000);
-        } else {
-          setMessage('Token not received.');
-        }
+        handleLoginSuccess(result.token);
       } else {
-        // Set the error message based on API response
-        setMessage(result.message || 'Login failed.');
+        handleLoginError(result.message);
       }
     } catch (err) {
-      console.error(err.message);
-      setMessage('An error occurred during login.');
+      console.error('Login error:', err);
+      setMessage('An unexpected error occurred. Please try again later.');
     }
+  };
+
+  const handleLoginSuccess = (token) => {
+    if (token) {
+      localStorage.setItem('token', token);
+      const decodedToken = jwtDecode(token);
+      console.log('User ID:', decodedToken.user_id); // Log user ID
+      setMessage('Login successful!');
+      setTimeout(() => navigate('/student-dashboard'), 1000);
+    } else {
+      setMessage('Login failed: No token received.');
+    }
+  };
+
+  const handleLoginError = (errorMessage) => {
+    setMessage(errorMessage || 'Login failed. Please check your credentials.');
   };
 
   return (
@@ -74,13 +67,17 @@ const Login = () => {
           <input
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             required
           />
         </div>
-        <button type="submit" className="button">Login</button>
+        <button type="submit" className="login-button">Login</button>
       </form>
-      {message && <p className={`message ${message.includes('successful') ? 'success' : 'error'}`}>{message}</p>}
+      {message && (
+        <p className={`message ${message.includes('successful') ? 'success' : 'error'}`}>
+          {message}
+        </p>
+      )}
     </div>
   );
 };

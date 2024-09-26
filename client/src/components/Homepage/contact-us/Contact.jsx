@@ -21,7 +21,6 @@ const Contact = () => {
         </div>
       </div>
 
-
       <div className="map">
         <h2>Find Us Here:</h2>
         <div className="map-placeholder">[Google Map Placeholder]</div>
