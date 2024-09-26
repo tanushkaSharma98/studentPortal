@@ -21,23 +21,24 @@ const getAttendanceData = async (student_id) => {
                 a.percentage,
                 a.updated_at
             FROM attendance a
-            JOIN (
-                SELECT
-                    subject_id,
-                    MAX(attendance_record_id) AS latest_id
+            WHERE a.student_id = :student_id
+            AND a.attendance_record_id = (
+                SELECT MAX(attendance_record_id)
                 FROM attendance
                 WHERE student_id = :student_id
-                GROUP BY subject_id
-            ) latest ON a.subject_id = latest.subject_id AND a.attendance_record_id = latest.latest_id
+                    AND subject_id = a.subject_id
+            )
         )
         SELECT
             sl.subject_code,
             sl.subject_name,
-            la.attended_lecture,
-            la.percentage,
+            COALESCE(la.attended_lecture, 0) AS attended_lecture,
+            COALESCE(la.percentage, 0) AS percentage,
             la.updated_at
         FROM subject_list sl
-        LEFT JOIN latest_attendance la ON sl.subject_id = la.subject_id;
+        LEFT JOIN latest_attendance la ON sl.subject_id = la.subject_id
+        ORDER BY sl.subject_code; -- Optional: order by subject code
+
     `;
 
     const result = await sequelize.query(query, {
