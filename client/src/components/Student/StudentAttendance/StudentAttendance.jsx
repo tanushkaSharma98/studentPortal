@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 import './StudentAttendance.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -6,14 +6,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const StudentAttendance = () => {
-  // Sample data for subjects and their attendance
-  const subjects = [
-    { code: 'CS101', name: 'Computer Science', totalClasses: 40, classesAttended: 35, updatedTill: '2023-09-20' },
-    { code: 'MATH201', name: 'Mathematics', totalClasses: 40, classesAttended: 30, updatedTill: '2023-09-20' },
-    { code: 'PHY301', name: 'Physics', totalClasses: 40, classesAttended: 28, updatedTill: '2023-09-20' },
-    { code: 'CHEM401', name: 'Chemistry', totalClasses: 40, classesAttended: 32, updatedTill: '2023-09-20' },
-  ];
-
+  const [subjects, setSubjects] = useState([]);
   const [openSubjects, setOpenSubjects] = useState({});
 
   const toggleSubject = (code) => {
@@ -24,12 +17,12 @@ const StudentAttendance = () => {
   };
 
   // Function to generate pie chart data for attendance
-  const getPieChartData = (classesAttended, totalClasses) => {
+  const getPieChartData = (attendedLectures, totalClasses) => {
     return {
       labels: ['Classes Attended', 'Classes Missed'],
       datasets: [
         {
-          data: [classesAttended, totalClasses - classesAttended],
+          data: [attendedLectures, totalClasses - attendedLectures],
           backgroundColor: ['#555555', '#cccccc'], // Grey shades
           hoverBackgroundColor: ['#444444', '#bbbbbb'],
         },
@@ -41,6 +34,37 @@ const StudentAttendance = () => {
     responsive: true,
     maintainAspectRatio: false, // Maintain aspect ratio based on the container size
   };
+
+  // Fetch attendance data from the API
+  useEffect(() => {
+    const fetchAttendanceData = async () => {
+      const token = localStorage.getItem('token'); // Retrieve token from local storage
+      const response = await fetch('http://localhost:3000/api/students/attendance', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`, // Include the token in the headers
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        // Transform the API response to fit your subjects array structure
+        const formattedSubjects = data.map((item) => ({
+          code: item.subject_code,
+          name: item.subject_name,
+          totalClasses: item.total_lectures, // Use the total lectures from the API response
+          classesAttended: item.attended_lecture,
+          updatedTill: new Date(item.updated_at).toLocaleDateString(), // Format the date
+        }));
+        setSubjects(formattedSubjects);
+      } else {
+        console.error('Failed to fetch attendance data');
+      }
+    };
+
+    fetchAttendanceData();
+  }, []);
 
   return (
     <div className="attendance-section">

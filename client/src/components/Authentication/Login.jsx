@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import jwtDecode from 'jwt-decode'; // Correct import
+import {jwtDecode} from 'jwt-decode'; 
 import './login.css';
 
 const Login = () => {
@@ -71,7 +71,7 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit" className="login-button">Login</button>
+        <button type="submit" className="auth-login-button">Login</button>
       </form>
       {message && (
         <p className={`message ${message.includes('successful') ? 'success' : 'error'}`}>

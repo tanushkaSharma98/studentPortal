@@ -19,8 +19,10 @@ const getAttendanceData = async (student_id) => {
                 a.subject_id,
                 a.attended_lecture,
                 a.percentage,
-                a.updated_at
+                a.updated_at,
+                ar.total_lectures  -- Fetching total lectures from attendance_record
             FROM attendance a
+            JOIN attendance_record ar ON a.attendance_record_id = ar.attendance_record_id
             WHERE a.student_id = :student_id
             AND a.attendance_record_id = (
                 SELECT MAX(attendance_record_id)
@@ -34,11 +36,11 @@ const getAttendanceData = async (student_id) => {
             sl.subject_name,
             COALESCE(la.attended_lecture, 0) AS attended_lecture,
             COALESCE(la.percentage, 0) AS percentage,
+            COALESCE(la.total_lectures, 0) AS total_lectures,  -- Adding total lectures
             la.updated_at
         FROM subject_list sl
         LEFT JOIN latest_attendance la ON sl.subject_id = la.subject_id
         ORDER BY sl.subject_code; -- Optional: order by subject code
-
     `;
 
     const result = await sequelize.query(query, {
@@ -47,6 +49,7 @@ const getAttendanceData = async (student_id) => {
     });
     return result;
 };
+
 
 // attendance trend
 const getAttendanceTrend = async (student_id) => {
