@@ -25,14 +25,14 @@ const BarChart = () => {
                 // Transforming the data
                 const subjects = {};
                 rawData.forEach(item => {
-                    const { subject_name, exam_name, percentage } = item;
-                    if (!subjects[subject_name]) {
-                        subjects[subject_name] = { Midterm1: null, Midterm2: null };
+                    const { sub_initials, exam_name, percentage } = item;
+                    if (!subjects[sub_initials]) {
+                        subjects[sub_initials] = { Midterm1: null, Midterm2: null };
                     }
                     if (exam_name === "Midterm 1") {
-                        subjects[subject_name].Midterm1 = parseFloat(percentage);
+                        subjects[sub_initials].Midterm1 = parseFloat(percentage);
                     } else if (exam_name === "Midterm 2") {
-                        subjects[subject_name].Midterm2 = parseFloat(percentage);
+                        subjects[sub_initials].Midterm2 = parseFloat(percentage);
                     }
                 });
 

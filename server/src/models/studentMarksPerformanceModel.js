@@ -8,6 +8,7 @@ exports.getMarksPerformance = async (userId) => {
         const results = await sequelize.query(`
             SELECT 
                 m.percentage,
+                s.sub_initials,
                 s.subject_name,
                 e.exam_name,
                 e.exam_id,
