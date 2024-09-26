@@ -20,6 +20,7 @@ const getAttendanceData = async (student_id) => {
                 a.attended_lecture,
                 a.percentage,
                 a.updated_at,
+                ar.date,
                 ar.total_lectures  -- Fetching total lectures from attendance_record
             FROM attendance a
             JOIN attendance_record ar ON a.attendance_record_id = ar.attendance_record_id
@@ -35,6 +36,7 @@ const getAttendanceData = async (student_id) => {
             sl.subject_code,
             sl.subject_name,
             COALESCE(la.attended_lecture, 0) AS attended_lecture,
+            la.date,
             COALESCE(la.percentage, 0) AS percentage,
             COALESCE(la.total_lectures, 0) AS total_lectures,  -- Adding total lectures
             la.updated_at
@@ -70,6 +72,7 @@ const getAttendanceTrend = async (student_id) => {
                 a.subject_id,
                 a.percentage,
                 ar.total_lectures,  -- Fetching total lectures from attendance_record
+                ar.date,
                 a.updated_at
             FROM attendance a
             JOIN attendance_record ar ON a.attendance_record_id = ar.attendance_record_id
@@ -84,6 +87,7 @@ const getAttendanceTrend = async (student_id) => {
         SELECT
             sl.subject_name,
             sl.sub_initials,
+            la.date,
             la.percentage,
             COALESCE(la.total_lectures, 0) AS total_lectures  -- Adding total lectures
         FROM subject_list sl

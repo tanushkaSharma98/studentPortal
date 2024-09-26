@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4b33136-3f4f-4899-bf8a-59352a0ff7f1" name="Changes" comment="commit" />
+    <list default="true" id="f4b33136-3f4f-4899-bf8a-59352a0ff7f1" name="Changes" comment="commit">
+      <change beforePath="$PROJECT_DIR$/client/src/components/Student/StudentAttendance/StudentAttendance.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Student/StudentAttendance/StudentAttendance.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/examController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/examController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/studentManagementController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/studentManagementController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/studentAttendanceModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/studentAttendanceModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/studentManagementRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/studentManagementRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/services/studentManagementService.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/services/studentManagementService.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -157,6 +164,7 @@
       <workItem from="1726721892224" duration="50000" />
       <workItem from="1726723637962" duration="333000" />
       <workItem from="1726724031919" duration="73000" />
+      <workItem from="1727346039641" duration="42000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />

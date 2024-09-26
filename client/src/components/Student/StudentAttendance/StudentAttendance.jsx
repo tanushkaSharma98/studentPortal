@@ -55,7 +55,7 @@ const StudentAttendance = () => {
           name: item.subject_name,
           totalClasses: item.total_lectures, // Use the total lectures from the API response
           classesAttended: item.attended_lecture,
-          updatedTill: new Date(item.updated_at).toLocaleDateString(), // Format the date
+          updatedTill: new Date(item.date).toLocaleDateString(), // Format the date
         }));
         setSubjects(formattedSubjects);
       } else {
