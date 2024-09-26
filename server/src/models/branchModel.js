@@ -62,3 +62,17 @@ exports.getBranchCount= async () => {
       });
       return result[0].count;
 };
+
+exports.getBranchStudentCount= async () => {
+    const result = await sequelize.query(`
+      SELECT b.branch_name, 
+             COUNT(CASE WHEN u.is_active = true THEN s.student_id END) AS student_count
+      FROM branch b
+      LEFT JOIN student s ON b.branch_id = s.branch_id
+      LEFT JOIN users u ON s.user_id = u.user_id
+      GROUP BY b.branch_name
+    `, {
+        type: sequelize.QueryTypes.SELECT
+      });
+      return result;
+};

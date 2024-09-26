@@ -1,4 +1,4 @@
-const { getBranch, registerBranch, getBranchCount, changeBranchStatus } = require('../services/branchService');
+const { getBranch, registerBranch, getBranchStudentCount, getBranchCount, changeBranchStatus } = require('../services/branchService');
 
 exports.getBranch = async (req, res) => {
     try {
@@ -31,6 +31,19 @@ exports.getBranchCount= async (req, res) => {
         res.status(200).json({ branchCount: count });
         } catch (error) {
         res.status(500).json({ error: 'Error fetching branch count' });
+    }
+};
+
+exports.getBranchStudentCount= async (req, res) => {
+    try {
+        const userType = req.user.user_type;
+        if (userType !== 0 && userType !== 3) {
+            return res.status(403).json({ message: 'Access denied. Only admins can see branch data.' });
+    }
+        const data = await getBranchStudentCount();
+        res.status(200).json({ branchStudentCount: data });
+        } catch (error) {
+        res.status(500).json({ error: 'Error fetching branch-student count' });
     }
 };
 
