@@ -9,4 +9,3 @@ exports.getStudentCount = async () => {
       throw new Error("Failed to fetch student count.");
     }
 };
-  
