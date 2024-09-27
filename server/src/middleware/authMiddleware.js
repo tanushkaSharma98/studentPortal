@@ -1,6 +1,6 @@
-// authMiddleware.js
 const jwt = require('jsonwebtoken');
 const { isTokenBlacklisted } = require('../models/tokenBlacklistModel.js'); // Ensure correct path
+const { blacklistToken } = require('../models/userModel');
 
 // Middleware to verify token and extract user info
 const authenticate = async (req, res, next) => {
@@ -18,9 +18,17 @@ const authenticate = async (req, res, next) => {
         }
 
         // Verify the token
-        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
             if (err) {
                 return res.status(401).json({ message: 'Unauthorized' });
+            }
+
+            // Check for token expiration
+            const currentTime = Math.floor(Date.now() / 1000); // Get current time in seconds
+            if (decoded.exp < currentTime) {
+                // If expired, blacklist the token
+                await blacklistToken(token, new Date()); // You may choose an appropriate expiration date
+                return res.status(403).json({ message: 'Token has expired' });
             }
 
             req.user = decoded; // Attach decoded user data to request object

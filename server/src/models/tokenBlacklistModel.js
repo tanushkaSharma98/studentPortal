@@ -1,7 +1,6 @@
 // tokenBlacklistModel.js
 const sequelize = require('../config/dbConfig'); // Ensure correct path to your sequelize instance
-
-const isTokenBlacklisted = async (token) => {
+exports.isTokenBlacklisted = async (token) => {
     const query = 'SELECT id FROM token_blacklist WHERE token = $1'; // SQL query to select a token from the blacklist
     const values = [token]; // Token parameter
     try {
@@ -16,4 +15,27 @@ const isTokenBlacklisted = async (token) => {
     }
 };
 
-module.exports = { isTokenBlacklisted };
+exports.blacklistExpiredTokens = async () => {
+    const now = new Date(); // Current date and time
+
+    const query = `
+        SELECT token FROM token_blacklist
+        WHERE expiresAt < :now
+    `;
+
+    try {
+        const result = await sequelize.query(query, {
+            replacements: { now },
+            type: sequelize.QueryTypes.SELECT
+        });
+
+        // Blacklist expired tokens
+        for (const row of result) {
+            await blacklistToken(row.token, now);
+        }
+
+        console.log('Expired tokens have been blacklisted successfully.');
+    } catch (error) {
+        console.error(`Error blacklisting expired tokens: ${error.message}`);
+    }
+};
