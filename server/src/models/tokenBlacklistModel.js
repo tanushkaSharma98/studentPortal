@@ -1,6 +1,6 @@
 const sequelize = require('../config/dbConfig');
 const moment = require('moment-timezone');
-const { blacklistToken } = require('./userModel');
+const { logout } = require('../services/authService');
 
 exports.getAllTokens = async () => {
     const query = 'SELECT token FROM token_blacklist WHERE is_blacklisted = FALSE'; // Modify as needed
@@ -35,7 +35,7 @@ exports.blacklistExpiredTokens = async () => {
 
     const query = `
         SELECT token FROM token_blacklist
-        WHERE expires_at < :now AND is_blacklisted = FALSE  -- Only select unblacklisted expired tokens
+        WHERE expires_at < :now AND is_blacklisted = FALSE
     `;
 
     try {
@@ -44,23 +44,18 @@ exports.blacklistExpiredTokens = async () => {
             type: sequelize.QueryTypes.SELECT
         });
 
-        let blacklistedCount = 0; // Counter for blacklisted tokens
-
-        // Blacklist expired tokens
-        for (const row of result) {
-            // Call your function to blacklist the token in the database
-            await blacklistToken(row.token);  // Assuming blacklistToken updates the is_blacklisted field to true
-            blacklistedCount++; // Increment the counter
+        if (result.length === 0) {
+            return { success: false, message: 'No expired tokens to blacklist.' };
         }
 
-        if (blacklistedCount > 0) {
-            console.log('Expired tokens have been blacklisted successfully.');
-            return { success: true, message: `${blacklistedCount} tokens have been blacklisted.` }; // Return success message
-        } else {
-            return { success: false, message: 'No expired tokens to blacklist.' }; // No tokens were blacklisted
-        }
+        const blacklistedTokens = await Promise.all(result.map(row => logout(row.token))); // Use Promise.all for concurrent execution
+        const blacklistedCount = blacklistedTokens.length; // Count how many tokens were processed
+
+        console.log(`${blacklistedCount} expired tokens have been blacklisted successfully.`);
+        return { success: true, message: `${blacklistedCount} tokens have been blacklisted.` };
+
     } catch (error) {
         console.error(`Error blacklisting expired tokens: ${error.message}`);
-        return { success: false, message: 'Error occurred while blacklisting tokens.' }; // Return error message
+        return { success: false, message: 'Error occurred while blacklisting tokens.' };
     }
 };

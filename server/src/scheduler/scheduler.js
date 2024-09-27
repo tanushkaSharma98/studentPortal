@@ -4,7 +4,8 @@ const { getAllTokens, blacklistExpiredTokens } = require('../models/tokenBlackli
 const { logUserLogout } = require('../models/userLogModel'); // Ensure correct path
 require('dotenv').config({ path: 'src/.env' });
 
-cron.schedule('*/10 * * * *', async () => {
+// Task function to blacklist expired tokens
+const runTask = async () => {
     console.log('Running task to blacklist expired tokens...');
     try {
         const tokens = await getAllTokens(); // Fetch tokens from the database
@@ -14,27 +15,28 @@ cron.schedule('*/10 * * * *', async () => {
         for (const token of tokens) {
             try {
                 const decoded = jwt.verify(token.token, process.env.JWT_SECRET); // Ensure 'token' is the correct field
-                // You can log the decoded information if needed
                 console.log(`Processing token for user ID: ${decoded.user_id}`);
             } catch (tokenError) {
-                console.error(`Error verifying token ${token.token}: ${tokenError.message}`);
-                expiredTokens.push(token); // Add the token to the list of expired tokens
+                if (tokenError.name === 'TokenExpiredError') {
+                    console.error(`Token expired: ${token.token}`);
+                    expiredTokens.push(token); // Add the token to the list of expired tokens
+                } else {
+                    console.error(`Error verifying token ${token.token}: ${tokenError.message}`);
+                }
             }
         }
 
         // Blacklist expired tokens
         const result = await blacklistExpiredTokens();
-
-        if (result.success) {
-            // Loop through expired tokens and log user logout actions
-            for (const token of expiredTokens) {
-                const decoded = jwt.verify(token.token, process.env.JWT_SECRET);
-                await logUserLogout(decoded.user_id, new Date());
-            }
-        }
+        console.log(result.success);
 
         console.log('Expired tokens have been successfully blacklisted.');
     } catch (error) {
         console.error(`Error during the blacklist token cron job: ${error.message}`);
     }
-});
+};
+
+// Schedule the task to run every 10 minutes
+cron.schedule('*/10 * * * *', runTask);
+
+console.log('Cron job scheduled to run every 10 minutes.');

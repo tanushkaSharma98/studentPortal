@@ -40,15 +40,16 @@ const storeToken = async (user_id, token, expires_at, created_at, is_blacklisted
   // Function to insert a token into the blacklist
   const blacklistToken = async (token) => {
     try {
-       const query = `UPDATE token_blacklist SET is_blacklisted = TRUE WHERE token = :token`;
-      await sequelize.query(query, {
-        replacements: { token },
-    });
+        const query = `UPDATE token_blacklist SET is_blacklisted = TRUE WHERE token = :token`;
+        await sequelize.query(query, {
+            replacements: { token },
+        });
+        return true; // Return true indicating the token was successfully blacklisted
     } catch (error) {
-      console.error(`Insert Token Error: ${error.message}`); // Handle errors
-      throw new Error('Insert Token Error');
+        console.error(`Blacklist Token Error: ${error.message}`); // Handle errors
+        throw new Error('Blacklist Token Error'); // Throw error for upstream handling
     }
-  };
+};
   
 
 module.exports = {

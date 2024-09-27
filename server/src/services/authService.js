@@ -42,21 +42,34 @@ exports.login = async (email, password) => {
   }
 };
 
-// Logout Service
 exports.logout = async (token) => {
-  try {
-      // Verify the token
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    try {
+        // Decode the token to check for expiration without verifying
+        const decoded = jwt.decode(token);
 
-      // Mark the token as blacklisted in the database
-      await blacklistToken(token); // Update the token to set is_blacklisted = true
+        // Check if the token is expired
+        if (decoded && decoded.exp * 1000 < Date.now()) {
+            // Token is expired, directly blacklist it
+            await blacklistToken(token); // Update the token to set is_blacklisted = true
+            console.log(`Token expired: ${token}`);
 
-      // Log the user logout action
-      await logUserLogout(decoded.user_id, new Date());
+            // Log the logout action for the user
+            await logUserLogout(decoded.user_id, new Date()); // Assuming user_id is present in decoded token
+            return { success: true, message: 'Token was expired and has been blacklisted.' };
+        }
 
-      return { success: true, message: 'Logged out successfully' }; // Successful logout
-  } catch (error) {
-      console.error('Logout Service Error:', error);
-      throw new Error(`Logout Service Error: ${error.message}`); // Handle errors
-  }
+        // If not expired, verify the token
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
+
+        // Mark the token as blacklisted in the database
+        await blacklistToken(token); // Update the token to set is_blacklisted = true
+
+        // Log the user logout action
+        await logUserLogout(verified.user_id, new Date());
+
+        return { success: true, message: 'Logged out successfully' }; // Successful logout
+    } catch (error) {
+        console.error('Logout Service Error:', error);
+        throw new Error(`Logout Service Error: ${error.message}`); // Handle errors
+    }
 };
