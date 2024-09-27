@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { getUserByEmail, blacklistToken } = require('../models/userModel');
+const { logUserLogin, logUserLogout } = require('../models/userLogModel');
 require('dotenv').config({ path: 'src/.env' });
 
 // Login Service
@@ -23,6 +24,9 @@ exports.login = async (email, password) => {
           { expiresIn: '1h' }
       );
 
+      // Log the user login action
+      await logUserLogin(user.user_id, new Date());
+
       return token;
   } catch (error) {
       console.error('Login Service Error:', error);
@@ -32,11 +36,15 @@ exports.login = async (email, password) => {
 
 exports.logout = async (token) => {
     try {
+
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
       // Blacklist the token
       const now = new Date(); // Current date and time
       const expiresAt = new Date(now.getTime() + 30 * 60000); // Set expiration to 30 minutes from now
       await blacklistToken(token, expiresAt); // Insert token into blacklist
-  
+      // Log the user logout action
+      await logUserLogout(decoded.user_id, new Date());
+
       return { success: true, message: 'Logged out successfully' }; // Successful logout
     } catch (error) {
       throw new Error(`Logout Service Error: ${error.message}`); // Handle errors
