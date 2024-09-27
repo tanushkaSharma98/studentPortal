@@ -3,11 +3,11 @@ const { getSubjects, registerSubject, getSubjectCount, changeSubjectStatus } = r
 exports.getSubjects = async (req, res) => {
     try {
         // Extract filters from query parameters
-        const { branch_name, semester, subject_name } = req.query;
+        const { branchName, semester, subject_name } = req.query;
 
         // Call service to get subjects with filters
         const subjects = await getSubjects({
-            branch_name: branch_name || null,
+            branch_name: branchName || null,
             semester: semester ? parseInt(semester, 10) : null,
             subject_name: subject_name || null
         });
