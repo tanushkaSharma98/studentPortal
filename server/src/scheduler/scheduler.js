@@ -7,11 +7,13 @@ require('dotenv').config({ path: 'src/.env' });
 cron.schedule('*/10 * * * *', async () => {
     console.log('Running task to blacklist expired tokens...');
     try {
+        
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         await blacklistExpiredTokens();
 
         await logUserLogout(decoded.user_id, new Date());
+
         console.log('Expired tokens have been successfully blacklisted.');
     } catch (error) {
         console.error(`Error during the blacklist token cron job: ${error.message}`);
