@@ -5,6 +5,12 @@ const getAdmins = async (req, res) => {
   const requesting_user_id = req.user.user_id;  // Extract user_id from req.user
 
   try {
+
+    const userType = req.user.user_type;
+    if (userType !== 0 && userType !== 3) {
+      return res.status(403).json({ message: 'Access denied. Only admins can get admin data.' });
+    }
+
     // Fetch admin data from the service
     const admins = await adminService.getAdmins(requesting_user_id);
     
