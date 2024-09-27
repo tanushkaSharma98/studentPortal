@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const { getUserByEmail, blacklistToken } = require('../models/userModel');
+const moment = require('moment-timezone');
+const { getUserByEmail, blacklistToken, storeToken } = require('../models/userModel');
 const { logUserLogin, logUserLogout } = require('../models/userLogModel');
 require('dotenv').config({ path: 'src/.env' });
 
@@ -24,6 +25,13 @@ exports.login = async (email, password) => {
           { expiresIn: '1h' }
       );
 
+      // Get the current time in Asia/Kolkata timezone
+      const createdAt = moment.tz(Date.now(), 'Asia/Kolkata').toDate(); // Current time for created_at
+      const expiresAt = moment.tz(Date.now(), 'Asia/Kolkata').add(1, 'hour').toDate(); // Expiration time
+
+      // Store the generated token in the token_blacklist table with Asia/Kolkata times
+      await storeToken(user.user_id, token, expiresAt, createdAt, false); // Store token with created_at and is_blacklisted = false
+
       // Log the user login action
       await logUserLogin(user.user_id, new Date());
 
@@ -34,19 +42,21 @@ exports.login = async (email, password) => {
   }
 };
 
+// Logout Service
 exports.logout = async (token) => {
-    try {
-
+  try {
+      // Verify the token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      // Blacklist the token
-      const now = new Date(); // Current date and time
-      const expiresAt = new Date(now.getTime() + 30 * 60000); // Set expiration to 30 minutes from now
-      await blacklistToken(token, expiresAt); // Insert token into blacklist
+
+      // Mark the token as blacklisted in the database
+      await blacklistToken(token); // Update the token to set is_blacklisted = true
+
       // Log the user logout action
       await logUserLogout(decoded.user_id, new Date());
 
       return { success: true, message: 'Logged out successfully' }; // Successful logout
-    } catch (error) {
+  } catch (error) {
+      console.error('Logout Service Error:', error);
       throw new Error(`Logout Service Error: ${error.message}`); // Handle errors
-    }
-  };
+  }
+};

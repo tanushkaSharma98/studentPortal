@@ -1,14 +1,14 @@
 // tokenBlacklistModel.js
-const sequelize = require('../config/dbConfig'); // Ensure correct path to your sequelize instance
+const sequelize = require('../config/dbConfig');
+const moment = require('moment-timezone');
 exports.isTokenBlacklisted = async (token) => {
-    const query = 'SELECT id FROM token_blacklist WHERE token = $1'; // SQL query to select a token from the blacklist
-    const values = [token]; // Token parameter
+    const query = 'SELECT id FROM token_blacklist WHERE token = :token AND is_blacklisted = TRUE'; // Updated SQL query to check if the token is blacklisted
     try {
         const result = await sequelize.query(query, {
-            bind: values, // Bind parameters to the query
+            replacements: { token }, // Use named replacements instead of positional parameters
             type: sequelize.QueryTypes.SELECT // Specify the query type
-        }); // Execute the query
-        return result.length > 0; // Return true if the token is found, otherwise false
+        });
+        return result.length > 0; // Return true if the token is found and blacklisted, otherwise false
     } catch (error) {
         console.error(`Check Token Error: ${error.message}`); // Handle errors
         throw new Error('Check Token Error');
@@ -16,11 +16,11 @@ exports.isTokenBlacklisted = async (token) => {
 };
 
 exports.blacklistExpiredTokens = async () => {
-    const now = new Date(); // Current date and time
+    const now =  moment.tz(Date.now(), 'Asia/Kolkata').toDate(); // Current date and time
 
     const query = `
         SELECT token FROM token_blacklist
-        WHERE expiresAt < :now
+        WHERE expires_at < :now AND is_blacklisted = FALSE  -- Only select unblacklisted expired tokens
     `;
 
     try {
@@ -31,7 +31,7 @@ exports.blacklistExpiredTokens = async () => {
 
         // Blacklist expired tokens
         for (const row of result) {
-            await blacklistToken(row.token, now);
+            await blacklistToken(row.token);  // No need to pass `now` to `blacklistToken`
         }
 
         console.log('Expired tokens have been blacklisted successfully.');
