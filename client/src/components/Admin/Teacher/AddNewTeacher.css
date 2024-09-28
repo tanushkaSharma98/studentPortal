@@ -1,0 +1,99 @@
+.add-teacher-container {
+    margin-left: 10%;  /* Sidebar width */
+    margin-top: 20px;  
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+    
+  .teaform-container {
+    margin-left: 23%; 
+    margin-top: 35px;
+    margin-right: 15%;
+    padding: 20px;
+    flex-grow: 1;
+    border: 0.5px solid;
+    width: 60%;
+    background-color: rgb(224, 227, 227);
+    border-radius: 5px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+ 
+  .input{
+    padding: 4px;
+    width: 95%;
+  }
+
+  .select{
+    padding: 4px;
+    width: 96%;
+  }
+
+  .btn{
+    background-color: black;
+    color: white;
+    width: 25%;
+    padding: 6px;
+    border-radius: 10px;
+    margin-top: 8px;
+  }
+
+  /* css for subjects multi select option */
+.basic-multi-select {
+  width: 97%; 
+  margin-top: 10px;
+  border: 0.5px solid black;
+  border-radius: 3px;
+}
+
+/* Styling the internal react-select components */
+.select__control {
+  border-color: #000000;
+  box-shadow: none;
+  transition: border-color 0.3s ease;
+}
+
+.select__control:hover {
+  border-color: #888; /* Changes border color on hover */
+}
+
+.select__multi-value {
+  background-color: #f0f0f0; /* Tag background color */
+  color: #333; /* Text color inside selected tags */
+}
+
+.select__multi-value__label {
+  color: #333;
+}
+
+.select__multi-value__remove {
+  color: #727171; /* Color of remove (x) icon */
+}
+
+.select__multi-value__remove:hover {
+  background-color: #000000; 
+  color: rgb(166, 165, 165);
+}
+
+.select__menu {
+  background-color: white;
+}
+
+.select__menu-list {
+  max-height: 150px; /* Limits the height of the dropdown */
+  overflow-y: auto;  /* Adds scrolling for long lists */
+}

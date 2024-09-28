@@ -1,0 +1,37 @@
+/* Main content styles */
+.main-content {
+    margin-left: 20%;  /* Sidebar width */
+    margin-top: 60px;  /* Navbar height */
+    padding: 20px;
+  }
+  
+  .container {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .user-type-dropdown {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .date-picker {
+    display: flex;
+    align-items: center;
+  }
+  
+  .date-picker input {
+    padding: 8px;
+    margin-left: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  

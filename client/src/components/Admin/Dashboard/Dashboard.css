@@ -1,0 +1,107 @@
+/* src/components/Dashboard.css */
+.addashboard {
+    margin-left: 20%;  /* Sidebar width */
+    margin-top: 60px;  /* Navbar height */
+    padding: 20px;
+  }
+.addashboard {
+    padding: 20px;
+  }
+  
+  .adadmin-highlight {
+    color: #7cbbff;
+  }
+  
+  .adcards-container {
+    width: 50%;
+    margin-left: 10%; 
+    margin-right: 10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 40%;
+    row-gap: 30px;
+    margin-bottom: 20px;
+  }
+  
+  .adcard {
+    background-color: #d9edf7;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+    width: 250px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .adgraph-container {
+    margin-top: 40px;
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+    justify-content: center; /* Center the graph */
+    width: 70%;
+}
+  .adwelcome{
+    margin-left: 10%; 
+  }
+  /* Media Queries for Responsiveness */
+@media (max-width: 1200px) and (min-width: 769px) {
+    .addashboard {
+        margin-left: 10%;  /* Reduce sidebar margin on smaller screens */
+   }
+
+   .adcards-container {
+        width: 70%;
+        margin-left: 5%; 
+        margin-right: 5%;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 10%;
+        row-gap: 20px;
+    }
+
+    .adcard {
+        width: 90%; /* Make cards full width */
+    }
+} 
+
+@media (max-width: 768px) {
+    .addashboard {
+        margin-left: 5%;  /* Further reduce sidebar margin */
+        padding: 10px;    /* Reduce padding */
+    }
+
+    h1 {
+        margin-left: 0;   /* Center the title */
+        font-size: 24px;  /* Reduce font size */
+    }
+
+    .adcards-container {
+        width: 100%;
+        margin-left: 0; 
+        margin-right: 0;
+        grid-template-columns: 1fr; /* Stack cards */
+    }
+
+    .adgraph-placeholder {
+        height: 150px; /* Adjust height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .addashboard {
+        padding: 5px; /* Further reduce padding */
+    }
+
+    h1 {
+        font-size: 20px;  /* Further reduce font size */
+    }
+
+    .adcard {
+        font-size: 16px; /* Reduce card font size */
+    }
+
+    .adgraph-placeholder {
+        height: 120px; /* Adjust height for mobile */
+    }
+}

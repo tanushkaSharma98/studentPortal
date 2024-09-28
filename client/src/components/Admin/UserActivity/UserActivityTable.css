@@ -1,0 +1,37 @@
+/* Table Styles */
+.user-activity-table {
+    margin-top: 20px;
+  }
+  
+  .user-activity-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .user-activity-table th, .user-activity-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .user-activity-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .user-activity-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Optional Hover Effect */
+  .user-activity-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .user-activity-table {
+      font-size: 14px;
+    }
+  }
+  

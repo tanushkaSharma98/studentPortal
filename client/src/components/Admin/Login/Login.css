@@ -1,0 +1,129 @@
+/* Global styling */
+ /* body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #258d9b; 
+}  */
+
+/* Page layout */
+.adlogin-page-container {
+  display: flex;
+  flex-direction: column; /* Stack navbar on top of content */
+  height: 100vh;
+}
+
+/* Navbar styling */
+.adnavbar-container {
+  background-color: #78a4b9; /* Darker blue */
+  color: white;
+  padding: 15px;
+  text-align: left;
+  font-size: 24px; /* Larger font size for the title */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+/* Layout for content container */
+.adcontent-wrapper {
+  display: flex; /* Sidebar and login container side by side */
+  flex-grow: 1;
+}
+
+/* Sidebar styling */
+.adsidebar-section {
+  background-color: rgb(197, 229, 250);
+  width: 35%; /* Set sidebar width */
+  padding: 70px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.adsidebar-title {
+  font-size: 25px;
+  white-space: nowrap; /* Prevent wrapping */
+  font-weight: bold; /* Bold text */
+  text-align: center;
+}
+
+/* Image styling */
+.adprofile-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.adprofile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  object-fit: cover; /* Ensure the image is not distorted */
+}
+
+/* Login form styling */
+.adlogin-form-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 30px;
+  margin-bottom: 100px;
+}
+
+/* Form input styling */
+.adinput-group {
+  margin-bottom: 15px;
+  width: 100%; 
+}
+
+.adinput-label {
+  display: block; /* Block for better spacing */
+  margin-bottom: 5px; /* Spacing below label */
+  font-size: 20px;
+}
+
+.adinput-field {
+  width: 250px; /* Full width */
+  padding: 10px; /* Padding inside input */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+}
+
+/* Button styling */
+.adlogin-button {
+  background-color: #0288d1; /* Button color same as navbar */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s; /* Transition effect */
+  height: 40px;
+  width:100px;
+  font-size: 20px;
+  margin-top: 8px;
+}
+
+.adlogin-button:hover {
+  background-color: #0277bd; /* Darker blue on hover */
+}
+
+/* Message styling */
+.adsuccess-message {
+  color: green;
+}
+
+.aderror-message {
+  color: red;
+}
+
+/* Heading styling */
+.adlogin-heading {
+  margin-bottom: 50px; /* Space between heading and form */
+  color: #333; /* Darker text for contrast */
+  font-size: 70px;
+}

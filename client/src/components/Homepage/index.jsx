@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AboutUs from './about-us/AboutUs.jsx';
 import Contact from './contact-us/Contact.jsx';
+import { Link } from 'react-router-dom';
 import './index.css';
 
 const Index = () => {
@@ -31,7 +32,11 @@ const Index = () => {
 
   return (
     <div className="homepage-container">
+      <Link to="/admin/admin-login">
+        <span className='admin-login'>Admin Login</span>
+      </Link>
       <div id="top" className="centered-container">
+
         <h1 className="large-text">Welcome to</h1>
         <h1 className="text">XYZ UNIVERSITY</h1>
         <button className="button" onClick={handleLoginClick}>{button}</button>

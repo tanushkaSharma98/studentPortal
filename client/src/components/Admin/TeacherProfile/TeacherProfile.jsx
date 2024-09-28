@@ -1,0 +1,58 @@
+import React, { useState } from 'react';
+import Sidebar from '../../../common/Admin/Sidebar';
+import Header from '../../../common/Admin/Header';
+import { Link } from 'react-router-dom';
+import './TeacherProfile.css';  // Custom CSS for Teacher Profile
+
+const TeacherProfile = () => {
+  const [teacher, setTeacher] = useState({
+    name: 'John Doe',
+    designation: 'Assistant Professor',
+    subjects: 'Mathematics, Physics',
+    email: 'john.doe@example.com',
+    password: '********',
+    contact: '1234567890'
+  });
+
+  const handleEdit = () => {
+    // Logic to edit teacher's profile
+    alert('Edit profile functionality to be implemented');
+  };
+
+  return (
+    <div className="teacher-profile">
+      <Header />
+      <Sidebar />
+      <div className="teachermain-content">
+        <div className="profile-container">
+          <div className="profile-header">
+            <Link to="/teachers">
+              <button className="back-button">←</button>
+            </Link>
+            <div className="profile-picture"> J
+            </div>
+            <div className="profile-info">
+              <p><strong>Name:</strong> {teacher.name}</p>
+              <p><strong>Designation:</strong> {teacher.designation}</p>
+              <p><strong>Subjects:</strong> {teacher.subjects}</p>
+              <p><strong>Email Id:</strong> {teacher.email}</p>
+              <p><strong>Password:</strong> {teacher.password}</p>
+              <p><strong>Contact No.:</strong> {teacher.contact}</p>
+              <button className="edit-button" onClick={handleEdit}>Edit</button>
+            </div>
+          </div>
+          <div className="profile-actions">
+          <Link to="/admin/attendance-record">
+            <button className="action-button">Attendance Record</button>
+          </Link>
+          <Link to="/admin/student-record">
+            <button className="action-button">Student Record</button>
+          </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TeacherProfile;

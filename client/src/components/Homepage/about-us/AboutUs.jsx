@@ -4,7 +4,7 @@ import './AboutUs.css';
 const AboutUs = () => {
   return (
     <div className="about">
-      <h1>About Us</h1>
+      <h1 className='sh1'>About Us</h1>
 
       {/* Campus Section */}
       <Section title="Campus" photoText="Campus Photo" description="Our campus is located in a serene environment with state-of-the-art facilities designed to foster academic excellence." />

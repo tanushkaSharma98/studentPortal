@@ -51,11 +51,11 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <h1>Login</h1>
+      <h1 className='sh1'>Login</h1>
       <form onSubmit={onSubmitForm}>
         <div className="input-group">
-          <label>Email:</label>
-          <input
+          <label className='slabel'>Email:</label>
+          <input className='input'
             type="email"
             value={email}
             onChange={e => setEmail(e.target.value)}
@@ -63,8 +63,8 @@ const Login = () => {
           />
         </div>
         <div className="input-group">
-          <label>Password:</label>
-          <input
+          <label className='slabel'>Password:</label>
+          <input className='input'
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}

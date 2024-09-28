@@ -1,0 +1,35 @@
+
+/* Make sure content doesn’t overlap with the fixed sidebar and header */
+.main-content {
+    margin-left: 20%;  /* Sidebar width */
+    margin-top: 60px;  /* Navbar height */
+    padding: 20px;
+  }
+  
+  .container {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    
+    .main-content {
+      margin-left: 0;
+    }
+  
+    .search-bar {
+      flex-direction: column;
+    }
+  
+    .search-bar input, .search-bar select, .search-bar button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+    

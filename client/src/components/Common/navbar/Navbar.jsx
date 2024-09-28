@@ -45,59 +45,59 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
-      <ul>
-        <li className="logo">XYZ UNIVERSITY</li>
+    <nav className='snav'>
+      <ul className='sul'>
+        <li className="snavlogo sli">XYZ UNIVERSITY</li>
 
         {/* Home Link */}
-        <li>
-          <RouterLink to="/" className="nav-link">
+        <li className='sli'>
+          <RouterLink to="/" className="snav-link">
             Home
           </RouterLink>
         </li>
 
         {/* About Us Link */}
-        <li>
+        <li className='sli'>
           {isHomePage ? (
-            <ScrollLink to="about-us" smooth={true} duration={500} className="nav-link">
+            <ScrollLink to="about-us" smooth={true} duration={500} className="snav-link">
               About Us
             </ScrollLink>
           ) : (
-            <RouterLink to="/about-us" className="nav-link">
+            <RouterLink to="/about-us" className="snav-link">
               About Us
             </RouterLink>
           )}
         </li>
 
         {/* Contact Link */}
-        <li>
+        <li className='sli'>
           {isHomePage ? (
-            <ScrollLink to="contact" smooth={true} duration={500} className="nav-link">
+            <ScrollLink to="contact" smooth={true} duration={500} className="snav-link">
               Contact
             </ScrollLink>
           ) : (
-            <RouterLink to="/contact" className="nav-link">
+            <RouterLink to="/contact" className="snav-link">
               Contact
             </RouterLink>
           )}
         </li>
 
         {/* Profile */}
-        <li className="profile-container" onClick={toggleLogout}>
+        <li className="snavprofile-container sli" onClick={toggleLogout}>
           <img
             src="https://st.depositphotos.com/1537427/3571/v/450/depositphotos_35717211-stock-illustration-vector-user-icon.jpg"
             alt="Profile"
-            className="profile-img"
+            className="snavprofile-img"
           />
           {/* Show Logout button only when logged in and clicked on profile */}
           {isLoggedIn && showLogout && (
-            <button onClick={handleLogout} className="button logout-button">
+            <button onClick={handleLogout} className="snavbutton slogout-button">
               Logout
             </button>
           )}
           {/* Show Login button only when not logged in and clicked on profile */}
           {!isLoggedIn && showLogout && (
-            <RouterLink to="/login" className="button login-button">
+            <RouterLink to="/login" className="snavbutton slogin-button">
               Login
             </RouterLink>
           )}

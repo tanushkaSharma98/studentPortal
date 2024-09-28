@@ -1,0 +1,66 @@
+/* Basic styling for the table */
+.student-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .student-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+  .student-table th, .student-table td {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+
+  .student-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+   /* Optional Hover Effect */
+   .student-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Style for the deleted rows */
+  .row-deleted td {
+    color: rgb(255, 14, 14);
+  }
+  
+  /* View button - regular and disabled state */
+  .view-btn {
+    padding: 5px 10px;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    background-color: #4d88c7;
+    cursor: pointer;
+  }
+  
+  .view-btn:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+  
+  /* Delete button */
+  .delete-btn {
+    padding: 5px 10px;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    background-color: rgb(250, 67, 67);
+    cursor: pointer;
+  }
+  
+  /* Add button */
+  .add-btn {
+    padding: 5px 10px;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    background-color: rgb(41, 117, 238);
+    cursor: pointer;
+  }
+  
+  

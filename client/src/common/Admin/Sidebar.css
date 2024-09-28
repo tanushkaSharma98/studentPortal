@@ -1,0 +1,48 @@
+/* Fixed Sidebar to the left, below the header */
+.adsidebar {
+    position: fixed;
+    top: 50px;  /* Adjusted for header height */
+    left: 0;
+    width: 20%;
+    background-color: #9bbace;
+    height: calc(100vh - 60px); /* Full height minus header */
+    padding-top: 20px;
+    z-index: 999; /* Ensure it stays below the header but on top of other content */
+    overflow-y: auto; /* Allow scrolling if content overflows */
+  }
+  
+  .adsidebar h3 {
+    text-align: center;
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .adsidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .adsidebar ul li {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  
+  .adsidebar ul li ul {
+    padding-left: 20px;
+  }
+  
+  .adsidebar ul li a {
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .adsidebar ul li a:hover {
+    color: #000000;
+    font-weight: bold;
+  }
+  
+/* Style for active links */
+.adsidebar .adactive-link {
+  font-weight: bold;
+}

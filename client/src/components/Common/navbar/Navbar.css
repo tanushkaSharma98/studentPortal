@@ -1,4 +1,4 @@
-nav {
+.snav {
   padding: 11px;
   background-color: #282c34;
   color: white;
@@ -8,7 +8,7 @@ nav {
   z-index: 1000;
 }
 
-ul {
+.sul {
   display: flex;
   list-style: none;
   justify-content: space-between;
@@ -16,45 +16,45 @@ ul {
   padding: 0;
 }
 
-li {
+.sli {
   margin-left: 20px;
 }
 
-li:first-child {
+.sli:first-child {
   margin-right: auto;
   font-weight: bold;
 }
 
-.nav-link {
+.snav-link {
   color: white;
   text-decoration: none;
   cursor: pointer;
 }
 
-.nav-link:hover {
+.snav-link:hover {
   text-decoration: underline;
 }
 
-.profile-img {
+.snavprofile-img {
   height: 30px;
   border-radius: 50%;
   cursor: pointer;
 }
 
-.profile-container {
+.snavprofile-container {
   position: relative;
   margin-right: 30px; /* Pushes the profile image to the far right */
 }
 
 /* Position the logout/login button below the profile image */
-.logout-button, .login-button {
+.slogout-button, .slogin-button {
   position: absolute;
   top: 40px; /* Adjust based on your design */
   right: 0;
   display: none; /* Hide by default */
 }
 
-.button {
+.snavbutton {
   padding: 10px 20px;
   background-color: #007bff;
   color: white;
@@ -65,10 +65,10 @@ li:first-child {
 }
 
 /* Show the button when `showLogout` is true */
-.logout-button {
+.slogout-button {
   display: block; /* Override to show the button when it should be displayed */
 }
 
-.login-button {
+.slogin-button {
   display: inline-block; /* Keep login button inline */
 }

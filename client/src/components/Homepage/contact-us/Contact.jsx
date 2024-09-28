@@ -4,20 +4,20 @@ import './Contact.css';
 const Contact = () => {
   return (
     <div className="contact-container">
-      <h1>Contact Us</h1>
+      <h1 className='sh1'>Contact Us</h1>
 
       <div className="contact-info">
         <div className="info-item">
-          <h3>Address:</h3>
-          <p>XYZ University, 123 College Road, Jaipur, Rajasthan, 302001</p>
+          <h3 className='sh3'>Address:</h3>
+          <p className='sp'>XYZ University, 123 College Road, Jaipur, Rajasthan, 302001</p>
         </div>
         <div className="info-item">
-          <h3>Phone:</h3>
-          <p>+91 98765 43210</p>
+          <h3 className='sh3'>Phone:</h3>
+          <p className='sp'>+91 98765 43210</p>
         </div>
         <div className="info-item">
-          <h3>Email:</h3>
-          <p>contact@xyzuniversity.edu.in</p>
+          <h3 className='sh3'>Email:</h3>
+          <p className='sp'>contact@xyzuniversity.edu.in</p>
         </div>
       </div>
 

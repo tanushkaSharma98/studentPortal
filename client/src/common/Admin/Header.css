@@ -1,0 +1,62 @@
+/* Fixed Navbar at the top */
+.adnavbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #9bbace;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    z-index: 1000; /* Ensure it stays on top */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; 
+    height: 50px;
+  }
+  
+  .adnavbar h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+  }
+  .adnavbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Add space between Change Password and Logout */
+  }
+  
+  .adnavbar-right a {
+    /* margin-left: 20px; */
+    text-decoration: none;
+    color: #565656;
+    font-size: 14px;
+  }
+  
+  .adnavbar-right a:hover {
+    opacity: 0.8;
+  }
+
+.adnavbar-right a.adnavbar-btn {
+    transition: background-color 0.2s ease;
+  }
+  .adnavbar-right a.adnavbar-btn:hover {
+    font-weight: bold;
+    color: #000000;
+  }  
+  .adprofile-img {
+    height: 30px;
+    border-radius: 50%;
+  }
+
+  .adnavbar-btn {
+    font-weight: normal;
+    color: #333;  /* Default link color */
+    text-decoration: none;
+  }
+  
+  .adnavbar-btn.active-link {
+    font-weight: bold;
+    color: #000;  /* Active link color (can be the same or different) */
+  }
+  

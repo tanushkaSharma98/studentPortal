@@ -79,7 +79,7 @@ const StudentDashboard = () => {
       <StudentSidebar onScroll={scrollToSection} />
       <div className="content">
         <section ref={dashboardRef}>
-          <h1> Dashboard</h1>
+          <h1 className='.sh1'> Dashboard</h1>
           <div className="student-details">
           <img src="https://i.pinimg.com/564x/3f/9f/5b/3f9f5b8c9f31ce16c79d48b9eeda4de0.jpg" alt="Profile" className="profile-photo" />
             <p><strong>Enrollment No:</strong> {studentData.enrollment_no}</p>
