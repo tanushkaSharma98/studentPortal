@@ -1,0 +1,79 @@
+.Daily {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 93vh; /* Full height of the viewport */
+    position: relative; /* Allows positioning of the back button */
+  }
+  
+  /* Back button styles */
+  .backbtn {
+    position: absolute;
+    top: 15px; /* Adjust to position from the top */
+    left: 20px; /* Adjust to position from the left */
+  }
+  
+  .back-button {
+    background: none; /* No background color */
+    border: none; /* No border */
+    padding: 0;
+    font-size: 40px; /* Adjust font size for arrow */
+    cursor: pointer;
+    color: black; /* color of back button */
+    font-weight: bold;
+  }
+  
+  .attendance-details {
+    padding-top: 20px;
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Distribute items evenly with space between */
+    width: 60%; /* Take full width */
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  /* Attendance table styles */
+  .attendance-table {
+    margin-top: 50px; /* Space between the attendance details and the table */
+    width: 80%; /* Adjust width as needed */
+    height:14%;
+    border-collapse: collapse; /* Combine borders */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden; /* Clip corners */
+  }
+  
+  .attendance-table th,
+  .attendance-table td {
+    border: 1px solid #ddd; /* Border for table cells */
+    padding: 12px; /* Padding inside cells */
+    text-align: center; /* Center align text */
+  }
+  
+  .attendance-table th {
+    background-color: #363b36; /* Green background color for header */
+    color: white; /* White text color for header */
+    font-weight: bold; /* Make header text bold */
+    font-size: 1.2rem;
+  }
+  
+  .attendance-table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Zebra stripes for even rows */
+  }
+  
+  .attendance-table tr:hover {
+    background-color: #ddd; /* Highlight row on hover */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  .attendance-table td {
+    color: #333; /* Dark text color for table cells */
+  }
+  
+  /* Add margin between the two tables */
+  .second-table {
+    margin-top: 80px; /* Space between the first and second table */
+  }
+  

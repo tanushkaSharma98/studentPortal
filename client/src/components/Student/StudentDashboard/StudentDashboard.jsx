@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './StudentDashboard.css';
 import StudentSidebar from '../StudentSidebar/StudentSidebar.jsx';
@@ -40,9 +40,7 @@ const StudentDashboard = () => {
     });
   };
 
-
   useEffect(() => {
-    // Fetch the student data from the API using fetch
     const fetchStudentData = async () => {
       const token = localStorage.getItem('token'); // Retrieve the token from local storage
 
@@ -74,25 +72,26 @@ const StudentDashboard = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-   return (
+  return (
     <div className="student-dashboard">
       <StudentSidebar onScroll={scrollToSection} />
       <div className="content">
         <section ref={dashboardRef}>
           <h1> Dashboard</h1>
           <div className="student-details">
-          <img src="https://i.pinimg.com/564x/3f/9f/5b/3f9f5b8c9f31ce16c79d48b9eeda4de0.jpg" alt="Profile" className="profile-photo" />
-            <p><strong>Enrollment No:</strong> {studentData.enrollment_no}</p>
-            <p><strong>Name:</strong>{studentData.student_name}</p>
-            <p><strong>Branch:</strong>{studentData.branch_name}</p>
-         <p><strong>Semester:</strong> {studentData.semester}</p>
-         {/* <p><strong>Email ID:</strong> {studentDetails.email}</p>  */}
-            <p><strong>Contact No:</strong>{studentData.contact_no}</p>
+            <div className="profile-and-name">
+              <img src="https://i.pinimg.com/564x/3f/9f/5b/3f9f5b8c9f31ce16c79d48b9eeda4de0.jpg" alt="Profile" className="profile-photo" />
+              <p>{studentData.student_name}</p>
+            </div>
+            <p><strong>Enrollment No: </strong>{studentData.enrollment_no}</p>
+            <p><strong>Branch: </strong>{studentData.branch_name}</p>
+            <p><strong>Semester: </strong>{studentData.semester}</p>
+            <p><strong>Contact No: </strong>{studentData.contact_no}</p>
           </div>
         </section>
         <section ref={scoreboardRef}>
           <StudentScoreboard />
-          <Barchart/>
+          <Barchart />
         </section>
         <section ref={attendanceRef}>
           <StudentAttendance />

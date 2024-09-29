@@ -1,48 +1,67 @@
 .attendance-section {
-    padding: 20px;
-    text-align: left;
-  }
-  
-  .subject-bar {
-    margin-bottom: 20px;
-  }
-  
-  .subject-header {
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-  }
-  
-  .subject-details {
-    display: flex; /* Use flexbox to align items */
-    justify-content: flex-start; /* Align items to the left */
-    align-items: left; /* Center vertically */
-    margin-top: 10px;
-  }
-  
-  .subject-info {
-    display: flex; /* Use flexbox to position left and right */
-    justify-content: space-between; /* Space out the elements */
-    width: 100%; /* Take full width */
-  }
-  
-  .info-left {
-    flex: 1; /* Allow this section to take available space */
-    margin-right: 20px; /* Space between text and pie chart */
-  }
-  
-  .info-right {
-    display: flex; /* Ensure flex display for proper alignment */
-    justify-content: right; /* Align pie chart to the right */
-    align-items: top; /* Center vertically */
-    flex: 0 0 150px; /* Set a fixed width for the pie chart */
-     margin-top:-160px ;
-     margin-left: 350px;
-  }
-  
-  .pie-chart-container {
-    width: 150px; /* Increase width of pie chart */
-    height: 150px; /* Increase height of pie chart */
-
+  padding: 20px;
+  text-align: left;
 }
-  
+
+.attendance-header {
+  display: flex;
+  justify-content: flex-end; /* Push the button to the right */
+  align-items: center;
+  margin-bottom: 20px; /* Add some space below the header */
+}
+
+.daily-attendance-button {
+  background-color: #3f423f; /* Green background */
+  color: white; /* White text */
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px; /* Rounded corners */
+}
+
+.daily-attendance-button:hover {
+  background-color: #747974; /* Slightly darker green on hover */
+}
+
+.subject-bar {
+  margin-bottom: 20px;
+}
+
+.subject-header {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.subject-details {
+  display: flex; /* Use flexbox to align items */
+  justify-content: flex-start; /* Align items to the left */
+  align-items: left; /* Align vertically */
+  margin-top: 10px;
+}
+
+.subject-info {
+  display: flex; /* Use flexbox to position left and right */
+  justify-content: space-between; /* Space out the elements */
+  width: 100%; /* Take full width */
+}
+
+.info-left {
+  flex: 1; /* Allow this section to take available space */
+  margin-right: 20px; /* Space between text and pie chart */
+}
+
+.info-right {
+  display: flex; /* Ensure flex display for proper alignment */
+  justify-content: right; /* Align pie chart to the right */
+  align-items: top; /* Center vertically */
+  flex: 0 0 150px; /* Set a fixed width for the pie chart */
+  margin-top: -160px;
+  margin-left: 350px;
+}
+
+.pie-chart-container {
+  width: 150px; /* Increase width of pie chart */
+  height: 150px; /* Increase height of pie chart */
+}
