@@ -44,7 +44,7 @@
   margin-right: 20px; /* Space between photo and name */
 }
 
-h1 {
+.sh1 {
   padding-top: 25px; /* Adjust as needed */
   text-align: left; /* Align the text to the left */
   margin-left: 0px; /* Optional: Adjust if needed to bring it fully to the left */
