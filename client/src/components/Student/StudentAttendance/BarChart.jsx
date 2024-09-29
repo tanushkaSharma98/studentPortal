@@ -66,7 +66,7 @@ const AttendanceTrendChart = () => {
 
     return (
         <div className="chart-container">
-            <h2>Attendance Trend</h2>
+            
             <Bar
                 data={chartData}
                 options={{
@@ -88,6 +88,7 @@ const AttendanceTrendChart = () => {
                     },
                 }}
             />
+            <h2>Attendance Trend</h2>
         </div>
     );
 };

@@ -3,9 +3,9 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 260px;
+    width: 380px;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-color: #968e8e;
     display: flex;
     flex-direction: column;
     justify-content: center; /* Center buttons vertically */
@@ -16,5 +16,9 @@
     margin-bottom: 20px;
     padding: 7% 25%;
     cursor: pointer;
+    background-color: rgb(53, 45, 45);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
   }
   
