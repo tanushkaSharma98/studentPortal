@@ -48,12 +48,26 @@ const Navbar = () => {
     <nav className='snav'>
       <ul className='sul'>
         <li className="snavlogo sli">XYZ UNIVERSITY</li>
-
-        {/* Home Link */}
-        <li className='sli'>
-          <RouterLink to="/" className="snav-link">
-            Home
-          </RouterLink>
+        
+          {isHomePage && (
+            <li className="sli">
+            <RouterLink to="/admin/admin-login" className="snav-link">
+              Admin Login
+            </RouterLink>
+          </li>
+          )}
+          {/* Home Link */}
+         <li className='sli'>
+          {isHomePage ? (
+            // Scroll to the top of the page (id="top")
+            <ScrollLink to="top" smooth={true} duration={500} className="snav-link">
+              Home
+            </ScrollLink>
+          ) : (
+            <RouterLink to="/" className="snav-link">
+              Home
+            </RouterLink>
+          )}
         </li>
 
         {/* About Us Link */}

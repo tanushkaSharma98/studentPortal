@@ -50,8 +50,19 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <h1 className='sh1'>Login</h1>
+    <div className='slogin-page'>
+      <div className="ssidebar-section">
+          <div className="sprofile-image-container">
+            <img
+              src="https://thumbs.dreamstime.com/z/sign-page-abstract-concept-vector-illustration-enter-application-mobile-screen-user-login-form-website-interface-ui-new-profile-203016094.jpg?ct=jpeg"
+              alt="Profile"
+              className="sprofile-image"
+            />
+          </div>
+        </div>
+      <div className="login-container">
+        <div className='sform'>
+        <h1 className='login-h1'>Login</h1>
       <form onSubmit={onSubmitForm}>
         <div className="input-group">
           <label className='slabel'>Email:</label>
@@ -79,6 +90,10 @@ const Login = () => {
         </p>
       )}
     </div>
+        </div>
+      
+    </div>
+    
   );
 };
 

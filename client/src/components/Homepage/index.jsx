@@ -31,17 +31,24 @@ const Index = () => {
   };
 
   return (
-    <div className="homepage-container">
-      <Link to="/admin/admin-login">
-        <span className='admin-login'>Admin Login</span>
-      </Link>
-      <div id="top" className="centered-container">
-
-        <h1 className="large-text">Welcome to</h1>
-        <h1 className="text">XYZ UNIVERSITY</h1>
-        <button className="button" onClick={handleLoginClick}>{button}</button>
+    <div id="top" className="homepage-container">
+      {/* New wrapper for flex layout */}
+      <div  className="homepage-content">
+        <div className="left-section">
+          <h1 className="large-text">Welcome to</h1>
+          <h1 className="text">XYZ UNIVERSITY</h1>
+          <button className="button" onClick={handleLoginClick}>{button}</button>
+        </div>
+        
+        <div className="right-section">
+          <img 
+            src="https://ww2.kqed.org/app/uploads/sites/23/2021/02/iStock-1227150854-1020x583.jpg" 
+            alt="University" 
+            className="background-image" 
+          />
+        </div>
       </div>
-      
+
       <div ref={aboutRef} id="about-us">
         <AboutUs />
       </div>

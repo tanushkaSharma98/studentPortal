@@ -1,28 +1,76 @@
+.slogin-page{
+  display: flex;
+}
+
+/* Sidebar styling */
+.ssidebar-section {
+  background-color: rgb(255, 255, 255);
+  width: 45%; /* Set sidebar width */
+  padding: 70px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.ssidebar-title {
+  font-size: 25px;
+  white-space: nowrap; /* Prevent wrapping */
+  font-weight: bold; /* Bold text */
+  text-align: center;
+}
+
+/* Image styling */
+.sprofile-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.sprofile-image {
+  width: 550px;
+  height: 500px;
+  border-radius: 5%;
+  object-fit: cover; /* Ensure the image is not distorted */
+}
+
 .login-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 87vh;
-  background-color: #f5f5f5;
+  background-color: rgb(206,220,252);
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  width: 55%;
 }
 
-.sh1 {
-  font-size: 2.5rem;
+.login-h1 {
+  font-size: 3rem;
   margin-bottom: 20px;
-  color: #282c34;
+  color: rgb(92, 120, 238);
+  margin-top: 5%;
+  margin-left: 25%;
 }
 
 .input-group {
   margin-bottom: 15px;
   width: 100%;
+  padding: 10px;
 }
 
 .slabel {
-  font-weight: bold;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.sform{
+  border: 0.5px solid white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
 }
 
 .input {
@@ -32,25 +80,28 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   transition: border-color 0.3s;
+  margin-top: 10px;
 }
 
 .input:focus {
-  border-color: #007bff;
+  border-color: rgb(92, 120, 238);
   outline: none;
 }
 
 .auth-login-button {
   padding: 10px 20px;
-  background-color: rgb(117, 114, 114);
+  background-color: rgb(92, 120, 238);
   color: white;
   border: none;
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s;
+  margin-left: 40%;
 }
 
 .auth-login-button:hover {
-  background-color: #0056b3;
+  background-color: rgb(68, 89, 172);
+  border: 0.5px solid;
 }
 
 .message {
