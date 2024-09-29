@@ -25,24 +25,35 @@ const getUserByEmail = async (email) => {
       throw new Error('Error fetching user by email: ' + error.message);
   }
 };
+
+const storeToken = async (user_id, token, expires_at, created_at, is_blacklisted) => {
+  const query = `
+    INSERT INTO token_blacklist (user_id, token, expires_at, is_blacklisted, created_at) 
+    VALUES (:user_id, :token, :expires_at, :is_blacklisted, :created_at)
+    `;
+  await sequelize.query(query, {
+      replacements: { user_id, token, expires_at, created_at, is_blacklisted },
+  });
+};
+
   
   // Function to insert a token into the blacklist
-  const blacklistToken = async (token, expiresAt) => {
-    const query = 'INSERT INTO token_blacklist (token, expiresAt) VALUES ($1, $2)'; // SQL query to insert a token into the blacklist
-    const values = [token, expiresAt]; // Token and expiration date parameters
+  const blacklistToken = async (token) => {
     try {
-      await sequelize.query(query, {
-        bind: values, // Bind parameters to the query
-        type: sequelize.QueryTypes.INSERT // Specify the query type
-      }); // Execute the query
+        const query = `UPDATE token_blacklist SET is_blacklisted = TRUE WHERE token = :token`;
+        await sequelize.query(query, {
+            replacements: { token },
+        });
+        return true; // Return true indicating the token was successfully blacklisted
     } catch (error) {
-      console.error(`Insert Token Error: ${error.message}`); // Handle errors
-      throw new Error('Insert Token Error');
+        console.error(`Blacklist Token Error: ${error.message}`); // Handle errors
+        throw new Error('Blacklist Token Error'); // Throw error for upstream handling
     }
-  };
+};
   
 
 module.exports = {
     getUserByEmail,
-    blacklistToken
+    blacklistToken,
+    storeToken
 };
