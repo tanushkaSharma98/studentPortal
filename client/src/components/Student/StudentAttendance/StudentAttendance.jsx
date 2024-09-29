@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 import './StudentAttendance.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const StudentAttendance = () => {
   const [subjects, setSubjects] = useState([]);
   const [openSubjects, setOpenSubjects] = useState({});
+  const navigate = useNavigate(); // Initialize useNavigate
+
 
   const toggleSubject = (code) => {
     setOpenSubjects((prevState) => ({
@@ -15,6 +17,11 @@ const StudentAttendance = () => {
       [code]: !prevState[code],
     }));
   };
+    // Navigate to the Daily Attendance page when the button is clicked
+    const handleViewDailyAttendance = () => {
+      navigate('/daily-attendance');
+    };
+  
 
   // Function to generate pie chart data for attendance
   const getPieChartData = (attendedLectures, totalClasses) => {
@@ -68,7 +75,11 @@ const StudentAttendance = () => {
 
   return (
     <div className="attendance-section">
-      <h1> Attendance</h1>
+              <h1> Attendance</h1>
+      <div className="attendance-header">
+       <button className="daily-attendance-button" onClick={handleViewDailyAttendance}>View Daily Attendance</button>
+      </div>
+
       {subjects.map((subject) => (
         <div key={subject.code} className="subject-bar">
           <div className="subject-header" onClick={() => toggleSubject(subject.code)}>
@@ -88,7 +99,10 @@ const StudentAttendance = () => {
                 </div>
                 <div className="info-right">
                   <div className="pie-chart-container">
-                    <Pie data={getPieChartData(subject.classesAttended, subject.totalClasses)} options={pieChartOptions} />
+                    <Pie
+                      data={getPieChartData(subject.classesAttended, subject.totalClasses)}
+                      options={pieChartOptions}
+                    />
                   </div>
                 </div>
               </div>

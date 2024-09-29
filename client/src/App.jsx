@@ -6,6 +6,7 @@ import AboutUs from './components/Homepage/about-us/AboutUs.jsx';
 import Contact from './components/Homepage/contact-us/Contact.jsx';
 import Login from './components/Authentication/Login.jsx';
 import StudentDashboard from './components/Student/StudentDashboard/StudentDashboard.jsx';
+import DailyAttendance from './components/Student/DailyAttendance/DailyAtt.jsx';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
 
           {/* Student Dashboard */}
           <Route path="/student-dashboard" element={<StudentDashboard />} />
+          <Route path="/daily-attendance" element={<DailyAttendance />} />
         </Routes>
       </div>
     </Router>

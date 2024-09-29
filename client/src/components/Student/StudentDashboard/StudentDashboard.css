@@ -1,46 +1,60 @@
 .content {
-    margin-left: 260px; /* Adjust the margin to match the sidebar width */
-    padding: 20px;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center;     /* Center content horizontally */
-  }
-  /* .student-details {
-    margin-top: 20px;
-    padding: 40px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    text-align: left; /* Align text to the left 
-  } */
-  .student-details {
-    width: 90%; /* Cover the full width */
-    height: 70%; /* Adjust height to account for header, if any */
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: left; /* Center content horizontally */
-    text-align: left; /* Align text to the left */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
-  }
-  
-  h1 {
-    padding-top: 25px; /* Adjust as needed */
-  }
+  margin-left: 260px; /* Adjust the margin to match the sidebar width */
+  padding: 20px;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
 
-  .student-details p {
-    margin: 15px 10px; /* Add some margin between details */
-  }
-  .profile-photo {
-    width: 100px; /* Adjust size as needed */
-    height: 100px; /* Maintain aspect ratio */
-    border-radius: 50%; /* Make it circular */
-    margin-bottom: 20px; /* Space between photo and details */
-    border: 2px solid #ccc; /* Optional border */
-  }
+.student-details {
+  width: 90%; /* Cover the full width */
+  height: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: flex-start;
+  align-items: flex-start; /* Align items to the left */
+  text-align: left;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
+
+.profile-and-name {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Add margin between profile and other details */
   
+}
+.profile-and-name p {
+  font-size: 40px !important; /* Increase the font size as per your requirement */
+  font-family: sans-serif;
+  font-weight: bold; /* Optional: Make the name bold */
+  color: #333; /* Optional: Adjust the color */
+}
+
+
+.profile-photo {
+  width: 120px; /* Adjust size as needed */
+  height: 120px; /* Maintain aspect ratio */
+  border-radius: 50%; /* Make it circular */
+  border: 2px solid #ccc; /* Optional border */
+  margin-right: 20px; /* Space between photo and name */
+}
+
+h1 {
+  padding-top: 25px; /* Adjust as needed */
+  text-align: left; /* Align the text to the left */
+  margin-left: 0px; /* Optional: Adjust if needed to bring it fully to the left */
+}
+
+.student-details p {
+  margin: 10px 0; /* Add some margin between details */
+  font-size: 20px;
+}
+
+.student-dashboard {
+  padding-left: 130px;
+}
