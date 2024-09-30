@@ -1,5 +1,5 @@
 /* Container */
-.dailyAttendanceContainer {
+.teacher-dailyAttendanceContainer {
     position: relative;
     width: 100%;
     margin: 20px auto;
@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }
 /* Back button styles */
-.back-button {
+.teacher-back-button {
     position: relative;
     top:-30px;
     left: 5px;
@@ -22,7 +22,7 @@
 
 
 /* Top buttons styling */
-.topButtons {
+.teacher-topButtons {
     display: flex;
     justify-content: space-between; /* Ensure buttons are on opposite sides */
     margin-bottom: 20px;
@@ -30,7 +30,7 @@
 }
 
 /* Dropdown button styling */
-.DropdownBtn {
+.teacher-DropdownBtn {
     background-color: #35393b;
     color: white;
     padding: 10px 20px;
@@ -43,18 +43,18 @@
 }
 
 /* Dropdown arrow styling */
-.arrow {
+.teacher-arrow {
     margin-left: 20px;
     font-size: 13px;
 }
 
 /* Dropdown container */
-.Dropdown {
+.teacher-Dropdown {
     position: relative;
 }
 
 /* Dropdown content */
-.DropdownContent {
+.teacher-DropdownContent {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
@@ -65,13 +65,13 @@
 }
 
 /* Show dropdown content on focus */
-.DropdownBtn:focus + .DropdownContent,
-.DropdownContent:hover {
+.teacher-DropdownBtn:focus + .teacher-DropdownContent,
+.teacher-DropdownContent:hover {
     display: flex;
 }
 
 /* Dropdown links */
-.DropdownContent a {
+.teacher-DropdownContent a {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -79,12 +79,12 @@
 }
 
 /* Hover effect on dropdown links */
-.DropdownContent a:hover {
+.teacher-DropdownContent a:hover {
     background-color: #ddd;
 }
 
 /* Record details section */
-.recordDetails {
+.teacher-recordDetails {
     display: flex;
     justify-content: space-between; /* Aligns Updated Last and Total Lecture on opposite sides */
     align-items: center;
@@ -92,31 +92,31 @@
 }
 
 /* Left side for Updated Last */
-.leftSide {
+.teacher-leftSide {
     text-align: left;
 }
 
 /* Right side for Total Lecture */
-.rightSide {
+.teacher-rightSide {
     text-align: right;
 }
 
 /* Styling for Updated Last */
-.UpdatedLast {
+.teacher-UpdatedLast {
     font-weight: bold;
     margin-bottom: 10px;
     display: block;
 }
 
 /* Styling for Total Lecture */
-.TotalLecture {
+.teacher-TotalLecture {
     font-weight: bold;
     margin-bottom: 10px;
     display: block;
 }
 
 /* Date range section */
-.dateRange {
+.teacher-dateRange {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -124,7 +124,7 @@
 }
 
 /* Date picker styling */
-.datePicker {
+.teacher-datePicker {
     display: flex;
     align-items: center;
 }

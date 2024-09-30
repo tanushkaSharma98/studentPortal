@@ -45,14 +45,14 @@ function TeacherDashboard() {
   };
 
   return (
-    <div className="teacher-dashboard">
+    <div className="teacher-teacher-dashboard">
       <Sidebar handleScrollToSection={handleScrollToSection} /> {/* Use Sidebar component */}
-      <div className="content">
-        <div id="dashboard" className="section">
+      <div className="teacher-content">
+        <div id="teacher-dashboard" className="teacher-section">
           <h2>Dashboard</h2>
           {/* Add dashboard content here */}
         </div>
-        <div className="profile-section">
+        <div className="teacher-profile-section">
           {teacherData ? (
             <TeacherProfile data={teacherData} />
           ) : (
@@ -60,17 +60,17 @@ function TeacherDashboard() {
           )}
         </div>
         
-        <div id="scoreboard" className="section">
+        <div id="teacher-scoreboard" className="teacher-section">
           <h2>Scoreboard</h2>
           {/* Add scoreboard content here */}
         </div>
         <div><TeacherScoreboard/></div>
-        <div id="attendance" className="section">
+        <div id="teacher-attendance" className="teacher-section">
           <h2>Attendance</h2>
           {/* Add attendance content here */}
         </div>
         <div><TeacherAttendance/></div>
-        <div id="student-record" className="section">
+        <div id="teacher-student-record" className="teacher-section">
           <h2>Student Record</h2>
           {/* Add student record content here */}
          

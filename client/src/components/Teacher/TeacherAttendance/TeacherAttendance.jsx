@@ -30,14 +30,14 @@ const TeacherAttendance = () => {
   };
 
   return (
-    <div className="attendance-container">
-      <div className="top-buttons">
-        <div className="dropdown">
-          <button className="dropdown-btn" onClick={toggleSubjectDropdown}>
-            {selectedSubject} <span className="arrow">&#x25BC;</span>
+    <div className="teacher-attendance-container">
+      <div className="teacher-top-buttons">
+        <div className="teacher-dropdown">
+          <button className="teacher-dropdown-btn" onClick={toggleSubjectDropdown}>
+            {selectedSubject} <span className="teacher-arrow">&#x25BC;</span>
           </button>
           {subjectDropdown && (
-            <div className="dropdown-content">
+            <div className="teacher-dropdown-content">
               {subjects.map((subject, index) => (
                 <a href="#" key={index} onClick={(e) => { e.preventDefault(); handleSubjectSelect(subject); }}>
                   {subject}
@@ -48,10 +48,10 @@ const TeacherAttendance = () => {
         </div>
       </div>
 
-      <div className="attendance-details">
-        <p className="UpdatedLast">Updated Last: Yesterday</p>
+      <div className="teacher-attendance-details">
+        <p className="teacher-UpdatedLast">Updated Last: Yesterday</p>
 
-        <div className="input-row">
+        <div className="teacher-input-row">
           <label htmlFor="date">Date:</label>
           <input
             type="date"
@@ -59,10 +59,10 @@ const TeacherAttendance = () => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
-          <span className="total-lecture">Total Lecture: 10</span>
+          <span className="teacher-total-lecture">Total Lecture: 10</span>
         </div>
 
-        <div className="input-row">
+        <div className="teacher-input-row">
           <label htmlFor="lecture">Lecture:</label>
           <input
             type="number"
@@ -77,9 +77,9 @@ const TeacherAttendance = () => {
       </div>
 
       {/* Bottom Buttons */}
-      <div className="bottom-buttons">
-        <button className="daily-record-btn" onClick={() => navigate('/daily-attendance-record')}>Daily Attendance Record</button>
-        <button className="save-btn" onClick={handleSave}>Save</button>
+      <div className="teacher-bottom-buttons">
+        <button className="teacher-daily-record-btn" onClick={() => navigate('/daily-attendance-record')}>Daily Attendance Record</button>
+        <button className="teacher-save-btn" onClick={handleSave}>Save</button>
       </div>
     </div>
   );

@@ -1,28 +1,28 @@
-.teacher-profile {
+.teacher-teacher-profile {
   text-align: left;
   margin-bottom: 20px;
  
 }
 
-.profile-header {
+.teacher-profile-header {
   display: flex;
   align-items: center;
 
 }
 
-.teacher-profile h1 {
+.teacher-teacher-profile h1 {
   text-align: left;
   font-size: 34px;
   margin: 0 10px; /* Add some space between logo and text */
   
 }
 
-.teacher-profile p {
+.teacher-teacher-profile p {
   font-size: 24px;
   margin: 10px 5px;
 }
 
-.logo-circle {
+.teacher-logo-circle {
   width: 83px; /* Adjust size as needed */
   height: 83px;
   border-radius: 50%;

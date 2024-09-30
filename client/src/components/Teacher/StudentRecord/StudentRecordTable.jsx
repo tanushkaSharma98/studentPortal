@@ -14,7 +14,7 @@ const StudentRecordTable = () => {
   const [students, setStudents] = useState(initialRecords);
 
   return (
-    <div className="student-record-table">
+    <div className="teacher-student-record-table">
       <table>
         <thead>
           <tr>

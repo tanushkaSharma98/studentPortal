@@ -3,12 +3,12 @@ import './TeacherProfile.css';
 
 function TeacherProfile({ data }) {
   return (
-    <div className="teacher-profile">
-      <div className="profile-header">
-    <span className="logo-circle">
+    <div className="teacher-teacher-profile">
+      <div className="teacher-profile-header">
+    <span className="teacher-logo-circle">
       {data.teacher_name.charAt(0).toUpperCase()}
     </span>
-    <div className="welcome-message">
+    <div className="teacher-welcome-message">
       <h1>WELCOME</h1>
       <h1>{data.teacher_name}</h1>
     </div>
