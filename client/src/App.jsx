@@ -7,6 +7,8 @@ import Contact from './components/Homepage/contact-us/Contact.jsx';
 import Login from './components/Authentication/Login.jsx';
 import StudentDashboard from './components/Student/StudentDashboard/StudentDashboard.jsx';
 import DailyAttendance from './components/Student/DailyAttendance/DailyAtt.jsx';
+import TeacherDashboard from './components/Teacher/TeacherDashboard/TeacherDashboard.jsx';
+import DailyAttendanceRecord from './components/Teacher/DailyAttendanceRecord/DailyAttendanceRecord.jsx'; // Import your new component
 
 function App() {
   const location = useLocation();
@@ -35,6 +37,11 @@ function App() {
           {/* Student Dashboard */}
           <Route path="/student-dashboard" element={<StudentDashboard />} />
           <Route path="/daily-attendance" element={<DailyAttendance />} />
+              {/* Route for teacher dashboard */}
+              <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+          
+          {/* Route for Daily Attendance Record */}
+          <Route path="/daily-attendance-record" element={<DailyAttendanceRecord />} /> {/* Add route for Daily Attendance Record */}
         </Routes>
       </div>
     </div>

@@ -1,0 +1,139 @@
+/* Container */
+.dailyAttendanceContainer {
+    position: relative;
+    width: 100%;
+    margin: 20px auto;
+    padding: 50px;
+    box-sizing: border-box;
+}
+/* Back button styles */
+.back-button {
+    position: relative;
+    top:-30px;
+    left: 5px;
+    font-size: 45px;
+    font-weight:bolder;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1000; /* Ensures it's on top of other elements */
+    color: black; /* Color for the button, can adjust based on your design */
+}
+
+
+/* Top buttons styling */
+.topButtons {
+    display: flex;
+    justify-content: space-between; /* Ensure buttons are on opposite sides */
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+/* Dropdown button styling */
+.DropdownBtn {
+    background-color: #35393b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+}
+
+/* Dropdown arrow styling */
+.arrow {
+    margin-left: 20px;
+    font-size: 13px;
+}
+
+/* Dropdown container */
+.Dropdown {
+    position: relative;
+}
+
+/* Dropdown content */
+.DropdownContent {
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px black;
+    z-index: 1;
+    display: none;
+    flex-direction: column;
+}
+
+/* Show dropdown content on focus */
+.DropdownBtn:focus + .DropdownContent,
+.DropdownContent:hover {
+    display: flex;
+}
+
+/* Dropdown links */
+.DropdownContent a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+}
+
+/* Hover effect on dropdown links */
+.DropdownContent a:hover {
+    background-color: #ddd;
+}
+
+/* Record details section */
+.recordDetails {
+    display: flex;
+    justify-content: space-between; /* Aligns Updated Last and Total Lecture on opposite sides */
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Left side for Updated Last */
+.leftSide {
+    text-align: left;
+}
+
+/* Right side for Total Lecture */
+.rightSide {
+    text-align: right;
+}
+
+/* Styling for Updated Last */
+.UpdatedLast {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Styling for Total Lecture */
+.TotalLecture {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Date range section */
+.dateRange {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Date picker styling */
+.datePicker {
+    display: flex;
+    align-items: center;
+}
+
+/* Input fields (Date picker) */
+/* input[type="date"] {
+    padding: 5px;
+    font-size: 1.3rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-left: 10px;
+} */

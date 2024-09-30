@@ -1,0 +1,51 @@
+.student-record-table {
+    width: 100%;
+    margin: 20px auto;
+}
+
+.student-record-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+
+.student-record-table th,
+.student-record-table td {
+    padding: 12px;
+    text-align: center;
+    border-left: 1px solid #ddd; /* Vertical line between columns */
+}
+
+.student-record-table th:first-child,
+.student-record-table td:first-child {
+    border-left: none; /* Remove border for the first column */
+}
+
+.student-record-table thead {
+    background-color: #35393b; /* Dark background for header */
+    color: white;
+}
+
+.student-record-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row color */
+}
+
+.student-record-table tbody tr:hover {
+    background-color: #e0e0e0; /* Hover effect */
+}
+
+.student-record-table th {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.student-record-table td {
+    font-size: 0.95rem;
+    font-weight:bold;
+}
+
+.student-record-table table, .student-record-table th, .student-record-table td {
+    border: 1px solid #ddd; /* Horizontal and vertical borders */
+}

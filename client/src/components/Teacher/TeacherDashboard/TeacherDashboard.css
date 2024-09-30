@@ -1,0 +1,41 @@
+:root {
+  --navbar-height: 35px; /* Adjust this to match the height of your navbar */
+}
+
+.teacher-dashboard {
+  display: flex;
+  min-height: 100vh; /* Full viewport height */
+}
+
+.content {
+  margin-left: calc(18% + 20px); /* Adjusted for sidebar width + padding */
+  /* width: calc(80% - 20px); Ensure content doesn't overlap */
+  padding: 20px;
+  box-sizing: border-box; /* Include padding in the element’s total width/height */
+}
+
+.section {
+  scroll-margin-top: var(--navbar-height);
+  margin-bottom: 50px;
+  padding: 20px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+}
+
+.profile-section {
+  padding: 15px 30px 20px 25px;
+  scroll-margin-top: var(--navbar-height);
+  width: 630px;
+  height: 350px;
+  margin-bottom: 50px;
+  margin-left: 150px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: left; /* Center content vertically */
+  align-items: left; /* Center content horizontally */
+  text-align: left; /* Align text to the left */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
