@@ -4,7 +4,7 @@ import './StudentSidebar.css';
 
 const StudentSidebar = ({ onScroll }) => {
   return (
-    <div className="sidebar">
+    <div className="Sidebar">
       <button onClick={() => onScroll('dashboard')}>Dashboard</button>
       <button onClick={() => onScroll('scoreboard')}>Scoreboard</button>
       <button onClick={() => onScroll('attendance')}>Attendance</button>

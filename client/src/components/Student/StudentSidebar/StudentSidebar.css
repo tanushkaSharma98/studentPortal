@@ -1,5 +1,5 @@
 /* src/components/Student/StudentSidebar/StudentSidebar.css */
-.sidebar {
+.Sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,7 +12,7 @@
     align-items: center;     /* Center buttons horizontally */
   }
   
-  .sidebar button {
+  .Sidebar button {
     margin-bottom: 20px;
     padding: 7% 25%;
     cursor: pointer;
