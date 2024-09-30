@@ -1,6 +1,5 @@
 const sequelize = require('../config/dbConfig'); 
 
-
 exports.getTeacherDetailsById = async (userId) => {
     const query = `
        SELECT 
@@ -29,7 +28,7 @@ exports.getTeacherDetailsById = async (userId) => {
         });
         return result[0]; // Return the first row, or null if not found
     } catch (error) {
-        console.error('Error fetching student details:', error.message);
-        throw error; // Optionally throw the error to be handled in your service or controller
+        console.error('Error fetching teacher details:', error.message);
+        throw error;
     }
-}
+};
