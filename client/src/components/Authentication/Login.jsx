@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode'; 
 import './login.css';
+import loginLogo from '/src/assets/login-logo.png';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -54,7 +55,7 @@ const Login = () => {
       <div className="ssidebar-section">
           <div className="sprofile-image-container">
             <img
-              src="https://thumbs.dreamstime.com/z/sign-page-abstract-concept-vector-illustration-enter-application-mobile-screen-user-login-form-website-interface-ui-new-profile-203016094.jpg?ct=jpeg"
+              src={loginLogo}
               alt="Profile"
               className="sprofile-image"
             />
