@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded data
 // Import routes
 const authRoutes = require('./routes/authRoutes.js');
 const studentRoutes = require('./routes/studentRoutes.js');
-// const teacherRoutes = require('./routes/teacherRoutes.js');
+const teacherRoutes = require('./routes/teacherRoutes.js');
 const adminRoutes = require('./routes/adminRoutes.js');
 const studentManagementRoutes = require('./routes/studentManagementRoutes.js');
 const teacherManagementRoutes = require('./routes/teacherManagementRoutes.js');
@@ -27,11 +27,10 @@ const examRoutes = require('./routes/examRoutes.js');
 
 // // Use routes
 app.use('/api/auth', authRoutes);
-// app.use('/api/profile', profileRoutes);
 app.use(authenticate);
 // Authenticate middleware;
 app.use('/api/students', studentRoutes);
-// app.use('/api/teachers', teacherRoutes);
+app.use('/api/teachers', teacherRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/admin/students', studentManagementRoutes);
 app.use('/api/admin/teachers', teacherManagementRoutes);

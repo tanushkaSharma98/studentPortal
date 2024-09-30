@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import TeacherProfile from '../TeacherProfile.jsx';
 import './TeacherDashboard.css';
 import Sidebar from '../TeacherSidebar/Sidebar.jsx'; // Import the Sidebar component
-import axios from 'axios';
 import TeacherScoreboard from '../TeacherScoreboard/TeacherScoreboard.jsx';
 import TeacherAttendance from '../TeacherAttendance/TeacherAttendance.jsx';
 import StudentRecord from '../StudentRecord/StudentRecord.jsx';
@@ -16,7 +15,7 @@ function TeacherDashboard() {
     // Fetch teacher profile data from API
     const token = localStorage.getItem('token'); // Get token from localStorage
     if (token) {
-      fetch('http://localhost:3000/api/teacher/profile', {
+      fetch('http://localhost:3000/api/teachers/profile', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,
