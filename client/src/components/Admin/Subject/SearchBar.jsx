@@ -40,7 +40,6 @@ const SearchBar = ({ onFilter }) => {
 
   // Handle the search when the button is clicked
   const handleSearch = () => {
-    console.log('Filters applied:', filters);
     onFilter(filters);  // Pass the filters object
   };
 
@@ -50,8 +49,13 @@ const SearchBar = ({ onFilter }) => {
       ...filters,
       [e.target.name]: e.target.value,
     };
-    console.log('Updated filters:', updatedFilters);  // Log the filters after change
     setFilters(updatedFilters);
+  };
+
+  // Automatically trigger filtering when dropdown values change
+  const handleDropdownChange = (e) => {
+    handleChange(e);  // Update the state
+    handleSearch();   // Trigger the search with updated filters
   };
 
   return (
@@ -74,7 +78,7 @@ const SearchBar = ({ onFilter }) => {
         <select
           name="branch_name"  // Add name attribute
           value={filters.branch_name}
-          onChange={handleChange}  // Use handleChange to update filters
+          onChange={handleDropdownChange}  // Trigger search on change
         >
           <option value="">Branch</option>
           {branches.map((branch, index) => (
@@ -87,7 +91,7 @@ const SearchBar = ({ onFilter }) => {
         <select
           name="semester"  // Add name attribute
           value={filters.semester}
-          onChange={handleChange}  // Use handleChange to update filters
+          onChange={handleDropdownChange}  // Trigger search on change
         >
           <option value="">Semester</option>
           {[...Array(8).keys()].map(i => (

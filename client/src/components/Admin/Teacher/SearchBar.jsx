@@ -43,7 +43,7 @@ const SearchBar = ({ onSearch, fetchInitialTeachers }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:3000/api/admin/teacher/search?name=${searchName}`, {
+      const res = await fetch(`http://localhost:3000/api/admin/teachers/search?name=${searchName}`, {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

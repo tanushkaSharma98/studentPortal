@@ -8,7 +8,8 @@ exports.getSubjects = async (filters = {}) => {
         let query = `
             SELECT 
                 s.subject_name, 
-                s.subject_code, 
+                s.subject_code,
+                s.sub_initials, 
                 b.branch_name AS branch, 
                 bs.semester, 
                 t.teacher_name AS teacher, 

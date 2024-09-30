@@ -30,9 +30,9 @@ const SubjectTable = ({ subjects, setSubjects }) => {
               <td>{subject.subject_name}</td>
               <td>{subject.subject_code}</td>
               <td>{subject.sub_initials}</td>
-              <td>{subject.branches}</td>
+              <td>{subject.branch}</td>
               <td>{subject.semester}</td>
-              <td>{subject.teachers}</td>
+              <td>{subject.teacher}</td>
               <td>
                 <button
                   className={`delete-btn ${subject.isDeleted ? 'add-btn' : ''}`}
