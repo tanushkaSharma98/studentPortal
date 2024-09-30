@@ -16,7 +16,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded data
 
 // Import routes
 const authRoutes = require('./routes/authRoutes.js');
-// const profileRoutes = require('./routes/profileRoutes.js');
 const studentRoutes = require('./routes/studentRoutes.js');
 // const teacherRoutes = require('./routes/teacherRoutes.js');
 const adminRoutes = require('./routes/adminRoutes.js');
