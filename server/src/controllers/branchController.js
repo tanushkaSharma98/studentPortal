@@ -26,7 +26,7 @@ exports.getBranchCount= async (req, res) => {
         const userType = req.user.user_type;
         if (userType !== 0 && userType !== 3) {
             return res.status(403).json({ message: 'Access denied. Only admins can see branch data.' });
-    }
+        }
         const count = await getBranchCount();
         res.status(200).json({ branchCount: count });
         } catch (error) {

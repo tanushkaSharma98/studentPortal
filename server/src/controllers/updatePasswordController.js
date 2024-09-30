@@ -9,6 +9,12 @@ exports.updateUserpassword = async (req, res) => {
     }
 
     try {
+
+        const userType = req.user.user_type;
+        if (userType !== 0 && userType !== 3) {
+            return res.status(403).json({ message: 'Access denied. Only admins can update user password.' });
+        }
+
         const token = await updateUserPassword(email, oldPassword, newPassword);
         if (token) {
             res.status(200).json({ token });
