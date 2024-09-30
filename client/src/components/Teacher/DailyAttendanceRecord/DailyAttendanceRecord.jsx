@@ -28,19 +28,19 @@ const DailyAttendanceRecord = () => {
   const attendanceOptions = ['Below 50%', 'Below 60%', 'Below 70%', 'Below 75%', 'Below 80%'];
 
   return (
-    <div className="dailyAttendanceContainer">
+    <div className="teacher-dailyAttendanceContainer">
       <Link to="/teacher-dashboard">
-        <button className="back-button">←</button>
+        <button className="teacher-back-button">←</button>
       </Link>
       {/* Top Section: Subject and Attendance Dropdowns */}
-      <div className="topButtons">
+      <div className="teacher-topButtons">
         {/* Subject Dropdown */}
-        <div className="Dropdown">
-          <button className="DropdownBtn" onClick={toggleSubjectDropdown}>
+        <div className="teacher-Dropdown">
+          <button className="teacher-DropdownBtn" onClick={toggleSubjectDropdown}>
             {selectedSubject} <span className="arrow">&#x25BC;</span>
           </button>
           {subjectDropdown && (
-            <div className="DropdownContent">
+            <div className="teacher-DropdownContent">
               {subjects.map((subject, index) => (
                 <a href="#" key={index} onClick={(e) => { e.preventDefault(); handleSubjectSelect(subject); }}>
                   {subject}
@@ -51,12 +51,12 @@ const DailyAttendanceRecord = () => {
         </div>
 
         {/* Attendance Below Dropdown */}
-        <div className="Dropdown" style={{ marginLeft: 'auto' }}>
-          <button className="DropdownBtn" onClick={toggleAttendanceDropdown}>
-            {selectedAttendance} <span className="arrow">&#x25BC;</span>
+        <div className="teacher-Dropdown" style={{ marginLeft: 'auto' }}>
+          <button className="teacher-DropdownBtn" onClick={toggleAttendanceDropdown}>
+            {selectedAttendance} <span className="teacher-arrow">&#x25BC;</span>
           </button>
           {attendanceDropdown && (
-            <div className="DropdownContent">
+            <div className="teacher-DropdownContent">
               {attendanceOptions.map((attendance, index) => (
                 <a href="#" key={index} onClick={(e) => { e.preventDefault(); handleAttendanceSelect(attendance); }}>
                   {attendance}
@@ -68,13 +68,13 @@ const DailyAttendanceRecord = () => {
       </div>
 
       {/* Record Details Section */}
-      <div className="recordDetails">
-        <span className="UpdatedLast">Updated Last: Yesterday</span>
-        <span className="TotalLecture">Total Lecture: 10</span>
+      <div className="teacher-recordDetails">
+        <span className="teacher-UpdatedLast">Updated Last: Yesterday</span>
+        <span className="teacher-TotalLecture">Total Lecture: 10</span>
       </div>
 
       {/* Add your attendance record table or content below */}
-      <div className="attendanceContent">
+      <div className="teacher-attendanceContent">
         <DailyAttendanceRecordTable />
       </div>
     </div>

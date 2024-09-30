@@ -31,15 +31,15 @@ const TeacherScoreboard = () => {
   };
 
   return (
-    <div className="scoreboard-container">
-      <div className="top-buttons">
+    <div className="teacher-scoreboard-container">
+      <div className="teacher-top-buttons">
         {/* Subject Button */}
-        <div className="dropdown">
-          <button className="dropdown-btn" onClick={toggleSubjectDropdown}>
-            {selectedSubject} <span className="arrow">&#x25BC;</span>
+        <div className="teacher-dropdown">
+          <button className="teacher-dropdown-btn" onClick={toggleSubjectDropdown}>
+            {selectedSubject} <span className="teacher-arrow">&#x25BC;</span>
           </button>
           {subjectDropdown && (
-            <div className="dropdown-content">
+            <div className="teacher-dropdown-content">
               <a href="#" onClick={(e) => { e.preventDefault(); handleSubjectSelect('Math'); }}>Math</a>
               <a href="#" onClick={(e) => { e.preventDefault(); handleSubjectSelect('Physics'); }}>Physics</a>
               <a href="#" onClick={(e) => { e.preventDefault(); handleSubjectSelect('Chemistry'); }}>Chemistry</a>
@@ -48,12 +48,12 @@ const TeacherScoreboard = () => {
         </div>
 
         {/* Exam Button */}
-        <div className="dropdown">
-          <button className="dropdown-btn" onClick={toggleExamDropdown}>
-            {selectedExam} <span className="arrow">&#x25BC;</span>
+        <div className="teacher-dropdown">
+          <button className="teacher-dropdown-btn" onClick={toggleExamDropdown}>
+            {selectedExam} <span className="teacher-arrow">&#x25BC;</span>
           </button>
           {examDropdown && (
-            <div className="dropdown-content">
+            <div className="teacher-dropdown-content">
               <a href="#" onClick={(e) => { e.preventDefault(); handleExamSelect('Midterm-1'); }}>Midterm-1</a>
               <a href="#" onClick={(e) => { e.preventDefault(); handleExamSelect('Midterm-2'); }}>Midterm-2</a>
             </div>
@@ -62,14 +62,14 @@ const TeacherScoreboard = () => {
       </div>
 
       {/* Branch, Semester, Subject, Exam in a single row */}
-      <div className="info-row">
+      <div className="teacher-info-row">
         <span>Branch : Computer Science</span>
         <span>Semester : 7</span>
         <span>Subject : {selectedSubject}</span>
         <span>Exam : {selectedExam}</span>
       </div>
 
-      <div className="maxmarks">
+      <div className="teacher-maxmarks">
         <span>Maximum marks : 30</span>
       </div>
 
@@ -78,8 +78,8 @@ const TeacherScoreboard = () => {
       </div>
 
       {/* Save Button */}
-      <div className="save-button-container">
-        <button className="save-button" onClick={handleSave}>
+      <div className="teacher-save-button-container">
+        <button className="teacher-save-button" onClick={handleSave}>
           Save
         </button>
       </div>

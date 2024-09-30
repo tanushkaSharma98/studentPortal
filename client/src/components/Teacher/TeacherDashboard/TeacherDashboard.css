@@ -2,19 +2,20 @@
   --navbar-height: 35px; /* Adjust this to match the height of your navbar */
 }
 
-.teacher-dashboard {
+.teacher-teacher-dashboard {
   display: flex;
   min-height: 100vh; /* Full viewport height */
+  padding-left: 10%;
 }
 
-.content {
+.teacher-content {
   margin-left: calc(18% + 20px); /* Adjusted for sidebar width + padding */
   /* width: calc(80% - 20px); Ensure content doesn't overlap */
   padding: 20px;
   box-sizing: border-box; /* Include padding in the element’s total width/height */
 }
 
-.section {
+.teacher-section {
   scroll-margin-top: var(--navbar-height);
   margin-bottom: 50px;
   padding: 20px;
@@ -22,7 +23,7 @@
   border-radius: 5px;
 }
 
-.profile-section {
+.teacher-profile-section {
   padding: 15px 30px 20px 25px;
   scroll-margin-top: var(--navbar-height);
   width: 630px;

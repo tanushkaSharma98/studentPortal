@@ -31,15 +31,15 @@ const StudentRecord = () => {
   };
 
   return (
-    <div className="attendanceContainer">
-      <div className="topButtons">
+    <div className="teacher-attendanceContainer">
+      <div className="teacher-topButtons">
         {/* Subject Dropdown */}
-        <div className="Dropdown">
-          <button className="DropdownBtn" onClick={toggleSubjectDropdown}>
-            {selectedSubject} <span className="arrow">&#x25BC;</span>
+        <div className="teacher-Dropdown">
+          <button className="teacher-DropdownBtn" onClick={toggleSubjectDropdown}>
+            {selectedSubject} <span className="teacher-arrow">&#x25BC;</span>
           </button>
           {subjectDropdown && (
-            <div className="DropdownContent">
+            <div className="teacher-DropdownContent">
               {subjects.map((subject, index) => (
                 <a href="#" key={index} onClick={(e) => { e.preventDefault(); handleSubjectSelect(subject); }}>
                   {subject}
@@ -50,12 +50,12 @@ const StudentRecord = () => {
         </div>
 
         {/* Marks Below Dropdown */}
-        <div className="Dropdown" style={{ marginLeft: 'auto' }}>
-          <button className="DropdownBtn" onClick={toggleMarksBelowDropdown}>
+        <div className="teacher-Dropdown" style={{ marginLeft: 'auto' }}>
+          <button className="teacher-DropdownBtn" onClick={toggleMarksBelowDropdown}>
             {selectedMarksBelow} <span className="arrow">&#x25BC;</span>
           </button>
           {marksBelowDropdown && (
-            <div className="DropdownContent">
+            <div className="teacher-DropdownContent">
               {marksBelowOptions.map((marks, index) => (
                 <a href="#" key={index} onClick={(e) => { e.preventDefault(); handleMarksBelowSelect(marks); }}>
                   {marks}
@@ -67,9 +67,9 @@ const StudentRecord = () => {
       </div>
 
       {/* Record details below buttons */}
-      <div className="RecordDetails">
-        <span className="UpdatedLast">Updated Last: Yesterday</span>
-        <span className="TotalLecture">Total Lecture: 10</span>
+      <div className="teacher-RecordDetails">
+        <span className="teacher-UpdatedLast">Updated Last: Yesterday</span>
+        <span className="teacher-TotalLecture">Total Lecture: 10</span>
       </div>
       <div><StudentRecordTable /></div>
      

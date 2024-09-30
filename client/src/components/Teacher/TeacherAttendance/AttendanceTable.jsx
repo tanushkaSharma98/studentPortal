@@ -47,7 +47,6 @@ const AttendanceTable = () => {
         buttonRefs.current[index + 1].focus(); // Focus on the next button
       }
     } 
-    
     // Handle the 'Enter' key for toggling attendance
     else if (e.key === 'Enter') {
       toggleAttendance(index); // Change the status of the current button
@@ -55,30 +54,24 @@ const AttendanceTable = () => {
   };
 
   return (
-    <div className="attendance-table">
+    <div className="teacher-attendance-table">
       <table>
         <thead>
           <tr>
-            <th>S. No</th>
-            <th>Name</th>
-            <th>Enrollment No.</th> {/* New column for Enrollment No. */}
-            <th>Updated Attendance</th>
-            <th>%</th>
+            <th>S. No</th><th>Name</th><th>Enrollment No.</th><th>Updated Attendance</th><th>%</th>
           </tr>
         </thead>
         <tbody>
           {students.map((student, index) => (
             <tr key={index}>
-              <td>{student.sNo}</td>
-              <td>{student.name}</td>
-              <td>{student.enrollmentNo}</td> {/* New cell for Enrollment No. */}
+              <td>{student.sNo}</td><td>{student.name}</td><td>{student.enrollmentNo}</td>
               <td>
                 <button
-                  className={`attendance-button ${student.status.toLowerCase()}`} // Add dynamic class for status
-                  onClick={() => toggleAttendance(index)} // Toggle on click
-                  tabIndex="0" // Make the button focusable
-                  ref={(el) => (buttonRefs.current[index] = el)} // Store the button ref
-                  onKeyDown={(e) => handleKeyDown(e, index)} // Handle arrow key and enter key
+                  className={`teacher-attendance-button ${student.status.toLowerCase()}`}
+                  onClick={() => toggleAttendance(index)}
+                  tabIndex="0"
+                  ref={(el) => (buttonRefs.current[index] = el)}
+                  onKeyDown={(e) => handleKeyDown(e, index)}
                 >
                   {student.status}
                 </button>

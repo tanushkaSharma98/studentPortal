@@ -30,10 +30,10 @@ const DailyAttendanceRecordTable = () => {
   };
 
   return (
-    <div className="daily-attendance-record-table">
-      <div className="topButtons">
+    <div className="teacher-daily-attendance-record-table">
+      <div className="teacher-topButtons">
         {/* Combined Date Selection */}
-        <div className="date-selection">
+        <div className="teacher-date-selection">
           <label>
             From:
             <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} />
@@ -42,7 +42,7 @@ const DailyAttendanceRecordTable = () => {
             To:
             <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} />
           </label>
-          <div className="Show-dates"> <button className="ShowDates" onClick={handleDateChange}>Show Dates</button></div>
+          <div className="teacher-Show-dates"> <button className="teacher-ShowDates" onClick={handleDateChange}>Show Dates</button></div>
         </div >
         
          

@@ -1,55 +1,55 @@
-.attendance-table {
+.teacher-attendance-table {
     width: 100%;
     margin: 20px auto;
 }
 
-.attendance-table table {
+.teacher-attendance-table table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ddd;
 }
 
-.attendance-table th,
-.attendance-table td {
+.teacher-attendance-table th,
+.teacher-attendance-table td {
     padding: 12px;
     text-align: center;
     border-left: 1px solid #ddd; /* Vertical line between columns */
 }
 
-.attendance-table th:first-child,
-.attendance-table td:first-child {
+.teacher-attendance-table th:first-child,
+.teacher-attendance-table td:first-child {
     border-left: none; /* Remove border for the first column */
 }
 
-.attendance-table thead {
+.teacher-attendance-table thead {
     background-color: #35393b; /* Dark background for header */
     color: white;
 }
 
-.attendance-table tbody tr:nth-child(even) {
+.teacher-attendance-table tbody tr:nth-child(even) {
     background-color: #f2f2f2; /* Alternate row color */
 }
 
-.attendance-table tbody tr:hover {
+.teacher-attendance-table tbody tr:hover {
     background-color: #e0e0e0; /* Hover effect */
 }
 
-.attendance-table th {
+.teacher-attendance-table th {
     font-size: 1rem;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
-.attendance-table td {
+.teacher-attendance-table td {
     font-size: 0.95rem;
 }
 
-.attendance-table table, .attendance-table th, .attendance-table td {
+.teacher-attendance-table table, .teacher-attendance-table th, .teacher-attendance-table td {
     border: 1px solid #ddd; /* Horizontal and vertical borders */
 }
 
 /* Button Styling */
-.attendance-button {
+.teacher-attendance-button {
     padding: 8px 16px;
     border: none;
     border-radius: 4px;
@@ -59,14 +59,14 @@
     background-color: #ddd; /* Default Mark button color */
 }
 
-.attendance-button.present {
+.teacher-attendance-button.present {
     background-color: green; /* Green for Present */
 }
 
-.attendance-button.absent {
+.teacher-attendance-button.absent {
     background-color: red; /* Red for Absent */
 }
 
-.attendance-button.mark {
+.teacher-attendance-button.mark {
     background-color: #ddd; /* Default for Mark */
 }

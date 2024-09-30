@@ -37,7 +37,7 @@ const StudentTable = () => {
   };
 
   return (
-    <div className="student-table">
+    <div className="teacher-student-table">
       <table>
         <thead>
           <tr>
