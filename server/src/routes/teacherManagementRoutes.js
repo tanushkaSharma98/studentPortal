@@ -1,5 +1,6 @@
 const express = require('express');
-const { getTeacherCount, getAllTeachers, getTeachersByBranchAndSemester, searchTeachersByName } = require('../controllers/teacherManagementController')
+const { getTeacherCount } = require('../controllers/teacherManagementController')
+const { getAllTeachers, getTeachersByBranchAndSemester, searchTeachersByName } = require('../controllers/adminTeacherlistController');
 const router = express.Router();
 
 router.get('/count', getTeacherCount);
