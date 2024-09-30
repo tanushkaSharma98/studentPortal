@@ -40,8 +40,15 @@ const Login = () => {
       const decodedToken = jwtDecode(token);
       console.log('User ID:', decodedToken.user_id); // Log user ID
       setMessage('Login successful!');
-      setTimeout(() => navigate('/student-dashboard'), 1000);
-    } else {
+      
+      if (decodedToken.user_type === 1) {
+        setTimeout(() => navigate('/student-dashboard'), 1000);
+      } 
+      else if (decodedToken.user_type === 2) {
+        setTimeout(() => navigate('/teacher-dashboard'), 1000);
+      }
+    
+      } else {
       setMessage('Login failed: No token received.');
     }
   };
