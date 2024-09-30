@@ -8,7 +8,7 @@ const updateAdminStatus = async (user_id, is_active) => {
             const userUpdateQuery = `
                 UPDATE users
                 SET is_active = :is_active, updated_at = NOW()
-                WHERE user_id = :user_id;
+                WHERE user_id = :user_id  AND user_type IN (0,3);
             `;
             await sequelize.query(userUpdateQuery, {
                 replacements: { user_id, is_active },

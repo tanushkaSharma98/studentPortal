@@ -1,4 +1,4 @@
-const { getStudentCount } = require('../services/studentManagementService');
+const { getStudentCount, changeStudentStatus } = require('../services/studentManagementService');
 const { getStudentProfile } = require('../services/studentService');
 
 const sendErrorResponse = (res, statusCode, message) => {
@@ -42,3 +42,29 @@ exports.getStudentProfile = async (req, res) => {
         sendErrorResponse(res, 500, 'Server error');
     }
 };
+
+exports.updateStudentIsActive = async (req, res) => {
+    const { user_id, is_active } = req.body;
+  
+    try {
+      // Check if the user is a super admin (user_type 0)
+      const userType = req.user.user_type;
+      if (userType !== 0 && userType !== 3) {
+        return res.status(403).json({ message: 'Access denied. Only admins can update student status.' });
+      }
+  
+      // Call the service to update the status
+      const result = await changeStudentStatus(user_id, is_active);
+  
+      // Return success response
+      return res.status(200).json({
+        message: 'Student status updated successfully',
+        data: result
+      });
+    } catch (error) {
+      console.error('Error in controller:', error);
+      return res.status(500).json({
+        message: 'Failed to update student status'
+      });
+    }
+  };
