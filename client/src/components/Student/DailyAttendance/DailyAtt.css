@@ -24,7 +24,7 @@
     font-weight: bold;
   }
   
-  .attendance-details {
+  .Attendance-Details {
     padding-top: 20px;
     display: flex; /* Use flexbox to align items */
     align-items: center; /* Center items vertically */
@@ -35,8 +35,8 @@
   }
   
   /* Attendance table styles */
-  .attendance-table {
-    margin-top: 50px; /* Space between the attendance details and the table */
+  .Attendance-Table {
+    margin-top: 20px; /* Space between the attendance details and the table */
     width: 80%; /* Adjust width as needed */
     height:14%;
     border-collapse: collapse; /* Combine borders */
@@ -45,35 +45,44 @@
     overflow: hidden; /* Clip corners */
   }
   
-  .attendance-table th,
-  .attendance-table td {
+  .Attendance-Table th,
+  .Attendance-Table td {
     border: 1px solid #ddd; /* Border for table cells */
     padding: 12px; /* Padding inside cells */
     text-align: center; /* Center align text */
   }
   
-  .attendance-table th {
+  .Attendance-Table th {
     background-color: #363b36; /* Green background color for header */
     color: white; /* White text color for header */
     font-weight: bold; /* Make header text bold */
     font-size: 1.2rem;
   }
   
-  .attendance-table tr:nth-child(even) {
+  .Attendance-Table tr:nth-child(even) {
     background-color: #f2f2f2; /* Zebra stripes for even rows */
   }
   
-  .attendance-table tr:hover {
+  .Attendance-Table tr:hover {
     background-color: #ddd; /* Highlight row on hover */
     cursor: pointer; /* Pointer cursor on hover */
   }
   
-  .attendance-table td {
+  .Attendance-Table td {
     color: #333; /* Dark text color for table cells */
   }
   
   /* Add margin between the two tables */
-  .second-table {
-    margin-top: 80px; /* Space between the first and second table */
+  .Second-Table {
+    margin-top: 20px; /* Space between the first and second table */
   }
+  .Sub1{
+    font-size: 25px;
+    font-weight: bold;
+    padding-top: 30px;
+    padding-left: 0%;
+    padding-right: 69%;
+    padding-bottom: 0px;
+  }
+ 
   

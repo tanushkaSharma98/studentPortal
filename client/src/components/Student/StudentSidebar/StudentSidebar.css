@@ -5,7 +5,7 @@
     left: 0;
     width: 380px;
     height: 100vh;
-    background-color: #968e8e;
+    background-color:rgb(197, 229, 250);
     display: flex;
     flex-direction: column;
     justify-content: center; /* Center buttons vertically */
@@ -16,7 +16,7 @@
     margin-bottom: 20px;
     padding: 7% 25%;
     cursor: pointer;
-    background-color: rgb(53, 45, 45);
+    background-color: rgb(92, 84, 84);
     color: white;
     font-size: 20px;
     font-weight: bold;

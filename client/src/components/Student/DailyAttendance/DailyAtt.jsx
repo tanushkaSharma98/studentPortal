@@ -26,14 +26,19 @@ const DailyAttendance = () => {
       <h1>Daily Attendance Record</h1>
 
       {/* Attendance details section */}
-      <div className="attendance-details">
+      <div className="Attendance-Details">
         <span>Name : Rohan Tomar </span>
         <span>Enrollment No. : 21CS038</span>
       </div>
-                                              
+      <div className="Sub1">
+      <span>Subject : Science</span>  
+      </div>
+                                      
       {/* First Attendance table */}
-      <table className="attendance-table">
+      <table className="Attendance-Table">
+        
         <thead>
+      
           <tr>
             <th>Total Lectures</th>
             <th>Percentage (%)</th>
@@ -56,10 +61,14 @@ const DailyAttendance = () => {
           ))}
         </tbody>
       </table>
-
+      <div className="Sub1">
+      <span >Subject : Maths</span> 
+      </div>
+     
       {/* Second Attendance table with space */}
-      <table className="attendance-table second-table">
+      <table className="Attendance-Table Second-Table">
         <thead>
+        
           <tr>
             <th>Total Lectures</th>
             <th>Percentage (%)</th>
