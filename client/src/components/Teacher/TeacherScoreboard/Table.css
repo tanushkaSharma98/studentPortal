@@ -1,0 +1,58 @@
+.student-table {
+    width: 100%;
+    margin: 20px auto;
+  }
+  
+  .student-table table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+  }
+  
+  .student-table th,
+  .student-table td {
+    padding: 12px;
+    text-align: center;
+    border-left: 1px solid #ddd; /* Vertical line between columns */
+  }
+  
+  .student-table th:first-child,
+  .student-table td:first-child {
+    border-left: none; /* Remove border for the first column */
+  }
+  
+  .student-table thead {
+    background-color:#35393b; /* Blue background for header */
+    color: white;
+  }
+  
+  .student-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Alternate row color */
+  }
+  
+  .student-table tbody tr:hover {
+    background-color: #e0e0e0; /* Hover effect */
+  }
+  
+  .student-table th {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  
+  .student-table td {
+    font-size: 0.95rem;
+    font-weight: bold;
+  }
+  
+  .student-table table, .student-table th, .student-table td {
+    border: 1px solid #ddd; /* Horizontal and vertical borders */
+  }
+  .student-table input {
+    width: 60px; /* Set width of the input */
+    padding: 5px; /* Add padding for comfort */
+    text-align: center; /* Center text */
+    border: 1px solid #ddd; /* Border for the input box */
+    border-radius: 4px; /* Slightly rounded corners */
+  }
+  

@@ -1,0 +1,37 @@
+.teacher-profile {
+  text-align: left;
+  margin-bottom: 20px;
+ 
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+
+}
+
+.teacher-profile h1 {
+  text-align: left;
+  font-size: 34px;
+  margin: 0 10px; /* Add some space between logo and text */
+  
+}
+
+.teacher-profile p {
+  font-size: 24px;
+  margin: 10px 5px;
+}
+
+.logo-circle {
+  width: 83px; /* Adjust size as needed */
+  height: 83px;
+  border-radius: 50%;
+  background-color: #212224; /* Change color as needed */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px; /* Adjust font size as needed */
+  margin: 20px; /* Space between logo and welcome message */
+ 
+}
