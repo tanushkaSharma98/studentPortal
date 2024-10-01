@@ -68,7 +68,7 @@ const AdminLogin = () => {
       {/* Navbar */}
       <nav className="adnavbar-container">
       <NavLink to="/" className="adnavbar-link">
-        <div className="adnavbar-title">XYZ UNIVERSITY</div>
+        XYZ UNIVERSITY
       </NavLink>
       </nav>
       

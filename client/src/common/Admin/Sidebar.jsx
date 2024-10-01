@@ -29,7 +29,7 @@ const Sidebar = () => {
               </ul>
             </li>
             <li><NavLink to="/admin/subjects" className={({ isActive }) => isActive ? 'active-link' : ''}>Subject</NavLink></li>
-            <li><NavLink to="admin//branches" className={({ isActive }) => isActive ? 'active-link' : ''}>Branch</NavLink></li>
+            <li><NavLink to="/admin/branches" className={({ isActive }) => isActive ? 'active-link' : ''}>Branch</NavLink></li>
             <li><NavLink to="/admin/exams" className={({ isActive }) => isActive ? 'active-link' : ''}>Exam</NavLink></li>
             <li><NavLink to="/admin/activity" className={({ isActive }) => isActive ? 'active-link' : ''}>User Activity</NavLink></li>
           </ul>

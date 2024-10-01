@@ -19,11 +19,55 @@ const AddNewSubject = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic (e.g., API call)
-    console.log('Form submitted:', formData);
+  
+    const payload = {
+      subjectName: formData.subjectname,
+      subjectCode: formData.subjectcode,
+      subjectInitials: formData.abbsubname,
+      branchName: formData.branch,
+      semester: formData.semester,
+      teacherName: formData.teacher
+    };
+  
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch('http://localhost:3000/api/admin/subjects/create', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+  
+      if (!res.ok) {
+        throw new Error('Failed to create subject');
+      }
+  
+      const data = await res.json();
+  
+      // Show success message in an alert box
+      alert(data.message);
+  
+      // Optionally, reset form data after success
+      setFormData({
+        subjectname: '',
+        subjectcode: '',
+        abbsubname: '',
+        branch: '',
+        semester: '',
+        teacher: '',
+        contactNo: '',
+      });
+  
+    } catch (error) {
+      console.error('Error creating subject:', error);
+      alert('An error occurred while creating the subject.');
+    }
   };
+  
 
   const handleCancel = () => {
     // Reset form or redirect
@@ -154,10 +198,6 @@ const AddNewSubject = () => {
                 </option>
               ))}
             </select>
-          </div>
-          <div className="form-group">
-            <label>Contact No:</label>
-            <input className="input" type="tel" name="contactNo" maxLength="10" value={formData.contactNo} onChange={handleChange} required />
           </div>
           <div className="form-buttons">
             <button className="btn" type="button" onClick={handleCancel}>Cancel</button>
