@@ -5,7 +5,7 @@
 .teacher-teacher-dashboard {
   display: flex;
   min-height: 100vh; /* Full viewport height */
-  padding-left: 10%;
+  padding-left: 2%;
 }
 
 .teacher-content {
@@ -21,22 +21,24 @@
   padding: 20px;
   background-color: #e9ecef;
   border-radius: 5px;
+  width: 133%;
 }
 
 .teacher-profile-section {
   padding: 15px 30px 20px 25px;
   scroll-margin-top: var(--navbar-height);
-  width: 630px;
+  width: 60%;
   height: 350px;
   margin-bottom: 50px;
-  margin-left: 150px;
+  margin-left: 30%;
   border: 1px solid #ccc;
   background-color: #f9f9f9;
   border-radius: 8px;
   display: flex; /* Use flexbox */
   flex-direction: column; /* Stack elements vertically */
   justify-content: left; /* Center content vertically */
-  align-items: left; /* Center content horizontally */
-  text-align: left; /* Align text to the left */
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Align text to the center*/
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  
 }

@@ -52,7 +52,7 @@ const TeacherAttendance = () => {
         <p className="teacher-UpdatedLast">Updated Last: Yesterday</p>
 
         <div className="teacher-input-row">
-          <label htmlFor="date">Date:</label>
+          <label htmlFor="date">Date : </label>
           <input
             type="date"
             id="date"
@@ -63,7 +63,7 @@ const TeacherAttendance = () => {
         </div>
 
         <div className="teacher-input-row">
-          <label htmlFor="lecture">Lecture:</label>
+          <label htmlFor="lecture">Lecture : </label>
           <input
             type="number"
             id="lecture"

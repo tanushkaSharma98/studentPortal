@@ -18,13 +18,13 @@
 }
 
 .teacher-teacher-profile p {
-  font-size: 24px;
+  font-size: 28px;
   margin: 10px 5px;
 }
 
 .teacher-logo-circle {
-  width: 83px; /* Adjust size as needed */
-  height: 83px;
+  width: 95px; /* Adjust size as needed */
+  height: 95px;
   border-radius: 50%;
   background-color: #212224; /* Change color as needed */
   color: white;

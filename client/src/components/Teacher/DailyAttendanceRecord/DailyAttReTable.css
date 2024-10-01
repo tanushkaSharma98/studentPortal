@@ -26,10 +26,16 @@
 .teacher-date-selection label {
     display: flex;
     align-items: center;
-}
+    text-align: center;
+    
+} 
 
 .teacher-date-selection input {
-    margin-left: 5px; /* Space between label and input */
+    margin-left: 9px; /* Space between label and input */
+    font-size: 15px;
+    width: 180px;
+    height: 34px;
+    
 }
 
   /* .date-selection label:first-child {
