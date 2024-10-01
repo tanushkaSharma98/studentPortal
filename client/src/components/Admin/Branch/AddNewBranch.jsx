@@ -13,11 +13,44 @@ const AddNewBranch = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic (e.g., API call)
-    console.log('Form submitted:', formData);
+  
+    const payload = {
+      branchName: formData.Branchname
+    };
+  
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch('http://localhost:3000/api/admin/branches/create', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+  
+      if (!res.ok) {
+        throw new Error('Failed to create branch');
+      }
+  
+      const data = await res.json();
+  
+      // Show success message in an alert box
+      alert("Successfully branch created.");
+  
+      // Optionally, reset form data after success
+      setFormData({
+        Branchname: '',
+      });
+  
+    } catch (error) {
+      console.error('Error creating branch:', error);
+      alert('An error occurred while creating the branch.');
+    }
   };
+  
 
   const handleCancel = () => {
     // Reset form or redirect
