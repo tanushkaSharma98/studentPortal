@@ -1,48 +1,84 @@
-/* Fixed Sidebar to the left, below the header */
-.adsidebar {
-    position: fixed;
-    top: 50px;  /* Adjusted for header height */
-    left: 0;
-    width: 20%;
-    background-color: #9bbace;
-    height: calc(100vh - 60px); /* Full height minus header */
-    padding-top: 20px;
-    z-index: 999; /* Ensure it stays below the header but on top of other content */
-    overflow-y: auto; /* Allow scrolling if content overflows */
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 50px;  /* Adjusted for header height */
+  left: 0;
+  width: 20%;
+  background-color: #9bbace;
+  height: calc(100vh - 60px); /* Full height minus header */
+  padding-top: 20px;
+  z-index: 999; /* Ensure it stays below the header but on top of other content */
+  overflow-y: auto; /* Allow scrolling if content overflows */
+  transition: transform 0.3s ease, width 0.3s ease; /* Smooth slide-in and width changes */
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%); /* Hide sidebar */
+    width: 0; /* Collapse width when hidden */
+    display: none;;
   }
-  
-  .adsidebar h3 {
-    text-align: center;
-    font-size: 22px;
-    color: #333;
-    margin-bottom: 20px;
+
+  .sidebar.open {
+    transform: translateX(0); /* Show sidebar when open */
+    width: 100%; /* Sidebar width when visible */
+    display: block;
   }
-  
-  .adsidebar ul {
-    list-style: none;
-    padding: 0;
+}
+
+/* Hamburger button for mobile */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 7%;
+  left: 3%;
+  z-index: 1000;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block; /* Show hamburger button on mobile */
   }
-  
-  .adsidebar ul li {
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-  
-  .adsidebar ul li ul {
-    padding-left: 20px;
-  }
-  
-  .adsidebar ul li a {
-    text-decoration: none;
-    color: #000;
-  }
-  
-  .adsidebar ul li a:hover {
-    color: #000000;
-    font-weight: bold;
-  }
-  
+}
+
+
+/* Sidebar Styles */
+.sidebar h3 {
+  text-align: center;
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.sidebar ul li ul {
+  padding-left: 20px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #000;
+}
+
+.sidebar ul li a:hover {
+  color: #000000;
+  font-weight: bold;
+}
+
 /* Style for active links */
-.adsidebar .adactive-link {
+.sidebar .active-link {
   font-weight: bold;
 }

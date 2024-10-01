@@ -19,10 +19,40 @@ const AddNewStudent = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic (e.g., API call)
-    console.log('Form submitted:', formData);
+    try {
+      // Retrieve the token from local storage
+      const token = localStorage.getItem('token');
+
+      // Make the API call to create a new student
+      const res = await fetch('http://localhost:3000/api/admin/students/create', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`, // Include the token here
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData), // Send form data as JSON
+      });
+
+      // Check if the response is not OK
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      // Parse the response JSON
+      const data = await res.json();
+
+      // Show alert with the success message
+      alert(data.message);
+      
+      // Optionally reset the form after submission
+      handleCancel(); 
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Error submitting the form. Please try again.');
+    }
   };
 
   const handleCancel = () => {
@@ -43,32 +73,26 @@ const AddNewStudent = () => {
   useEffect(() => {
     const fetchBranches = async () => {
       try {
-        // Retrieve the token from local storage
         const token = localStorage.getItem('token');
-        
-        // Make the API call with the token in the Authorization header
         const res = await fetch('http://localhost:3000/api/admin/branches', {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${token}`,  // Include the token here
-            'Content-Type': 'application/json'
-          }
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
         });
 
-        // Check if the response is not OK (e.g., unauthorized or forbidden)
         if (!res.ok) {
           throw new Error('Network response was not ok');
         }
 
-        // Parse the response JSON
         const data = await res.json();
 
-        // Ensure the data is an array and process it
         if (Array.isArray(data)) {
           const activeBranches = data
             .filter(branch => branch.is_active)
             .map(branch => branch.branch_name);
-          setBranches(activeBranches);  // Set the branches in state
+          setBranches(activeBranches);
         } else {
           console.error('Unexpected data format:', data);
         }
@@ -77,13 +101,13 @@ const AddNewStudent = () => {
       }
     };
 
-    fetchBranches();  // Call the async function
+    fetchBranches();
   }, []);
 
   return (
     <div className="add-student-container">
-         <Header />
-         <Sidebar />
+      <Header />
+      <Sidebar />
       <main className="stuform-container">
         <h2>Add New Student</h2>
         <form onSubmit={handleSubmit}>
@@ -107,10 +131,10 @@ const AddNewStudent = () => {
             <label>Branch:</label>
             <select className="select" name="branch" value={formData.branch} onChange={handleChange} required>
               <option value="">Branch</option>
-                {branches.map((branch, index) => (
-              <option key={index} value={branch}>
-                {branch}
-              </option>
+              {branches.map((branch, index) => (
+                <option key={index} value={branch}>
+                  {branch}
+                </option>
               ))}
             </select>
           </div>
@@ -120,7 +144,7 @@ const AddNewStudent = () => {
           </div>
           <div className="form-group">
             <label>Contact No:</label>
-            <input className="input" type="tel" name="contactNo" maxLength="10"  value={formData.contactNo} onChange={handleChange} required />
+            <input className="input" type="tel" name="contactNo" maxLength="10" value={formData.contactNo} onChange={handleChange} required />
           </div>
           <div className="form-buttons">
             <button className="btn" type="button" onClick={handleCancel}>Cancel</button>
