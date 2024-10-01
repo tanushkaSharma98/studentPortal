@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 
 import './login.css';
@@ -66,7 +67,9 @@ const AdminLogin = () => {
     <div className="adlogin-page-container">
       {/* Navbar */}
       <nav className="adnavbar-container">
-        <div className="adnavbar-title">XYZ UNIVERSITY</div>
+      <NavLink to="/" className="adnavbar-link">
+        XYZ UNIVERSITY
+      </NavLink>
       </nav>
       
       {/* Container for Sidebar and Login Form */}

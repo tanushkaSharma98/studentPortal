@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AboutUs from './about-us/AboutUs.jsx';
 import Contact from './contact-us/Contact.jsx';
-import { Link } from 'react-router-dom';
+import Navbar from '../Common/navbar/Navbar.jsx';  // Import the Navbar component
 import './index.css';
 
 const Index = () => {
@@ -10,14 +10,19 @@ const Index = () => {
   const contactRef = useRef(null);
   const navigate = useNavigate();
   const [button, setButton] = useState('LOGIN');  // Default button text
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Token state management
 
   // Set button text based on token presence
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       setButton('GO TO PROFILE');
+      setIsLoggedIn(true);
+    } else {
+      setButton('LOGIN');
+      setIsLoggedIn(false);
     }
-  }, []);  // Empty dependency array to run once after initial render
+  }, [isLoggedIn]);  // Run whenever `isLoggedIn` changes
 
   const handleLoginClick = () => {
     const token = localStorage.getItem('token');
@@ -32,14 +37,15 @@ const Index = () => {
 
   return (
     <div id="top" className="homepage-container">
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> {/* Pass state */}
       {/* New wrapper for flex layout */}
-      <div  className="homepage-content">
+      <div className="homepage-content">
         <div className="left-section">
           <h1 className="large-text">Welcome to</h1>
           <h1 className="text">XYZ UNIVERSITY</h1>
           <button className="button" onClick={handleLoginClick}>{button}</button>
         </div>
-        
+
         <div className="right-section">
           <img 
             src="https://ww2.kqed.org/app/uploads/sites/23/2021/02/iStock-1227150854-1020x583.jpg" 

@@ -3,7 +3,7 @@ import { Link as ScrollLink } from 'react-scroll'; // For smooth scrolling
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'; // For routing
 import './Navbar.css'; // Import the CSS file
 
-const Navbar = () => {
+const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const location = useLocation(); // Get the current path
   const [showLogout, setShowLogout] = useState(false); // State to show/hide logout button
   const navigate = useNavigate(); // For navigation after logout
@@ -20,14 +20,13 @@ const Navbar = () => {
   const handleLogout = () => {
     // Remove the token from local storage
     localStorage.removeItem('token');
+    setIsLoggedIn(false); // Update state to reflect logged-out status
 
     // If not on the homepage, redirect the user to the login page
     if (!isHomePage) {
       navigate('/login');
     }
   };
-
-  const isLoggedIn = !!localStorage.getItem('token'); // Check if the user is logged in
 
   // Reset showLogout state when the component mounts or location changes
   useEffect(() => {
@@ -48,16 +47,17 @@ const Navbar = () => {
     <nav className='snav'>
       <ul className='sul'>
         <li className="snavlogo sli">XYZ UNIVERSITY</li>
-        
-          {isHomePage && (
-            <li className="sli">
+
+        {isHomePage && (
+          <li className="sli">
             <RouterLink to="/admin/admin-login" className="snav-link">
               Admin Login
             </RouterLink>
           </li>
-          )}
-          {/* Home Link */}
-         <li className='sli'>
+        )}
+
+        {/* Home Link */}
+        <li className='sli'>
           {isHomePage ? (
             // Scroll to the top of the page (id="top")
             <ScrollLink to="top" smooth={true} duration={500} className="snav-link">

@@ -12,6 +12,7 @@
   height: 100vh;
 }
 
+
 /* Navbar styling */
 .adnavbar-container {
   background-color: #78a4b9; /* Darker blue */
@@ -126,4 +127,26 @@
   margin-bottom: 50px; /* Space between heading and form */
   color: #333; /* Darker text for contrast */
   font-size: 70px;
+}
+
+/* Navbar title styling */
+.adnavbar-container {
+  background-color: #9bbace; /* Add your preferred background color */
+  padding: 10px;
+}
+
+/* Styling for the link */
+.adnavbar-link {
+  text-decoration: none; /* Removes the underline */
+  color: white; /* Changes the text color to white */
+}
+
+/* Ensure the text stays white on hover and active states */
+.adnavbar-link:hover,
+.adnavbar-link:active {
+  color: white;
+}
+
+.adnavbar-title{
+  width: fit-content;
 }

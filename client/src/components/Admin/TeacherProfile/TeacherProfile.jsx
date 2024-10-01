@@ -5,6 +5,12 @@ import { Link } from 'react-router-dom';
 import './TeacherProfile.css';  // Custom CSS for Teacher Profile
 
 const TeacherProfile = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);  // Sidebar toggle state
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);  // Toggle sidebar state
+  };
+
   const [teacher, setTeacher] = useState({
     name: 'John Doe',
     designation: 'Assistant Professor',
@@ -22,11 +28,11 @@ const TeacherProfile = () => {
   return (
     <div className="teacher-profile">
       <Header />
-      <Sidebar />
-      <div className="teachermain-content">
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <div className={`teachermain-content ${isSidebarOpen ? 'sidebar-open' : ''}`}>
         <div className="profile-container">
           <div className="profile-header">
-            <Link to="/teachers">
+            <Link to="/admin/teachers">
               <button className="back-button">←</button>
             </Link>
             <div className="profile-picture"> J
@@ -42,12 +48,12 @@ const TeacherProfile = () => {
             </div>
           </div>
           <div className="profile-actions">
-          <Link to="/admin/attendance-record">
-            <button className="action-button">Attendance Record</button>
-          </Link>
-          <Link to="/admin/student-record">
-            <button className="action-button">Student Record</button>
-          </Link>
+            <Link to="/admin/attendance-record">
+              <button className="action-button">Attendance Record</button>
+            </Link>
+            <Link to="/admin/student-record">
+              <button className="action-button">Student Record</button>
+            </Link>
           </div>
         </div>
       </div>

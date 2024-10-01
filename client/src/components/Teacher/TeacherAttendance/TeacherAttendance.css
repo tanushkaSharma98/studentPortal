@@ -109,7 +109,7 @@
   font-weight: 700;
   font-size: larger;
   white-space: nowrap;
-  margin-right: 50px;
+  margin-right: -30%;
 }
 
 /* Add spacing between inputs */
@@ -118,7 +118,7 @@
 }
 
 /* Updated Last text */
-.teacher-UpdatedLast {
+.teacher-updated-last {
   font-weight: 700;
   font-size: larger;
 

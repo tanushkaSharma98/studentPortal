@@ -2,6 +2,7 @@ const express = require('express');
 const { getStudentMarks, getStudentPerformance } = require('../controllers/adminStudentMarksController');
 const { getStudentCount, getStudentProfile, updateStudentIsActive } = require('../controllers/studentManagementController')
 const { getAllStudents, getStudentsByBranchAndSemester, searchStudentsByName } = require('../controllers/adminStudentListController');
+const createStudentController = require('../controllers/createStudentController');
 
 const router = express.Router();
 
@@ -16,5 +17,7 @@ router.get('/profile/:userId', getStudentProfile);
 
 router.get('/Marks/:userId/:subjectId/:examId' , getStudentMarks);
 router.get('/marksPerformance/:userId', getStudentPerformance);
+
+router.post('/create', createStudentController.createStudent);
 
 module.exports = router;
