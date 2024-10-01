@@ -75,7 +75,6 @@ const StudentAttendance = () => {
 
   return (
     <div className="attendance-section">
-              <h1> Attendance</h1>
       <div className="attendance-header">
        <button className="daily-attendance-button" onClick={handleViewDailyAttendance}>View Daily Attendance</button>
       </div>
