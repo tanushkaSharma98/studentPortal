@@ -1,30 +1,33 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TeacherAttendance.css';
 import AttendanceTable from './AttendanceTable';
 
 const TeacherAttendance = () => {
   const navigate = useNavigate(); // Initialize navigate function
-  const [subjectDropdown, setSubjectDropdown] = useState(false);
-  const [selectedSubject, setSelectedSubject] = useState('Subject');
+  const [selectedSubject, setSelectedSubject] = useState('');
+  const [selectedExam, setSelectedExam] = useState('');
   const [date, setDate] = useState('');
   const [lecture, setLecture] = useState('');
 
-  const toggleSubjectDropdown = () => setSubjectDropdown(!subjectDropdown);
+  const subjects = ['Maths', 'Physics', 'Chemistry'];
+  const exams = ['Midterm', 'Final', 'Quiz']; // List of exam types
 
-  const handleSubjectSelect = (subject) => {
-    setSelectedSubject(subject);
-    setSubjectDropdown(false);
+  const handleSubjectChange = (e) => {
+    setSelectedSubject(e.target.value);
+  };
+
+  const handleExamChange = (e) => {
+    setSelectedExam(e.target.value);
   };
 
   const handleLectureChange = (e) => {
     const value = e.target.value;
-    if (value >= 0 || value === '') {  // Allow only non-negative numbers or empty input
+    if (value >= 0 || value === '') {
       setLecture(value);
     }
   };
 
-  const subjects = ['Maths', 'Physics', 'Chemistry'];
   const handleSave = () => {
     console.log('Data saved');
   };
@@ -32,27 +35,36 @@ const TeacherAttendance = () => {
   return (
     <div className="teacher-attendance-container">
       <div className="teacher-top-buttons">
-        <div className="teacher-dropdown">
-          <button className="teacher-dropdown-btn" onClick={toggleSubjectDropdown}>
-            {selectedSubject} <span className="teacher-arrow"></span>
-          </button>
-          {subjectDropdown && (
-            <div className="teacher-dropdown-content">
-              {subjects.map((subject, index) => (
-                <a href="#" key={index} onClick={(e) => { e.preventDefault(); handleSubjectSelect(subject); }}>
-                  {subject}
-                </a>
-              ))}
-            </div>
-          )}
+        {/* Subject Dropdown */}
+        <div className="teacher-subject-dropdown">
+          <select value={selectedSubject} onChange={handleSubjectChange}>
+            <option value=""> Subject</option>
+            {subjects.map((subject, index) => (
+              <option key={index} value={subject}>
+                {subject}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Exam Dropdown */}
+        <div className="teacher-exam-dropdown">
+          <select value={selectedExam} onChange={handleExamChange}>
+            <option value=""> Exam</option>
+            {exams.map((exam, index) => (
+              <option key={index} value={exam}>
+                {exam}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
       <div className="teacher-attendance-details">
-        <p className="teacher-UpdatedLast">Updated Last: Yesterday</p>
+        <p className="teacher-updated-last">Updated Last: Yesterday</p>
 
         <div className="teacher-input-row">
-          <label htmlFor="date">Date : </label>
+          <label htmlFor="date">Date: </label>
           <input
             type="date"
             id="date"
@@ -63,14 +75,14 @@ const TeacherAttendance = () => {
         </div>
 
         <div className="teacher-input-row">
-          <label htmlFor="lecture">Lecture : </label>
+          <label htmlFor="lecture">Lecture: </label>
           <input
             type="number"
             id="lecture"
             value={lecture}
             onChange={handleLectureChange}
             placeholder="Enter lecture number"
-            min="0" // Minimum value for lecture is set to 0
+            min="0"
           />
         </div>
         <AttendanceTable />
@@ -78,8 +90,12 @@ const TeacherAttendance = () => {
 
       {/* Bottom Buttons */}
       <div className="teacher-bottom-buttons">
-        <button className="teacher-daily-record-btn" onClick={() => navigate('/daily-attendance-record')}>Daily Attendance Record</button>
-        <button className="teacher-save-btn" onClick={handleSave}>Save</button>
+        <button className="teacher-daily-record-btn" onClick={() => navigate('/daily-attendance-record')}>
+          Daily Attendance Record
+        </button>
+        <button className="teacher-save-btn" onClick={handleSave}>
+          Save
+        </button>
       </div>
     </div>
   );

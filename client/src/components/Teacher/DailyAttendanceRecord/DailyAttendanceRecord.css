@@ -6,6 +6,13 @@
     padding: 50px;
     box-sizing: border-box;
 }
+.Daily-att{
+    position: relative;
+    font-size: 35px;
+    font-weight:bolder;
+    align-items: center;
+    text-align: center;
+}
 /* Back button styles */
 .teacher-back-button {
     position: relative;
@@ -22,11 +29,12 @@
 
 
 /* Top buttons styling */
-.teacher-topButtons {
+.Teacher-TopButtons {
     display: flex;
     justify-content: space-between; /* Ensure buttons are on opposite sides */
     margin-bottom: 20px;
     align-items: center;
+    
 }
 
 /* Dropdown button styling */
@@ -36,10 +44,9 @@
     padding: 10px 20px;
     border: none;
     cursor: pointer;
-    font-size: 16px;
     display: flex;
     align-items: center;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 /* Dropdown arrow styling */
@@ -49,7 +56,7 @@
 }
 
 /* Dropdown container */
-.teacher-Dropdown {
+.Teacher-Dropdown {
     position: relative;
 }
 
@@ -102,15 +109,17 @@
 }
 
 /* Styling for Updated Last */
-.teacher-UpdatedLast {
+.teacher-Updated-Last {
     font-weight: bold;
+    font-size: 20px;
     margin-bottom: 10px;
     display: block;
 }
 
 /* Styling for Total Lecture */
-.teacher-TotalLecture {
+.teacher-Total-Lecture {
     font-weight: bold;
+    font-size: 20px;
     margin-bottom: 10px;
     display: block;
 }
@@ -128,12 +137,6 @@
     display: flex;
     align-items: center;
 }
-
-/* Input fields (Date picker) */
-/* input[type="date"] {
-    padding: 5px;
-    font-size: 1.3rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-left: 10px;
-} */
+select{
+    font-size: 20px;
+}

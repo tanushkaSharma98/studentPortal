@@ -1,79 +1,64 @@
-import  { useState } from 'react';
-import { Link } from 'react-router-dom';  // Import Link from react-router-dom
+import { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import './DailyAttendanceRecord.css'; // Import CSS for custom styles
 import DailyAttendanceRecordTable from './DailyAttReTable';
 
 const DailyAttendanceRecord = () => {
-  const [subjectDropdown, setSubjectDropdown] = useState(false);
-  const [attendanceDropdown, setAttendanceDropdown] = useState(false);
-  const [selectedSubject, setSelectedSubject] = useState('Subject');
-  const [selectedAttendance, setSelectedAttendance] = useState('Attendance Below %');
-  // const [fromDate, setFromDate] = useState('');
-  // const [toDate, setToDate] = useState('');
-
-  const toggleSubjectDropdown = () => setSubjectDropdown(!subjectDropdown);
-  const toggleAttendanceDropdown = () => setAttendanceDropdown(!attendanceDropdown);
-
-  const handleSubjectSelect = (subject) => {
-    setSelectedSubject(subject);
-    setSubjectDropdown(false);
-  };
-
-  const handleAttendanceSelect = (attendance) => {
-    setSelectedAttendance(attendance);
-    setAttendanceDropdown(false);
-  };
+  const [selectedSubject, setSelectedSubject] = useState('');
+  const [selectedAttendance, setSelectedAttendance] = useState('');
 
   const subjects = ['Maths', 'Physics', 'Chemistry'];
   const attendanceOptions = ['Below 50%', 'Below 60%', 'Below 70%', 'Below 75%', 'Below 80%'];
+
+  const handleSubjectChange = (e) => {
+    setSelectedSubject(e.target.value);
+  };
+
+  const handleAttendanceChange = (e) => {
+    setSelectedAttendance(e.target.value);
+  };
 
   return (
     <div className="teacher-dailyAttendanceContainer">
       <Link to="/teacher-dashboard">
         <button className="teacher-back-button">←</button>
       </Link>
+      <h1 className="Daily-att">Daily Attendance Record</h1>
+      
       {/* Top Section: Subject and Attendance Dropdowns */}
-      <div className="teacher-topButtons">
+      <div className="Teacher-TopButtons">
         {/* Subject Dropdown */}
-        <div className="teacher-Dropdown">
-          <button className="teacher-DropdownBtn" onClick={toggleSubjectDropdown}>
-            {selectedSubject} <span className="teacher-arrow">&#x25BC;</span>
-          </button>
-          {subjectDropdown && (
-            <div className="teacher-DropdownContent">
-              {subjects.map((subject, index) => (
-                <a href="#" key={index} onClick={(e) => { e.preventDefault(); handleSubjectSelect(subject); }}>
-                  {subject}
-                </a>
-              ))}
-            </div>
-          )}
+        <div className="Teacher-Dropdown">
+          <select value={selectedSubject} onChange={handleSubjectChange}>
+            <option value="">Subject</option>
+            {subjects.map((subject, index) => (
+              <option key={index} value={subject}>
+                {subject}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Attendance Below Dropdown */}
-        <div className="teacher-Dropdown" style={{ marginLeft: 'auto' }}>
-          <button className="teacher-DropdownBtn" onClick={toggleAttendanceDropdown}>
-            {selectedAttendance} <span className="teacher-arrow">&#x25BC;</span>
-          </button>
-          {attendanceDropdown && (
-            <div className="teacher-DropdownContent">
-              {attendanceOptions.map((attendance, index) => (
-                <a href="#" key={index} onClick={(e) => { e.preventDefault(); handleAttendanceSelect(attendance); }}>
-                  {attendance}
-                </a>
-              ))}
-            </div>
-          )}
+        <div className="Teacher-Dropdown" style={{ marginLeft: 'auto' }}>
+          <select value={selectedAttendance} onChange={handleAttendanceChange}>
+            <option value="">Attendance Below</option>
+            {attendanceOptions.map((attendance, index) => (
+              <option key={index} value={attendance}>
+                {attendance}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
       {/* Record Details Section */}
       <div className="teacher-recordDetails">
-        <span className="teacher-UpdatedLast">Updated Last: Yesterday</span>
-        <span className="teacher-TotalLecture">Total Lecture: 10</span>
+        <span className="teacher-Updated-Last">Updated Last: Yesterday</span>
+        <span className="teacher-Total-Lecture">Total Lecture: 10</span>
       </div>
 
-      {/* Add your attendance record table or content below */}
+      {/* Attendance record table */}
       <div className="teacher-attendanceContent">
         <DailyAttendanceRecordTable />
       </div>
