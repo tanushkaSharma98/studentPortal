@@ -128,9 +128,9 @@ const StudentRecord = () => {
   const [marksBelowDropdown, setMarksBelowDropdown] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState('Subject');
   const [selectedMarksBelow, setSelectedMarksBelow] = useState('Marks Below');
-  const [threshold, setThreshold] = useState(null); // Correctly define threshold and setThreshold
-  const [students, setStudents] = useState([]); // State for storing fetched student records
-  const [loading, setLoading] = useState(false); // State to manage loading
+  const [ setThreshold] = useState(null); // Correctly define threshold and setThreshold
+  const [students] = useState([]); // State for storing fetched student records
+  const [loading] = useState(false); // State to manage loading
 
   const toggleSubjectDropdown = () => setSubjectDropdown(!subjectDropdown);
   const toggleMarksBelowDropdown = () => setMarksBelowDropdown(!marksBelowDropdown);
@@ -153,7 +153,7 @@ const StudentRecord = () => {
     }
 
     // Fetch students when a marks threshold is selected
-    fetchStudents(marks === 'Below 10' ? 10 : marks === 'Below 20' ? 20 : null);
+   // fetchStudents(marks === 'Below 10' ? 10 : marks === 'Below 20' ? 20 : null);
 
     // Close the dropdown after selection
     setMarksBelowDropdown(false);
@@ -161,10 +161,6 @@ const StudentRecord = () => {
 
   const subjects = ['Maths', 'Physics', 'Chemistry'];
   const marksBelowOptions = ['Below 10', 'Below 20'];
-
-  const handleExpandAttendance = () => {
-    navigate('/daily-attendance-record'); // Navigate to Daily Attendance Record page
-  };
 
 return (
   
