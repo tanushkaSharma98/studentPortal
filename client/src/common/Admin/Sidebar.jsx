@@ -44,6 +44,7 @@ const Sidebar = () => {
                 </li>
               </ul>
             </li>
+<<<<<<< HEAD
             <li>
               <NavLink to="/subjects" className={({ isActive }) => isActive ? 'active-link' : ''}>
                 <img src="https://cdn4.iconfinder.com/data/icons/content1-1/24/Dossiers-2-512.png" alt="Subject Icon" className="icon" />
@@ -68,6 +69,12 @@ const Sidebar = () => {
                 User Activity
               </NavLink>
             </li>
+=======
+            <li><NavLink to="/admin/subjects" className={({ isActive }) => isActive ? 'active-link' : ''}>Subject</NavLink></li>
+            <li><NavLink to="/admin/branches" className={({ isActive }) => isActive ? 'active-link' : ''}>Branch</NavLink></li>
+            <li><NavLink to="/admin/exams" className={({ isActive }) => isActive ? 'active-link' : ''}>Exam</NavLink></li>
+            <li><NavLink to="/admin/activity" className={({ isActive }) => isActive ? 'active-link' : ''}>User Activity</NavLink></li>
+>>>>>>> feda459f8e31f877b51d18a720af7437d9039c84
           </ul>
         </nav>
       </div>
