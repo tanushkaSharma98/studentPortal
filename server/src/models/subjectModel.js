@@ -4,24 +4,25 @@ exports.getSubjects = async (filters = {}) => {
     try {
         console.log('Executing query to fetch subjects...');
 
-        // Base query
+        // Base query with STRING_AGG for teacher names and a method to summarize branches
         let query = `
             SELECT 
                 s.subject_name, 
                 s.subject_code, 
-                b.branch_name AS branch, 
+                s.sub_initials,       
+                STRING_AGG(DISTINCT b.branch_name, ', ') AS branches,  -- Aggregate distinct branch names
                 bs.semester, 
-                t.teacher_name AS teacher, 
+                STRING_AGG(DISTINCT t.teacher_name, ', ') AS teachers,  -- Aggregate distinct teacher names
                 s.is_active
             FROM 
                 subject s
             JOIN 
                 branch_sem_sub bs ON s.subject_id = bs.subject_id
-            JOIN 
+            LEFT JOIN 
                 branch b ON bs.branch_id = b.branch_id
-            JOIN 
+            LEFT JOIN 
                 subject_teacher st ON s.subject_id = st.subject_id
-            JOIN 
+            LEFT JOIN 
                 teacher t ON st.teacher_id = t.teacher_id
             WHERE 
                 1=1
@@ -38,9 +39,19 @@ exports.getSubjects = async (filters = {}) => {
             replacements.push(filters.semester);
         }
         if (filters.subject_name) {
-            query += ' AND s.subject_name ILIKE ?';
-            replacements.push(`%${filters.subject_name}%`);
+            query += ' AND s.subject_name ILIKE ?';  // Use ILIKE for partial, case-insensitive matching
+            replacements.push(`%${filters.subject_name}%`);  // Use % to match any part of the subject name
         }
+    
+        // Group by unique subject fields
+        query += `
+            GROUP BY 
+                s.subject_name, 
+                s.subject_code, 
+                s.sub_initials, 
+                bs.semester, 
+                s.is_active
+        `;
 
         // Execute the raw SQL query
         const results = await sequelize.query(query, {
@@ -50,6 +61,7 @@ exports.getSubjects = async (filters = {}) => {
 
         return results;
     } catch (error) {
+        console.error('Error fetching subjects:', error); // Log full error details
         throw new Error('Error fetching subjects: ' + error.message);
     }
 };

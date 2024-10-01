@@ -83,4 +83,21 @@
       margin-bottom: 10px;
     }
   }
+
+  /* BranchList.css */
+
+/* BranchList.css */
+.error-message {
+  color: red; /* Red color for error messages */
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.no-branches {
+  color: gray; /* Gray color for 'no branches' message */
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+
   

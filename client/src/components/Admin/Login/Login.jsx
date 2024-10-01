@@ -43,7 +43,7 @@ const AdminLogin = () => {
          if (decodedToken.user_type === 0 || decodedToken.user_type === 3) {
           setMessage('Login successful!');
           setTimeout(() => {
-            navigate('/dashboard');
+            navigate('/admin/dashboard');
           }, 1000);
         } else {
           // Display message if user is not authorized

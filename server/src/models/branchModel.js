@@ -8,8 +8,8 @@ exports.getBranch = async (filters = {}) => {
         let query = `
             SELECT 
                 b.branch_name, 
-                COUNT(DISTINCT CASE WHEN u.is_active = true THEN s.student_id END) AS student_count,
-                COUNT(DISTINCT bs.subject_id) AS subject_count,
+                COALESCE(COUNT(DISTINCT CASE WHEN u.is_active = true THEN s.student_id END), 0) AS student_count,
+                COALESCE(COUNT(DISTINCT bs.subject_id), 0) AS subject_count,
                 b.is_active
             FROM 
                 branch b
@@ -38,7 +38,7 @@ exports.getBranch = async (filters = {}) => {
             replacements.push(filters.semester);
         }
 
-        // Group by clause must be after WHERE
+        // Group by clause
         query += `
             GROUP BY 
                 b.branch_name, b.is_active
@@ -55,6 +55,7 @@ exports.getBranch = async (filters = {}) => {
         throw new Error('Error fetching branch: ' + error.message);
     }
 };
+
 
 exports.getBranchCount= async () => {
     const result = await sequelize.query('SELECT COUNT(*) AS count FROM branch WHERE is_active = true', {
