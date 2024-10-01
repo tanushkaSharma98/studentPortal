@@ -60,11 +60,11 @@
 }
 
 .teacher-attendance-button.present {
-    background-color: green; /* Green for Present */
+    background-color: rgb(39, 148, 57); /* Green for Present */
 }
 
 .teacher-attendance-button.absent {
-    background-color: red; /* Red for Absent */
+    background-color: rgb(185, 24, 24); /* Red for Absent */
 }
 
 .teacher-attendance-button.mark {

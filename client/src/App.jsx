@@ -1,5 +1,4 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom'; // Do not import BrowserRouter here
 import Navbar from './components/Common/navbar/Navbar.jsx';
 import Index from './components/Homepage/index.jsx';
 import AboutUs from './components/Homepage/about-us/AboutUs.jsx';
@@ -37,11 +36,12 @@ function App() {
           {/* Student Dashboard */}
           <Route path="/student-dashboard" element={<StudentDashboard />} />
           <Route path="/daily-attendance" element={<DailyAttendance />} />
-              {/* Route for teacher dashboard */}
-              <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+
+          {/* Teacher Dashboard */}
+          <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
           
           {/* Route for Daily Attendance Record */}
-          <Route path="/daily-attendance-record" element={<DailyAttendanceRecord />} /> {/* Add route for Daily Attendance Record */}
+          <Route path="/daily-attendance-record" element={<DailyAttendanceRecord />} />
         </Routes>
       </div>
     </div>
