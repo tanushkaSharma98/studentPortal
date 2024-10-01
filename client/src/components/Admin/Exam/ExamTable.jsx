@@ -8,7 +8,7 @@ const ExamTable = () => {
     const fetchExams = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:3000/api/exam_type/exams', {
+        const response = await fetch('http://localhost:3000/api/admin/exams', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,  // Include token if required
