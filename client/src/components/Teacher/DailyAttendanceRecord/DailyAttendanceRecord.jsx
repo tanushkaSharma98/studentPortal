@@ -37,7 +37,7 @@ const DailyAttendanceRecord = () => {
         {/* Subject Dropdown */}
         <div className="teacher-Dropdown">
           <button className="teacher-DropdownBtn" onClick={toggleSubjectDropdown}>
-            {selectedSubject} <span className="arrow">&#x25BC;</span>
+            {selectedSubject} <span className="teacher-arrow">&#x25BC;</span>
           </button>
           {subjectDropdown && (
             <div className="teacher-DropdownContent">

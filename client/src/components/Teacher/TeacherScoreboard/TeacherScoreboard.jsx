@@ -78,7 +78,7 @@ const TeacherScoreboard = () => {
       </div>
 
       {/* Save Button */}
-      <div className="teacher-save-button-container">
+      <div className="teacherScoreboard-save-button-container">
         <button className="teacher-save-button" onClick={handleSave}>
           Save
         </button>

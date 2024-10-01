@@ -13,10 +13,10 @@ function TeacherProfile({ data }) {
       <h1>{data.teacher_name}</h1>
     </div>
   </div>
-      <p><strong>Subject:</strong> {data.subjects.join(', ')}</p>
-      <p><strong>Designation:</strong> {data.designation}</p>
-      <p><strong>Email Id:</strong> {data.email}</p>
-      <p><strong>Contact No.:</strong> {data.contact_no}</p>
+      <p><strong>Subject : </strong> {data.subjects.join(', ')}</p>
+      <p><strong>Designation : </strong> {data.designation}</p>
+      <p><strong>Email Id : </strong> {data.email}</p>
+      <p><strong>Contact No. : </strong> {data.contact_no}</p>
     </div>
   );
 }
