@@ -34,63 +34,83 @@ const Navbar = () => {
     setShowLogout(false); // Hide logout button on page load or navigation
   }, [location]);
 
-  const handleScrollOrNavigate = (target) => {
-    if (isHomePage) {
-      // If on the homepage, scroll to the section
-      return <ScrollLink to={target} smooth={true} duration={500} className="nav-link" />;
-    } else {
-      // If not on the homepage, navigate to the appropriate component
-      navigate(target);
-    }
-  };
-
   return (
     <nav className='snav'>
       <ul className='sul'>
         <li className="snavlogo sli">XYZ UNIVERSITY</li>
         
-          {isHomePage && (
-            <li className="sli">
+        {isHomePage && (
+          <li className="sli">
             <RouterLink to="/admin/admin-login" className="snav-link">
               Admin Login
             </RouterLink>
           </li>
-          )}
-          {/* Home Link */}
-         <li className='sli'>
+        )}
+
+        {/* Home Link with Icon */}
+        <li className='sli'>
           {isHomePage ? (
-            // Scroll to the top of the page (id="top")
             <ScrollLink to="top" smooth={true} duration={500} className="snav-link">
+              <img 
+                src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" 
+                alt="Home Icon" 
+                className="icon" 
+              />
               Home
             </ScrollLink>
           ) : (
             <RouterLink to="/" className="snav-link">
+              <img 
+                src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" 
+                alt="Home Icon" 
+                className="icon" 
+              />
               Home
             </RouterLink>
           )}
         </li>
 
-        {/* About Us Link */}
+        {/* About Us Link with Icon */}
         <li className='sli'>
           {isHomePage ? (
             <ScrollLink to="about-us" smooth={true} duration={500} className="snav-link">
+              <img 
+                src="https://uxwing.com/wp-content/themes/uxwing/download/signs-and-symbols/round-information-white-icon.png" 
+                alt="About Us Icon" 
+                className="icon" 
+              />
               About Us
             </ScrollLink>
           ) : (
             <RouterLink to="/about-us" className="snav-link">
+              <img 
+                src="https://uxwing.com/wp-content/themes/uxwing/download/signs-and-symbols/round-information-white-icon.png" 
+                alt="About Us Icon" 
+                className="icon" 
+              />
               About Us
             </RouterLink>
           )}
         </li>
 
-        {/* Contact Link */}
+        {/* Contact Link with Icon */}
         <li className='sli'>
           {isHomePage ? (
             <ScrollLink to="contact" smooth={true} duration={500} className="snav-link">
+              <img 
+                src="https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/phone-ringing-white-icon.png" 
+                alt="Contact Icon" 
+                className="icon" 
+              />
               Contact
             </ScrollLink>
           ) : (
             <RouterLink to="/contact" className="snav-link">
+              <img 
+                src="https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/phone-ringing-white-icon.png" 
+                alt="Contact Icon" 
+                className="icon" 
+              />
               Contact
             </RouterLink>
           )}
