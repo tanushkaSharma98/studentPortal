@@ -12,6 +12,7 @@
   height: 100vh;
 }
 
+
 /* Navbar styling */
 .adnavbar-container {
   background-color: #78a4b9; /* Darker blue */
@@ -144,4 +145,8 @@
 .adnavbar-link:hover,
 .adnavbar-link:active {
   color: white;
+}
+
+.adnavbar-title{
+  width: fit-content;
 }
