@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import './StudentRecordTable.css'; // Link to the CSS file
 
 const initialRecords = [
@@ -11,7 +11,7 @@ const initialRecords = [
 ];
 
 const StudentRecordTable = () => {
-  const [students, setStudents] = useState(initialRecords);
+  const [students] = useState(initialRecords);
 
   return (
     <div className="teacher-student-record-table">

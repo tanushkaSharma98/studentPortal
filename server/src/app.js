@@ -8,8 +8,18 @@ const scheduler = require('./scheduler/scheduler');
 // Initialize Express app
 const app = express();
 
+app.use(cors({
+  origin: 'http://localhost:5173', // Your frontend URL
+  methods: 'GET, POST, PUT, DELETE', // Allowed methods
+  credentials: true // Allow credentials (like cookies)
+}));
+
 // Middleware
 app.use(cors()); // Enable CORS
+app.use(morgan('dev')); // Logging middleware for dev environment
+app.use(bodyParser.json()); // Parse JSON request bodies
+app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded data
+
 app.use(morgan('dev')); // Logging middleware for dev environment
 app.use(bodyParser.json()); // Parse JSON request bodies
 app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded data
@@ -24,6 +34,10 @@ const teacherManagementRoutes = require('./routes/teacherManagementRoutes.js');
 const subjectRoutes = require('./routes/subjectRoutes.js');
 const branchRoutes = require('./routes/branchRoutes.js');
 const examRoutes = require('./routes/examRoutes.js');
+const marksRoutes = require('./routes/marksBelowRoutes');
+const branchSemSubRoutes = require('./routes/branchSemSubRoutes');
+// Register the branch-sem-sub route
+app.use('/api', branchSemSubRoutes);
 
 // // Use routes
 app.use('/api/auth', authRoutes);
@@ -37,6 +51,17 @@ app.use('/api/admin/teachers', teacherManagementRoutes);
 app.use('/api/admin/subjects', subjectRoutes);
 app.use('/api/admin/branches', branchRoutes);
 app.use('/api/admin/exams', examRoutes);
+app.use('/api', marksRoutes);
+
+// Test the database connection before starting the server
+// sequelize.authenticate()
+//   .then(() => {
+//     console.log('Database connection successful.');
+    
+//   })
+//   .catch(err => {
+//     console.error('Database connection failed:', err);
+//   });
 
 // Error handling middleware
 app.use((err, req, res, next) => {

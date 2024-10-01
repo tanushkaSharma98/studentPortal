@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 import './DailyAttendanceRecord.css'; // Import CSS for custom styles
 import DailyAttendanceRecordTable from './DailyAttReTable';
