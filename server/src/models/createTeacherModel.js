@@ -2,8 +2,7 @@ const sequelize = require('../config/dbConfig');
 const { secretKey } = require('../config/config.js'); // Assuming JWT_SECRET is in config.js
 
 // Create a new user in the users table with encrypted password and user_type set to 2 (for teacher)
-exports.createUser = async (userData) => {
-  const { email, password } = userData;
+exports.createUser = async (email, password) => {
   const userType = 2; // Set user_type to 2 (for teacher)
 
   if (!secretKey) {
@@ -29,12 +28,9 @@ exports.createUser = async (userData) => {
 };
 
 // Create a new teacher in the teacher table and assign multiple subjects
-exports.createTeacher = async (teacherData) => {
-  const { name, email, password, designation, contactNo, subjects } = teacherData;
+exports.createTeacher = async ( name, designation, userId, subjects, contactNo ) => {
 
   try {
-    // Create the user first to get user_id
-    const userId = await exports.createUser({ email, password });
     
     // Insert the teacher record into the teacher table
     const teacherQuery = `
@@ -48,21 +44,7 @@ exports.createTeacher = async (teacherData) => {
       type: sequelize.QueryTypes.INSERT
     });
 
-    const teacherId = teacherResult[0][0].teacher_id;
-
-    // Assign subjects to the teacher
-    if (subjects && subjects.length > 0) {
-      for (const subjectNameWithCode of subjects) {
-        const subjectId = await exports.getSubjectIdByCode(subjectNameWithCode);
-        if (subjectId) {
-          await exports.assignSubjectToTeacher(teacherId, subjectId);
-        } else {
-          console.error(`Subject with name/code ${subjectNameWithCode} not found.`);
-        }
-      }
-    }
-
-    return teacherId;
+    return teacherResult[0][0].teacher_id;
   } catch (error) {
     console.error('Error creating teacher:', error);
     throw new Error('Error creating teacher');
