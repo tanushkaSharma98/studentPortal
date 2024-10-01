@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TeacherAttendance.css';
 import AttendanceTable from './AttendanceTable';
@@ -34,7 +34,7 @@ const TeacherAttendance = () => {
       <div className="teacher-top-buttons">
         <div className="teacher-dropdown">
           <button className="teacher-dropdown-btn" onClick={toggleSubjectDropdown}>
-            {selectedSubject} <span className="teacher-arrow">&#x25BC;</span>
+            {selectedSubject} <span className="teacher-arrow"></span>
           </button>
           {subjectDropdown && (
             <div className="teacher-dropdown-content">
@@ -52,7 +52,7 @@ const TeacherAttendance = () => {
         <p className="teacher-UpdatedLast">Updated Last: Yesterday</p>
 
         <div className="teacher-input-row">
-          <label htmlFor="date">Date:</label>
+          <label htmlFor="date">Date : </label>
           <input
             type="date"
             id="date"
@@ -63,7 +63,7 @@ const TeacherAttendance = () => {
         </div>
 
         <div className="teacher-input-row">
-          <label htmlFor="lecture">Lecture:</label>
+          <label htmlFor="lecture">Lecture : </label>
           <input
             type="number"
             id="lecture"

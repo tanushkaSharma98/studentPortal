@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './TeacherScoreboard.css';
 import Table from './Table.jsx';
 
@@ -36,7 +36,7 @@ const TeacherScoreboard = () => {
         {/* Subject Button */}
         <div className="teacher-dropdown">
           <button className="teacher-dropdown-btn" onClick={toggleSubjectDropdown}>
-            {selectedSubject} <span className="teacher-arrow">&#x25BC;</span>
+            {selectedSubject} <span className="teacher-arrow"></span>
           </button>
           {subjectDropdown && (
             <div className="teacher-dropdown-content">
@@ -50,7 +50,7 @@ const TeacherScoreboard = () => {
         {/* Exam Button */}
         <div className="teacher-dropdown">
           <button className="teacher-dropdown-btn" onClick={toggleExamDropdown}>
-            {selectedExam} <span className="teacher-arrow">&#x25BC;</span>
+            {selectedExam} <span className="teacher-arrow"></span>
           </button>
           {examDropdown && (
             <div className="teacher-dropdown-content">
@@ -78,7 +78,7 @@ const TeacherScoreboard = () => {
       </div>
 
       {/* Save Button */}
-      <div className="teacher-save-button-container">
+      <div className="teacherScoreboard-save-button-container">
         <button className="teacher-save-button" onClick={handleSave}>
           Save
         </button>

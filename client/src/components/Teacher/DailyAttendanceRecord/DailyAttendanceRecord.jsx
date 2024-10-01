@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { Link } from 'react-router-dom';  // Import Link from react-router-dom
 import './DailyAttendanceRecord.css'; // Import CSS for custom styles
 import DailyAttendanceRecordTable from './DailyAttReTable';
@@ -8,8 +8,8 @@ const DailyAttendanceRecord = () => {
   const [attendanceDropdown, setAttendanceDropdown] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState('Subject');
   const [selectedAttendance, setSelectedAttendance] = useState('Attendance Below %');
-  const [fromDate, setFromDate] = useState('');
-  const [toDate, setToDate] = useState('');
+  // const [fromDate, setFromDate] = useState('');
+  // const [toDate, setToDate] = useState('');
 
   const toggleSubjectDropdown = () => setSubjectDropdown(!subjectDropdown);
   const toggleAttendanceDropdown = () => setAttendanceDropdown(!attendanceDropdown);
@@ -37,7 +37,7 @@ const DailyAttendanceRecord = () => {
         {/* Subject Dropdown */}
         <div className="teacher-Dropdown">
           <button className="teacher-DropdownBtn" onClick={toggleSubjectDropdown}>
-            {selectedSubject} <span className="arrow">&#x25BC;</span>
+            {selectedSubject} <span className="teacher-arrow">&#x25BC;</span>
           </button>
           {subjectDropdown && (
             <div className="teacher-DropdownContent">

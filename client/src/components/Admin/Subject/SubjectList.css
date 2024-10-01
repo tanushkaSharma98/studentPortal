@@ -83,3 +83,10 @@
     margin-bottom: 10px;
   }
 }
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 20px;
+}
+

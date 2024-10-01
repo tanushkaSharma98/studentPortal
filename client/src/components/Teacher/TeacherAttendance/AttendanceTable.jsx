@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import './AttendanceTable.css'; // Link to the CSS file
 
 const initialAttendance = [

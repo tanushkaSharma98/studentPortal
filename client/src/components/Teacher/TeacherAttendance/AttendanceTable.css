@@ -1,10 +1,11 @@
 .teacher-attendance-table {
-    width: 100%;
+    width: 113%;
     margin: 20px auto;
+
 }
 
 .teacher-attendance-table table {
-    width: 100%;
+    width: 120%;
     border-collapse: collapse;
     border: 1px solid #ddd;
 }

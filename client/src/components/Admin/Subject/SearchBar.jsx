@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import './SearchBar.css';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './SearchBar.css';
 
 const SearchBar = ({ onFilter }) => {
   const [branches, setBranches] = useState([]);
@@ -19,13 +19,14 @@ const SearchBar = ({ onFilter }) => {
         });
 
         if (!res.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Failed to fetch branches');
         }
 
         const data = await res.json();
-
         if (Array.isArray(data)) {
-          const activeBranches = data.filter(branch => branch.is_active).map(branch => branch.branch_name);
+          const activeBranches = data
+            .filter(branch => branch.is_active)
+            .map(branch => branch.branch_name);
           setBranches(activeBranches);
         } else {
           console.error('Unexpected data format:', data);
@@ -38,24 +39,21 @@ const SearchBar = ({ onFilter }) => {
     fetchBranches();
   }, []);
 
-  // Handle the search when the button is clicked
   const handleSearch = () => {
-    onFilter(filters);  // Pass the filters object
+    onFilter(filters);  // Trigger filtering with all current filters, including subject_name
   };
 
-  // Update the filters state when input changes
-  const handleChange = (e) => {
+  const handleDropdownChange = (e) => {
     const updatedFilters = {
       ...filters,
       [e.target.name]: e.target.value,
     };
     setFilters(updatedFilters);
-  };
-
-  // Automatically trigger filtering when dropdown values change
-  const handleDropdownChange = (e) => {
-    handleChange(e);  // Update the state
-    handleSearch();   // Trigger the search with updated filters
+    
+    // Trigger filtering immediately for branch and semester
+    if (e.target.name === 'branch_name' || e.target.name === 'semester') {
+      onFilter(updatedFilters);
+    }
   };
 
   return (
@@ -64,9 +62,9 @@ const SearchBar = ({ onFilter }) => {
         <input
           type="text"
           placeholder="Search Subject Name"
-          name="subject_name"  // Add name attribute
+          name="subject_name"
           value={filters.subject_name}
-          onChange={handleChange}  // Use handleChange to update filters
+          onChange={(e) => setFilters({ ...filters, subject_name: e.target.value })}  // Handle subject name input
         />
         <button onClick={handleSearch}>Search</button>
         <Link to="/admin/add-subject">
@@ -76,9 +74,9 @@ const SearchBar = ({ onFilter }) => {
 
       <div className="filter-options">
         <select
-          name="branch_name"  // Add name attribute
+          name="branch_name"
           value={filters.branch_name}
-          onChange={handleDropdownChange}  // Trigger search on change
+          onChange={handleDropdownChange}  // Trigger filtering when branch changes
         >
           <option value="">Branch</option>
           {branches.map((branch, index) => (
@@ -89,9 +87,9 @@ const SearchBar = ({ onFilter }) => {
         </select>
 
         <select
-          name="semester"  // Add name attribute
+          name="semester"
           value={filters.semester}
-          onChange={handleDropdownChange}  // Trigger search on change
+          onChange={handleDropdownChange}  // Trigger filtering when semester changes
         >
           <option value="">Semester</option>
           {[...Array(8).keys()].map(i => (
