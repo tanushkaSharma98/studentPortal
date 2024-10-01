@@ -3,9 +3,11 @@ import './StudentRecord.css';
 import StudentRecordTable from './StudentRecordTable';
 
 const StudentRecord = () => {
-  const [selectedSubject, setSelectedSubject] = useState('');
-  const [selectedMarksBelow, setSelectedMarksBelow] = useState('');
-  const [subjects, setSubjects] = useState(['Maths', 'Physics', 'Chemistry']);
+  const [subjectDropdown, setSubjectDropdown] = useState(false);
+  const [marksBelowDropdown, setMarksBelowDropdown] = useState(false);
+  const [selectedSubject, setSelectedSubject] = useState('Subject');
+  const [selectedMarksBelow, setSelectedMarksBelow] = useState('Marks Below');
+  const [threshold, setThreshold] = useState(null); // Correctly define threshold and setThreshold
   const [students, setStudents] = useState([]); // State for storing fetched student records
   const [loading, setLoading] = useState(false); // State to manage loading
 
@@ -25,20 +27,21 @@ const StudentRecord = () => {
     const threshold = e.target.value === 'Below 10' ? 10 : e.target.value === 'Below 20' ? 20 : null;
 
     // Fetch students when a marks threshold is selected
-    fetchStudents(threshold);
+    fetchStudents(marks === 'Below 10' ? 10 : marks === 'Below 20' ? 20 : null);
+
+    // Close the dropdown after selection
+    setMarksBelowDropdown(false);
   };
 
-  const fetchStudents = (threshold) => {
-    setLoading(true);
-    // Simulate a fetch call to get students based on the threshold
-    setTimeout(() => {
-      // Replace this with your actual API call
-      setStudents([]);
-      setLoading(false);
-    }, 1000);
+  const subjects = ['Maths', 'Physics', 'Chemistry'];
+  const marksBelowOptions = ['Below 10', 'Below 20'];
+
+  const handleExpandAttendance = () => {
+    navigate('/daily-attendance-record'); // Navigate to Daily Attendance Record page
   };
 
-  return (
+return (
+  
     <div className="teacher-attendanceContainer">
       <div className="teacher-TopButtons">
         {/* Subject Dropdown */}

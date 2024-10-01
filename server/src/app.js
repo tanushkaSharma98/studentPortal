@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { authenticate } = require('./middleware/authMiddleware.js');
+const sequelize = require('./config/dbConfig'); // Import the sequelize instance
+
 const scheduler = require('./scheduler/scheduler');
 
 // Initialize Express app
@@ -20,10 +22,6 @@ app.use(morgan('dev')); // Logging middleware for dev environment
 app.use(bodyParser.json()); // Parse JSON request bodies
 app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded data
 
-app.use(morgan('dev')); // Logging middleware for dev environment
-app.use(bodyParser.json()); // Parse JSON request bodies
-app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded data
-
 // Import routes
 const authRoutes = require('./routes/authRoutes.js');
 const studentRoutes = require('./routes/studentRoutes.js');
@@ -36,6 +34,12 @@ const branchRoutes = require('./routes/branchRoutes.js');
 const examRoutes = require('./routes/examRoutes.js');
 const marksRoutes = require('./routes/marksBelowRoutes');
 const branchSemSubRoutes = require('./routes/branchSemSubRoutes');
+
+// Import the exam type routes
+const exam_typeRoutes = require('./routes/exam_typeRoutes.js');
+
+const teacherPostAttendanceRoutes = require('./routes/teacherPostAttendanceRoutes');
+
 // Register the branch-sem-sub route
 app.use('/api', branchSemSubRoutes);
 
@@ -52,16 +56,21 @@ app.use('/api/admin/subjects', subjectRoutes);
 app.use('/api/admin/branches', branchRoutes);
 app.use('/api/admin/exams', examRoutes);
 app.use('/api', marksRoutes);
+// Use the exam type routes under a defined path
+app.use('/api/exams', exam_typeRoutes);
+
+// Use attendance routes
+app.use('/api/teacher', teacherPostAttendanceRoutes);
 
 // Test the database connection before starting the server
-// sequelize.authenticate()
-//   .then(() => {
-//     console.log('Database connection successful.');
+sequelize.authenticate()
+  .then(() => {
+    console.log('Database connection successful.');
     
-//   })
-//   .catch(err => {
-//     console.error('Database connection failed:', err);
-//   });
+  })
+  .catch(err => {
+    console.error('Database connection failed:', err);
+  });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
