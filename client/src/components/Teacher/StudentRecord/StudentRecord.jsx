@@ -26,15 +26,15 @@ const StudentRecord = () => {
   const subjects = ['Maths', 'Physics', 'Chemistry'];
   const marksBelowOptions = ['Below 10', 'Below 20'];
 
-  const handleExpandAttendance = () => {
-    navigate('/daily-attendance-record'); // Navigate to Daily Attendance Record page
-  };
+  // const handleExpandAttendance = () => {
+  //   navigate('/daily-attendance-record'); // Navigate to Daily Attendance Record page
+  // };
 
   return (
     <div className="teacher-attendanceContainer">
       <div className="teacher-topButtons">
         {/* Subject Dropdown */}
-        <div className="teacher-Dropdown">
+        <div className="teacherSub-Dropdown">
           <button className="teacher-DropdownBtn" onClick={toggleSubjectDropdown}>
             {selectedSubject} <span className="teacher-arrow">&#x25BC;</span>
           </button>
@@ -50,9 +50,9 @@ const StudentRecord = () => {
         </div>
 
         {/* Marks Below Dropdown */}
-        <div className="teacher-Dropdown" style={{ marginLeft: 'auto' }}>
+        <div className="teacherMar-Dropdown" style={{ marginLeft: 'auto' }}>
           <button className="teacher-DropdownBtn" onClick={toggleMarksBelowDropdown}>
-            {selectedMarksBelow} <span className="arrow">&#x25BC;</span>
+            {selectedMarksBelow} <span className="teacher-arrow">&#x25BC;</span>
           </button>
           {marksBelowDropdown && (
             <div className="teacher-DropdownContent">

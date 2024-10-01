@@ -5,8 +5,9 @@
     position: relative;
     width: 100%;
     margin: 20px auto;
-    padding: 20px;
+    padding-left: 7% ;
     box-sizing: border-box;
+    margin-bottom: 60px;
 }
 
 /* Top buttons styling */
@@ -36,8 +37,13 @@
 }
 
 /* Dropdown container */
-.teacher-Dropdown {
+.teacherSub-Dropdown {
     position: relative;
+    padding-left: 30px;
+}
+.teacherMar-Dropdown {
+    position: relative;
+    margin-right: -30%;
 }
 
 /* Dropdown content */
@@ -88,26 +94,9 @@
     text-align: right; /* Aligns text to the right */
     font-weight: 700;
     font-size: larger;
+    margin-right: -30%;
 
 }
 
 
-/* Expand Attendance Button styling */
-.teacher-expandAttendanceBtn {
-    position: absolute; /* Use absolute positioning */
-    bottom: -30px; /* Distance from the bottom */
-    right: 20px; /* Distance from the right */
-    padding: 10px 20px; /* Padding for the button */
-    background-color: #35393b; /* Background color */
-    color: white; /* Text color */
-    border: none; /* No border */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-size: 1.3rem; /* Font size */
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
-}
 
-/* Hover effect for the button */
-.teacher-expandAttendanceBtn:hover {
-    background-color: #1a1818; /* Darker shade on hover */
-}
