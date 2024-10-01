@@ -12,6 +12,11 @@ const SearchBar = ({ onFilter }) => {
       [e.target.name]: e.target.value,
     };
     setFilters(updatedFilters);
+
+    // Automatically trigger filtering when the dropdown changes
+    if (e.target.name === 'semester') {
+      onFilter(updatedFilters); // Trigger filtering immediately for dropdown change
+    }
   };
 
   // Handle search button click
