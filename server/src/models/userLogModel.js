@@ -25,7 +25,7 @@ exports.logUserLogout = async (userId, timestamp) => {
 exports.getUserActivity = async () => {
     const query = `
         SELECT 
-            ul.id, ul.user_id, ul.action, ul.timestamp,
+            ul.id, ul.user_id, ul.action, u.user_type, ul.timestamp,
             CASE 
                 WHEN u.user_type = 0 OR u.user_type = 3 THEN a.name
                 WHEN u.user_type = 1 THEN s.student_name
