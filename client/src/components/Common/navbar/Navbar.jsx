@@ -3,26 +3,22 @@ import { Link as ScrollLink } from 'react-scroll'; // For smooth scrolling
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'; // For routing
 import './Navbar.css'; // Import the CSS file
 
-const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
+const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
   const location = useLocation(); // Get the current path
   const [showLogout, setShowLogout] = useState(false); // State to show/hide logout button
   const navigate = useNavigate(); // For navigation after logout
 
-  // Determine if we are on the home page
   const isHomePage = location.pathname === '/';
 
-  // Function to handle clicking on the profile image
   const toggleLogout = () => {
     setShowLogout((prevShowLogout) => !prevShowLogout);
   };
 
-  // Function to handle logout
   const handleLogout = () => {
-    // Remove the token from local storage
+    // Remove the token from local storage and update state
     localStorage.removeItem('token');
-    setIsLoggedIn(false); // Update state to reflect logged-out status
+    setIsLoggedIn(false);  // Ensure isLoggedIn is updated
 
-    // If not on the homepage, redirect the user to the login page
     if (!isHomePage) {
       navigate('/login');
     }
@@ -37,7 +33,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
     <nav className='snav'>
       <ul className='sul'>
         <li className="snavlogo sli">XYZ UNIVERSITY</li>
-
+        
         {isHomePage && (
           <li className="sli">
             <RouterLink to="/admin/admin-login" className="snav-link">
@@ -45,9 +41,6 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
             </RouterLink>
           </li>
         )}
-
-
-        {/* Home Link */}
 
         <li className='sli'>
           {isHomePage ? (
@@ -71,7 +64,6 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
           )}
         </li>
 
-        {/* About Us Link with Icon */}
         <li className='sli'>
           {isHomePage ? (
             <ScrollLink to="about-us" smooth={true} duration={500} className="snav-link">
@@ -94,7 +86,6 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
           )}
         </li>
 
-        {/* Contact Link with Icon */}
         <li className='sli'>
           {isHomePage ? (
             <ScrollLink to="contact" smooth={true} duration={500} className="snav-link">
@@ -117,20 +108,17 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
           )}
         </li>
 
-        {/* Profile */}
         <li className="snavprofile-container sli" onClick={toggleLogout}>
           <img
             src="https://st.depositphotos.com/1537427/3571/v/450/depositphotos_35717211-stock-illustration-vector-user-icon.jpg"
             alt="Profile"
             className="snavprofile-img"
           />
-          {/* Show Logout button only when logged in and clicked on profile */}
           {isLoggedIn && showLogout && (
             <button onClick={handleLogout} className="snavbutton slogout-button">
               Logout
             </button>
           )}
-          {/* Show Login button only when not logged in and clicked on profile */}
           {!isLoggedIn && showLogout && (
             <RouterLink to="/login" className="snavbutton slogin-button">
               Login
