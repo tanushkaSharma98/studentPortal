@@ -35,25 +35,25 @@ const Dashboard = () => {
           'Cache-Control': 'no-cache'
         };
   
-        const studentRes = await fetch('http://localhost:3000/api/admin/student-count', { headers });
+        const studentRes = await fetch('http://localhost:3000/api/admin/students/count', { headers });
         if (!studentRes.ok) throw new Error(`Failed to fetch: ${studentRes.statusText}`);
         const studentData = await studentRes.json();
         console.log('Student Data:', JSON.stringify(studentData, null, 2)); 
         setStudentCount(studentData.studentCount);
   
-        const teacherRes = await fetch('http://localhost:3000/api/admin/teacher-count', { headers });
+        const teacherRes = await fetch('http://localhost:3000/api/admin/teachers/count', { headers });
         if (!teacherRes.ok) throw new Error(`Failed to fetch: ${teacherRes.statusText}`);
         const teacherData = await teacherRes.json();
         console.log('teacher Data:', JSON.stringify(teacherData, null, 2)); 
         setTeacherCount(teacherData.teacherCount);
   
-        const branchRes = await fetch('http://localhost:3000/api/admin/branch-count', { headers });
+        const branchRes = await fetch('http://localhost:3000/api/admin/branches/count', { headers });
         if (!branchRes.ok) throw new Error(`Failed to fetch: ${branchRes.statusText}`);
         const branchData = await branchRes.json();
         console.log('branch Data:', JSON.stringify(branchData, null, 2)); 
         setBranchCount(branchData.branchCount);
   
-        const subjectRes = await fetch('http://localhost:3000/api/admin/subject-count', { headers });
+        const subjectRes = await fetch('http://localhost:3000/api/admin/subjects/count', { headers });
         if (!subjectRes.ok) throw new Error(`Failed to fetch: ${subjectRes.statusText}`);
         const subjectData = await subjectRes.json();
         console.log('subject Data:', JSON.stringify(subjectData, null, 2)); 
@@ -65,7 +65,7 @@ const Dashboard = () => {
     const fetchBranchStudentCounts = async () => {
       try {
         const token = localStorage.getItem('token'); 
-        const res = await fetch('http://localhost:3000/api/admin/student-branch-count', {
+        const res = await fetch('http://localhost:3000/api/admin/branches/student-count', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`, // Add your token here

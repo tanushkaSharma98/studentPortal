@@ -1,81 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const BranchTable = () => {
-  const [branches, setBranches] = useState([]);
-
-  // Fetch branch data from API
-  useEffect(() => {
-    const fetchBranches = async () => {
-      try {
-        const token = localStorage.getItem('token'); // Use token if needed
-        const response = await fetch('http://localhost:3000/api/admin/branches', {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${token}`,  // Include the token if required
-            'Content-Type': 'application/json'
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json();
-        // Map API data to match your component's structure
-        const formattedBranches = data.map((branch, index) => ({
-          sNo: index + 1,
-          branchname: branch.branch_name,
-          noofstudent: branch.student_count,
-          noofsub: branch.subject_count,
-          isDeleted: false,
-        }));
-
-        setBranches(formattedBranches);
-      } catch (error) {
-        console.error('Error fetching branches:', error);
-      }
-    };
-
-    fetchBranches();
-  }, []);
-
+const BranchTable = ({ branches, setBranches }) => {
   const handleDelete = (index) => {
     const updatedBranches = [...branches];
-    updatedBranches[index].isDeleted = !updatedBranches[index].isDeleted;  // Toggle delete status
+    updatedBranches[index].isDeleted = !updatedBranches[index].isDeleted;
     setBranches(updatedBranches);
   };
 
   return (
     <div className="branch-table">
-      <table>
-        <thead>
-          <tr>
-            <th>S. no</th>
-            <th>Branch Name</th>
-            <th>No. of Students</th>
-            <th>No. of Subjects</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {branches.map((branch, index) => (
-            <tr key={index} className={branch.isDeleted ? 'deleted' : ''}>
-              <td>{branch.sNo}</td>
-              <td>{branch.branchname}</td>
-              <td>{branch.noofstudent}</td>
-              <td>{branch.noofsub}</td>
-              <td>
-                <button 
-                  className={`delete-btn ${branch.isDeleted ? 'add-btn' : ''}`}
-                  onClick={() => handleDelete(index)}
-                >
-                  {branch.isDeleted ? '✓' : '✗'}
-                </button>
-              </td>
+      {branches.length === 0 ? (
+        <div className="no-branches">No branches found.</div>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>S. No</th>
+              <th>Branch Name</th>
+              <th>No. of Students</th>
+              <th>No. of Subjects</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {branches.map((branch, index) => (
+              <tr key={branch.id || index} className={branch.isDeleted ? 'deleted' : ''}>
+                <td>{index + 1}</td>
+                <td>{branch.branch_name}</td>
+                <td>{branch.student_count}</td>
+                <td>{branch.subject_count}</td>
+                <td>
+                  <button
+                    className={`delete-btn ${branch.isDeleted ? 'restore-btn' : 'delete-btn'}`}
+                    onClick={() => handleDelete(index)}
+                    aria-label={branch.isDeleted ? 'Restore Branch' : 'Delete Branch'}
+                  >
+                    {branch.isDeleted ? 'Restore' : 'Delete'}
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };

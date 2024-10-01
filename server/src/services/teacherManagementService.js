@@ -1,4 +1,4 @@
-const { getTeacherCount } = require('../models/teacherManagementModel');
+const {getTeacherCount} = require('../models/teacherManagementModel');
 
 exports.getTeacherCount = async () => {
     try {
@@ -9,4 +9,3 @@ exports.getTeacherCount = async () => {
       throw new Error("Failed to fetch teacher count.");
     }
 };
-  
