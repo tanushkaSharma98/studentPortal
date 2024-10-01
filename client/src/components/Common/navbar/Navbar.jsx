@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Link as ScrollLink } from 'react-scroll'; // For smooth scrolling
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'; // For routing
 import './Navbar.css'; // Import the CSS file
