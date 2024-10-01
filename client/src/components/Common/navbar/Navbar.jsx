@@ -37,11 +37,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
     <nav className='snav'>
       <ul className='sul'>
         <li className="snavlogo sli">XYZ UNIVERSITY</li>
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> feda459f8e31f877b51d18a720af7437d9039c84
         {isHomePage && (
           <li className="sli">
             <RouterLink to="/admin/admin-login" className="snav-link">
@@ -50,11 +46,9 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
           </li>
         )}
 
-<<<<<<< HEAD
-        {/* Home Link with Icon */}
-=======
+
         {/* Home Link */}
->>>>>>> feda459f8e31f877b51d18a720af7437d9039c84
+
         <li className='sli'>
           {isHomePage ? (
             <ScrollLink to="top" smooth={true} duration={500} className="snav-link">
