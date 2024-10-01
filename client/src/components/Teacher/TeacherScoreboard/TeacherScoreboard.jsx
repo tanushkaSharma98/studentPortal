@@ -34,12 +34,16 @@ const TeacherScoreboard = () => {
     console.log('Data saved'); // Replace this with actual saving logic
   };
 
+  const toggleExamDropdown = (selected) => {
+    setExamDropdown(selected); // Update the state
+  }
+
   return (
     <div className="teacher-scoreboard-container">
       <div className="teacher-top-buttons">
         {/* Subject Dropdown */}
         <div className="teacher-subject-dropdown">
-          <select value={selectedSubject} onChange={handleSubjectChange}>
+          <select value={selectedSubject} onChange={handleSubjectSelect}>
             <option value=""> Subject</option>
             {subjects.map((subject, index) => (
               <option key={index} value={subject}>
