@@ -3,19 +3,10 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { authenticate } = require('./middleware/authMiddleware.js');
-const sequelize = require('./config/dbConfig'); // Import the sequelize instance
-
 const scheduler = require('./scheduler/scheduler');
 
 // Initialize Express app
 const app = express();
-
-app.use(cors({
-  origin: 'http://localhost:5173', // Your frontend URL
-  methods: 'GET, POST, PUT, DELETE', // Allowed methods
-  credentials: true // Allow credentials (like cookies)
-}));
-
 // Middleware
 app.use(cors()); // Enable CORS
 app.use(morgan('dev')); // Logging middleware for dev environment
@@ -35,14 +26,6 @@ const examRoutes = require('./routes/examRoutes.js');
 const marksRoutes = require('./routes/marksBelowRoutes');
 const branchSemSubRoutes = require('./routes/branchSemSubRoutes');
 
-// Import the exam type routes
-const exam_typeRoutes = require('./routes/exam_typeRoutes.js');
-
-const teacherPostAttendanceRoutes = require('./routes/teacherPostAttendanceRoutes');
-
-// Register the branch-sem-sub route
-app.use('/api', branchSemSubRoutes);
-
 // // Use routes
 app.use('/api/auth', authRoutes);
 app.use(authenticate);
@@ -56,21 +39,7 @@ app.use('/api/admin/subjects', subjectRoutes);
 app.use('/api/admin/branches', branchRoutes);
 app.use('/api/admin/exams', examRoutes);
 app.use('/api', marksRoutes);
-// Use the exam type routes under a defined path
-app.use('/api/exams', exam_typeRoutes);
-
-// Use attendance routes
-app.use('/api/teacher', teacherPostAttendanceRoutes);
-
-// Test the database connection before starting the server
-sequelize.authenticate()
-  .then(() => {
-    console.log('Database connection successful.');
-    
-  })
-  .catch(err => {
-    console.error('Database connection failed:', err);
-  });
+app.use('/api', branchSemSubRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

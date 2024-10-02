@@ -11,7 +11,7 @@ exports.getExam = async () => {
                 exam_name, 
                 maximum_marks,
                 is_active
-            FROM 
+            FROM
                 exam_type
         `;
 
