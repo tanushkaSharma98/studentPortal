@@ -1,4 +1,5 @@
 const { getExam, createExam, updateExamStatus } = require('../models/examModel');
+
 exports.getExam = async () => {
     try {
       // Fetch exam-type from the database

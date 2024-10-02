@@ -1,23 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './TeacherScoreboard.css';
 import Table from './Table.jsx';
 
+//
+import axios from 'axios'; // Import Axios
+import {jwtDecode} from 'jwt-decode'; // Correct import
+
+
 const TeacherScoreboard = () => {
-  // State to manage selected values
-  const [selectedSubject, setSelectedSubject] = useState('');
-  const [selectedExam, setSelectedExam] = useState('');
+  // State to manage dropdown visibility and selected values
+  const [subjectDropdown, setSubjectDropdown] = useState(false);
+  const [examDropdown, setExamDropdown] = useState(false);
+  const [selectedSubject, setSelectedSubject] = useState('Subject'); // Default value
+  const [selectedExam, setSelectedExam] = useState('Exam'); // Default value
 
   const subjects = ['Maths', 'Physics', 'Chemistry']; // List of subjects
   const exams = ['Midterm-1', 'Midterm-2']; // List of exams
 
-  // Function to handle subject change
-  const handleSubjectChange = (e) => {
-    setSelectedSubject(e.target.value);
+  // Function to handle subject selection
+  const handleSubjectSelect = (subject) => {
+    setSelectedSubject(subject); // Update the button text with selected subject
+    setSubjectDropdown(false); // Close the dropdown
   };
 
-  // Function to handle exam change
-  const handleExamChange = (e) => {
-    setSelectedExam(e.target.value);
+  // Function to handle exam selection
+  const handleExamSelect = (exam) => {
+    setSelectedExam(exam); // Update the button text with selected exam
+    setExamDropdown(false); // Close the dropdown
   };
 
   // Function to handle save
@@ -25,12 +34,16 @@ const TeacherScoreboard = () => {
     console.log('Data saved'); // Replace this with actual saving logic
   };
 
+  const toggleExamDropdown = (selected) => {
+    setExamDropdown(selected); // Update the state
+  }
+
   return (
     <div className="teacher-scoreboard-container">
       <div className="teacher-top-buttons">
         {/* Subject Dropdown */}
         <div className="teacher-subject-dropdown">
-          <select value={selectedSubject} onChange={handleSubjectChange}>
+          <select value={selectedSubject} onChange={handleSubjectSelect}>
             <option value=""> Subject</option>
             {subjects.map((subject, index) => (
               <option key={index} value={subject}>
@@ -40,16 +53,17 @@ const TeacherScoreboard = () => {
           </select>
         </div>
 
-        {/* Exam Dropdown */}
-        <div className="teacher-exam-dropdown">
-          <select value={selectedExam} onChange={handleExamChange}>
-            <option value=""> Exam</option>
-            {exams.map((exam, index) => (
-              <option key={index} value={exam}>
-                {exam}
-              </option>
-            ))}
-          </select>
+        {/* Exam Button */}
+        <div className="teacher-dropdown">
+          <button className="teacher-dropdown-btn" onClick={toggleExamDropdown}>
+            {selectedExam} <span className="teacher-arrow"></span>
+          </button>
+          {examDropdown && (
+            <div className="teacher-dropdown-content">
+              <a href="#" onClick={(e) => { e.preventDefault(); handleExamSelect('Midterm-1'); }}>Midterm-1</a>
+              <a href="#" onClick={(e) => { e.preventDefault(); handleExamSelect('Midterm-2'); }}>Midterm-2</a>
+            </div>
+          )}
         </div>
       </div>
 

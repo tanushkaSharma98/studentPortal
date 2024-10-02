@@ -3,7 +3,7 @@ const db = require('../config/dbConfig');
 const getBranchSemSubDetails = async (subject_code) => {
     const query = `
         SELECT 
-            b.branch_name, 
+            b.branch_name,
             bss.semester
         FROM 
             branch_sem_sub bss
