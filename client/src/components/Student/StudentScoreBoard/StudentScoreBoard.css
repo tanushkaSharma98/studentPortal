@@ -1,102 +1,83 @@
-.scoreboard-section {
-    padding: 5px;
-    text-align: left;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .exam-bar {
-    margin-right: 30px;
-    display: flex;
-    align-items: center;
-    background-color: #f4f4f4;
-    padding: 10px 15px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 20px;
-    width: fit-content;
-  }
-  
-  .exam-bar span {
-    margin-right: 20px;
-    font-weight: bold;
-  }
-  
-  .exam-bar .dropdown-button {
-    margin-left: 5px;
-    font-size: 0.8em;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .dropdown {
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
-    z-index: 1000;
-    border-radius: 5px;
-    margin-top: 5px;
-  }
-  
-  .dropdown-option {
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .dropdown-option:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .subject-bar {
-    margin-bottom: 20px;
-  }
-  
-  .subject-header {
-    display: flex;
-    justify-content: space-between;
-    background-color: #f4f4f4;
-    padding: 10px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-  }
-  
-  .subject-details {
-    display: flex; /* Use flexbox for layout */
-    justify-content: flex-start; /* Align items to the left */
-    align-items: flex-start; /* Align items to the start */
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-left: 2px solid #ccc;
+.Student-scoreboard-section {
+  padding: 20px;
+  text-align: left;
+}
 
-  }
-  
-  .subject-info {
-    display: flex; /* Use flexbox to arrange items vertically */
-    flex-direction: column; /* Stack items vertically */
+.student-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border: 2px solid black;
+}
 
-  }
-  
-   .subject-chart {
-    width: 200px;
-    height: 200px;
-  } 
-  
-  .graph-placeholder {
-    margin-top: 30px;
-  }
-  
-  h2 {
-    margin-bottom: 10px;
-  }
-  
-  .bar-chart-container {
-    width: 10cm;
-    height: auto;
-  }
-  
+.student-exam-dropdown select{
+  display: flex;
+  align-items: flex-end;
+  padding: 8px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.student-subject-bar {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.student-subject-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4f4f4;
+  padding: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+
+.student-dropdown-button {
+  margin-left: 5px;
+  font-size: 0.8em;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.student-subject-details {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
+.student-subject-info {
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+  max-width: 300px;
+}
+
+.student-subject-info p {
+  margin: 5px 0;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+.student-subject-chart {
+  width: 200px;
+  height: 200px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.no-marks-message {
+  text-align: center;
+  font-size: 1.2em;
+  color: #888;
+  padding: 20px;
+  margin-top: 20px;
+}

@@ -29,7 +29,7 @@ const DailyAttendanceRecord = () => {
       <div className="Teacher-TopButtons">
         {/* Subject Dropdown */}
         <div className="Teacher-Dropdown">
-          <select value={selectedSubject} onChange={handleSubjectChange}>
+          <select  value={selectedSubject} onChange={handleSubjectChange}>
             <option value="">Subject</option>
             {subjects.map((subject, index) => (
               <option key={index} value={subject}>
