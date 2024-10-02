@@ -44,7 +44,7 @@
 
 .snavprofile-container {
   position: relative;
-  margin-right: 30px; /* Pushes the profile image to the far right */
+  margin-right: 2%; /* Pushes the profile image to the far right */
 }
 
 /* Position the logout/login button below the profile image */
