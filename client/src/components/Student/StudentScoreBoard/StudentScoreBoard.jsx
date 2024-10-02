@@ -8,9 +8,10 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const StudentScoreboard = () => {
   const [subjects, setSubjects] = useState([]);
   const [openSubjects, setOpenSubjects] = useState({});
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [examId, setExamId] = useState(1);
   const [exam, setExam] = useState('Mid Term 1'); // Correctly set the initial exam
+
+  const exams = ['Mid Term 1', 'Mid Term 2']; // List of exams
 
   // Function to fetch marks for all subjects
   const fetchMarks = async () => {
@@ -40,15 +41,11 @@ const StudentScoreboard = () => {
     }));
   };
 
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
-
-  const handleExamChange = (selectedExam) => {
+  const handleExamChange = (e) => {
+    const selectedExam = e.target.value;
     const selectedId = selectedExam === 'Mid Term 1' ? 1 : 2;
     setExamId(selectedId);
     setExam(selectedExam); // Update the exam name
-    fetchMarks(); // Re-fetch marks for the new exam
   };
 
   const getPieChartData = (marksObtained, maxMarks) => {
@@ -65,44 +62,38 @@ const StudentScoreboard = () => {
   };
 
   return (
-    <div className="scoreboard-section">
-      <div className="header">
-       
-        <div className="exam-bar" onClick={toggleDropdown}>
-          <span>Exam: {exam}</span> {/* Display current exam */}
-          <button className="dropdown-button">
-            {dropdownOpen ? '▲' : '▼'}
-          </button>
-          {dropdownOpen && (
-            <div className="dropdown">
-              <div className="dropdown-option" onClick={() => handleExamChange('Mid Term 1')}>
-                Mid Term 1
-              </div>
-              <div className="dropdown-option" onClick={() => handleExamChange('Mid Term 2')}>
-                Mid Term 2
-              </div>
-            </div>
-          )}
+    <div className="Student-scoreboard-section">
+      <div className="student-header">
+        {/* Exam Dropdown */}
+        <div className="student-exam-dropdown">
+          <select id="student-exam-select" value={exam} onChange={handleExamChange}>
+            <option value=""> Exam</option>
+            {exams.map((examOption, index) => (
+              <option key={index} value={examOption}>
+                {examOption}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
       {Array.isArray(subjects) && subjects.length > 0 ? (
         subjects.map((subject) => (
-          <div key={subject.subject_code} className="subject-bar">
-            <div className="subject-header" onClick={() => toggleSubject(subject.subject_code)}>
+          <div key={subject.subject_code} className="student-subject-bar">
+            <div className="student-subject-header" onClick={() => toggleSubject(subject.subject_code)}>
               <span>{subject.subject_code}</span>
-              <button className="dropdown-button">
+              <button className="student-dropdown-button">
                 {openSubjects[subject.subject_code] ? '▲' : '▼'}
               </button>
             </div>
             {openSubjects[subject.subject_code] && (
-              <div className="subject-details">
-                <div className="subject-info">
+              <div className="student-subject-details">
+                <div className="student-subject-info">
                   <p>Subject Name: {subject.subject_name}</p>
                   <p>Marks Obtained: {subject.marks_obtained}</p>
                   <p>Maximum Marks: {subject.maximum_marks}</p>
                   <p>Percentage: {subject.percentage}%</p>
                 </div>
-                <div className="subject-chart">
+                <div className="student-subject-chart">
                   <Pie data={getPieChartData(subject.marks_obtained, subject.maximum_marks)} />
                 </div>
               </div>

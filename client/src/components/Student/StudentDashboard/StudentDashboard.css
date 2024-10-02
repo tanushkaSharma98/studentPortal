@@ -9,8 +9,9 @@
 
 .student-details {
   width: 40%; /* Cover the full width */
-  height: 400px;
+  height: 42%;
   padding: 20px;
+  padding-left: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
@@ -18,9 +19,10 @@
   flex-direction: column; /* Stack elements vertically */
   justify-content: flex-start;
   align-items: left; /* Align items to the left */
-  text-align: center;
+  text-align: left;
   font-size: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  margin-left: 380px;
 }
 
 .profile-and-name {
@@ -30,7 +32,7 @@
   
 }
 .profile-and-name p {
-  font-size: 45px !important; /* Increase the font size as per your requirement */
+  font-size: 40px !important; /* Increase the font size as per your requirement */
   font-family: sans-serif;
   font-weight: bold; /* Optional: Make the name bold */
   color: #333; /* Optional: Adjust the color */
@@ -57,12 +59,9 @@
 
 .student-details p {
   margin: 10px 0; /* Add some margin between details */
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .student-dashboard {
   padding-left: 180px;
-}
-.p-details{
-  font-size: 20px;
 }
