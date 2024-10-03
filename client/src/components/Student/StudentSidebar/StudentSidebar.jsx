@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import './StudentSidebar.css';
 import dashboard from '/src/assets/TeacherSidebar_icon/dashboard.png'
-import scoreboard from  '/src/assets/TeacherSidebar_icon/scoreboard.png' 
-import attendance from  '/src/assets/TeacherSidebar_icon/attendant.png'
+import scoreboad from '/src/assets/TeacherSidebar_icon/scoreboard.png'
+import attendace from '/src/assets/TeacherSidebar_icon/attendant.png'
 
 const StudentSidebar = ({ onScroll }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -34,9 +34,18 @@ const StudentSidebar = ({ onScroll }) => {
       )}
       {(isOpen || !isMobile) && (
         <div className={`Sidebar ${isMobile && !isOpen ? 'collapsed' : ''}`}>
-          <button onClick={() => { onScroll('dashboard'); setIsOpen(isMobile ? false : true); }}>Dashboard</button>
-          <button onClick={() => { onScroll('scoreboard'); setIsOpen(isMobile ? false : true); }}>Scoreboard</button>
-          <button onClick={() => { onScroll('attendance'); setIsOpen(isMobile ? false : true); }}>Attendance</button>
+         <button onClick={() => onScroll('dashboard')}>
+        <img src={dashboard} alt="Dashboard Icon" className="icon" />
+        Dashboard
+      </button>
+      <button onClick={() => onScroll('scoreboard')}>
+        <img src={scoreboad} alt="Scoreboard Icon" className="icon" />
+        Scoreboard
+      </button>
+      <button onClick={() => onScroll('attendance')}>
+        <img src={attendace} alt="Attendance Icon" className="icon" />
+        Attendance
+      </button>
         </div>
       )}
     </div>

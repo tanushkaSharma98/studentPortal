@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link as ScrollLink } from 'react-scroll'; // For smooth scrolling
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'; // For routing
 import './Navbar.css'; // Import the CSS file
+import profile from '/src/assets/AdminHeader/profileadmin.jpg'
 
 const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
   const location = useLocation(); // Get the current path
@@ -117,7 +118,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
 
         <li className="snavprofile-container sli" onClick={toggleLogout}>
           <img
-            src="https://st.depositphotos.com/1537427/3571/v/450/depositphotos_35717211-stock-illustration-vector-user-icon.jpg"
+            src={profile}
             alt="Profile"
             className="snavprofile-img"
           />
