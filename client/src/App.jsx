@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'; // Import useState, useEffect
 import { Route, Routes, useLocation } from 'react-router-dom'; // Do not import BrowserRouter here
 import Navbar from './components/Common/navbar/Navbar.jsx';
 import Index from './components/Homepage/index.jsx';
@@ -15,10 +16,25 @@ function App() {
   // Check if the current route starts with '/admin'
   const isAdminRoute = location.pathname.startsWith('/admin');
 
+  // Define isLoggedIn state here
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check token on mount or location change to manage login state
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [location]);
+
   return (
     <div>
       {/* Render Navbar only if it's not an admin route */}
-      {!isAdminRoute && <Navbar />}
+      {!isAdminRoute && (
+        <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> // Pass props here
+      )}
       <div style={{ paddingTop: isAdminRoute ? '0' : '60px' }}> {/* Adjust padding based on navbar height */}
         <Routes>
           {/* Route for home page */}
