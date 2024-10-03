@@ -25,6 +25,8 @@ const branchRoutes = require('./routes/branchRoutes.js');
 const examRoutes = require('./routes/examRoutes.js');
 const marksRoutes = require('./routes/marksBelowRoutes');
 const branchSemSubRoutes = require('./routes/branchSemSubRoutes');
+const teacherPostAttendanceRoutes = require('./routes/teacherRoutes.js')
+
 
 // // Use routes
 app.use('/api/auth', authRoutes);
@@ -38,6 +40,11 @@ app.use('/api/admin/teachers', teacherManagementRoutes);
 app.use('/api/admin/subjects', subjectRoutes);
 app.use('/api/admin/branches', branchRoutes);
 app.use('/api/admin/exams', examRoutes);
+app.use('/api', marksRoutes);
+app.use('/api', branchSemSubRoutes);
+app.use('/api',teacherPostAttendanceRoutes);
+
+
 app.use('/api/marks', marksRoutes);
 app.use('/api/branch-sem-sub', branchSemSubRoutes);
 

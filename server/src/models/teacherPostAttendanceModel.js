@@ -34,14 +34,12 @@ const createAttendanceRecord = async (subjectId, lecture, attendanceDate) => {
     type: sequelize.QueryTypes.INSERT,
   });
 
-  // Correctly extract attendance_record_id from the result
-  const attendanceRecordId = result[0][0].attendance_record_id; // Access the first element correctly
+  console.log('Attendance Record Created:', result); // Log the entire result to verify it's correct
 
-  console.log('Attendance Record Created:', result); // Log the result
-  console.log('Created Attendance Record ID:', attendanceRecordId); // Log the created ID
-  
-  return attendanceRecordId; // Return the valid attendance_record_id
+  // The result is an array, so we need to access the first element of the first array
+  return result[0][0].attendance_record_id;  // Correctly extract the attendance_record_id
 };
+
 
 // Get student_id using enrollment_no
 const getStudentIdByEnrollmentNo = async (enrollmentNo) => {
