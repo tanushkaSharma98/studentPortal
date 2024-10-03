@@ -1,26 +1,57 @@
 import { Link } from 'react-router-dom';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './DailyAtt.css';
 
 const DailyAttendance = () => {
-  // Example data for the first attendance table
-  const attendanceData1 = [
-    {
-      totalLectures: 10,
-      percentage: 80,
-      attendance: ['P', 'P', 'P', 'A', 'P'], // Correct field name is 'attendance'
-    },
-  ];
+  const [attendanceData, setAttendanceData] = useState([]);
 
-  // Example data for the second attendance table (for another subject)
-  const attendanceData2 = [
-    {
-      totalLectures: 8,
-      percentage: 75,
-      attendance: ['P', 'A', 'P', 'P', 'P'],
-    },
-  ];
-  
+  // Fetch attendance data from the API
+  const fetchAttendanceData = async () => {
+    try {
+      const token = localStorage.getItem('token'); // Get token from local storage
+      const response = await fetch('http://localhost:3000/api/students/attendance-daily-record', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      setAttendanceData(data);
+    } catch (error) {
+      console.error('Error fetching attendance data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAttendanceData();
+  }, []);
+
+  // Group attendance data by subject
+  const groupedData = attendanceData.reduce((acc, record) => {
+    const { subject_code, subject_name, date, status } = record;
+
+    if (!acc[subject_code]) {
+      acc[subject_code] = {
+        subject_name,
+        totalLectures: 0,
+        attendance: {},
+      };
+    }
+
+    acc[subject_code].totalLectures++;
+    acc[subject_code].attendance[date] = status === 'Present' ? 'P' : 'A';
+
+    return acc;
+  }, {});
+
+  const attendanceEntries = Object.values(groupedData);
+
   return (
     <div className="Daily">
       <h1>Daily Attendance Record</h1>
@@ -30,71 +61,42 @@ const DailyAttendance = () => {
         <span>Name : Rohan Tomar </span>
         <span>Enrollment No. : 21CS038</span>
       </div>
-      <div className="Sub1">
-      <span>Subject : Science</span>  
-      </div>
-                                      
-      {/* First Attendance table */}
-      <table className="Attendance-Table">
-        
-        <thead>
-      
-          <tr>
-            <th>Total Lectures</th>
-            <th>Percentage (%)</th>
-            <th>01/08/2024</th>
-            <th>01/09/2024</th>
-            <th>01/10/2024</th>
-            <th>01/11/2024</th>
-            <th>01/12/2024</th>
-          </tr>
-        </thead>
-        <tbody>
-          {attendanceData1.map((data, index) => (
-            <tr key={index}>
-              <td>{data.totalLectures}</td>
-              <td>{data.percentage}</td>
-              {data.attendance.map((status, i) => (
-                <td key={i}>{status}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="Sub1">
-      <span >Subject : Maths</span> 
-      </div>
-     
-      {/* Second Attendance table with space */}
-      <table className="Attendance-Table Second-Table">
-        <thead>
-        
-          <tr>
-            <th>Total Lectures</th>
-            <th>Percentage (%)</th>
-            <th>01/08/2024</th>
-            <th>01/09/2024</th>
-            <th>01/10/2024</th>
-            <th>01/11/2024</th>
-            <th>01/12/2024</th>
-          </tr>
-        </thead>
-        <tbody>
-          {attendanceData2.map((data, index) => (
-            <tr key={index}>
-              <td>{data.totalLectures}</td>
-              <td>{data.percentage}</td>
-              {data.attendance.map((status, i) => (
-                <td key={i}>{status}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+
+      {attendanceEntries.map((entry, index) => (
+        <div key={index} className='student-attendance-container'>
+          <div className="Sub1">
+            <span>Subject : {entry.subject_name}</span>
+          </div>
+
+          {/* Attendance table for each subject */}
+          <table className="Attendance-Table">
+            <thead>
+              <tr>
+                <th>Total Lectures</th>
+                <th>Percentage (%)</th>
+                {/* Render dynamic date headers */}
+                {Object.keys(entry.attendance).map((date) => (
+                  <th key={date}>{date}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{entry.totalLectures}</td>
+                <td>{((Object.values(entry.attendance).filter(a => a === 'P').length / entry.totalLectures) * 100).toFixed(2)}</td>
+                {/* Render attendance statuses for each date */}
+                {Object.keys(entry.attendance).map((date) => (
+                  <td key={date}>{entry.attendance[date]}</td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      ))}
 
       <div className="Backbtn">
         <Link to="/Student-dashboard">
-          <button  className="Back-button">⬅</button>
+          <button className="Back-button">⬅</button>
         </Link>
       </div>
     </div>
