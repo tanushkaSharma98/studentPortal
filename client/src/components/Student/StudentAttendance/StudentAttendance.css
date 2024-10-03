@@ -1,67 +1,80 @@
-.attendance-section {
+.Attendance-Section {
   padding: 20px;
   text-align: left;
 }
 
-.attendance-header {
+.Attendance-Header {
   display: flex;
-  justify-content: flex-end; /* Push the button to the right */
+  justify-content: flex-end;
   align-items: center;
-  margin-bottom: 20px; /* Add some space below the header */
-}
-
-.daily-attendance-button {
-  background-color: #3f423f; /* Green background */
-  color: white; /* White text */
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px; /* Rounded corners */
-}
-
-.daily-attendance-button:hover {
-  background-color: #747974; /* Slightly darker green on hover */
-}
-
-.subject-bar {
   margin-bottom: 20px;
 }
 
-.subject-header {
+.Daily-Attendance-Button {
+  background-color: #3f423f; 
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.Daily-Attendance-Button:hover {
+  background-color: #747974;
+}
+
+.Subject-Bar {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.Subject-Header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  background-color: #f4f4f4;
+  padding: 15px;
   cursor: pointer;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
 }
 
-.subject-details {
-  display: flex; /* Use flexbox to align items */
-  justify-content: flex-start; /* Align items to the left */
-  align-items: left; /* Align vertically */
-  margin-top: 10px;
+.Subject-Details {
+  display: flex;
+  justify-content: flex-start;
+  align-items: left;
+  background-color:#f9f9f9;
+  padding-left: 2%;
 }
 
-.subject-info {
-  display: flex; /* Use flexbox to position left and right */
-  justify-content: space-between; /* Space out the elements */
-  width: 100%; /* Take full width */
+.Subject-Info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.info-left {
-  flex: 1; /* Allow this section to take available space */
-  margin-right: 20px; /* Space between text and pie chart */
+.Info-Left {
+  flex: 1;
+  margin-right: 20px;
 }
 
-.info-right {
-  display: flex; /* Ensure flex display for proper alignment */
-  justify-content: right; /* Align pie chart to the right */
-  align-items: top; /* Center vertically */
-  flex: 0 0 150px; /* Set a fixed width for the pie chart */
-  margin-top: -160px;
-  margin-left: 350px;
+.Info-Right {
+  display: flex;
+  justify-content: right;
+  align-items: top;
+  flex: 0 0 150px;
 }
 
-.pie-chart-container {
-  width: 150px; /* Increase width of pie chart */
-  height: 150px; /* Increase height of pie chart */
+.Pie-Chart-Container {
+  width: 150px;
+  height: 150px;
+}
+.Dropdown-Button {
+  margin-left: 5px;
+  font-size: 0.8em;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
