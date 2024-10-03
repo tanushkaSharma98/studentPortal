@@ -7,7 +7,6 @@ import axios from 'axios';
 const TeacherAttendance = () => {
   const navigate = useNavigate(); // Initialize navigate function
   const [selectedSubject, setSelectedSubject] = useState('');
-  const [selectedExam, setSelectedExam] = useState('');
   const [date, setDate] = useState('');
   const [lecture, setLecture] = useState('');
   const [subjectList, setSubjectList] = useState([]);

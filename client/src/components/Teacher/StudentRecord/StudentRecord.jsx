@@ -70,7 +70,7 @@ return (
       <div className="teacher-TopButtons">
         {/* Subject Dropdown */}
         <div className="teacher-subject-dropdown">
-          <select
+          <select 
             value={selectedSubject}
             onChange={(e) => handleSubjectSelect(e.target.value)}
           >
