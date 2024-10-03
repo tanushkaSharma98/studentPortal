@@ -27,7 +27,7 @@
 }
 
 /* Hamburger button for mobile */
-.hamburger {
+.adhamburger {
   display: none;
   position: fixed;
   top: 7%;
@@ -40,7 +40,7 @@
 }
 
 @media (max-width: 768px) {
-  .hamburger {
+  .adhamburger {
     display: block; /* Show hamburger button on mobile */
   }
 }
