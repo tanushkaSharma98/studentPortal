@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TeacherAttendance.css';
 import AttendanceTable from './AttendanceTable';
+import axios from 'axios';
 
 const TeacherAttendance = () => {
   const navigate = useNavigate(); // Initialize navigate function
@@ -9,16 +10,33 @@ const TeacherAttendance = () => {
   const [selectedExam, setSelectedExam] = useState('');
   const [date, setDate] = useState('');
   const [lecture, setLecture] = useState('');
+  const [subjectList, setSubjectList] = useState([]);
 
-  const subjects = ['Maths', 'Physics', 'Chemistry'];
-  const exams = ['Midterm', 'Final', 'Quiz']; // List of exam types
+  const token = localStorage.getItem('token');
+  useEffect(() => {
+    if (token) {
+      const fetchSubjects = async () => {
+        try {
+          // Fetch subjects based on teacherId
+          const subjectResponse = await axios.get('http://localhost:3000/api/teachers/subjects', {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }
+          });
+          setSubjectList(subjectResponse.data);
+        } catch (error) {
+          console.error('Error fetching subjects :', error);
+        }
+      };
+
+      fetchSubjects();
+    }
+  }, [token]);
 
   const handleSubjectChange = (e) => {
     setSelectedSubject(e.target.value);
-  };
-
-  const handleExamChange = (e) => {
-    setSelectedExam(e.target.value);
+    setSubjectDropdown(false);
   };
 
   const handleLectureChange = (e) => {
@@ -37,27 +55,23 @@ const TeacherAttendance = () => {
       <div className="teacher-top-buttons">
         {/* Subject Dropdown */}
         <div className="teacher-subject-dropdown">
-          <select value={selectedSubject} onChange={handleSubjectChange}>
-            <option value=""> Subject</option>
-            {subjects.map((subject, index) => (
-              <option key={index} value={subject}>
-                {subject}
-              </option>
-            ))}
+        <select
+            value={selectedSubject}
+            onChange={(e) => handleSubjectSelect(e.target.value)}
+          >
+            <option value="">Subject</option>
+            {subjectList.length > 0 ? (
+              subjectList.map((subject, index) => (
+                <option key={index} value={subject.subject_name}>
+                  {subject.subject_name}
+                </option>
+              ))
+            ) : (
+              <option value="">No subjects available</option>
+            )}
           </select>
         </div>
 
-        {/* Exam Dropdown */}
-        <div className="teacher-exam-dropdown">
-          <select value={selectedExam} onChange={handleExamChange}>
-            <option value=""> Exam</option>
-            {exams.map((exam, index) => (
-              <option key={index} value={exam}>
-                {exam}
-              </option>
-            ))}
-          </select>
-        </div>
       </div>
 
       <div className="teacher-attendance-details">
