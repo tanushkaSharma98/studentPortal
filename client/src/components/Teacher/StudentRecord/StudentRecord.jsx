@@ -16,10 +16,6 @@ const StudentRecord = () => {
 
   const token = localStorage.getItem('token');
 
-  // useEffect(() => {
-  //   // You can add logic here to fetch subjects from the server if needed
-  // }, []);
-
   useEffect(() => {
     if (token) {
       const fetchSubjects = async () => {
@@ -41,8 +37,8 @@ const StudentRecord = () => {
     }
   }, [token]);
 
-  const handleSubjectSelect = (e) => {
-    setSelectedSubject(e.target.value);
+  const handleSubjectSelect = (subject) => {
+    setSelectedSubject(subject);
     setSubjectDropdown(false);
     // You can add logic here to filter students by the selected subject
   };
@@ -70,16 +66,19 @@ return (
       <div className="teacher-TopButtons">
         {/* Subject Dropdown */}
         <div className="teacher-subject-dropdown">
-          <select
-           className='portalselect'
+        <select
+          className='portalselect'
             value={selectedSubject}
             onChange={(e) => handleSubjectSelect(e.target.value)}
           >
             <option value="">Subject</option>
             {subjectList.length > 0 ? (
               subjectList.map((subject, index) => (
-                <option key={index} value={subject.subject_name}>
-                  {subject.subject_name}
+                <option 
+                  key={index} 
+                  value={`${subject.sub_initials}(${subject.subject_code})`} // Display initials and code
+                >
+                  {`${subject.sub_initials}(${subject.subject_code})`} {/* Show sub_initials(subject_code) */}
                 </option>
               ))
             ) : (

@@ -32,8 +32,8 @@ const DailyAttendanceRecord = () => {
   }, [token]);
 
 
-  const handleSubjectChange = (e) => {
-    setSelectedSubject(e.target.value);
+  const handleSubjectChange = (subject) => {
+    setSelectedSubject(subject);
   };
 
   const handleAttendanceChange = (e) => {

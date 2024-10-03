@@ -24,7 +24,7 @@ const getSubjectsByTeacher = async (userId) => {
 
         // Now, get the subjects taught by this teacher
         const subjectQuery = `
-            SELECT s.subject_id, s.subject_code, s.subject_name 
+            SELECT s.subject_id, s.subject_code, s.subject_name,s.sub_initials 
             FROM subject_teacher st 
             JOIN subject s ON st.subject_id = s.subject_id 
             WHERE st.teacher_id = ?

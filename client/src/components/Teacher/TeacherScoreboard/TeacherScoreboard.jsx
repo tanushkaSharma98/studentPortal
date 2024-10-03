@@ -67,15 +67,18 @@ const TeacherScoreboard = () => {
         {/* Subject Dropdown */}
         <div className="teacher-subject-dropdown">
           <select
-           className='portalselect'
+          className='portalselect'
             value={selectedSubject}
             onChange={(e) => handleSubjectSelect(e.target.value)}
           >
             <option value="">Subject</option>
             {subjectList.length > 0 ? (
               subjectList.map((subject, index) => (
-                <option key={index} value={subject.subject_name}>
-                  {subject.subject_name}
+                <option 
+                  key={index} 
+                  value={`${subject.sub_initials}(${subject.subject_code})`} // Display initials and code
+                >
+                  {`${subject.sub_initials}(${subject.subject_code})`} {/* Show sub_initials(subject_code) */}
                 </option>
               ))
             ) : (
@@ -84,10 +87,10 @@ const TeacherScoreboard = () => {
           </select>
         </div>
 
-        {/* Exam Dropdown - changed to select input */}
+        {/* Exam Dropdown */}
         <div className="teacher-exam-dropdown">
           <select
-           className='portalselect'
+          className='portalselect'
             value={selectedExam}
             onChange={(e) => handleExamSelect(e.target.value)}
           >
