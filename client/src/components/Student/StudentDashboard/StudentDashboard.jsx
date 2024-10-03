@@ -76,7 +76,7 @@ const StudentDashboard = () => {
     <div className="student-dashboard">
       <StudentSidebar onScroll={scrollToSection} />
       <div className="content">
-        <section ref={dashboardRef} className="student-dashboard-section">
+        <section ref={dashboardRef} className="student-container-section">
           <h1 className='sh1'> Dashboard</h1>
           <div className="student-details">
             <div className="student-profile">
@@ -89,12 +89,12 @@ const StudentDashboard = () => {
             <p><strong>Contact No: </strong>{studentData.contact_no}</p>
           </div>
         </section>
-        <section ref={scoreboardRef}>
+        <section ref={scoreboardRef} className="student-container-section">
         <h1 className='sh1'>Scoreboard</h1>
           <StudentScoreboard />
           <Barchart />
         </section>
-        <section ref={attendanceRef}>
+        <section ref={attendanceRef} className="student-container-section">
         <h1 className='sh1'>Attendance</h1>
           <StudentAttendance />
           <AttendanceTrendChart />

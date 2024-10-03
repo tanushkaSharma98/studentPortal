@@ -17,12 +17,20 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
+    // Function to check token and update isLoggedIn state
+    const checkToken = () => {
+      const token = localStorage.getItem('token');
+      setIsLoggedIn(!!token); // Update state based on token presence
+    };
+
+    // Check token on component mount
+    checkToken();
+    
+    // Set interval to check token every 2 minutes
+    const intervalId = setInterval(checkToken, 2 * 60 * 1000); // 2 minutes in milliseconds
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
   }, [location]);
 
   return (

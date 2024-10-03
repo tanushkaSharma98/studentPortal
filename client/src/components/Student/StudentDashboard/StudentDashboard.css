@@ -8,10 +8,9 @@
   align-items: center; /* Center content horizontally */
 }
 
-.student-dashboard-section {
+.student-container-section {
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
 }
 
 .sh1 {
@@ -25,7 +24,6 @@
 }
 
 .student-details {
-  border: 1px solid #ccc;
   display: flex;
   flex-direction: column;
   text-align: left;
