@@ -1,5 +1,5 @@
 /* Default Sidebar Styles for Desktop */
-.Sidebar {
+.Sidebar1 {
   position: fixed;
   top: 0;
   left: 0;
@@ -16,11 +16,11 @@
   z-index: 900;
 }
 
-.Sidebar.collapsed {
+.Sidebar1.collapsed {
   transform: translateX(-100%); /* Hide sidebar */
 }
 
-.Sidebar button {
+.Sidebar1 button {
   margin-bottom: 20px;
   padding: 15px 40px; /* Adjust padding for a better look */
   cursor: pointer;
@@ -33,12 +33,12 @@
   transition: background-color 0.3s ease;
 }
 
-.Sidebar button:hover {
+.Sidebar1 button:hover {
   background-color: rgb(70, 64, 64);
 }
 
 /* Hamburger Icon Styles for Mobile */
-.hamburger {
+.Hamburger1 {
   position: fixed;
   top: 20px;
   left: 20px;
@@ -51,13 +51,13 @@
   z-index: 1100;
 }
 
-.hamburger.hide {
+.Hamburger1.hide {
   display: none; /* Hide hamburger when sidebar is open */
 }
 
 /* Media Query for Mobile View */
 @media (max-width: 768px) {
-  .Sidebar {
+  .Sidebar1 {
     width: 80%; /* Adjust width for mobile */
     height: auto;
     position: fixed;
@@ -68,11 +68,11 @@
     transition: transform 0.3s ease;
   }
 
-  .Sidebar.collapsed {
+  .Sidebar1.collapsed {
     transform: translateX(-100%); /* Hide sidebar */
   }
 
-  .hamburger {
+  .Hamburger1{
     display: block; /* Always show hamburger on mobile */
   }
 }

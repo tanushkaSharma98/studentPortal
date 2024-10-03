@@ -28,12 +28,12 @@ const StudentSidebar = ({ onScroll }) => {
   return (
     <div>
       {isMobile && (
-        <div className={`hamburger ${isOpen ? 'hide' : ''}`} onClick={toggleSidebar}>
+        <div className={`Hamburger1 ${isOpen ? 'hide' : ''}`} onClick={toggleSidebar}>
           &#9776; {/* Unicode for hamburger icon */}
         </div>
       )}
       {(isOpen || !isMobile) && (
-        <div className={`Sidebar ${isMobile && !isOpen ? 'collapsed' : ''}`}>
+        <div className={`Sidebar1 ${isMobile && !isOpen ? 'collapsed' : ''}`}>
          <button onClick={() => onScroll('dashboard')}>
         <img src={dashboard} alt="Dashboard Icon" className="icon" />
         Dashboard
