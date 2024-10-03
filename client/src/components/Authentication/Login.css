@@ -170,3 +170,16 @@
     margin-top: 10px; /* Add margin for spacing */
   }
 }
+
+.alert-box {
+  margin-top: 20px; /* Space above the alert */
+  padding: 15px; /* Inner padding */
+  background-color: #ffcccc; /* Light red background */
+  color: #c00; /* Dark red text */
+  border: 1px solid #c00; /* Dark red border */
+  border-radius: 5px; /* Rounded corners */
+  text-align: center; /* Centered text */
+  font-weight: bold; /* Bold text */
+  transition: opacity 0.5s ease; /* Fade-in effect */
+}
+
