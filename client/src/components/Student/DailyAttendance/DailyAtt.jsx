@@ -61,38 +61,39 @@ const DailyAttendance = () => {
         <span>Name : Rohan Tomar </span>
         <span>Enrollment No. : 21CS038</span>
       </div>
+      <div className='student-attendance-container'>
+        {attendanceEntries.map((entry, index) => (
+          <div key={index}>
+            <div className="Sub1">
+              <span>Subject : {entry.subject_name}</span>
+            </div>
 
-      {attendanceEntries.map((entry, index) => (
-        <div key={index} className='student-attendance-container'>
-          <div className="Sub1">
-            <span>Subject : {entry.subject_name}</span>
+            {/* Attendance table for each subject */}
+            <table className="Attendance-Table">
+              <thead>
+                <tr>
+                  <th>Total Lectures</th>
+                  <th>Percentage (%)</th>
+                  {/* Render dynamic date headers */}
+                  {Object.keys(entry.attendance).map((date) => (
+                    <th key={date}>{date}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{entry.totalLectures}</td>
+                  <td>{((Object.values(entry.attendance).filter(a => a === 'P').length / entry.totalLectures) * 100).toFixed(2)}</td>
+                  {/* Render attendance statuses for each date */}
+                  {Object.keys(entry.attendance).map((date) => (
+                    <td key={date}>{entry.attendance[date]}</td>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
           </div>
-
-          {/* Attendance table for each subject */}
-          <table className="Attendance-Table">
-            <thead>
-              <tr>
-                <th>Total Lectures</th>
-                <th>Percentage (%)</th>
-                {/* Render dynamic date headers */}
-                {Object.keys(entry.attendance).map((date) => (
-                  <th key={date}>{date}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{entry.totalLectures}</td>
-                <td>{((Object.values(entry.attendance).filter(a => a === 'P').length / entry.totalLectures) * 100).toFixed(2)}</td>
-                {/* Render attendance statuses for each date */}
-                {Object.keys(entry.attendance).map((date) => (
-                  <td key={date}>{entry.attendance[date]}</td>
-                ))}
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      ))}
+        ))}
+      </div>
 
       <div className="Backbtn">
         <Link to="/Student-dashboard">
