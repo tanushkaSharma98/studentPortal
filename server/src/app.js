@@ -38,8 +38,8 @@ app.use('/api/admin/teachers', teacherManagementRoutes);
 app.use('/api/admin/subjects', subjectRoutes);
 app.use('/api/admin/branches', branchRoutes);
 app.use('/api/admin/exams', examRoutes);
-app.use('/api', marksRoutes);
-app.use('/api', branchSemSubRoutes);
+app.use('/api/marks', marksRoutes);
+app.use('/api/branch-sem-sub', branchSemSubRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

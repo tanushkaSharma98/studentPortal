@@ -53,18 +53,28 @@ const AttendanceTable = () => {
     }
   };
 
+  const handleSave = () => {
+    console.log('Data saved');
+  };
+
   return (
     <div className="teacher-attendance-table">
       <table>
         <thead>
           <tr>
-            <th>S. No</th><th>Name</th><th>Enrollment No.</th><th>Updated Attendance</th><th>%</th>
+            <th>S. No</th>
+            <th>Name</th>
+            <th>Enrollment No.</th>
+            <th>Updated Attendance</th>
+            <th>%</th>
           </tr>
         </thead>
         <tbody>
           {students.map((student, index) => (
             <tr key={index}>
-              <td>{student.sNo}</td><td>{student.name}</td><td>{student.enrollmentNo}</td>
+              <td>{student.sNo}</td>
+              <td>{student.name}</td>
+              <td>{student.enrollmentNo}</td>
               <td>
                 <button
                   className={`teacher-attendance-button ${student.status.toLowerCase()}`}
@@ -81,6 +91,15 @@ const AttendanceTable = () => {
           ))}
         </tbody>
       </table>
+      {/* Bottom Buttons */}
+      <div className="teacher-bottom-buttons">
+        <button className="teacher-daily-record-btn" onClick={() => navigate('/daily-attendance-record')}>
+          Daily Attendance Record
+        </button>
+        <button className="teacher-save-btn" onClick={handleSave}>
+          Save
+        </button>
+      </div>
     </div>
   );
 };
