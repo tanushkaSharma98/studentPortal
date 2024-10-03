@@ -8,21 +8,20 @@
   }
   
   /* Back button styles */
-  .backbtn {
-    position: absolute;
-    top: 15px; /* Adjust to position from the top */
-    left: 20px; /* Adjust to position from the left */
-  }
-  
-  .back-button {
-    background: none; /* No background color */
-    border: none; /* No border */
-    padding: 0;
-    font-size: 20px; /* Adjust font size for arrow */
+  .Backbtn {
+     position: absolute;
+    top: 15px; 
+    left: 20px; 
+    padding: 5px; 
+  } 
+   .Back-button {
+     background: none;
+    border: none;
+    margin-top: -12%;
+    font-size: 40px;
     cursor: pointer;
-    color: black; /* color of back button */
-    font-weight: bold;
-  }
+    
+  } 
   
   .Attendance-Details {
     padding-top: 20px;

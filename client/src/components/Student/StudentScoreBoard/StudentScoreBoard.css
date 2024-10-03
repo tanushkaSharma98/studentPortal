@@ -18,7 +18,12 @@
   font-size: 1rem;
   cursor: pointer;
 }
-
+#student-exam-select{
+  background-color: #3f423f; 
+  color: white;
+  border-radius: 3px;
+  padding: 5px;
+}
 .student-subject-bar {
   margin-bottom: 20px;
   border: 1px solid #ccc;
