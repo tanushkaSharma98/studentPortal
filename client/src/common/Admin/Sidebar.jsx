@@ -21,7 +21,7 @@ const Sidebar = () => {
   return (
     <div>
       {/* Hamburger button for mobile screens */}
-      <button className="hamburger" onClick={toggleSidebar}>
+      <button className="adhamburger" onClick={toggleSidebar}>
         &#9776; {/* Unicode character for hamburger icon */}
       </button>
 
