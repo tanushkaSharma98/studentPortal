@@ -4,6 +4,30 @@ import './DailyAtt.css';
 
 const DailyAttendance = () => {
   const [attendanceData, setAttendanceData] = useState([]);
+  const [studentData, setStudentData] = useState(null); // State for student data
+
+  // Fetch student data from the API
+  const fetchStudentData = async () => {
+    try {
+      const token = localStorage.getItem('token'); // Get token from local storage
+      const response = await fetch('http://localhost:3000/api/students/profile', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      setStudentData(data);
+    } catch (error) {
+      console.error('Error fetching student data:', error);
+    }
+  };
 
   // Fetch attendance data from the API
   const fetchAttendanceData = async () => {
@@ -29,7 +53,8 @@ const DailyAttendance = () => {
   };
 
   useEffect(() => {
-    fetchAttendanceData();
+    fetchStudentData(); // Fetch student data when the component mounts
+    fetchAttendanceData(); // Fetch attendance data when the component mounts
   }, []);
 
   // Group attendance data by subject
@@ -58,14 +83,20 @@ const DailyAttendance = () => {
 
       {/* Attendance details section */}
       <div className="Attendance-Details">
-        <span>Name : Rohan Tomar </span>
-        <span>Enrollment No. : 21CS038</span>
+        {studentData && ( // Render student data if available
+          <>
+            <span>Name: {studentData.student_name}</span>
+            <span>Enrollment No.: {studentData.enrollment_no}</span>
+          </>
+        )}
       </div>
+
+      {/* Attendance data */}
       <div className='student-attendance-container'>
         {attendanceEntries.map((entry, index) => (
           <div key={index}>
             <div className="Sub1">
-              <span>Subject : {entry.subject_name}</span>
+              <span>Subject: {entry.subject_name}</span>
             </div>
 
             {/* Attendance table for each subject */}
@@ -95,6 +126,7 @@ const DailyAttendance = () => {
         ))}
       </div>
 
+      {/* Back button */}
       <div className="Backbtn">
         <Link to="/Student-dashboard">
           <button className="Back-button">⬅</button>
