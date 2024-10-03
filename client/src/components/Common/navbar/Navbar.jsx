@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link as ScrollLink } from 'react-scroll'; // For smooth scrolling
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'; // For routing
 import './Navbar.css'; // Import the CSS file
@@ -24,10 +24,17 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
     }
   };
 
-  // Reset showLogout state when the component mounts or location changes
+  // Check token on component mount or location change to determine login status
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);  // Set to logged in if token exists
+    } else {
+      setIsLoggedIn(false); // Set to logged out if no token exists
+    }
+
     setShowLogout(false); // Hide logout button on page load or navigation
-  }, [location]);
+  }, [location, setIsLoggedIn]);
 
   return (
     <nav className='snav'>
