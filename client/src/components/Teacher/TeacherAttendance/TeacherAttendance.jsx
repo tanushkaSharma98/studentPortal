@@ -33,8 +33,8 @@ const TeacherAttendance = () => {
     }
   }, [token]);
 
-  const handleSubjectChange = (e) => {
-    setSelectedSubject(e.target.value);
+  const handleSubjectChange = (subject) => {
+    setSelectedSubject(subject);
     setSubjectDropdown(false);
   };
 
@@ -55,15 +55,18 @@ const TeacherAttendance = () => {
         {/* Subject Dropdown */}
         <div className="teacher-subject-dropdown">
         <select
-         className='portalselect'
+          className='portalselect'
             value={selectedSubject}
             onChange={(e) => handleSubjectSelect(e.target.value)}
           >
             <option value="">Subject</option>
             {subjectList.length > 0 ? (
               subjectList.map((subject, index) => (
-                <option key={index} value={subject.subject_name}>
-                  {subject.subject_name}
+                <option 
+                  key={index} 
+                  value={`${subject.sub_initials}(${subject.subject_code})`} // Display initials and code
+                >
+                  {`${subject.sub_initials}(${subject.subject_code})`} {/* Show sub_initials(subject_code) */}
                 </option>
               ))
             ) : (
