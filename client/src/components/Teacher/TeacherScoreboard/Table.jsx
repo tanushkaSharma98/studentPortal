@@ -36,6 +36,10 @@ const StudentTable = () => {
     }
   };
 
+  const handleSave = () => {
+    console.log('Data saved');
+  };
+
   return (
     <div className="teacher-student-table">
       <table>
@@ -70,6 +74,12 @@ const StudentTable = () => {
           ))}
         </tbody>
       </table>
+      {/* Save Button */}
+      <div className="teacher-marks-bottom-buttons">
+        <button className="teacher-marks-save-btn" onClick={handleSave}>
+          Save
+        </button>
+      </div>
     </div>
   );
 };

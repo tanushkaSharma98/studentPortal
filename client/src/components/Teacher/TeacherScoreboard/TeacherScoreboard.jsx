@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import './TeacherScoreboard.css';
-import Table from './Table.jsx';
 import axios from 'axios';
 
 const TeacherScoreboard = () => {
@@ -57,9 +56,7 @@ const TeacherScoreboard = () => {
   };
 
   // Handle save button
-  const handleSave = () => {
-    console.log('Data saved');
-  };
+  
 
   return (
     <div className="teacher-scoreboard-container">
@@ -120,16 +117,7 @@ const TeacherScoreboard = () => {
         <span>Maximum marks: 30</span>
       </div>
 
-      <div>
-        <Table />
-      </div>
-
-      {/* Save Button */}
-      <div className="teacherScoreboard-save-button-container">
-        <button className="teacher-save-button" onClick={handleSave}>
-          Save
-        </button>
-      </div>
+      
     </div>
   );
 };

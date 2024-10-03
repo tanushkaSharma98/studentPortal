@@ -81,26 +81,5 @@
     font-weight:bold ;
 
   }
-  .teacherScoreboard-save-button-container {
-    display: flex;
-    justify-content: flex-end; /* Align to the right */
-    margin-top: 20px; /* Space above the button */
-     padding-left: 131%;
-  }
-  
-  .teacher-save-button {
-    background-color:#35393b; /* Green background */
-    color: white; /* White text */
-    padding: 13px 23px; /* Padding */
-    border: none; /* Remove borders */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 18px; /* Font size */
-    cursor: pointer; /* Pointer cursor */
-    transition: background-color 0.3s; /* Transition effect */
-  }
-  
-  .teacher-save-button:hover {
-    background-color: #5d9160; /* Darker green on hover */
-  }
-  
+ 
   

@@ -48,14 +48,6 @@
   gap: 20px; /* Space between main sections */
 }
 
-.teacher-section{
-  border: 1px solid #ccc;
-}
-
-.teacher-table-container{
-  border: 1px solid black;
-}
-
 /* Media query for responsiveness */
 @media (max-width: 1200px) {
   :root {
