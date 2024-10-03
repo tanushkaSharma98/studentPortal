@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import './StudentRecord.css';
 import StudentRecordTable from './StudentRecordTable';
+import axios from 'axios';
+
 
 const StudentRecord = () => {
   const [subjectDropdown, setSubjectDropdown] = useState(false);
@@ -10,13 +12,38 @@ const StudentRecord = () => {
   const [threshold, setThreshold] = useState(null); // Correctly define threshold and setThreshold
   const [students, setStudents] = useState([]); // State for storing fetched student records
   const [loading, setLoading] = useState(false); // State to manage loading
+  const [subjectList, setSubjectList] = useState([]);
+
+  const token = localStorage.getItem('token');
+
+  // useEffect(() => {
+  //   // You can add logic here to fetch subjects from the server if needed
+  // }, []);
 
   useEffect(() => {
-    // You can add logic here to fetch subjects from the server if needed
-  }, []);
+    if (token) {
+      const fetchSubjects = async () => {
+        try {
+          // Fetch subjects based on teacherId
+          const subjectResponse = await axios.get('http://localhost:3000/api/teachers/subjects', {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }
+          });
+          setSubjectList(subjectResponse.data);
+        } catch (error) {
+          console.error('Error fetching subjects :', error);
+        }
+      };
 
-  const handleSubjectChange = (e) => {
+      fetchSubjects();
+    }
+  }, [token]);
+
+  const handleSubjectSelect = (e) => {
     setSelectedSubject(e.target.value);
+    setSubjectDropdown(false);
     // You can add logic here to filter students by the selected subject
   };
 
@@ -33,9 +60,6 @@ const StudentRecord = () => {
     setMarksBelowDropdown(false);
   };
 
-  const subjects = ['Maths', 'Physics', 'Chemistry'];
-  const marksBelowOptions = ['Below 10', 'Below 20'];
-
   const handleExpandAttendance = () => {
     navigate('/daily-attendance-record'); // Navigate to Daily Attendance Record page
   };
@@ -45,16 +69,25 @@ return (
     <div className="teacher-attendanceContainer">
       <div className="teacher-TopButtons">
         {/* Subject Dropdown */}
-        <div className="teacherSub-Dropdown">
-          <select className='portalselect' value={selectedSubject} onChange={handleSubjectChange}>
-            <option value=""> Subject</option>
-            {subjects.map((subject, index) => (
-              <option key={index} value={subject}>
-                {subject}
-              </option>
-            ))}
+        <div className="teacher-subject-dropdown">
+          <select
+           className='portalselect'
+            value={selectedSubject}
+            onChange={(e) => handleSubjectSelect(e.target.value)}
+          >
+            <option value="">Subject</option>
+            {subjectList.length > 0 ? (
+              subjectList.map((subject, index) => (
+                <option key={index} value={subject.subject_name}>
+                  {subject.subject_name}
+                </option>
+              ))
+            ) : (
+              <option value="">No subjects available</option>
+            )}
           </select>
         </div>
+
 
         {/* Marks Below Dropdown */}
         <div className="teacher-MarksDropdown">
