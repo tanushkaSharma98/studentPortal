@@ -1,11 +1,11 @@
 .teacher-student-table {
     width: 126%;
     margin: 20px auto;
-    padding-left: 7%;
+
   }
   
   .teacher-student-table table {
-    width: 100%;
+    width: 90%;
     border-collapse: collapse;
     border: 1px solid #ddd;
   }

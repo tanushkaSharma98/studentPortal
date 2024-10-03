@@ -1,5 +1,6 @@
 :root {
   --navbar-height: 35px; /* Adjust this to match the height of your navbar */
+  --sidebar-width: 18%;  /* Adjusted sidebar width for flexibility */
 }
 
 .teacher-teacher-dashboard {
@@ -9,36 +10,55 @@
 }
 
 .teacher-content {
-  margin-left: calc(18% + 20px); /* Adjusted for sidebar width + padding */
-  /* width: calc(80% - 20px); Ensure content doesn't overlap */
+  flex: 1; /* Let content take remaining width after sidebar */
+  margin-left: var(--sidebar-width);
   padding: 20px;
-  box-sizing: border-box; /* Include padding in the element’s total width/height */
+  box-sizing: border-box;
 }
 
 .teacher-section {
   scroll-margin-top: var(--navbar-height);
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   padding: 20px;
   background-color: #e9ecef;
   border-radius: 5px;
-  width: 133%;
+  width: 96.5%;
 }
 
 .teacher-profile-section {
-  padding: 15px 30px 20px 25px;
+  padding: 15px;
   scroll-margin-top: var(--navbar-height);
-  width: 60%;
-  height: 350px;
-  margin-bottom: 50px;
-  margin-left: 30%;
+  width: 100%; /* Adjusted to use full available width */
+  max-width: 800px; /* Optional max-width to prevent stretching */
+  margin: 0 auto 50px auto; /* Center align the profile section */
   border: 1px solid #ccc;
   background-color: #f9f9f9;
   border-radius: 8px;
-  display: flex; /* Use flexbox */
-  flex-direction: column; /* Stack elements vertically */
-  justify-content: left; /* Center content vertically */
-  align-items: center; /* Center content horizontally */
-  text-align: center; /* Align text to the center*/
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Media query for responsiveness */
+@media (max-width: 1200px) {
+  :root {
+    --sidebar-width: 20%; /* Increase sidebar width slightly for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --sidebar-width: 25%; /* Adjust sidebar width for smaller screens */
+  }
+  .teacher-content {
+    margin-left: var(--sidebar-width);
+    padding: 15px; /* Adjust padding */
+  }
+  .teacher-profile-section {
+    width: 100%; /* Full width on smaller screens */
+    padding: 10px; /* Adjust padding */
+  }
 }
