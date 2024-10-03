@@ -1,82 +1,118 @@
 import { useState, useEffect } from 'react';
 import './TeacherScoreboard.css';
 import Table from './Table.jsx';
-
-//
-import axios from 'axios'; // Import Axios
-import {jwtDecode} from 'jwt-decode'; // Correct import
-
+import axios from 'axios';
 
 const TeacherScoreboard = () => {
-  // State to manage dropdown visibility and selected values
   const [subjectDropdown, setSubjectDropdown] = useState(false);
   const [examDropdown, setExamDropdown] = useState(false);
-  const [selectedSubject, setSelectedSubject] = useState('Subject'); // Default value
-  const [selectedExam, setSelectedExam] = useState('Exam'); // Default value
+  const [selectedSubject, setSelectedSubject] = useState('Subject');
+  const [selectedExam, setSelectedExam] = useState('Exam');
+  const [examList, setExamList] = useState([]);
+  const [subjectList, setSubjectList] = useState([]);
 
-  const subjects = ['Maths', 'Physics', 'Chemistry']; // List of subjects
-  const exams = ['Midterm-1', 'Midterm-2']; // List of exams
+  const token = localStorage.getItem('token');
 
-  // Function to handle subject selection
+  // Fetch subjects and exams
+  useEffect(() => {
+    if (token) {
+      const fetchSubjectsAndExams = async () => {
+        try {
+          // Fetch subjects based on teacherId
+          const subjectResponse = await axios.get('http://localhost:3000/api/teachers/subjects', {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }
+          });
+          setSubjectList(subjectResponse.data);
+
+          // Fetch exams
+          const examResponse = await axios.get('http://localhost:3000/api/admin/exams', {
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
+            }
+          });
+          setExamList(examResponse.data);
+        } catch (error) {
+          console.error('Error fetching subjects or exams:', error);
+        }
+      };
+
+      fetchSubjectsAndExams();
+    }
+  }, [token]);
+
+  // Handle subject selection
   const handleSubjectSelect = (subject) => {
-    setSelectedSubject(subject); // Update the button text with selected subject
-    setSubjectDropdown(false); // Close the dropdown
+    setSelectedSubject(subject);
+    setSubjectDropdown(false);
   };
 
-  // Function to handle exam selection
+  // Handle exam selection
   const handleExamSelect = (exam) => {
-    setSelectedExam(exam); // Update the button text with selected exam
-    setExamDropdown(false); // Close the dropdown
+    setSelectedExam(exam);
+    setExamDropdown(false);
   };
 
-  // Function to handle save
+  // Handle save button
   const handleSave = () => {
-    console.log('Data saved'); // Replace this with actual saving logic
+    console.log('Data saved');
   };
-
-  const toggleExamDropdown = (selected) => {
-    setExamDropdown(selected); // Update the state
-  }
 
   return (
     <div className="teacher-scoreboard-container">
       <div className="teacher-top-buttons">
         {/* Subject Dropdown */}
         <div className="teacher-subject-dropdown">
-          <select value={selectedSubject} onChange={handleSubjectSelect}>
-            <option value=""> Subject</option>
-            {subjects.map((subject, index) => (
-              <option key={index} value={subject}>
-                {subject}
-              </option>
-            ))}
+          <select
+            value={selectedSubject}
+            onChange={(e) => handleSubjectSelect(e.target.value)}
+          >
+            <option value="">Subject</option>
+            {subjectList.length > 0 ? (
+              subjectList.map((subject, index) => (
+                <option key={index} value={subject.subject_name}>
+                  {subject.subject_name}
+                </option>
+              ))
+            ) : (
+              <option value="">No subjects available</option>
+            )}
           </select>
         </div>
 
-        {/* Exam Button */}
-        <div className="teacher-dropdown">
-          <button className="teacher-dropdown-btn" onClick={toggleExamDropdown}>
-            {selectedExam} <span className="teacher-arrow"></span>
-          </button>
-          {examDropdown && (
-            <div className="teacher-dropdown-content">
-              <a href="#" onClick={(e) => { e.preventDefault(); handleExamSelect('Midterm-1'); }}>Midterm-1</a>
-              <a href="#" onClick={(e) => { e.preventDefault(); handleExamSelect('Midterm-2'); }}>Midterm-2</a>
-            </div>
-          )}
+        {/* Exam Dropdown - changed to select input */}
+        <div className="teacher-exam-dropdown">
+          <select
+            value={selectedExam}
+            onChange={(e) => handleExamSelect(e.target.value)}
+          >
+            <option value="">Exam</option>
+            {examList.length > 0 ? (
+              examList.map((exam, index) => (
+                <option key={index} value={exam.exam_name}>
+                  {exam.exam_name}
+                </option>
+              ))
+            ) : (
+              <option value="">No exams available</option>
+            )}
+          </select>
         </div>
       </div>
 
       {/* Branch, Semester, Subject, Exam in a single row */}
       <div className="teacher-info-row">
-        <span>Branch : Computer Science</span>
-        <span>Semester : 7</span>
-        <span>Subject : {selectedSubject}</span>
-        <span>Exam : {selectedExam}</span>
+        <span>Branch: Computer Science</span>
+        <span>Semester: 7</span>
+        <span>Subject: {selectedSubject}</span>
+        <span>Exam: {selectedExam}</span>
       </div>
 
       <div className="teacher-maxmarks">
-        <span>Maximum marks : 30</span>
+        <span>Maximum marks: 30</span>
       </div>
 
       <div>
