@@ -5,19 +5,17 @@
 
 .student-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between; /* Use space-between to position items */
+  align-items: flex-end;
   margin-bottom: 20px;
-  border: 2px solid black;
 }
 
-.student-exam-dropdown select{
+.student-exam-dropdown {
   display: flex;
   align-items: flex-end;
+  margin-left: auto;
   padding: 8px;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
   cursor: pointer;
 }
 
