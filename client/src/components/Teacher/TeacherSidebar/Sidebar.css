@@ -52,14 +52,3 @@
   }
 }
 
-/* Media query for very large screens */
-@media (min-width: 1440px) {
-  .teacher-sidebar {
-    width: 15vw; /* Decrease width for larger screens */
-    max-width: 350px;
-  }
-
-  .teacher-sidebar button {
-    font-size: 1.1vw;
-  }
-}
