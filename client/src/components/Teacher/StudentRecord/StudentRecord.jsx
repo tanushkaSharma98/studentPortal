@@ -71,6 +71,7 @@ return (
         {/* Subject Dropdown */}
         <div className="teacher-subject-dropdown">
           <select
+           className='portalselect'
             value={selectedSubject}
             onChange={(e) => handleSubjectSelect(e.target.value)}
           >
