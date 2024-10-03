@@ -150,3 +150,17 @@
 .adnavbar-title{
   width: fit-content;
 }
+.Password-Input-Container {
+  position: relative; /* Position relative for absolute child */
+  width: 250px; /* Match the input field width */
+}
+
+.Password-Icon {
+  position: absolute; /* Position absolute within the container */
+  right: -7%; /* Position it at the right side */
+  top: 55%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust to center */
+  cursor: pointer; /* Pointer cursor for clickable icon */
+  font-size: 20px; /* Adjust icon size as needed */
+  color: #333; /* Icon color */
+}

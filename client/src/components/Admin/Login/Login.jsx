@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode';
-
+import { jwtDecode } from 'jwt-decode';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; // Importing eye icons
 import './login.css';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const navigate = useNavigate();
 
   const onSubmitForm = async (e) => {
@@ -27,54 +28,43 @@ const AdminLogin = () => {
       console.log(result); // Log the entire response for inspection
 
       if (response.ok) {
-        // Get the token from the response
         const token = result.token;
-        console.log('Token:', token); // Log the token for debugging
+        console.log('Token:', token);
 
         if (token) {
-          // Store the token in local storage
           localStorage.setItem('token', token);
-          
-          // Decode the token to get user_id
           const decodedToken = jwtDecode(token);
-          console.log('User ID:', decodedToken.user_id); 
-          console.log('User Type:', decodedToken.user_type);// Log the user_id
+          console.log('User ID:', decodedToken.user_id);
+          console.log('User Type:', decodedToken.user_type);
 
-         // Check if user_type is 0 or 3
-         if (decodedToken.user_type === 0 || decodedToken.user_type === 3) {
-          setMessage('Login successful!');
-          setTimeout(() => {
-            navigate('/admin/dashboard');
-          }, 1000);
+          if (decodedToken.user_type === 0 || decodedToken.user_type === 3) {
+            setMessage('Login successful!');
+            setTimeout(() => {
+              navigate('/admin/dashboard');
+            }, 1000);
+          } else {
+            setMessage('Not authorized to access the dashboard.');
+          }
         } else {
-          // Display message if user is not authorized
-          setMessage('Not authorized to access the dashboard.');
+          setMessage('Token not received.');
         }
       } else {
-        setMessage('Token not received.');
+        setMessage(result.message || 'Login failed.');
       }
-    } else {
-      // Set the error message based on API response
-      setMessage(result.message || 'Login failed.');
+    } catch (err) {
+      console.error(err.message);
+      setMessage('An error occurred during login.');
     }
-  } catch (err) {
-    console.error(err.message);
-    setMessage('An error occurred during login.');
-  }
   };
 
   return (
     <div className="adlogin-page-container">
-      {/* Navbar */}
       <nav className="adnavbar-container">
-      <NavLink to="/" className="adnavbar-link">
-        XYZ UNIVERSITY
-      </NavLink>
+        <NavLink to="/" className="adnavbar-link">
+          XYZ UNIVERSITY
+        </NavLink>
       </nav>
-      
-      {/* Container for Sidebar and Login Form */}
       <div className="adcontent-wrapper">
-        {/* Sidebar */}
         <div className="adsidebar-section">
           <div className="adprofile-image-container">
             <img
@@ -88,7 +78,6 @@ const AdminLogin = () => {
           </div>
         </div>
         
-        {/* Login Form */}
         <div className="adlogin-form-container">
           <h1 className="adlogin-heading">Login</h1>
           <form onSubmit={onSubmitForm}>
@@ -104,13 +93,21 @@ const AdminLogin = () => {
             </div>
             <div className="adinput-group">
               <label className="adinput-label">Password:</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="adinput-field"
-              />
+              <div className="Password-Input-Container">
+                <input
+                  type={showPassword ? 'text' : 'password'} // Toggle between text and password
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="adinput-field"
+                />
+                <span
+                  className="Password-Icon"
+                  onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
+                >
+                  {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+                </span>
+              </div>
             </div>
             <button type="submit" className="adlogin-button">Login</button>
           </form>
