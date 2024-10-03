@@ -43,16 +43,16 @@ const DailyAttendanceRecord = () => {
   return (
     <div className="teacher-dailyAttendanceContainer">
       <Link to="/teacher-dashboard">
-        <button className="teacher-back-button">←</button>
+        <button className="Teacher-back-button">⬅</button>
       </Link>
       <h1 className="Daily-att">Daily Attendance Record</h1>
       
       {/* Top Section: Subject and Attendance Dropdowns */}
-      <div className="Teacher-TopButtons">
+      <div className="Teacher-Top-Buttons">
         {/* Subject Dropdown */}
-        <div className="Teacher-Dropdown">
+        <div className="Teacher-Drop-down">
         <select
-            className='portalselect'
+            className='Portal-select'
             value={selectedSubject}
             onChange={(e) => handleSubjectSelect(e.target.value)}
           >
