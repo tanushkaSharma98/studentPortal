@@ -8,53 +8,56 @@
   align-items: center; /* Center content horizontally */
 }
 
-.student-details {
-  width: 50%; /* Adjusted width for desktops */
-  height: auto;
-  padding: 20px;
-  padding-left: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+.student-dashboard-section {
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  justify-content: center;
-  align-items: left; /* Align items to the left */
-  text-align: left;
-  font-size: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  flex-direction: column;
+  border: 1px solid #ccc;
 }
 
-.profile-and-name {
+.sh1 {
+  display: flex;
+  scroll-margin-top: var(--navbar-height);
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #e9ecef;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.student-details {
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 4%;
+  min-width: 50%;
+  max-width: 90%;
+  align-self: center;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.student-profile {
   display: flex;
   align-items: center;
   margin-bottom: 20px; /* Add margin between profile and other details */
 }
 
 .profile-photo {
-  width: 150px; /* Original size */
+  width: 150px; 
   height: 150px;
-  border-radius: 50%; /* Make it circular */
-  border: 2px solid #ccc; /* Optional border */
-  margin-right: 20px; /* Space between photo and name */
+  border-radius: 50%; 
+  border: 2px solid #ccc; 
+  margin-right: 20px; 
 }
 
-.profile-and-name p {
-  font-size: 40px; /* Original font size */
-  font-family: sans-serif;
-  font-weight: bold; /* Optional: Make the name bold */
-  color: #333; /* Optional: Adjust the color */
+.student-profile p {
+  margin: 10px 0; 
+  font-size: 2rem!important; /* Adjust this value as needed */
+  font-weight: bold; /* Optional: makes the text bold */
 }
 
-.sh1 {
-  scroll-margin-top: var(--navbar-height);
-  margin-bottom: 20px;
-  padding: 20px;
-  background-color: #e9ecef;
-  border-radius: 5px;
-  width: 95%;
-  text-align: left;
-}
 
 .student-details p {
   margin: 10px 0; /* Add some margin between details */
@@ -62,7 +65,7 @@
 }
 
 /* Media Queries for Mobile Responsiveness */
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .content {
     margin-left: 0; /* Remove the sidebar margin on smaller screens */
     padding: 10px;
@@ -80,17 +83,9 @@
     height: 80px;
   }
 
-  .profile-and-name p {
-    font-size: 20px; /* Adjusted font size for mobile */
-  }
-
   .sh1 {
     font-size: 20px; /* Adjust font size */
     padding: 10px;
     width: 100%; /* Full width for mobile */
-  }
-
-  .student-details p {
-    font-size: 16px; /* Adjusted font size for mobile */
   }
 }

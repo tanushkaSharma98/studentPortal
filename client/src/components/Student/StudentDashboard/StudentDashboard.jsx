@@ -76,10 +76,10 @@ const StudentDashboard = () => {
     <div className="student-dashboard">
       <StudentSidebar onScroll={scrollToSection} />
       <div className="content">
-        <section ref={dashboardRef}>
+        <section ref={dashboardRef} className="student-dashboard-section">
           <h1 className='sh1'> Dashboard</h1>
           <div className="student-details">
-            <div className="profile-and-name">
+            <div className="student-profile">
               <img src="https://i.pinimg.com/564x/3f/9f/5b/3f9f5b8c9f31ce16c79d48b9eeda4de0.jpg" alt="Profile" className="profile-photo" />
               <p>{studentData.student_name}</p>
             </div>
