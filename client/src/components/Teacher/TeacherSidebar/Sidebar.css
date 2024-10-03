@@ -28,4 +28,14 @@
   .teacher-sidebar button:hover {
     background-color: #676767;
   }
- 
+  .teacher-sidebar button {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds space between icon and text */
+  }
+  
+  .teacher-sidebar .icon {
+    width: 20px;
+    height: 20px; /* Adjust the size of the icon */
+  }
+  
