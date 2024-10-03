@@ -36,8 +36,6 @@ const getSubjectsByTeacher = async (userId) => {
             type: sequelize.QueryTypes.SELECT
         });
 
-        // Log the result to check if the query is working
-        console.log("Query result:", subjectResult);
 
         return subjectResult; // Return all rows from the query result (multiple subjects)
     } catch (error) {
