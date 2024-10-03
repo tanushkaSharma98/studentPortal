@@ -1,3 +1,4 @@
+/* Default Styles for Desktop */
 .content {
   margin-left: 260px; /* Adjust the margin to match the sidebar width */
   padding: 20px;
@@ -7,61 +8,82 @@
   align-items: center; /* Center content horizontally */
 }
 
-.student-details {
-  width: 40%; /* Cover the full width */
-  height: 42%;
-  padding: 20px;
-  padding-left: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+.student-container-section {
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
-  justify-content: flex-start;
-  align-items: left; /* Align items to the left */
-  text-align: left;
-  font-size: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
-  margin-left: 380px;
-}
-
-.profile-and-name {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px; /* Add margin between profile and other details */
-  
-}
-.profile-and-name p {
-  font-size: 40px !important; /* Increase the font size as per your requirement */
-  font-family: sans-serif;
-  font-weight: bold; /* Optional: Make the name bold */
-  color: #333; /* Optional: Adjust the color */
-}
-
-
-.profile-photo {
-  width: 150px; /* Adjust size as needed */
-  height: 150px; /* Maintain aspect ratio */
-  border-radius: 50%; /* Make it circular */
-  border: 2px solid #ccc; /* Optional border */
-  margin-right: 20px; /* Space between photo and name */
+  flex-direction: column;
 }
 
 .sh1 {
+  display: flex;
   scroll-margin-top: var(--navbar-height);
   margin-bottom: 20px;
   padding: 20px;
   background-color: #e9ecef;
   border-radius: 5px;
-  width: 95%;
   text-align: left;
-} 
+}
+
+.student-details {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 4%;
+  min-width: 50%;
+  max-width: 90%;
+  align-self: center;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.student-profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Add margin between profile and other details */
+}
+
+.profile-photo {
+  width: 150px; 
+  height: 150px;
+  border-radius: 50%; 
+  border: 2px solid #ccc; 
+  margin-right: 20px; 
+}
+
+.student-profile p {
+  margin: 10px 0; 
+  font-size: 2rem!important; /* Adjust this value as needed */
+  font-weight: bold; /* Optional: makes the text bold */
+}
+
 
 .student-details p {
   margin: 10px 0; /* Add some margin between details */
-  font-size: 30px;
+  font-size: 20px; /* Original font size */
 }
 
-.student-dashboard {
-  padding-left: 180px;
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 800px) {
+  .content {
+    margin-left: 0; /* Remove the sidebar margin on smaller screens */
+    padding: 10px;
+  }
+
+  .student-details {
+    width: 90%; /* Full width on smaller screens */
+    height: auto; /* Adjust height to fit content */
+    margin: 20px auto; /* Center the box horizontally */
+    font-size: 16px; /* Smaller font size for responsiveness */
+  }
+
+  .profile-photo {
+    width: 80px; /* Smaller size for mobile */
+    height: 80px;
+  }
+
+  .sh1 {
+    font-size: 20px; /* Adjust font size */
+    padding: 10px;
+    width: 100%; /* Full width for mobile */
+  }
 }

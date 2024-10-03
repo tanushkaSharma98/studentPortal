@@ -88,7 +88,6 @@ const AttendanceTrendChart = () => {
                     },
                 }}
             />
-            <h2>Attendance Trend</h2>
         </div>
     );
 };

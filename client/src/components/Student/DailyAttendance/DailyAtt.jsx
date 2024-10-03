@@ -92,9 +92,9 @@ const DailyAttendance = () => {
         </tbody>
       </table>
 
-      <div className="backbtn">
+      <div className="Backbtn">
         <Link to="/Student-dashboard">
-          <button className="back-button">←</button>
+          <button  className="Back-button">⬅</button>
         </Link>
       </div>
     </div>

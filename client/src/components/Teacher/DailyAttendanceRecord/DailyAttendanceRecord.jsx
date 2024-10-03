@@ -29,7 +29,7 @@ const DailyAttendanceRecord = () => {
       <div className="Teacher-TopButtons">
         {/* Subject Dropdown */}
         <div className="Teacher-Dropdown">
-          <select  value={selectedSubject} onChange={handleSubjectChange}>
+          <select className='portalselect' value={selectedSubject} onChange={handleSubjectChange}>
             <option value="">Subject</option>
             {subjects.map((subject, index) => (
               <option key={index} value={subject}>
@@ -41,7 +41,7 @@ const DailyAttendanceRecord = () => {
 
         {/* Attendance Below Dropdown */}
         <div className="Teacher-Dropdown" style={{ marginLeft: 'auto' }}>
-          <select value={selectedAttendance} onChange={handleAttendanceChange}>
+          <select className='portalselect' value={selectedAttendance} onChange={handleAttendanceChange}>
             <option value="">Attendance Below</option>
             {attendanceOptions.map((attendance, index) => (
               <option key={index} value={attendance}>

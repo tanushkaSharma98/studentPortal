@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 import './StudentAttendance.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { useNavigate } from 'react-router-dom';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const StudentAttendance = () => {
   const [subjects, setSubjects] = useState([]);
   const [openSubjects, setOpenSubjects] = useState({});
-  const navigate = useNavigate(); // Initialize useNavigate
-
+  const navigate = useNavigate();
 
   const toggleSubject = (code) => {
     setOpenSubjects((prevState) => ({
@@ -17,11 +17,11 @@ const StudentAttendance = () => {
       [code]: !prevState[code],
     }));
   };
-    // Navigate to the Daily Attendance page when the button is clicked
-    const handleViewDailyAttendance = () => {
-      navigate('/daily-attendance');
-    };
-  
+
+  // Navigate to the Daily Attendance page when the button is clicked
+  const handleViewDailyAttendance = () => {
+    navigate('/daily-attendance');
+  };
 
   // Function to generate pie chart data for attendance
   const getPieChartData = (attendedLectures, totalClasses) => {
@@ -30,7 +30,7 @@ const StudentAttendance = () => {
       datasets: [
         {
           data: [attendedLectures, totalClasses - attendedLectures],
-          backgroundColor: ['#555555', '#cccccc'], // Grey shades
+          backgroundColor: ['#555555', '#cccccc'],
           hoverBackgroundColor: ['#444444', '#bbbbbb'],
         },
       ],
@@ -39,30 +39,29 @@ const StudentAttendance = () => {
 
   const pieChartOptions = {
     responsive: true,
-    maintainAspectRatio: false, // Maintain aspect ratio based on the container size
+    maintainAspectRatio: false,
   };
 
   // Fetch attendance data from the API
   useEffect(() => {
     const fetchAttendanceData = async () => {
-      const token = localStorage.getItem('token'); // Retrieve token from local storage
+      const token = localStorage.getItem('token');
       const response = await fetch('http://localhost:3000/api/students/attendance', {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${token}`, // Include the token in the headers
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       });
 
       if (response.ok) {
         const data = await response.json();
-        // Transform the API response to fit your subjects array structure
         const formattedSubjects = data.map((item) => ({
           code: item.subject_code,
           name: item.subject_name,
-          totalClasses: item.total_lectures, // Use the total lectures from the API response
+          totalClasses: item.total_lectures,
           classesAttended: item.attended_lecture,
-          updatedTill: new Date(item.date).toLocaleDateString(), // Format the date
+          updatedTill: new Date(item.date).toLocaleDateString(),
         }));
         setSubjects(formattedSubjects);
       } else {
@@ -74,30 +73,30 @@ const StudentAttendance = () => {
   }, []);
 
   return (
-    <div className="attendance-section">
-      <div className="attendance-header">
-       <button className="daily-attendance-button" onClick={handleViewDailyAttendance}>View Daily Attendance</button>
+    <div className="Attendance-Section">
+      <div className="Attendance-Header">
+        <button className="Daily-Attendance-Button" onClick={handleViewDailyAttendance}>View Daily Attendance</button>
       </div>
 
       {subjects.map((subject) => (
-        <div key={subject.code} className="subject-bar">
-          <div className="subject-header" onClick={() => toggleSubject(subject.code)}>
+        <div key={subject.code} className="Subject-Bar">
+          <div className="Subject-Header" onClick={() => toggleSubject(subject.code)}>
             <span>{subject.code}</span>
-            <button className="dropdown-button">
+            <button className="Dropdown-Button">
               {openSubjects[subject.code] ? '▲' : '▼'}
             </button>
           </div>
           {openSubjects[subject.code] && (
-            <div className="subject-details">
-              <div className="subject-info">
-                <div className="info-left">
+            <div className="Subject-Details">
+              <div className="Subject-Info">
+                <div className="Info-Left">
                   <p>Subject Name: {subject.name}</p>
                   <p>Total Classes: {subject.totalClasses}</p>
                   <p>Classes Attended: {subject.classesAttended}</p>
                   <p>Updated Till: {subject.updatedTill}</p>
                 </div>
-                <div className="info-right">
-                  <div className="pie-chart-container">
+                <div className="Info-Right">
+                  <div className="Pie-Chart-Container">
                     <Pie
                       data={getPieChartData(subject.classesAttended, subject.totalClasses)}
                       options={pieChartOptions}
