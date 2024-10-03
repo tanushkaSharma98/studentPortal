@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';  // Import specific styles for Sidebar
+import dashboard from '/src/assets/AdminSiderbar_icons/dashboard.png'
+import user from '/src/assets/AdminSiderbar_icons/user.webp'
+import student from '/src/assets/AdminSiderbar_icons/student.webp'
+import teacher from '/src/assets/AdminSiderbar_icons/teacher.webp'
+import subject from'/src/assets/AdminSiderbar_icons/subject.png'
+import branch from'/src/assets/AdminSiderbar_icons/branch.webp'
+import exam from '/src/assets/AdminSiderbar_icons/exam.webp'
+import useractivity from '/src/assets/AdminSiderbar_icons/UserActivity.webp'
+
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);  // State to toggle sidebar
@@ -22,23 +31,23 @@ const Sidebar = () => {
           <ul>
             <li>
               <NavLink to="/admin/dashboard" className={({ isActive }) => isActive ? 'active-link' : ''}>
-                <img src="https://cdn1.iconfinder.com/data/icons/tiny-iconz-line-vol-09/20/dashboard_panel_admin-1024.png" alt="Dashboard Icon" className="icon" />
+                <img src={dashboard} alt="Dashboard Icon" className="icon" />
                 Dashboard
               </NavLink>
             </li>
             <li>
-            <img src="https://cdn4.iconfinder.com/data/icons/office-166/16/office_users-group-male-512.png" alt="Student Icon" className="icon" />
+            <img src={user} alt="Student Icon" className="icon" />
               Users
               <ul>
                 <li>
                   <NavLink to="/admin/students" className={({ isActive }) => isActive ? 'active-link' : ''}>
-                    <img src="https://cdn2.iconfinder.com/data/icons/learning-6/64/Student-Graduate-512.png" alt="Student Icon" className="icon" />
+                    <img src={student} alt="Student Icon" className="icon" />
                     Students
                   </NavLink>
                 </li>
                 <li>
                   <NavLink to="/admin/teachers" className={({ isActive }) => isActive ? 'active-link' : ''}>
-                    <img src="https://cdn0.iconfinder.com/data/icons/business-man-line/512/induction_class_teach_teaching-512.png" alt="Teacher Icon" className="icon" />
+                    <img src={teacher} alt="Teacher Icon" className="icon" />
                     Teachers
                   </NavLink>
                 </li>
@@ -47,25 +56,25 @@ const Sidebar = () => {
 
             <li>
               <NavLink to="/admin/subjects" className={({ isActive }) => isActive ? 'active-link' : ''}>
-                <img src="https://cdn4.iconfinder.com/data/icons/content1-1/24/Dossiers-2-512.png" alt="Subject Icon" className="icon" />
+                <img src={subject} alt="Subject Icon" className="icon" />
                 Subject
               </NavLink>
             </li>
             <li>
               <NavLink to="/admin/branches" className={({ isActive }) => isActive ? 'active-link' : ''}>
-                <img src="https://cdn0.iconfinder.com/data/icons/artificial-intelligence-8/48/1-Artificial_intelligence-512.png" alt="Branch Icon" className="icon" />
+                <img src={branch} alt="Branch Icon" className="icon" />
                 Branch
               </NavLink>
             </li>
             <li>
               <NavLink to="/admin/exams" className={({ isActive }) => isActive ? 'active-link' : ''}>
-                <img src="https://cdn0.iconfinder.com/data/icons/team-work-42/50/29_daily_plans_testing_sampling_interview_exams-512.png" alt="Exam Icon" className="icon" />
+                <img src={exam} alt="Exam Icon" className="icon" />
                 Exam
               </NavLink>
             </li>
             <li>
               <NavLink to="/admin/activity" className={({ isActive }) => isActive ? 'active-link' : ''}>
-                <img src="https://cdn0.iconfinder.com/data/icons/business-man-line/512/interaction_change_positioning_head_hunter-512.png" alt="User Activity Icon" className="icon" />
+                <img src={useractivity} alt="User Activity Icon" className="icon" />
                 User Activity
               </NavLink>
             </li>

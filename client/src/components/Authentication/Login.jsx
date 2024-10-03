@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode'; 
 import './login.css';
 import loginLogo from '/src/assets/Portal/login/login-logo.png';
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'; // Import eye icons
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [alertMessage, setAlertMessage] = useState(''); // New state for alert message
+  const [showPassword, setShowPassword] = useState(false); // State for password visibility
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -76,6 +78,10 @@ const Login = () => {
     }
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(prev => !prev); // Toggle password visibility
+  };
+
   return (
     <div className='slogin-page'>
       <div className="ssidebar-section">
@@ -102,12 +108,17 @@ const Login = () => {
             </div>
             <div className="input-group">
               <label className='slabel'>Password:</label>
-              <input className='input'
-                type="password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                required
-              />
+              <div className="password-container"> {/* Wrap the input and icon */}
+                <input className='input'
+                  type={showPassword ? "text" : "password"} // Toggle input type
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  required
+                />
+                <button type="button" className="toggle-password" onClick={togglePasswordVisibility}>
+                  {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />} {/* Eye icon */}
+                </button>
+              </div>
             </div>
             <button type="submit" className="auth-login-button">Login</button>
           </form>
