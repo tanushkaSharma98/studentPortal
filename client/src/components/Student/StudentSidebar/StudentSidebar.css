@@ -22,4 +22,14 @@
     font-size: 22px;
     font-weight: bold;
   }
+  .Sidebar button {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+  }
+  
+  .Sidebar .icon {
+    width: 20px;
+    height: 20px; /* Adjust size as needed */
+  }
   
