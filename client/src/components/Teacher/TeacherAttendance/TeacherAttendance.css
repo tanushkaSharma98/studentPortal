@@ -74,7 +74,6 @@
   font-weight: bold;
   margin-top: 20px;
   padding-left: 7%;
-  
 }
 
 /* Input row styling */
@@ -84,7 +83,6 @@
   margin-bottom: 10px;
   position: relative;
   padding: 3px;
-  /* padding-left: 7%; */
 }
 
 /* Label styling */
@@ -102,7 +100,7 @@
 }
 
 /* Align Total Lecture to the right */
-.teacher-total-lecture {
+.teacher-total-lecture-div {
   position: absolute;
   right: 0;
   top: 0;
@@ -121,39 +119,4 @@
 .teacher-updated-last {
   font-weight: 700;
   font-size: larger;
-
-}
-
-/* Bottom buttons container */
-.teacher-bottom-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px; /* Adds spacing between the buttons and table */
- padding-left: 8%;
- margin-right: -30%;
-}
-
-/* Daily Attendance Record button styling */
-.teacher-daily-record-btn {
-  padding: 5px 30px;
-  background-color: #35393b; /* Blue background */
-  color: white;
-  font-size: 1.3rem;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* Save button styling */
-.teacher-save-btn {
-  padding: 10px 20px;
-  background-color:  #35393b; /* Green background */
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1.3rem;
-}
-.teacher-save-btn:hover{
-background-color:#5d9160;
 }

@@ -1,51 +1,65 @@
 :root {
-  --navbar-height: 35px; /* Adjust this to match the height of your navbar */
-  --sidebar-width: 18%;  /* Adjusted sidebar width for flexibility */
+  --navbar-height: 35px;  /* Height of the navbar */
+  --sidebar-width: 18%;   /* Sidebar width */
+  --main-bg-color: #e9ecef; /* Main background color */
+  --section-bg-color: #f9f9f9; /* Section background color */
+  --border-color: #ccc;   /* Border color */
+  --shadow-color: rgba(0, 0, 0, 0.1); /* Shadow color */
 }
 
-.teacher-teacher-dashboard {
+.teacher-dashboard {
   display: flex;
   min-height: 100vh; /* Full viewport height */
-  padding-left: 2%;
+  border: 1px solid var(--border-color);
 }
 
 .teacher-content {
-  flex: 1; /* Let content take remaining width after sidebar */
+  flex: 1; /* Allow content to take remaining width after sidebar */
   margin-left: var(--sidebar-width);
   padding: 20px;
+  display: flex;
+  flex-direction: column; /* Stack sections vertically */
+  gap: 20px; /* Space between sections */
   box-sizing: border-box;
 }
 
 .teacher-section {
-  scroll-margin-top: var(--navbar-height);
-  margin-bottom: 30px;
-  padding: 20px;
-  background-color: #e9ecef;
+  background-color: var(--main-bg-color);
   border-radius: 5px;
-  width: 96.5%;
+  padding: 20px;
+  width: 100%; /* Full width for all sections */
+  box-shadow: 0 2px 5px var(--shadow-color); /* Light shadow for depth */
 }
 
 .teacher-profile-section {
   padding: 15px;
-  scroll-margin-top: var(--navbar-height);
-  width: 100%; /* Adjusted to use full available width */
-  max-width: 800px; /* Optional max-width to prevent stretching */
-  margin: 0 auto 50px auto; /* Center align the profile section */
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
+  max-width: 800px; /* Max width for profile section */
+  margin: 0 auto 30px auto; /* Center align the profile section */
+  background-color: var(--section-bg-color);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
+  box-shadow: 0 2px 5px var(--shadow-color); /* Light shadow for depth */
+}
+
+/* Flexbox for main content to display sections in a column */
+.teacher-main-content {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-direction: column; /* Stack sections vertically */
+  gap: 20px; /* Space between main sections */
+}
+
+.teacher-section{
+  border: 1px solid #ccc;
+}
+
+.teacher-table-container{
+  border: 1px solid black;
 }
 
 /* Media query for responsiveness */
 @media (max-width: 1200px) {
   :root {
-    --sidebar-width: 20%; /* Increase sidebar width slightly for medium screens */
+    --sidebar-width: 20%; /* Adjust sidebar width for medium screens */
   }
 }
 
@@ -54,7 +68,6 @@
     --sidebar-width: 25%; /* Adjust sidebar width for smaller screens */
   }
   .teacher-content {
-    margin-left: var(--sidebar-width);
     padding: 15px; /* Adjust padding */
   }
   .teacher-profile-section {

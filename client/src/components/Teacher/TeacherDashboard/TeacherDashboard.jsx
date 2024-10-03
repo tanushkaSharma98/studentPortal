@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import TeacherProfile from '../TeacherProfile.jsx';
 import './TeacherDashboard.css';
-import Sidebar from '../TeacherSidebar/Sidebar.jsx'; // Import the Sidebar component
+import Sidebar from '../TeacherSidebar/Sidebar.jsx';
 import TeacherScoreboard from '../TeacherScoreboard/TeacherScoreboard.jsx';
 import TeacherAttendance from '../TeacherAttendance/TeacherAttendance.jsx';
+import AttendanceTable from '../TeacherAttendance/AttendanceTable';
 import StudentRecord from '../StudentRecord/StudentRecord.jsx';
-
-
 
 function TeacherDashboard() {
   const [teacherData, setTeacherData] = useState(null);
 
   useEffect(() => {
-    // Fetch teacher profile data from API
     const token = localStorage.getItem('token'); // Get token from localStorage
     if (token) {
       fetch('http://localhost:3000/api/teachers/profile', {
@@ -45,8 +43,8 @@ function TeacherDashboard() {
   };
 
   return (
-    <div className="teacher-teacher-dashboard">
-      <Sidebar handleScrollToSection={handleScrollToSection} /> {/* Use Sidebar component */}
+    <div className="teacher-dashboard">
+      <Sidebar handleScrollToSection={handleScrollToSection} />
       <div className="teacher-content">
         <div id="teacher-dashboard" className="teacher-section">
           <h2>Dashboard</h2>
@@ -62,20 +60,23 @@ function TeacherDashboard() {
         
         <div id="teacher-scoreboard" className="teacher-section">
           <h2>Scoreboard</h2>
-          {/* Add scoreboard content here */}
         </div>
-        <div><TeacherScoreboard/></div>
+        <div className='teacher-table-container'>
+          <TeacherScoreboard />
+        </div>
         <div id="teacher-attendance" className="teacher-section">
           <h2>Attendance</h2>
-          {/* Add attendance content here */}
         </div>
-        <div><TeacherAttendance/></div>
+        <div className='teacher-table-container'>
+          <TeacherAttendance />
+          <AttendanceTable />
+        </div>
         <div id="teacher-student-record" className="teacher-section">
           <h2>Student Record</h2>
-          {/* Add student record content here */}
-         
         </div>
-        <div><StudentRecord/></div>
+        <div className='teacher-table-container'>
+          <StudentRecord />
+        </div>
       </div>
     </div>
   );

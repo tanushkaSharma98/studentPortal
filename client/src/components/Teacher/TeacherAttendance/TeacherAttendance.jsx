@@ -1,7 +1,6 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TeacherAttendance.css';
-import AttendanceTable from './AttendanceTable';
 import axios from 'axios';
 
 const TeacherAttendance = () => {
@@ -12,6 +11,7 @@ const TeacherAttendance = () => {
   const [subjectList, setSubjectList] = useState([]);
 
   const token = localStorage.getItem('token');
+  
   useEffect(() => {
     if (token) {
       const fetchSubjects = async () => {
@@ -25,7 +25,7 @@ const TeacherAttendance = () => {
           });
           setSubjectList(subjectResponse.data);
         } catch (error) {
-          console.error('Error fetching subjects :', error);
+          console.error('Error fetching subjects:', error);
         }
       };
 
@@ -45,19 +45,15 @@ const TeacherAttendance = () => {
     }
   };
 
-  const handleSave = () => {
-    console.log('Data saved');
-  };
-
   return (
     <div className="teacher-attendance-container">
       <div className="teacher-top-buttons">
         {/* Subject Dropdown */}
         <div className="teacher-subject-dropdown">
-        <select
-          className='portalselect'
+          <select
+            className='portalselect'
             value={selectedSubject}
-            onChange={(e) => handleSubjectSelect(e.target.value)}
+            onChange={(e) => handleSubjectChange(e.target.value)}
           >
             <option value="">Subject</option>
             {subjectList.length > 0 ? (
@@ -74,12 +70,10 @@ const TeacherAttendance = () => {
             )}
           </select>
         </div>
-
       </div>
 
       <div className="teacher-attendance-details">
         <p className="teacher-updated-last">Updated Last: Yesterday</p>
-
         <div className="teacher-input-row">
           <label htmlFor="date">Date: </label>
           <input
@@ -88,7 +82,6 @@ const TeacherAttendance = () => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
-          <span className="teacher-total-lecture">Total Lecture: 10</span>
         </div>
 
         <div className="teacher-input-row">
@@ -102,17 +95,6 @@ const TeacherAttendance = () => {
             min="0"
           />
         </div>
-        <AttendanceTable />
-      </div>
-
-      {/* Bottom Buttons */}
-      <div className="teacher-bottom-buttons">
-        <button className="teacher-daily-record-btn" onClick={() => navigate('/daily-attendance-record')}>
-          Daily Attendance Record
-        </button>
-        <button className="teacher-save-btn" onClick={handleSave}>
-          Save
-        </button>
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
 .teacher-attendance-table {
-    width: 113%;
+    width: 100%; /* Use full width of the container */
     margin: 20px auto;
-
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
 }
 
 .teacher-attendance-table table {
-    width: 120%;
+    width: 100%; /* Use full width of the parent */
     border-collapse: collapse;
     border: 1px solid #ddd;
 }
@@ -45,7 +45,9 @@
     font-size: 0.95rem;
 }
 
-.teacher-attendance-table table, .teacher-attendance-table th, .teacher-attendance-table td {
+.teacher-attendance-table table,
+.teacher-attendance-table th,
+.teacher-attendance-table td {
     border: 1px solid #ddd; /* Horizontal and vertical borders */
 }
 
@@ -71,3 +73,39 @@
 .teacher-attendance-button.mark {
     background-color: #ddd; /* Default for Mark */
 }
+
+/* Bottom buttons container */
+.teacher-bottom-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px; /* Adds spacing between the buttons and table */
+    padding-left: 8%;
+  }
+  
+  /* Daily Attendance Record button styling */
+  .teacher-daily-record-btn {
+    padding: 1% 3%;
+    background-color: #35393b; /* Blue background */
+    color: white;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: grid
+  }
+  
+  /* Save button styling */
+  .teacher-save-btn {
+    padding: 1% 2.2%;
+    background-color:  #35393b; /* Green background */
+    color: white;
+    border: none;
+    border-radius: 5%;
+    cursor: pointer;
+    font-size: 1.3rem;
+    margin-right: 1%;
+    display: grid
+  }
+  .teacher-save-btn:hover{
+  background-color:#5d9160;
+  }
