@@ -46,7 +46,7 @@ return (
       <div className="teacher-TopButtons">
         {/* Subject Dropdown */}
         <div className="teacherSub-Dropdown">
-          <select value={selectedSubject} onChange={handleSubjectChange}>
+          <select className='portalselect' value={selectedSubject} onChange={handleSubjectChange}>
             <option value=""> Subject</option>
             {subjects.map((subject, index) => (
               <option key={index} value={subject}>
@@ -58,7 +58,7 @@ return (
 
         {/* Marks Below Dropdown */}
         <div className="teacher-MarksDropdown">
-          <select value={selectedMarksBelow} onChange={handleMarksBelowChange}>
+          <select className='portalselect' value={selectedMarksBelow} onChange={handleMarksBelowChange}>
             <option value="">Marks below</option>
             <option value="Below 10">Below 10</option>
             <option value="Below 20">Below 20</option>

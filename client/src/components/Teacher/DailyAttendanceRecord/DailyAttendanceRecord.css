@@ -137,6 +137,6 @@
     display: flex;
     align-items: center;
 }
-select{
+.portalselect{
     font-size: 20px;
 }
