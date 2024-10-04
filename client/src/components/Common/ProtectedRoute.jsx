@@ -1,16 +1,19 @@
-// src/components/Common/ProtectedRoute.jsx
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ element }) => {
   const token = localStorage.getItem('token');
+  const tokenExpiration = localStorage.getItem('tokenExpiration');
+  const currentTime = new Date().getTime();
 
-  // If token is not present, redirect to homepage
-  if (!token) {
-    return <Navigate to="/login" state={{ message: 'Token expired' }} />;
+  // Check if token or expiration time is missing or expired
+  if (!token || !tokenExpiration || currentTime > tokenExpiration) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('tokenExpiration');
+    return <Navigate to="/login" state={{ message: 'Session expired. Please log in again.' }} />;
   }
 
-  return element; // If token exists, return the element (page/component)
+  return element; // If token exists and is valid, return the element (page/component)
 };
 
 export default ProtectedRoute;

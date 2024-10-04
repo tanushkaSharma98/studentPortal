@@ -20,15 +20,24 @@ function App() {
     // Function to check token and update isLoggedIn state
     const checkToken = () => {
       const token = localStorage.getItem('token');
-      setIsLoggedIn(!!token); // Update state based on token presence
+      const tokenExpiration = localStorage.getItem('tokenExpiration');
+      const currentTime = new Date().getTime();
+  
+      if (token && tokenExpiration && currentTime <= tokenExpiration) {
+        setIsLoggedIn(true);  // Token is valid
+      } else {
+        setIsLoggedIn(false); // Token is missing or expired
+        localStorage.removeItem('token');
+        localStorage.removeItem('tokenExpiration');
+      }
     };
-
+  
     // Check token on component mount
     checkToken();
     
     // Set interval to check token every 2 minutes
     const intervalId = setInterval(checkToken, 2 * 60 * 1000); // 2 minutes in milliseconds
-
+  
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, [location]);
