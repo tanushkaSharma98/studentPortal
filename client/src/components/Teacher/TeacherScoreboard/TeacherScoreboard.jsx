@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import './TeacherScoreboard.css';
 import axios from 'axios';
+import StudentTable from './Table'; // Import StudentTable component
 
 const TeacherScoreboard = () => {
-  const [subjectDropdown, setSubjectDropdown] = useState(false);
+  // const [subjectDropdown, setSubjectDropdown] = useState(false);
   const [examDropdown, setExamDropdown] = useState(false);
-  const [selectedSubject, setSelectedSubject] = useState('Subject');
+  const [selectedSubject, setSelectedSubject] = useState('');
   const [selectedExam, setSelectedExam] = useState('Exam');
   const [examList, setExamList] = useState([]);
   const [subjectList, setSubjectList] = useState([]);
+  const [studentList, setStudentList] = useState([]); // State for student list
 
   const token = localStorage.getItem('token');
 
@@ -43,11 +45,25 @@ const TeacherScoreboard = () => {
     }
   }, [token]);
 
-  // Handle subject selection
-  const handleSubjectSelect = (subject) => {
+
+  const handleSubjectChange = async (subject) => {
     setSelectedSubject(subject);
-    setSubjectDropdown(false);
+    try {
+      const studentResponse = await axios.get(
+        `http://localhost:3000/api/teachers/subject-students?subjectCode=${subject}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setStudentList(studentResponse.data); // Update student list
+    } catch (error) {
+      console.error('Error fetching students:', error);
+    }
   };
+
+
 
   // Handle exam selection
   const handleExamSelect = (exam) => {
@@ -56,7 +72,6 @@ const TeacherScoreboard = () => {
   };
 
   // Handle save button
-  
 
   return (
     <div className="teacher-scoreboard-container">
@@ -64,18 +79,18 @@ const TeacherScoreboard = () => {
         {/* Subject Dropdown */}
         <div className="teacher-subject-dropdown">
           <select
-          className='portalselect'
+            className='portalselect'
             value={selectedSubject}
-            onChange={(e) => handleSubjectSelect(e.target.value)}
+            onChange={(e) => handleSubjectChange(e.target.value)}
           >
             <option value="">Subject</option>
             {subjectList.length > 0 ? (
               subjectList.map((subject, index) => (
                 <option 
                   key={index} 
-                  value={`${subject.sub_initials}(${subject.subject_code})`} // Display initials and code
+                  value={subject.subject_code} // Use only subject_code for API call
                 >
-                  {`${subject.sub_initials}(${subject.subject_code})`} {/* Show sub_initials(subject_code) */}
+                  {`${subject.sub_initials} (${subject.subject_code})`} 
                 </option>
               ))
             ) : (
@@ -87,7 +102,7 @@ const TeacherScoreboard = () => {
         {/* Exam Dropdown */}
         <div className="teacher-exam-dropdown">
           <select
-          className='portalselect'
+            className='portalselect'
             value={selectedExam}
             onChange={(e) => handleExamSelect(e.target.value)}
           >
@@ -117,7 +132,10 @@ const TeacherScoreboard = () => {
         <span>Maximum marks: 30</span>
       </div>
 
-      
+      {/* Render StudentTable with the fetched student list */}
+      {selectedSubject !== 'Subject' && (
+        <StudentTable students= {studentList} /> // Pass the student list to StudentTable
+      )}
     </div>
   );
 };

@@ -108,7 +108,7 @@ const TeacherAttendance = () => {
         </div>
 
         {/* Pass the fetched students list to AttendanceTable */}
-        <AttendanceTable students={studentList} />
+        <AttendanceTable students= {studentList} />
       </div>
     </div>
   );

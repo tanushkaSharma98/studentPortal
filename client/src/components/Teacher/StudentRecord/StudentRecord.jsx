@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './StudentRecord.css';
 import axios from 'axios';
-
+import StudentRecordTable from './StudentRecordTable'; 
 
 const StudentRecord = () => {
   const [subjectDropdown, setSubjectDropdown] = useState(false);
@@ -12,6 +12,7 @@ const StudentRecord = () => {
   const [students, setStudents] = useState([]); // State for storing fetched student records
   const [loading, setLoading] = useState(false); // State to manage loading
   const [subjectList, setSubjectList] = useState([]);
+  const [studentList, setStudentList] = useState([]); 
 
   const token = localStorage.getItem('token');
 
@@ -36,11 +37,23 @@ const StudentRecord = () => {
     }
   }, [token]);
 
-  const handleSubjectSelect = (subject) => {
+  const handleSubjectChange = async (subject) => {
     setSelectedSubject(subject);
-    setSubjectDropdown(false);
-    // You can add logic here to filter students by the selected subject
+    try {
+      const studentResponse = await axios.get(
+        `http://localhost:3000/api/teachers/subject-students?subjectCode=${subject}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setStudentList(studentResponse.data); // Update student list
+    } catch (error) {
+      console.error('Error fetching students:', error);
+    }
   };
+
 
   const handleMarksBelowChange = (e) => {
     setSelectedMarksBelow(e.target.value);
@@ -68,14 +81,14 @@ return (
         <select
           className='portalselect'
             value={selectedSubject}
-            onChange={(e) => handleSubjectSelect(e.target.value)}
+            onChange={(e) => handleSubjectChange(e.target.value)}
           >
             <option value="">Subject</option>
             {subjectList.length > 0 ? (
               subjectList.map((subject, index) => (
                 <option 
                   key={index} 
-                  value={`${subject.sub_initials}(${subject.subject_code})`} // Display initials and code
+                  value={subject.subject_code} // Display initials and code
                 >
                   {`${subject.sub_initials}(${subject.subject_code})`} {/* Show sub_initials(subject_code) */}
                 </option>
@@ -102,7 +115,7 @@ return (
         <span className="teacher-UpdatedLast">Updated Last: Yesterday</span>
         <span className="teacher-TotalLecture">Total Lecture: 10</span>
       </div>
-
+      <StudentRecordTable students= {studentList} />
       
     </div>
   );

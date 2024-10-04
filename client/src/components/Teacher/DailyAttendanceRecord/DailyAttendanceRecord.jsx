@@ -43,7 +43,7 @@ const DailyAttendanceRecord = () => {
   return (
     <div className="teacher-dailyAttendanceContainer">
       <Link to="/teacher-dashboard">
-        <button className="Teacher-back-button">⬅</button>
+        <button className="Teacher-back-button">←</button>
       </Link>
       <h1 className="Daily-att">Daily Attendance Record</h1>
       
@@ -54,14 +54,17 @@ const DailyAttendanceRecord = () => {
         <select
             className='Portal-select'
             value={selectedSubject}
-            onChange={(e) => handleSubjectSelect(e.target.value)}
+            onChange={(e) => handleSubjectChange(e.target.value)}
           >
             <option value="">Subject</option>
             {subjectList.length > 0 ? (
               subjectList.map((subject, index) => (
-                <option key={index} value={subject.subject_name}>
-                  {subject.subject_name}
-                </option>
+                <option 
+                key={index} 
+                value={subject.subject_code} // Use only subject_code for API call
+              >
+                {`${subject.sub_initials} (${subject.subject_code})`} 
+              </option>
               ))
             ) : (
               <option value="">No subjects available</option>

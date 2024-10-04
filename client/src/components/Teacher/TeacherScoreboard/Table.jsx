@@ -1,25 +1,15 @@
 import React, { useState } from 'react';
 import './Table.css'; // Link to the CSS file
 
-const initialStudents = [
-  { sNo: 1, name: 'Aditya', enrollment: '001', Marks_Obtained: '21', percentage: '81%' },
-  { sNo: 2, name: 'Deeksha', enrollment: '002', Marks_Obtained: '25', percentage: '85%' },
-  { sNo: 3, name: 'Tanushka', enrollment: '003', Marks_Obtained: '26', percentage: '86%' },
-  { sNo: 4, name: 'Tanmay', enrollment: '004', Marks_Obtained: '20', percentage: '80%' },
-  { sNo: 5, name: 'Rohan', enrollment: '005', Marks_Obtained: '23', percentage: '69%' },
-  { sNo: 6, name: 'Surbhi', enrollment: '005', Marks_Obtained: '27', percentage: '93%' },
-  // Add more student data here
-];
-
-const StudentTable = () => {
-  const [students, setStudents] = useState(initialStudents);
+const StudentTable = ({ students = [] }) => {
+  // const [studentData, setStudentData] = useState(students); // Use the students prop
 
   const handleInputChange = (index, value) => {
     // Ensure the input is an integer or empty
     if (value === '' || /^\d+$/.test(value)) {
-      const updatedStudents = [...students];
+      const updatedStudents = [...studentData];
       updatedStudents[index].Marks_Obtained = value;
-      setStudents(updatedStudents);
+      setStudentData(updatedStudents);
     }
   };
 
@@ -53,12 +43,13 @@ const StudentTable = () => {
           </tr>
         </thead>
         <tbody>
-          {students.map((student, index) => (
-            <tr key={index}>
-              <td>{student.sNo}</td>
-              <td>{student.name}</td>
-              <td>{student.enrollment}</td>
-              <td>
+          {students.length > 0 ? (
+            students.map((student, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{student.student_name || 'N/A'}</td>
+                <td>{student.enrollment_no || 'N/A'}</td>
+                <td>
                 <input
                   id={`marks-input-${index}`} // Unique ID for each input
                   type="text"
@@ -71,8 +62,13 @@ const StudentTable = () => {
               </td>
               <td>{student.percentage}</td>
             </tr>
-          ))}
-        </tbody>
+          ))
+        ) : (
+          <tr>
+            <td colSpan="5">No students available</td>
+          </tr>
+        )}
+      </tbody>
       </table>
       {/* Save Button */}
       <div className="teacher-marks-bottom-buttons">

@@ -10,8 +10,7 @@ const initialRecords = [
   { sNo: 6, name: 'Surbhi', enrollmentNo: '006', classesAttended: 10, attendancePercent: '100%', midterm1: 25, midterm2: 27 },
 ];
 
-const StudentRecordTable = () => {
-  const [students] = useState(initialRecords);
+const StudentRecordTable = ({ students = [] }) => {
 
   return (
     <div className="teacher-student-record-table">
@@ -28,18 +27,24 @@ const StudentRecordTable = () => {
           </tr>
         </thead>
         <tbody>
-          {students.map((student, index) => (
-            <tr key={index}>
-              <td>{student.sNo}</td>
-              <td>{student.name}</td>
-              <td>{student.enrollmentNo}</td>
+          {students.length > 0 ? (
+            students.map((student, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{student.student_name || 'N/A'}</td>
+                <td>{student.enrollment_no || 'N/A'}</td>
               <td>{student.classesAttended}</td>
               <td>{student.attendancePercent}</td>
               <td>{student.midterm1}</td>
               <td>{student.midterm2}</td>
-            </tr>
-          ))}
-        </tbody>
+              </tr>
+          ))
+        ) : (
+          <tr>
+            <td colSpan="5">No students available</td>
+          </tr>
+        )}
+      </tbody>
       </table>
     </div>
   );

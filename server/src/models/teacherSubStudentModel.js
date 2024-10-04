@@ -7,7 +7,7 @@ const getStudentsBySubject = async (subjectCode) => {
 
     // Query to fetch students based on the subject code
     const studentQuery = `
-      SELECT st.student_id, st.student_name, st.branch_id, st.semester
+      SELECT st.student_id, st.student_name, st.enrollment_no, st.branch_id, st.semester
       FROM branch_sem_sub bss
       JOIN subject s ON bss.subject_id = s.subject_id
       JOIN branch b ON b.branch_id = bss.branch_id
