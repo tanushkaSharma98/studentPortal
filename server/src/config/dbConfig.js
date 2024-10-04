@@ -1,12 +1,16 @@
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
+
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   dialect: 'postgres',
   logging: false,
   dialectOptions: {
-    ssl: false  // SSL is off
+    ssl: {
+      require: true, // This will ensure SSL is used
+      rejectUnauthorized: false // For local development/testing, change to true in production
+    }
   },
   pool: {
     max: 5,
@@ -24,4 +28,4 @@ sequelize.authenticate()
     console.error('Unable to connect to the database:', err);
   });
 
-  module.exports = sequelize;
+module.exports = sequelize;
