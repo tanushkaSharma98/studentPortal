@@ -30,7 +30,7 @@ const data = [
 ];
 
 // Color scheme for pie charts
-const COLORS = ['#0088FE', '#FFBB28'];
+const COLORS = ['#CD84A3', '#CBDEE6'];
 
 const StudentAttendance = () => {
   const [activeAccordions, setActiveAccordions] = useState([]);
@@ -115,7 +115,7 @@ const StudentAttendance = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="attendancePercentage" fill="#82ca9d" />
+          <Bar dataKey="attendancePercentage" fill="#9bbace" />
         </BarChart>
       </div>
     </div>

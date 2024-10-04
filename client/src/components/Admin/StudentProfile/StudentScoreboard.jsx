@@ -96,7 +96,7 @@ const StudentScoreboard = () => {
                     data={getPieChartData(item.marksObtained, item.maxMarks)}
                     dataKey="value"
                     outerRadius={40}
-                    fill="#8884d8"
+                    fill="#eac6ff"
                   >
                     {getPieChartData(item.marksObtained, item.maxMarks).map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -121,7 +121,7 @@ const StudentScoreboard = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="percentage" fill="#82ca9d" />
+          <Bar dataKey="percentage" fill="#9bbace" />
         </BarChart>
       </div>
     </div>

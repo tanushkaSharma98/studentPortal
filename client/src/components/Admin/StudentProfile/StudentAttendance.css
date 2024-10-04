@@ -3,7 +3,7 @@
 }
 .stattendance-container {
     padding: 20px;
-    background-color: #e6f0ff;
+    background-color: #ffffff;
   }
   
   .stattendance-header {
@@ -21,8 +21,8 @@
   }
   
   .stattendance-accordion {
-    background-color: #e8cfd8;
-    border: 1px solid #ccc;
+    background-color: #faf2f2;
+    border: 1px solid #e7f2ff;
     margin: 10px 0;
     border-radius: 5px;
   }
@@ -33,7 +33,7 @@
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    background-color: rgb(250, 200, 219);
+    background-color: #e1f0fe;
   }
   
   .stattendance-accordion-arrow {
