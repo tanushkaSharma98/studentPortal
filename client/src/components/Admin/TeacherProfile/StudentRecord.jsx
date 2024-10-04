@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../../../common/Admin/Header';
 import './StudentRecord.css';
 
 const StudentRecord = () => {
   return (
-    <div className="student-container">
+    <div className='tea-stu'>
+      <Header />
+      <div className="student-container">
       <Link to="/admin/teacher-profile">
         <button className="back-button">←</button>
       </Link>
@@ -81,6 +84,8 @@ const StudentRecord = () => {
         </Link>
       </div>
     </div>
+    </div>
+    
   );
 };
 

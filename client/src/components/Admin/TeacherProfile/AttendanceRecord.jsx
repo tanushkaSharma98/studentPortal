@@ -5,7 +5,9 @@ import './AttendanceRecord.css';
 
 const AttendanceRecord = () => {
   return (
-    <div className="attendance-container">
+    <div className='tea-atten'>
+       <Header />
+       <div className="attendance-container">
         <Link to="/admin/teacher-profile">
             <button className="back-button">←</button>
         </Link>
@@ -96,6 +98,8 @@ const AttendanceRecord = () => {
         </table>
       </div>
     </div>
+    </div>
+    
   );
 };
 
