@@ -1,0 +1,177 @@
+/* Main content styles */
+.student-main-content {
+    margin-left: 20%;  /* Adjust for sidebar */
+    margin-top: 60px;  /* Adjust for header */
+    height: calc(100vh - 60px);  /* Full height minus the header */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    transition: margin-left 0.3s ease; /* Smooth transition for margin */
+  }
+  
+  @media (max-width: 768px) {
+    .student-main-content {
+      margin-left: 0; /* Full width when sidebar is hidden */
+    }
+  }
+  
+  /* Profile container */
+  .stprofile-container {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    height: 100%;  /* Full height minus header and sidebar */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  /* Profile header */
+  .stprofile-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 70%;
+    margin-top: 70px;
+    margin-left: 150px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  }
+  
+  @media (max-width: 1024px) {
+    .stprofile-header {
+      margin-left: 0;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
+  /* Back button */
+  .back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Profile picture */
+  .stprofile-picture {
+    width: 120px;
+    height: 120px;
+    background-color: #e6e6e6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+    font-size: 50px;
+  }
+  
+  .stprofile-picture img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  
+  /* Profile info */
+  .stprofile-info {
+    background-color: #f2f9ff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 40%;
+    margin-left: 30px;
+    text-align: left;
+    flex-grow: 1;
+    font-size: larger;
+  }
+  
+  .stprofile-info p {
+    margin: 8px 0;
+  }
+  
+  .edit-button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #ffcccc;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: medium;
+  }
+  
+  /* Profile actions */
+  .stprofile-actions {
+    margin-top: 90px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  
+  .staction-button {
+    padding: 12px 24px;
+    background-color: #fddedd;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  /* Responsive design for medium-sized screens */
+  @media (max-width: 1024px) {
+    .stprofile-header {
+      margin-top: 20px;
+    }
+    
+    .stprofile-info {
+      width: 100%;
+      margin-left: 0;
+      margin-top: 20px;
+    }
+    
+    .stprofile-actions {
+      flex-direction: column;
+      margin-top: 40px;
+    }
+  
+    .staction-button {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .stedit-button {
+      width: 100%;
+    }
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .stprofile-header {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .stprofile-info {
+      width: 80%;
+      flex-grow: 0;
+    }
+  
+    .stprofile-actions {
+      flex-direction: column;
+      margin-top: 20px;
+    }
+  
+    .staction-button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .stprofile-container {
+      height: fit-content;
+    }
+  }
+  

@@ -17,6 +17,9 @@ import ChangePassword from './components/Admin/ChangePassword/ChangePassword.jsx
 import TeacherProfile from './components/Admin/TeacherProfile/TeacherProfile.jsx';
 import AttendanceRecord from './components/Admin/TeacherProfile/AttendanceRecord.jsx';
 import StudentRecord from './components/Admin/TeacherProfile/StudentRecord.jsx';
+import StudentProfile from './components/Admin/StudentProfile/StudentProfile.jsx'; 
+import StudentScoreboard from './components/Admin/StudentProfile/StudentScoreboard.jsx'; 
+import StudentAttendance from './components/Admin/StudentProfile/StudentAttendance.jsx'; 
 
 const Admin = () => {
   return (
@@ -38,6 +41,9 @@ const Admin = () => {
       <Route path="/teacher-profile" element={<TeacherProfile />} />
       <Route path="/attendance-record" element={<AttendanceRecord />} />
       <Route path="/student-record" element={<StudentRecord />} />
+      <Route path="/student-profile" element={<StudentProfile />} />
+      <Route path="/student-scoreboard" element={<StudentScoreboard />} />
+      <Route path="/student-attendance" element={<StudentAttendance />} />
     </Routes>
   );
 };

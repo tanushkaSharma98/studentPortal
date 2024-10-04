@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './StudentTable.css';
+import { Link } from 'react-router-dom';
 
 const StudentTable = ({ students }) => {
   const [deletedRows, setDeletedRows] = useState([]);
@@ -37,6 +38,7 @@ const StudentTable = ({ students }) => {
               <td>{student.email}</td>
               <td>{student.password}</td>
               <td>
+              <Link to="/admin/student-profile">
                 <button 
                   className="view-btn" 
                   disabled={isDeleted} 
@@ -44,6 +46,7 @@ const StudentTable = ({ students }) => {
                 >
                   View
                 </button>
+                </Link>
               </td>
               <td>
                 {isDeleted ? (
