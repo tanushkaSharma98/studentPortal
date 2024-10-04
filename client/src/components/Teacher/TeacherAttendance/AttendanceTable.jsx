@@ -1,20 +1,10 @@
-import { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import './AttendanceTable.css'; // Link to the CSS file
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './AttendanceTable.css';
 
-const initialAttendance = [
-  { sNo: 1, name: 'Aditya', enrollmentNo: '001', status: 'Mark', percentage: '80%' },
-  { sNo: 2, name: 'Deeksha', enrollmentNo: '002', status: 'Mark', percentage: '88%' },
-  { sNo: 3, name: 'Tanushka', enrollmentNo: '003', status: 'Mark', percentage: '92%' },
-  { sNo: 4, name: 'Tanmay', enrollmentNo: '004', status: 'Mark', percentage: '76%' },
-  { sNo: 5, name: 'Rohan', enrollmentNo: '005', status: 'Mark', percentage: '72%' },
-  { sNo: 6, name: 'Surbhi', enrollmentNo: '006', status: 'Mark', percentage: '100%' },
-];
-
-const AttendanceTable = () => {
-  const [students, setStudents] = useState(initialAttendance);
+const AttendanceTable = ({ students = [] }) => {
   const buttonRefs = useRef([]);
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
 
   const toggleAttendance = (index) => {
     const updatedStudents = [...students];
@@ -27,8 +17,6 @@ const AttendanceTable = () => {
     } else {
       updatedStudents[index].status = 'Present';
     }
-
-    setStudents(updatedStudents);
   };
 
   const handleKeyDown = (e, index) => {
@@ -60,25 +48,31 @@ const AttendanceTable = () => {
           </tr>
         </thead>
         <tbody>
-          {students.map((student, index) => (
-            <tr key={index}>
-              <td>{student.sNo}</td>
-              <td>{student.name}</td>
-              <td>{student.enrollmentNo}</td>
-              <td>
-                <button
-                  className={`teacher-attendance-button ${student.status.toLowerCase()}`}
-                  onClick={() => toggleAttendance(index)}
-                  tabIndex="0"
-                  ref={(el) => (buttonRefs.current[index] = el)}
-                  onKeyDown={(e) => handleKeyDown(e, index)}
-                >
-                  {student.status}
-                </button>
-              </td>
-              <td>{student.percentage}</td>
+          {students.length > 0 ? (
+            students.map((student, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{student.student_name || 'N/A'}</td>
+                <td>{student.enrollment_no || 'N/A'}</td>
+                <td>
+                  <button
+                    className={`teacher-attendance-button ${student.status ? student.status.toLowerCase() : 'mark'}`}
+                    onClick={() => toggleAttendance(index)}
+                    tabIndex="0"
+                    ref={(el) => (buttonRefs.current[index] = el)}
+                    onKeyDown={(e) => handleKeyDown(e, index)}
+                  >
+                    {student.status || 'Mark'}
+                  </button>
+                </td>
+                <td>{student.percentage || 'N/A'}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="5">No students available</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
       <div className="teacher-bottom-buttons">
