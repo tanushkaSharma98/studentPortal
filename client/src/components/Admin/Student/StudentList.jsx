@@ -28,7 +28,8 @@ const StudentList = () => {
         name: student.student_name,
         enrollmentNumber: student.enrollment_no,
         email: student.email,
-        password: student.decrypted_password
+        password: student.decrypted_password,
+        userId: student.user_id
       }));
 
       setStudents(formattedData);

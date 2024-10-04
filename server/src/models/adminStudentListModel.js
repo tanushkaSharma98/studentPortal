@@ -3,7 +3,7 @@ const {secretKey} = require('../config/config.js');
 
 exports.getAllStudents = async () => {
   const query = `
-    SELECT s.student_name, s.enrollment_no, u.email, 
+    SELECT s.student_name, s.enrollment_no, u.email, u.user_id,
            pgp_sym_decrypt(u.password::bytea, :secretKey) AS decrypted_password
     FROM student s
     JOIN users u ON s.user_id = u.user_id

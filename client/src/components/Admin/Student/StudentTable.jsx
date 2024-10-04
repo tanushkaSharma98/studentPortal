@@ -22,6 +22,7 @@ const StudentTable = ({ students }) => {
           <th>Enrollment No.</th>
           <th>Email</th>
           <th>Password</th>
+          <th className='hide'>UserId</th>
           <th>View</th>
           <th>Action</th>
         </tr>
@@ -37,15 +38,16 @@ const StudentTable = ({ students }) => {
               <td>{student.enrollmentNumber}</td>
               <td>{student.email}</td>
               <td>{student.password}</td>
+              <td className='hide'>{student.userId}</td>
               <td>
-              <Link to="/admin/student-profile">
-                <button 
-                  className="view-btn" 
-                  disabled={isDeleted} 
-                  style={{ backgroundColor: isDeleted ? 'grey' : '#007bff', cursor: isDeleted ? 'not-allowed' : 'pointer' }}
-                >
-                  View
-                </button>
+                <Link to={`/admin/student-profile/${student.userId}`}>
+                  <button 
+                    className="view-btn" 
+                    disabled={isDeleted} 
+                    style={{ backgroundColor: isDeleted ? 'grey' : '#007bff', cursor: isDeleted ? 'not-allowed' : 'pointer' }}
+                  >
+                    View
+                  </button>
                 </Link>
               </td>
               <td>
