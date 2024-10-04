@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import './StudentRecord.css';
-import StudentRecordTable from './StudentRecordTable';
 import axios from 'axios';
 
 
@@ -104,14 +103,7 @@ return (
         <span className="teacher-TotalLecture">Total Lecture: 10</span>
       </div>
 
-      {/* Loading Indicator */}
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <div>
-          <StudentRecordTable students={students} />
-        </div>
-      )}
+      
     </div>
   );
 };

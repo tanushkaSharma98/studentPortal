@@ -23,8 +23,8 @@ const StudentRecordTable = () => {
             <th>Enrollment No.</th>
             <th>Classes Attended</th>
             <th>Attendance %</th>
-            <th>Midterm-1 Marks</th>
-            <th>Midterm-2 Marks</th>
+            <th>Midterm-1</th>
+            <th>Midterm-2</th>
           </tr>
         </thead>
         <tbody>

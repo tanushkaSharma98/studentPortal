@@ -7,6 +7,7 @@ import Table  from '../TeacherScoreboard/Table.jsx';
 import TeacherAttendance from '../TeacherAttendance/TeacherAttendance.jsx';
 import AttendanceTable from '../TeacherAttendance/AttendanceTable';
 import StudentRecord from '../StudentRecord/StudentRecord.jsx';
+import StudentRecordTable from '../StudentRecord/StudentRecordTable.jsx';
 
 function TeacherDashboard() {
   const [teacherData, setTeacherData] = useState(null);
@@ -78,6 +79,7 @@ function TeacherDashboard() {
         </div>
         <div className='teacher-table-container'>
           <StudentRecord />
+          <StudentRecordTable/>
         </div>
       </div>
     </div>
