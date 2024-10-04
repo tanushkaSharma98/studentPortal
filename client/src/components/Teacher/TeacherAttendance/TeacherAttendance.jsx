@@ -2,40 +2,54 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TeacherAttendance.css';
 import axios from 'axios';
+import AttendanceTable from './AttendanceTable';
 
 const TeacherAttendance = () => {
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate(); 
   const [selectedSubject, setSelectedSubject] = useState('');
   const [date, setDate] = useState('');
   const [lecture, setLecture] = useState('');
   const [subjectList, setSubjectList] = useState([]);
+  const [studentList, setStudentList] = useState([]); // State for student list
 
   const token = localStorage.getItem('token');
-  
+
+  // Fetch subjects on mount
   useEffect(() => {
     if (token) {
       const fetchSubjects = async () => {
         try {
-          // Fetch subjects based on teacherId
           const subjectResponse = await axios.get('http://localhost:3000/api/teachers/subjects', {
             headers: {
-              'Authorization': `Bearer ${token}`,
-              'Content-Type': 'application/json'
-            }
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
           });
           setSubjectList(subjectResponse.data);
         } catch (error) {
           console.error('Error fetching subjects:', error);
         }
       };
-
       fetchSubjects();
     }
   }, [token]);
 
-  const handleSubjectChange = (subject) => {
+  // Fetch students when a subject is selected
+  const handleSubjectChange = async (subject) => {
     setSelectedSubject(subject);
-    setSubjectDropdown(false);
+    try {
+      const studentResponse = await axios.get(
+        `http://localhost:3000/api/teachers/subject-students?subjectCode=${subject}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setStudentList(studentResponse.data); // Update student list
+    } catch (error) {
+      console.error('Error fetching students:', error);
+    }
   };
 
   const handleLectureChange = (e) => {
@@ -51,18 +65,15 @@ const TeacherAttendance = () => {
         {/* Subject Dropdown */}
         <div className="teacher-subject-dropdown">
           <select
-            className='portalselect'
+            className="portalselect"
             value={selectedSubject}
             onChange={(e) => handleSubjectChange(e.target.value)}
           >
             <option value="">Subject</option>
             {subjectList.length > 0 ? (
               subjectList.map((subject, index) => (
-                <option 
-                  key={index} 
-                  value={`${subject.sub_initials}(${subject.subject_code})`} // Display initials and code
-                >
-                  {`${subject.sub_initials}(${subject.subject_code})`} {/* Show sub_initials(subject_code) */}
+                <option key={index} value={subject.subject_code}>
+                  {`${subject.sub_initials} (${subject.subject_code})`}
                 </option>
               ))
             ) : (
@@ -95,6 +106,9 @@ const TeacherAttendance = () => {
             min="0"
           />
         </div>
+
+        {/* Pass the fetched students list to AttendanceTable */}
+        <AttendanceTable students={studentList} />
       </div>
     </div>
   );
