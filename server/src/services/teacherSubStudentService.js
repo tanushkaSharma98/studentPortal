@@ -1,20 +1,18 @@
 const teacherSubStudentModel = require('../models/teacherSubStudentModel');
 
+// Service to fetch students by subject code
 const fetchStudentsBySubject = async (subjectCode) => {
-    try {
-        // Call model to get students by subject
-        const students = await teacherSubStudentModel.getStudentsBySubject(subjectCode);
+  try {
+    // Log to ensure the service receives the subjectCode
+    console.log('Received subjectCode in service:', subjectCode);
 
-        if (students.length === 0) {
-            throw new Error('No students found for the selected subject.');
-        }
-
-        return students;
-    } catch (error) {
-        throw new Error(error.message);
-    }
+    // Call the model function to get students based on subjectCode
+    const students = await teacherSubStudentModel.getStudentsBySubject(subjectCode);
+    return students;
+  } catch (error) {
+    console.error('Service Error: Failed to fetch students', error);
+    throw new Error('Service Error: Failed to fetch students');
+  }
 };
 
-module.exports = {
-    fetchStudentsBySubject
-};
+module.exports = { fetchStudentsBySubject };
