@@ -5,7 +5,6 @@ import Sidebar from '../TeacherSidebar/Sidebar.jsx';
 import TeacherScoreboard from '../TeacherScoreboard/TeacherScoreboard.jsx';
 import Table  from '../TeacherScoreboard/Table.jsx';
 import TeacherAttendance from '../TeacherAttendance/TeacherAttendance.jsx';
-import AttendanceTable from '../TeacherAttendance/AttendanceTable';
 import StudentRecord from '../StudentRecord/StudentRecord.jsx';
 import StudentRecordTable from '../StudentRecord/StudentRecordTable.jsx';
 
@@ -72,7 +71,6 @@ function TeacherDashboard() {
         </div>
         <div className='teacher-table-container'>
           <TeacherAttendance />
-          <AttendanceTable />
         </div>
         <div id="teacher-student-record" className="teacher-section">
           <h2>Student Record</h2>
