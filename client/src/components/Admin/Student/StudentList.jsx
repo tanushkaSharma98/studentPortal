@@ -29,7 +29,8 @@ const StudentList = () => {
         enrollmentNumber: student.enrollment_no,
         email: student.email,
         password: student.decrypted_password,
-        userId: student.user_id
+        userId: student.user_id,
+        is_active: student.is_active // Include is_active status
       }));
 
       setStudents(formattedData);
@@ -53,7 +54,7 @@ const StudentList = () => {
       <div className="main-content">
         <div className="container">
           <SearchBar onSearch={handleSearch} fetchInitialStudents={fetchInitialStudents} />
-          <StudentTable students={students} />
+          <StudentTable students={students} setStudents={setStudents} />
         </div>
       </div>
     </div>

@@ -1,18 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './StudentTable.css';
 import { Link } from 'react-router-dom';
 
-const StudentTable = ({ students }) => {
-  const [deletedRows, setDeletedRows] = useState([]);
-
-  const handleDelete = (index) => {
-    setDeletedRows((prevDeletedRows) => [...prevDeletedRows, index]);
+const StudentTable = ({ students, setStudents }) => {
+  // Unified function to toggle student status
+  const toggleStudentStatus = async (user_id, currentStatus, index) => {
+    const updatedStudents = [...students];
+    const newIsActiveStatus = !currentStatus; // Toggle active status
+  
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:3000/api/admin/students/update', {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_id,  // Ensure user_id is passed here
+          is_active: newIsActiveStatus,  // Send the toggled is_active status
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to update student status');
+      }
+  
+      // Update the local students state with the new is_active status
+      updatedStudents[index].is_active = newIsActiveStatus;
+      setStudents(updatedStudents);
+    } catch (error) {
+      console.error('Error updating student status:', error);
+    }
   };
-
-  const handleAdd = (index) => {
-    setDeletedRows((prevDeletedRows) => prevDeletedRows.filter((i) => i !== index));
-  };
-
+  
   return (
     <table className="student-table">
       <thead>
@@ -22,14 +43,14 @@ const StudentTable = ({ students }) => {
           <th>Enrollment No.</th>
           <th>Email</th>
           <th>Password</th>
-          <th className='hide'>UserId</th>
+          <th className="hide">UserId</th>
           <th>View</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         {students.map((student, index) => {
-          const isDeleted = deletedRows.includes(index);
+          const isDeleted = !student.is_active; // Invert the condition, row is 'deleted' if is_active is false
 
           return (
             <tr key={index} className={isDeleted ? 'row-deleted' : ''}>
@@ -38,7 +59,7 @@ const StudentTable = ({ students }) => {
               <td>{student.enrollmentNumber}</td>
               <td>{student.email}</td>
               <td>{student.password}</td>
-              <td className='hide'>{student.userId}</td>
+              <td className="hide">{student.userId}</td>
               <td>
                 <Link to={`/admin/student-profile/${student.userId}`}>
                   <button 
@@ -51,21 +72,12 @@ const StudentTable = ({ students }) => {
                 </Link>
               </td>
               <td>
-                {isDeleted ? (
-                  <button 
-                    className="add-btn" 
-                    onClick={() => handleAdd(index)} 
-                  >
-                    ✓
-                  </button>
-                ) : (
-                  <button 
-                    className="delete-btn" 
-                    onClick={() => handleDelete(index)} 
-                  >
-                    ✗
-                  </button>
-                )}
+                <button 
+                  className={`delete-btn ${isDeleted ? 'add-btn' : ''}`} 
+                  onClick={() => toggleStudentStatus(student.userId, student.is_active, index)} // Pass is_active state
+                >
+                  {isDeleted ? '✓' : '✗'}
+                </button>
               </td>
             </tr>
           );
