@@ -60,18 +60,21 @@ const updateAdminIsActive = async (req, res) => {
       return res.status(403).json({ message: 'Access denied. Only super admins can update admin status.' });
     }
 
+    // Log the request to make sure it reaches the controller
+    console.log('Admin update request:', req.body);
+
     // Call the service to update the status
     const result = await adminService.changeAdminStatus(user_id, is_active);
 
     // Return success response
     return res.status(200).json({
       message: 'Admin status updated successfully',
-      data: result
+      data: result,
     });
   } catch (error) {
     console.error('Error in controller:', error);
     return res.status(500).json({
-      message: 'Failed to update admin status'
+      message: 'Failed to update admin status',
     });
   }
 };

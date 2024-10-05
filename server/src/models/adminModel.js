@@ -8,6 +8,7 @@ exports.getAdmins = async (requesting_user_id) => {
       console.log('Executing query to fetch admins...');
       const results = await sequelize.query(`
         SELECT 
+          a.user_id,
           a.name AS admin_name, 
           u.email, 
           CASE 

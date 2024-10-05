@@ -12,8 +12,8 @@ const AdminTable = () => {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,  // Pass token if required
-            'Content-Type': 'application/json'
-          }
+            'Content-Type': 'application/json',
+          },
         });
 
         if (!response.ok) {
@@ -23,10 +23,11 @@ const AdminTable = () => {
         const data = await response.json();
         const formattedAdmins = data.map((admin, index) => ({
           sNo: index + 1,
+          user_id: admin.user_id,  // Store user_id for update API
           adminname: admin.admin_name,
           email: admin.email,
           password: admin.password,
-          is_active: admin.is_active
+          is_active: admin.is_active,
         }));
 
         setAdmins(formattedAdmins);
@@ -38,11 +39,34 @@ const AdminTable = () => {
     fetchAdmins();
   }, []);
 
-  // Handle toggle delete (active/inactive)
-  const handleDelete = (index) => {
+  // Handle toggle delete (active/inactive) and update in the backend
+  const handleDelete = async (user_id, currentStatus, index) => {
     const updatedAdmins = [...admins];
-    updatedAdmins[index].is_active = !updatedAdmins[index].is_active;  // Toggle active status
-    setAdmins(updatedAdmins);
+    const newIsActiveStatus = !currentStatus;  // Toggle active status
+  
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:3000/api/admin/update', {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_id,  // Ensure user_id is passed here
+          is_active: newIsActiveStatus,  // Send the toggled is_active status
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to update admin status');
+      }
+  
+      updatedAdmins[index].is_active = newIsActiveStatus;
+      setAdmins(updatedAdmins);
+    } catch (error) {
+      console.error('Error updating admin status:', error);
+    }
   };
 
   return (
@@ -67,9 +91,9 @@ const AdminTable = () => {
               <td>{admin.password}</td>
               <td>{admin.is_active ? 'True' : 'False'}</td>
               <td>
-                <button 
+                <button
                   className={`delete-btn ${!admin.is_active ? 'add-btn' : ''}`}
-                  onClick={() => handleDelete(index)}
+                  onClick={() => handleDelete(admin.user_id, admin.is_active, index)}  // Pass user_id and is_active
                 >
                   {admin.is_active ? '✗' : '✓'}
                 </button>
