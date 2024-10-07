@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../../common/Admin/Sidebar';
 import Header from '../../../common/Admin/Header';
 import SearchBar from './SearchBar'; 
@@ -7,6 +8,7 @@ import './TeacherList.css';  // Import specific styles for TeacherList
 
 const TeacherList = () => {
   const [teachers, setTeachers] = useState([]);
+  const navigate = useNavigate();
 
   // Fetch all teachers initially
   const fetchInitialTeachers = async () => {
@@ -20,6 +22,12 @@ const TeacherList = () => {
         },
       });
 
+      if (response.status === 403) {
+        // Token is unauthorized or blacklisted, redirect to admin login
+        navigate('/admin/admin-login');
+        return;
+      }
+
       if (!response.ok) {
         throw new Error('Failed to fetch teachers');
       }
@@ -29,6 +37,7 @@ const TeacherList = () => {
         name: teacher.teacher_name,
         email: teacher.email,
         password: teacher.decrypted_password,
+        is_active: teacher.is_active
       }));
 
       setTeachers(formattedData);

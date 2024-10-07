@@ -5,7 +5,8 @@ exports.getAllTeachers = async () => {
   const query = `
     SELECT 
       t.teacher_name,
-      u.email, 
+      u.email,
+      u.is_active,
       pgp_sym_decrypt(u.password::bytea, :secretKey) AS decrypted_password
     FROM teacher t
     JOIN users u ON t.user_id = u.user_id

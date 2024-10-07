@@ -3,7 +3,6 @@ import './StudentTable.css';
 import { Link } from 'react-router-dom';
 
 const StudentTable = ({ students, setStudents }) => {
-  // Unified function to toggle student status
   const toggleStudentStatus = async (user_id, currentStatus, index) => {
     const updatedStudents = [...students];
     const newIsActiveStatus = !currentStatus; // Toggle active status

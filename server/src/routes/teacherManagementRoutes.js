@@ -14,9 +14,6 @@ router.get('/branch-semester', getTeachersByBranchAndSemester);
 // API to search teachers by name
 router.get('/search', searchTeachersByName);
 
-router.post('/create', (req, res, next) => {
-    console.log("POST /create route hit");
-    next();
-  }, createTeacherController.createTeacher);
+router.post('/create', (req, res, next) => {}, createTeacherController.createTeacher);
 
 module.exports = router;

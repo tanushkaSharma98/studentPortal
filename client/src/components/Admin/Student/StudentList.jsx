@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import Sidebar from '../../../common/Admin/Sidebar';
 import Header from '../../../common/Admin/Header';
 import SearchBar from './SearchBar'; 
@@ -7,6 +8,7 @@ import './StudentList.css';  // Import specific styles for StudentList
 
 const StudentList = () => {
   const [students, setStudents] = useState([]);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const fetchInitialStudents = async () => {
     try {
@@ -18,6 +20,12 @@ const StudentList = () => {
           'Content-Type': 'application/json'
         }
       });
+
+      if (response.status === 403) {
+        // Token is unauthorized or blacklisted, redirect to admin login
+        navigate('/admin/admin-login');
+        return;
+      }
 
       if (!response.ok) {
         throw new Error('Network response was not ok');
