@@ -5,12 +5,13 @@ import axios from 'axios';
 import AttendanceTable from './AttendanceTable';
 
 const TeacherAttendance = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [selectedSubject, setSelectedSubject] = useState('');
   const [date, setDate] = useState('');
   const [lecture, setLecture] = useState('');
   const [subjectList, setSubjectList] = useState([]);
-  const [studentList, setStudentList] = useState([]); // State for student list
+  const [studentList, setStudentList] = useState([]);
+  const [attendanceList, setAttendanceList] = useState([]);
 
   const token = localStorage.getItem('token');
 
@@ -46,12 +47,24 @@ const TeacherAttendance = () => {
           },
         }
       );
-      setStudentList(studentResponse.data); // Update student list
+      setStudentList(studentResponse.data);
     } catch (error) {
       console.error('Error fetching students:', error);
     }
   };
 
+  // Handle attendance marking
+  const handleAttendanceChange = (enrollmentNo, attendance) => {
+    setAttendanceList((prev) =>
+      prev.some((item) => item.enrollmentNo === enrollmentNo)
+        ? prev.map((item) =>
+            item.enrollmentNo === enrollmentNo ? { ...item, attendance } : item
+          )
+        : [...prev, { enrollmentNo, attendance }]
+    );
+  };
+
+  // Handle lecture change
   const handleLectureChange = (e) => {
     const value = e.target.value;
     if (value >= 0 || value === '') {
@@ -59,28 +72,62 @@ const TeacherAttendance = () => {
     }
   };
 
+  // Handle attendance submission on Save button click
+  const handleAttendanceSubmit = async () => {
+    if (!selectedSubject || !date || !lecture || attendanceList.length === 0) {
+      alert('Please fill in all fields and mark attendance.');
+      return;
+    }
+
+    const attendanceData = {
+      subjectCode: selectedSubject,
+      lecture: Number(lecture),
+      attendanceDate: date,
+      attendanceList,
+    };
+
+    try {
+      const response = await axios.post('http://localhost:3000/api/attendance/upload', attendanceData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log('API Response:', response.data);  // Log the API response
+      alert('Attendance uploaded successfully!');
+      navigate('/dashboard');
+    } catch (error) {
+      if (error.response) {
+        // Server responded with a status other than 2xx
+        console.error('Error uploading attendance:', error.response.data);
+        alert(`Failed to upload attendance: ${error.response.data.message || 'Unknown error'}`);
+      } else if (error.request) {
+        // Request was made but no response was received
+        console.error('No response received from the server:', error.request);
+        alert('Failed to upload attendance: No response from server');
+      } else {
+        // Something else went wrong
+        console.error('Error in uploading attendance:', error.message);
+        alert(`Failed to upload attendance: ${error.message}`);
+      }
+    }
+  };    
   return (
     <div className="teacher-attendance-container">
-      <div className="teacher-top-buttons">
-        {/* Subject Dropdown */}
-        <div className="teacher-subject-dropdown">
-          <select
-            className="portalselect"
-            value={selectedSubject}
-            onChange={(e) => handleSubjectChange(e.target.value)}
-          >
-            <option value="">Subject</option>
-            {subjectList.length > 0 ? (
-              subjectList.map((subject, index) => (
-                <option key={index} value={subject.subject_code}>
-                  {`${subject.sub_initials} (${subject.subject_code})`}
-                </option>
-              ))
-            ) : (
-              <option value="">No subjects available</option>
-            )}
-          </select>
-        </div>
+      {/* Subject Dropdown */}
+      <div className="teacher-subject-dropdown">
+        <select
+          className="portalselect"
+          value={selectedSubject}
+          onChange={(e) => handleSubjectChange(e.target.value)}
+        >
+          <option value="">Subject</option>
+          {subjectList.map((subject, index) => (
+            <option key={index} value={subject.subject_code}>
+              {`${subject.sub_initials} (${subject.subject_code})`}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className="teacher-attendance-details">
@@ -105,13 +152,13 @@ const TeacherAttendance = () => {
             min="0"
           />
         </div>
-        <div class="teacher-record-details-div">     
-        <span className="teacher-updated-last">Updated Last: Yesterday</span>
-        <span className="teacher-total-lecture">Total Lecture: 10</span>
-        </div>
 
-        {/* Pass the fetched students list to AttendanceTable */}
-        <AttendanceTable students= {studentList} />
+        {/* Pass attendance props and the submit handler */}
+        <AttendanceTable
+          students={studentList}
+          onAttendanceChange={handleAttendanceChange}
+          onSave={handleAttendanceSubmit}
+        />
       </div>
     </div>
   );
