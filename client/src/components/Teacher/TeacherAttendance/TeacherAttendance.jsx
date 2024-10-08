@@ -84,7 +84,6 @@ const TeacherAttendance = () => {
       </div>
 
       <div className="teacher-attendance-details">
-        <p className="teacher-updated-last">Updated Last: Yesterday</p>
         <div className="teacher-input-row">
           <label htmlFor="date">Date: </label>
           <input
@@ -106,7 +105,11 @@ const TeacherAttendance = () => {
             min="0"
           />
         </div>
+        <div class="teacher-record-details-div">     
+        <span className="teacher-updated-last">Updated Last: Yesterday</span>
         <span className="teacher-total-lecture">Total Lecture: 10</span>
+        </div>
+
         {/* Pass the fetched students list to AttendanceTable */}
         <AttendanceTable students= {studentList} />
       </div>

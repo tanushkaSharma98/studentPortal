@@ -8,7 +8,7 @@ const StudentRecord = () => {
     <div className='tea-stu'>
       <Header />
       <div className="student-container">
-      <Link to="/admin/teacher-profile">
+      <Link to="/admin/teacher-profile/:userId">
         <button className="back-button">←</button>
       </Link>
       <h2 className="student-title">STUDENT RECORD</h2>

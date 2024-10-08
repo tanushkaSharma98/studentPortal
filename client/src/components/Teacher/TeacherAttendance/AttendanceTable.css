@@ -79,7 +79,6 @@
     display: flex;
     justify-content: space-between;
     margin-top: 20px; /* Adds spacing between the buttons and table */
-    padding-left: 8%;
   }
   
   /* Daily Attendance Record button styling */
@@ -91,7 +90,6 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    display: grid
   }
   
   /* Save button styling */

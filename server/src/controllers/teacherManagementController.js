@@ -1,4 +1,5 @@
 const { getTeacherCount, changeTeacherStatus } = require('../services/teacherManagementService')
+const { getTeacherProfile } = require('../services/teacherService');
 
 exports.getTeacherCount= async (req, res) => {
     try {
@@ -11,6 +12,29 @@ exports.getTeacherCount= async (req, res) => {
         res.status(200).json({ teacherCount: count });
         } catch (error) {
         res.status(500).json({ error: 'Error fetching Teacher count' });
+    }
+};
+
+exports.getTeacherProfile = async (req, res) => {
+    const { userId } = req.params;
+    console.log('User inside teacherProfileController:', req.user);
+
+    const userType = req.user.user_type;
+    if (userType !== 0 && userType !== 3) {
+        return sendErrorResponse(res, 403, 'Access denied. Only admins see teacher data.');
+    }
+
+    try {
+        const teacherData = await getTeacherProfile(userId);
+
+        if (!teacherData) {
+            return sendErrorResponse(res, 404, 'teacher not found');
+        }
+
+        res.json(teacherData);
+    } catch (err) {
+        console.error('Error fetching teacher profile:', err);
+        sendErrorResponse(res, 500, 'Server error');
     }
 };
 
