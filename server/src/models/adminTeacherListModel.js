@@ -4,6 +4,7 @@ const {secretKey} = require('../config/config.js');
 exports.getAllTeachers = async () => {
   const query = `
     SELECT 
+      u.user_id,
       t.teacher_name,
       u.email,
       u.is_active,

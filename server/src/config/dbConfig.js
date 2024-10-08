@@ -6,7 +6,10 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   dialect: 'postgres',
   logging: false,
   dialectOptions: {
-    ssl: false  // SSL is off
+    ssl: {
+      require: true,               // SSL is required
+      rejectUnauthorized: false,    // Disable certificate verification (use with caution)
+    },
   },
   pool: {
     max: 5,
@@ -24,4 +27,4 @@ sequelize.authenticate()
     console.error('Unable to connect to the database:', err);
   });
 
-  module.exports = sequelize;
+module.exports = sequelize;

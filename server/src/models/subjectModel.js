@@ -7,6 +7,7 @@ exports.getSubjects = async (filters = {}) => {
         // Base query with STRING_AGG for teacher names and a method to summarize branches
         let query = `
             SELECT 
+                s.subject_id,
                 s.subject_name, 
                 s.subject_code, 
                 s.sub_initials,       
@@ -46,6 +47,7 @@ exports.getSubjects = async (filters = {}) => {
         // Group by unique subject fields
         query += `
             GROUP BY 
+                s.subject_id,
                 s.subject_name, 
                 s.subject_code, 
                 s.sub_initials, 
