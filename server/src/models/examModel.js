@@ -8,6 +8,7 @@ exports.getExam = async () => {
         // Base query to fetch exam details
         const query = `
             SELECT 
+                exam_id,
                 exam_name, 
                 maximum_marks,
                 is_active
