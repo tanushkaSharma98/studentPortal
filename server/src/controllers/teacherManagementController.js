@@ -1,4 +1,4 @@
-const { getTeacherCount } = require('../services/teacherManagementService')
+const { getTeacherCount, changeTeacherStatus } = require('../services/teacherManagementService')
 
 exports.getTeacherCount= async (req, res) => {
     try {
@@ -10,6 +10,32 @@ exports.getTeacherCount= async (req, res) => {
         const count = await getTeacherCount();
         res.status(200).json({ teacherCount: count });
         } catch (error) {
-        res.status(500).json({ error: 'Error fetching student count' });
+        res.status(500).json({ error: 'Error fetching Teacher count' });
     }
 };
+
+exports.updateTeacherIsActive = async (req, res) => {
+    const { user_id, is_active } = req.body;
+  
+    try {
+      // Check if the user is a super admin (user_type 0)
+      const userType = req.user.user_type;
+      if (userType !== 0 && userType !== 3) {
+        return res.status(403).json({ message: 'Access denied. Only admins can update Teacher status.' });
+      }
+  
+      // Call the service to update the status
+      const result = await changeTeacherStatus(user_id, is_active);
+  
+      // Return success response
+      return res.status(200).json({
+        message: 'Teacher status updated successfully',
+        data: result
+      });
+    } catch (error) {
+      console.error('Error in controller:', error);
+      return res.status(500).json({
+        message: 'Failed to update Teacher status'
+      });
+    }
+  };

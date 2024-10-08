@@ -7,6 +7,7 @@ exports.getBranch = async (filters = {}) => {
         // Base query
         let query = `
             SELECT 
+                b.branch_id,
                 b.branch_name, 
                 COALESCE(COUNT(DISTINCT CASE WHEN u.is_active = true THEN s.student_id END), 0) AS student_count,
                 COALESCE(COUNT(DISTINCT bs.subject_id), 0) AS subject_count,
@@ -41,7 +42,7 @@ exports.getBranch = async (filters = {}) => {
         // Group by clause
         query += `
             GROUP BY 
-                b.branch_name, b.is_active
+                b.branch_id,b.branch_name, b.is_active
         `;
 
         // Execute the raw SQL query

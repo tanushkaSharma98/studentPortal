@@ -1,10 +1,37 @@
 import React from 'react';
 
 const BranchTable = ({ branches, setBranches }) => {
-  const handleDelete = (index) => {
+  const handleDelete = async (index) => {
+    const token = localStorage.getItem('token');
+    const branch = branches[index];
     const updatedBranches = [...branches];
-    updatedBranches[index].isDeleted = !updatedBranches[index].isDeleted;
-    setBranches(updatedBranches);
+    const newStatus = !branch.is_active;  // Toggle the is_active status
+
+    try {
+      const res = await fetch(`http://localhost:3000/api/admin/branches/update`, {
+        method: 'PUT', // Assuming it's a PUT request
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          branch_id: branch.branch_id,
+          is_active: newStatus
+        })
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to update branch status');
+      }
+
+      // If API call is successful, update local state
+      updatedBranches[index].is_active = newStatus;
+      setBranches(updatedBranches);  // Update the state in the parent component
+
+    } catch (error) {
+      console.error("Error updating branch status:", error);
+      // Optionally, show an error message to the user
+    }
   };
 
   return (
@@ -24,18 +51,18 @@ const BranchTable = ({ branches, setBranches }) => {
           </thead>
           <tbody>
             {branches.map((branch, index) => (
-              <tr key={branch.id || index} className={branch.isDeleted ? 'deleted' : ''}>
+              <tr key={branch.id || index} className={branch.is_active ? '' : 'deleted'}>
                 <td>{index + 1}</td>
                 <td>{branch.branch_name}</td>
                 <td>{branch.student_count}</td>
                 <td>{branch.subject_count}</td>
                 <td>
                   <button
-                    className={`delete-btn ${branch.isDeleted ? 'restore-btn' : 'delete-btn'}`}
+                    className={`delete-btn ${!branch.is_active ? 'restore-btn' : 'delete-btn'}`}
                     onClick={() => handleDelete(index)}
-                    aria-label={branch.isDeleted ? 'Restore Branch' : 'Delete Branch'}
+                    aria-label={branch.is_active ? 'Delete Branch' : 'Restore Branch'}
                   >
-                    {branch.isDeleted ? 'Restore' : 'Delete'}
+                    {branch.is_active ? 'Delete' : 'Restore'}
                   </button>
                 </td>
               </tr>

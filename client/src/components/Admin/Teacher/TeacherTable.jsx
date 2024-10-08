@@ -41,6 +41,7 @@ const TeacherTable = ({ teachers, setTeachers }) => {
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
+            <th className="hide">UserId</th>
             <th>View</th>
             <th>Action</th>
           </tr>
@@ -55,8 +56,9 @@ const TeacherTable = ({ teachers, setTeachers }) => {
                 <td>{teacher.name}</td>
                 <td>{teacher.email}</td>
                 <td>{teacher.password}</td>
+                <td className="hide">{teacher.userId}</td>
                 <td>
-                  <Link to={`/admin/teacher-profile/${teacher.user_id}`}>
+                  <Link to={`/admin/teacher-profile/${teacher.userId}`}>
                     <button 
                       className="view-btn" 
                       disabled={isDeleted} 

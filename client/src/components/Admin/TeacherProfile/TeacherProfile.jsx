@@ -15,8 +15,6 @@ const TeacherProfile = () => {
     name: 'John Doe',
     designation: 'Assistant Professor',
     subjects: 'Mathematics, Physics',
-    email: 'john.doe@example.com',
-    password: '********',
     contact: '1234567890'
   });
 
@@ -41,8 +39,6 @@ const TeacherProfile = () => {
               <p><strong>Name:</strong> {teacher.name}</p>
               <p><strong>Designation:</strong> {teacher.designation}</p>
               <p><strong>Subjects:</strong> {teacher.subjects}</p>
-              <p><strong>Email Id:</strong> {teacher.email}</p>
-              <p><strong>Password:</strong> {teacher.password}</p>
               <p><strong>Contact No.:</strong> {teacher.contact}</p>
               <button className="edit-button" onClick={handleEdit}>Edit</button>
             </div>

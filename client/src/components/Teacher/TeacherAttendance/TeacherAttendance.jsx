@@ -106,7 +106,7 @@ const TeacherAttendance = () => {
             min="0"
           />
         </div>
-
+        <span className="teacher-total-lecture">Total Lecture: 10</span>
         {/* Pass the fetched students list to AttendanceTable */}
         <AttendanceTable students= {studentList} />
       </div>
