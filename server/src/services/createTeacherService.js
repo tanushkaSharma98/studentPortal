@@ -1,23 +1,12 @@
 const createTeacherModel = require('../models/createTeacherModel');
 
-exports.createTeacher = async ( name, email, password, designation, contactNo, subjects ) => {
+exports.createTeacher = async (name, email, password, designation, contactNo, subjects) => {
   try {
-    // Validate request data
-    if (!name || !email || !password || !designation || !contactNo || !Array.isArray(subjects) || subjects.length === 0) {
-      throw new Error('All fields are required, and subjects must be an array with at least one subject.');
-    }
-
     // Create a new user with user_type 2 (for teacher)
-    const userId = await createTeacherModel.createUser( email, password );
+    const userId = await createTeacherModel.createUser(email, password);
 
     // Create a new teacher in the teacher table
-    const teacherId = await createTeacherModel.createTeacher(
-      name,
-      designation,
-      userId,
-      subjects,
-      contactNo
-    );
+    const teacherId = await createTeacherModel.createTeacher(name, designation, userId, contactNo);
 
     // Insert teacher and subject mappings in subject_teacher table
     for (const subjectNameWithCode of subjects) {
@@ -33,7 +22,7 @@ exports.createTeacher = async ( name, email, password, designation, contactNo, s
 
     return { message: 'Teacher created successfully', teacherId };
   } catch (error) {
-    console.error('Error creating teacher:', error); // Log the actual error
-    throw new Error('Failed to create teacher: ' + error.message); // Include the specific error message
+    console.error('Error creating teacher:', error);
+    throw new Error('Failed to create teacher: ' + error.message);
   }
 };

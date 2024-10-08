@@ -1,5 +1,5 @@
 const sequelize = require('../config/dbConfig');
-const { secretKey } = require('../config/config.js'); // Assuming JWT_SECRET is in config.js
+const { secretKey } = require('../config/config.js');
 
 // Create a new user in the users table with encrypted password and user_type set to 2 (for teacher)
 exports.createUser = async (email, password) => {
@@ -27,18 +27,15 @@ exports.createUser = async (email, password) => {
   }
 };
 
-// Create a new teacher in the teacher table and assign multiple subjects
-exports.createTeacher = async ( name, designation, userId, subjects, contactNo ) => {
-
+// Create a new teacher in the teacher table
+exports.createTeacher = async (name, designation, userId, contactNo) => {
   try {
-    
-    // Insert the teacher record into the teacher table
     const teacherQuery = `
       INSERT INTO teacher (teacher_name, designation, user_id, contact_no)
       VALUES (:name, :designation, :userId, :contactNo)
       RETURNING teacher_id;
     `;
-    
+
     const teacherResult = await sequelize.query(teacherQuery, {
       replacements: { name, designation, userId, contactNo },
       type: sequelize.QueryTypes.INSERT
@@ -54,12 +51,11 @@ exports.createTeacher = async ( name, designation, userId, subjects, contactNo )
 // Get subject_id by subject_code
 exports.getSubjectIdByCode = async (subjectNameWithCode) => {
   try {
-    // Split the input to extract the subject code
-    const subjectCode = subjectNameWithCode.match(/\(([^)]+)\)/); // Extract the code inside parentheses
-    if (!subjectCode) {
-      throw new Error('Invalid subject format');
+    const subjectCodeMatch = subjectNameWithCode.match(/\(([^)]+)\)/); // Extract code inside parentheses
+    if (!subjectCodeMatch) {
+      throw new Error('Invalid subject format, expected format "Subject Name (code)"');
     }
-    const code = subjectCode[1]; // Get the extracted code
+    const code = subjectCodeMatch[1]; // Extracted code
 
     const query = 'SELECT subject_id FROM subject WHERE subject_code = :subjectCode';
     const result = await sequelize.query(query, {
