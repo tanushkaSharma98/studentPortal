@@ -58,11 +58,11 @@ const BranchTable = ({ branches, setBranches }) => {
                 <td>{branch.subject_count}</td>
                 <td>
                   <button
-                    className={`delete-btn ${!branch.is_active ? 'restore-btn' : 'delete-btn'}`}
+                    className={`delete-btn ${!branch.is_active ? 'add-btn' : 'delete-btn'}`}
                     onClick={() => handleDelete(index)}
                     aria-label={branch.is_active ? 'Delete Branch' : 'Restore Branch'}
                   >
-                    {branch.is_active ? 'Delete' : 'Restore'}
+                    {branch.is_active ?  '✗' : '✓' }
                   </button>
                 </td>
               </tr>

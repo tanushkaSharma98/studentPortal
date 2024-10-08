@@ -1,11 +1,12 @@
 const express = require('express');
-const { getTeacherCount,  updateTeacherIsActive } = require('../controllers/teacherManagementController')
+const { getTeacherCount, getTeacherProfile, updateTeacherIsActive } = require('../controllers/teacherManagementController')
 const { getAllTeachers, getTeachersByBranchAndSemester, searchTeachersByName } = require('../controllers/adminTeacherlistController');
 const createTeacherController = require('../controllers/createTeacherController');
 const router = express.Router();
 
 router.get('/count', getTeacherCount);
 router.put('/update', updateTeacherIsActive);
+router.get('/profile/:userId', getTeacherProfile);
 
 router.get('/', getAllTeachers);
 

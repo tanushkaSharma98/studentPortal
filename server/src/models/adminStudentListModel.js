@@ -40,7 +40,7 @@ exports.getStudentsByBranchAndSemester = async (branchName, semester) => {
     const branchId = branchResult[0].branch_id;
 
     const studentQuery = `
-      SELECT s.student_name, s.enrollment_no, u.email, 
+      SELECT s.student_name, s.enrollment_no, u.email,  u.user_id, u.is_active,
              pgp_sym_decrypt(u.password::bytea, :secretKey) AS decrypted_password
       FROM student s
       JOIN users u ON s.user_id = u.user_id
@@ -61,7 +61,7 @@ exports.getStudentsByBranchAndSemester = async (branchName, semester) => {
 // Search students by name
 exports.searchStudentsByName = async (name) => {
   const query = `
-    SELECT s.student_name, s.enrollment_no, u.email, 
+    SELECT s.student_name, s.enrollment_no, u.email, u.user_id, u.is_active, 
            pgp_sym_decrypt(u.password::bytea, :secretKey) AS decrypted_password
     FROM student s
     JOIN users u ON s.user_id = u.user_id

@@ -8,7 +8,7 @@ const AttendanceRecord = () => {
     <div className='tea-atten'>
        <Header />
        <div className="attendance-container">
-        <Link to="/admin/teacher-profile">
+        <Link to="/admin/teacher-profile/:userId">
             <button className="back-button">←</button>
         </Link>
       <h2 className="attendance-title">ATTENDANCE RECORD</h2>

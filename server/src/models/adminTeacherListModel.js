@@ -26,7 +26,7 @@ exports.getAllTeachers = async () => {
 // Fetch teachers by branch and semester
 exports.getTeachersByBranchAndSemester = async (branchName, semester) => {
   const query = `
-    SELECT t.teacher_name, u.email, 
+    SELECT t.teacher_name, u.email,  u.is_active, u.user_id,
            pgp_sym_decrypt(u.password::bytea, :secretKey) AS decrypted_password
     FROM teacher t
     JOIN users u ON t.user_id = u.user_id
@@ -56,7 +56,7 @@ exports.getTeachersByBranchAndSemester = async (branchName, semester) => {
 // Search teachers by name
 exports.searchTeachersByName = async (name) => {
   const query = `
-    SELECT t.teacher_name, u.email, 
+    SELECT t.teacher_name, u.email,  u.is_active, u.user_id,
            pgp_sym_decrypt(u.password::bytea, :secretKey) AS decrypted_password
     FROM teacher t
     JOIN users u ON t.user_id = u.user_id

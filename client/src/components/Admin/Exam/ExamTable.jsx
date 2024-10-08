@@ -94,7 +94,7 @@ const ExamTable = () => {
                   className={`delete-btn ${!exam.is_active ? 'add-btn' : ''}`}
                   onClick={() => handleDelete(index)}
                 >
-                  {!exam.is_active ? 'Restore' : 'Delete'}
+                  {!exam.is_active ? '✓' : '✗'}
                 </button>
               </td>
             </tr>
