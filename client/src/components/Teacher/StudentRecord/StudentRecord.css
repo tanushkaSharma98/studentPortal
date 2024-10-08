@@ -3,7 +3,7 @@
     position: relative;
     width: 100%;
     margin: 20px auto;
-    padding-left: 7%;
+    padding-left: 4%;
     box-sizing: border-box;
     margin-bottom: 60px;
 }
@@ -12,7 +12,7 @@
 .teacher-TopButtons {
     display: flex;
     justify-content: space-between; /* Space between left and right sections */
-    width: 128%;
+    width: 100%;
     margin-bottom: 20px;
    
 }
@@ -27,12 +27,9 @@
 
 /* Right section for Marks Dropdown and Total Lecture */
 .teacher-MarksDropdown {
-    display: flex;
-    /* flex-direction: row; Stack items vertically */
-    align-items: center;
-    /* margin-left: auto; Pushes this section to the right */
-    /* gap: 10px; Adds spacing between items */
+
 }
+
 
 /* Subject and Marks Dropdown styling */
 .portalselect {
@@ -51,23 +48,35 @@
 /* Record details styling */
 .teacher-RecordDetails {
     display: flex;
-    justify-content: space-between; /* Space between the two items */
-    align-items: center; /* Center align items vertically */
+    /* justify-content: space-between; Space between the two items */
+    align-items: left; /* Center align items vertically */
     margin-top: 20px; /* Adjusted margin to fit the layout better */
 }
 
 /* Updated Last styling */
-.teacher-Updated-Last {
-    text-align: left; /* Aligns text to the left */
+/* Record details styling */
+.teacher-RecordDetails {
+    display: flex;
+    justify-content: space-between; /* Space between "Updated Last" and "Total Lecture" */
+    align-items: center; /* Center align items vertically */
+    margin-top: auto; /* Adjusted margin to fit the layout better */
+    width: 100%; /* Ensure the div takes the full width */
+    padding-right: 4%; /* Adjust as needed to move "Total Lecture" more towards the right */
+}
+
+/* Updated Last styling */
+.teacher-UpdatedLast {
+    font-weight: 700;
+    font-size: larger;
 }
 
 /* Total Lecture styling */
 .teacher-TotalLecture {
-    text-align: right; /* Aligns text to the right */
     font-weight: 700;
     font-size: larger;
-    margin-right: -28%; /* Removed the negative margin */
+    text-align: right; /* Align text to the right */
 }
+
 .portalselect option{
     background-color:#ddd ;
     color: black;

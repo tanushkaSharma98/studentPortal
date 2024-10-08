@@ -44,7 +44,7 @@ const AttendanceTable = ({ students = [] }) => {
             <th>Name</th>
             <th>Enrollment No.</th>
             <th>Updated Attendance</th>
-            <th>%</th>
+            <th>Percent(%)</th>
           </tr>
         </thead>
         <tbody>

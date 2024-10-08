@@ -1,18 +1,18 @@
 /* Existing Table Styles */
 .teacher-student-record-table {
-    width: 133%;
-    margin: 30px auto;
+    width: 115%;
+    padding-top: 2%;
 }
 
 .teacher-student-record-table table {
-    width: 100%;
+    width: 87%;
     border-collapse: collapse;
     border: 1px solid #ddd;
 }
 
 .teacher-student-record-table th,
 .teacher-student-record-table td {
-    padding: 12px;
+    padding: 10px;
     text-align: center;
     border-left: 1px solid #ddd; /* Vertical line between columns */
 }
