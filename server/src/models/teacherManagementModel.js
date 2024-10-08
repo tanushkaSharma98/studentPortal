@@ -28,7 +28,7 @@ exports.updateTeacherStatus = async (user_id, is_active) => {
 
       return result;
   } catch (error) {
-      console.error('Error updating student status:', error);
-      throw new Error('Error updating student status');
+      console.error('Error updating teacher status:', error);
+      throw new Error('Error updating teacher status');
   }
 };

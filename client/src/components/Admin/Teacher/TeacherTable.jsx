@@ -15,8 +15,8 @@ const TeacherTable = ({ teachers, setTeachers }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          user_id,  // Ensure user_id is passed here
-          is_active: newIsActiveStatus,  // Send the toggled is_active status
+          user_id,  // Ensure user_id is passed correctly
+          is_active: newIsActiveStatus,  // Toggle is_active status
         }),
       });
 
@@ -41,24 +41,24 @@ const TeacherTable = ({ teachers, setTeachers }) => {
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
-            <th className="hide">UserId</th>
+            <th className="hide">User ID</th>
             <th>View</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           {teachers.map((teacher, index) => {
-            const isDeleted = !teacher.is_active; // Invert the condition, row is 'deleted' if is_active is false
+            const isDeleted = !teacher.is_active; // Row is 'deleted' if is_active is false
 
             return (
-              <tr key={index} className={isDeleted ? 'row-deleted' : ''}>
+              <tr key={teacher.user_id || index} className={isDeleted ? 'row-deleted' : ''}>
                 <td>{index + 1}</td>
                 <td>{teacher.name}</td>
                 <td>{teacher.email}</td>
                 <td>{teacher.password}</td>
-                <td className="hide">{teacher.userId}</td>
+                <td className="hide">{teacher.user_id}</td>
                 <td>
-                  <Link to={`/admin/teacher-profile/${teacher.userId}`}>
+                  <Link to={`/admin/teacher-profile/${teacher.user_id}`}>
                     <button 
                       className="view-btn" 
                       disabled={isDeleted} 
@@ -71,7 +71,7 @@ const TeacherTable = ({ teachers, setTeachers }) => {
                 <td>
                   <button 
                     className={`delete-btn ${isDeleted ? 'add-btn' : ''}`} 
-                    onClick={() => toggleTeacherStatus(teacher.user_id, teacher.is_active, index)} // Pass is_active state
+                    onClick={() => toggleTeacherStatus(teacher.user_id, teacher.is_active, index)}  // Pass is_active state correctly
                   >
                     {isDeleted ? '✓' : '✗'}
                   </button>
