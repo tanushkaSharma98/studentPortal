@@ -39,7 +39,7 @@ const StudentTable = ({ students = [] }) => {
             <th>Name</th>
             <th>Enrollment No.</th>
             <th>Marks Obtained</th>
-            <th>%</th>
+            <th>Percent(%)</th>
           </tr>
         </thead>
         <tbody>
