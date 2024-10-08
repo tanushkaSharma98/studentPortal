@@ -10,8 +10,7 @@
 .teacher-dashboard {
   display: flex;
   min-height: 100vh; /* Full viewport height */
-  border: 1px solid var(--border-color);
-}
+  border: 1px solid var(--border-color);}
 
 .teacher-content {
   flex: 1; /* Allow content to take remaining width after sidebar */

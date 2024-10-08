@@ -97,16 +97,20 @@
   width: 169px;
   font-size: 14px;
 }
+.teacher-record-details-div {
+  display: flex;
+  justify-content: space-between; /* Aligns Updated Last to the left and Total Lecture to the right */
+  align-items: center; /* Centers items vertically */
+  width: 100%;
+  padding-bottom: 1%; /* Add some margin to create spacing from the other elements */
+}
+
 
 /* Align Total Lecture to the right */
-.teacher-total-lecture-div {
-  position: absolute;
-  right: 0;
-  top: 0;
+.teacher-total-lecture {
   font-weight: 700;
   font-size: larger;
-  white-space: nowrap;
-  margin-right: -30%;
+  text-align: right;
 }
 
 /* Add spacing between inputs */
