@@ -1,0 +1,72 @@
+.st-atten{
+    margin-top: 50px;
+}
+.stattendance-container {
+    padding: 20px;
+    background-color: #e6f0ff;
+  }
+  
+  .stattendance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .stattendance-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 auto;
+    padding: 2%;
+  }
+  
+  .stattendance-accordion {
+    background-color: #e8cfd8;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    border-radius: 5px;
+  }
+  
+  .stattendance-accordion-header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background-color: rgb(250, 200, 219);
+  }
+  
+  .stattendance-accordion-arrow {
+    font-size: 18px;
+  }
+  
+  .stattendance-accordion-content {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .stattendance-details {
+    flex: 1;
+  }
+  
+  .stattendance-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stattendance-percentage p {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .stattendance-bar-chart {
+    margin-top: 30px;
+  }
+  
+  .stattendance-bar-chart h3 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
