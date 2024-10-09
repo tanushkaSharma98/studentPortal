@@ -47,7 +47,7 @@ function App() {
       {!isAdminRoute && (
         <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       )}
-      <div style={{ paddingTop: isAdminRoute ? '0' : '60px' }}>
+      <div>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/login" element={<Login />} />
