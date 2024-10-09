@@ -54,7 +54,7 @@ const StudentProfile = () => {
   const handleSave = async () => {
     try {
       const token = localStorage.getItem('token'); // Get token from local storage
-      const response = await axios.post('http://localhost:3000/api/admin/students/edit', {
+      const response = await axios.put('http://localhost:3000/api/admin/students/edit', {
         user_id: userId,
         student_name: student.name,
         enrollment_no: student.enrollment,
