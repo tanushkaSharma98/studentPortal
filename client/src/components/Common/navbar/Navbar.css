@@ -1,5 +1,5 @@
 .snav {
-  padding:0.7%;
+  padding: 0.7%;
   background-color: rgb(92, 120, 238);
   color: white;
   position: fixed;
@@ -47,14 +47,26 @@
   margin-right: 3%; /* Pushes the profile image to the far right */
 }
 
-/* Position the logout/login button below the profile image */
-.slogout-button, .slogin-button {
+/* Dropdown menu styles */
+.dropdown-menu {
   position: absolute;
-  top: 40px; /* Adjust based on your design */
+  top: 40px; /* Position below the profile image */
   right: 0;
-  display: none; /* Hide by default */
+  background-color: white;
+  color: black;
+  border-radius: 10px; /* Smooth rounded corners */
+  padding: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Slightly increased shadow */
+  z-index: 1001; /* Above the navbar */
+  width: 200px; /* Adjusted width for better spacing */
 }
 
+.username {
+  margin: 0 0 10px;
+  font-weight: bold;
+}
+
+/* Button styles */
 .snavbutton {
   padding: 10px 20px;
   background-color: #007bff;
@@ -62,16 +74,23 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  width: 100%; /* Full width */
+  text-align: center;
 }
 
-/* Show the button when `showLogout` is true */
-.slogout-button {
-  display: block; /* Override to show the button when it should be displayed */
+.snavbutton:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight scale-up on hover */
 }
 
+/* Specific styles for Login button */
 .slogin-button {
-  display: inline-block; /* Keep login button inline */
+  background-color:#007bff; /* Dark blue color for login button */
+}
+
+.slogin-button:hover {
+  background-color: #0056b3; /* Darker green on hover */
 }
 .icon1 {
   width: 24px;    /* Increased size */
@@ -95,4 +114,29 @@
   margin-right: 8px;  /* Space between the icon and text */
   vertical-align: middle;
   vertical-align: text-top;
+} 
+/* Media query for screens with a width of 768px or smaller */
+@media (max-width: 768px) {
+  .sli:not(.snavprofile-container) {
+    display: none; /* Hide all links except the profile image */
+  }
+
+  /* When showLinks is true, show the links */
+  .show-links .sli {
+    display: block; /* Show all the links on profile click */
+  }
+
+  .sul {
+    flex-direction: column; /* Stack links vertically */
+    align-items: center; /* Center align the links */
+  }
+
+  .snavprofile-img {
+    height: 35px; /* Adjust the profile image size */
+    cursor: pointer;
+  }
+
+  .snavprofile-container {
+    margin-left: auto;
+  }
 }

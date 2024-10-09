@@ -104,7 +104,7 @@ const TeacherAttendance = () => {
       } else if (error.request) {
         // Request was made but no response was received
         console.error('No response received from the server:', error.request);
-        alert('Failed to upload attendance: No response from server');
+        //alert('Failed to upload attendance: No response from server');
       } else {
         // Something else went wrong
         console.error('Error in uploading attendance:', error.message);
