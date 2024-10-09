@@ -3,51 +3,53 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  min-height: 100vh; /* Use full height of the viewport */
+  min-height: 100vh; /* Full height of the viewport */
   position: relative;
   padding-bottom: 12%;
-  padding: 10px; /* Add some padding for small screens */
+  padding: 10px; /* Padding for smaller screens */
 }
 
 /* Back button styles */
 .Backbtn {
   position: absolute;
-  top: 15px; 
-  left: 20px; 
-  padding: 5px; 
-} 
+  top: 15px;
+  left: 20px;
+  padding: 5px;
+}
 
 .Back-button {
   background: none;
   border: none;
-  font-size: 2rem; /* Adjust size */
-  cursor: pointer; 
-} 
+  font-size: 2rem; /* Adjusted for responsiveness */
+  cursor: pointer;
+}
 
+/* Attendance details container */
 .Attendance-Details {
   margin-top: 20px;
-  display: flex; /* Use flexbox to align items */
-  flex-direction: column; /* Stack items on smaller screens */
-  align-items: center; /* Center items horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  width: 90%; /* Full width for smaller screens, adjust for larger ones */
+  width: 90%; /* Full width for smaller screens */
   font-size: 1.2rem; /* Adjust text size */
   font-weight: bold;
 }
 
+/* Container for attendance content */
 .student-attendance-container {
-  width: 90%; /* Use a flexible width */
-  margin-top: 20px; /* Space between elements */
+  width: 60%; /* Flexible width */
+  margin-top: 20px;
 }
 
 /* Attendance table styles */
 .Attendance-Table {
-  width: 100%; /* Table takes full container width */
+  width: 100%; /* Full width for the table */
   margin-top: 20px;
-  border-collapse: collapse;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
+  border-collapse: collapse; /* No gaps between borders */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow */
+  border-radius: 8px; /* Rounded corners */
+  overflow: hidden; /* Prevent overflow */
 }
 
 .Attendance-Table th,
@@ -66,7 +68,7 @@
   color: #333;
 }
 
-/* Larger font for subject name */
+/* Subject name */
 .Sub1 {
   font-size: 1.5rem;
   font-weight: bold;
@@ -74,10 +76,10 @@
   text-align: left;
 }
 
-/* Media query for laptops with smaller screens */
+/* Media query for laptops */
 @media (max-width: 1200px) {
   .Attendance-Details {
-    width: 80%; /* Reduce width on smaller laptops */
+    width: 70%; /* Reduced width */
     font-size: 1rem;
   }
 
@@ -90,14 +92,14 @@
   }
 }
 
-/* Media query for smaller laptops and tablets */
+/* Media query for tablets and smaller laptops */
 @media (max-width: 1024px) {
   .Daily {
-    padding-bottom: 15%;
+    padding-bottom: 15%; /* Extra padding */
   }
 
   .Attendance-Details {
-    width: 95%;
+    width: 95%; /* Increased width */
     font-size: 0.9rem;
   }
 
@@ -107,13 +109,63 @@
   }
 }
 
+/* Mobile responsiveness */
 @media (max-width: 768px) {
   .Back-button {
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* Smaller back button */
   }
 
   .Attendance-Table th,
   .Attendance-Table td {
-    font-size: 0.7rem;
+    font-size: 0.7rem; /* Smaller font size */
+  }
+}
+
+/* For small phones */
+@media (max-width: 600px) {
+  .Attendance-Details {
+    font-size: 0.8rem; /* Smaller text size */
+    width: 100%; /* Full width */
+  }
+
+  .student-attendance-container {
+    width: 100%; /* Full width for smaller devices */
+  }
+
+  .Attendance-Table th,
+  .Attendance-Table td {
+    font-size: 0.6rem; /* Smaller font size */
+  }
+
+  .Sub1 {
+    font-size: 1.2rem; /* Reduced subject font size */
+  }
+
+  .Daily {
+    padding-bottom: 20%; /* More bottom padding */
+  }
+
+  .Back-button {
+    font-size: 1.2rem; /* Smaller font size */
+  }
+}
+
+/* For extra small screens */
+@media (max-width: 480px) {
+  .Attendance-Details {
+    font-size: 0.7rem; /* Smallest text size */
+  }
+
+  .Attendance-Table th,
+  .Attendance-Table td {
+    font-size: 0.5rem; /* Tiny font size for small phones */
+  }
+
+  .Sub1 {
+    font-size: 1rem;
+  }
+
+  .Back-button {
+    font-size: 1rem;
   }
 }

@@ -2,7 +2,8 @@ const express = require('express');
 const { getStudentMarks, getStudentPerformance } = require('../controllers/adminStudentMarksController');
 const { getStudentCount, getStudentProfile, updateStudentIsActive } = require('../controllers/studentManagementController')
 const { getAllStudents, getStudentsByBranchAndSemester, searchStudentsByName } = require('../controllers/adminStudentListController');
-const createStudentController = require('../controllers/createStudentController');
+const {createStudent} = require('../controllers/createStudentController');
+const  {updateStudentDetails} = require('../controllers/updateStudentDetailsController');
 
 const router = express.Router();
 
@@ -14,10 +15,10 @@ router.get('/search', searchStudentsByName);
 router.put('/update', updateStudentIsActive);
 
 router.get('/profile/:userId', getStudentProfile);
-
+router.put('/edit', updateStudentDetails);
 router.get('/Marks/:userId/:subjectId/:examId' , getStudentMarks);
 router.get('/marksPerformance/:userId', getStudentPerformance);
 
-router.post('/create', createStudentController.createStudent);
+router.post('/create', createStudent);
 
 module.exports = router;
