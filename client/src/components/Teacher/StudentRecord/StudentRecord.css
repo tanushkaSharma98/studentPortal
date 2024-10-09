@@ -27,7 +27,7 @@
 
 
 /* Subject and Marks Dropdown styling */
-.portalselect {
+.PortalSelect {
     padding: 10px 15px;
     border: none;
     background-color: #35393b; /* Dark gray background for the dropdown */
@@ -72,7 +72,7 @@
     text-align: right; /* Align text to the right */
 }
 
-.portalselect option{
+.PortalSelect option{
     background-color:#ddd ;
     color: black;
 }

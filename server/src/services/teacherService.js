@@ -30,11 +30,11 @@ exports.uploadAttendance = async (subjectCode, lecture, attendanceDate, attendan
         if (!studentId) {
           return { success: false, error: `Student with enrollment number ${enrollmentNo} not found` };
         }
-  
+          
         // Ensure the attendanceRecordId is defined before calling insertAttendanceRecord
-        if (!attendanceRecordId) {
-          return { success: false, error: 'Attendance record ID is not valid' };
-        }
+        // if (!attendanceRecordId) {
+        //   return { success: false, error: 'Attendance record ID is not valid' };
+        // }
   
         await attendanceModel.insertAttendanceRecord(studentId, attendanceRecordId, attendance, subjectId);
       }

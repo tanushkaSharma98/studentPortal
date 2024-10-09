@@ -3,84 +3,169 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  height: 93vh; /* Full height of the viewport */
-  position: relative; /* Allows positioning of the back button */
+  min-height: 100vh; /* Full height of the viewport */
+  position: relative;
+  padding-bottom: 12%;
+  padding: 10px; /* Padding for smaller screens */
 }
 
 /* Back button styles */
 .Backbtn {
   position: absolute;
-  top: 15px; 
-  left: 20px; 
-  padding: 5px; 
-} 
+  top: 15px;
+  left: 20px;
+  padding: 5px;
+}
 
 .Back-button {
   background: none;
   border: none;
-  margin-top: -12%;
-  font-size: 40px;
-  cursor: pointer; 
-} 
+  font-size: 2rem; /* Adjusted for responsiveness */
+  cursor: pointer;
+}
 
+/* Attendance details container */
 .Attendance-Details {
-  padding-top: 20px;
-  display: flex; /* Use flexbox to align items */
-  align-items: center; /* Center items vertically */
-  justify-content: space-between; /* Distribute items evenly with space between */
-  width: 60%; /* Take full width */
-  font-size: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%; /* Full width for smaller screens */
+  font-size: 1.2rem; /* Adjust text size */
   font-weight: bold;
+}
+
+/* Container for attendance content */
+.student-attendance-container {
+  width: 60%; /* Flexible width */
+  margin-top: 20px;
 }
 
 /* Attendance table styles */
 .Attendance-Table {
-  margin-top: 20px; /* Space between the attendance details and the table */
-  width: 80%; /* Adjust width as needed */
-  border-collapse: collapse; /* Combine borders */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  width: 100%; /* Full width for the table */
+  margin-top: 20px;
+  border-collapse: collapse; /* No gaps between borders */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow */
   border-radius: 8px; /* Rounded corners */
-  overflow: hidden; /* Clip corners */
+  overflow: hidden; /* Prevent overflow */
 }
 
 .Attendance-Table th,
 .Attendance-Table td {
-  border: 1px solid #ddd; /* Border for table cells */
-  padding: 12px; /* Padding inside cells */
-  text-align: center; /* Center align text */
+  padding: 10px;
+  text-align: center;
 }
 
 .Attendance-Table th {
-  background-color: #363b36; /* Green background color for header */
-  color: white; /* White text color for header */
-  font-weight: bold; /* Make header text bold */
-  font-size: 1.2rem;
-}
-
-.Attendance-Table tr:nth-child(even) {
-  background-color: #f2f2f2; /* Zebra stripes for even rows */
-}
-
-.Attendance-Table tr:hover {
-  background-color: #ddd; /* Highlight row on hover */
-  cursor: pointer; /* Pointer cursor on hover */
+  background-color: #363b36; /* Dark header background */
+  color: white;
+  font-size: 1rem;
 }
 
 .Attendance-Table td {
-  color: #333; /* Dark text color for table cells */
+  color: #333;
 }
 
-/* Add margin between the two tables */
-.Second-Table {
-  margin-top: 20px; /* Space between the first and second table */
-}
-
+/* Subject name */
 .Sub1 {
-  font-size: 25px;
+  font-size: 1.5rem;
   font-weight: bold;
-  padding-top: 30px;
-  padding-left: 0; /* Changed to 0 for better alignment */
-  padding-right: 0; /* Changed to 0 for better alignment */
-  padding-bottom: 0; /* No padding bottom */
-  text-align: left; /* Align text to the left for better readability */
+  margin-top: 10px;
+  text-align: left;
+}
+
+/* Media query for laptops */
+@media (max-width: 1200px) {
+  .Attendance-Details {
+    width: 70%; /* Reduced width */
+    font-size: 1rem;
+  }
+
+  .Attendance-Table th {
+    font-size: 0.9rem;
+  }
+
+  .Attendance-Table td {
+    font-size: 0.9rem;
+  }
+}
+
+/* Media query for tablets and smaller laptops */
+@media (max-width: 1024px) {
+  .Daily {
+    padding-bottom: 15%; /* Extra padding */
+  }
+
+  .Attendance-Details {
+    width: 95%; /* Increased width */
+    font-size: 0.9rem;
+  }
+
+  .Attendance-Table th,
+  .Attendance-Table td {
+    font-size: 0.8rem;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .Back-button {
+    font-size: 1.5rem; /* Smaller back button */
+  }
+
+  .Attendance-Table th,
+  .Attendance-Table td {
+    font-size: 0.7rem; /* Smaller font size */
+  }
+}
+
+/* For small phones */
+@media (max-width: 600px) {
+  .Attendance-Details {
+    font-size: 0.8rem; /* Smaller text size */
+    width: 100%; /* Full width */
+  }
+
+  .student-attendance-container {
+    width: 100%; /* Full width for smaller devices */
+  }
+
+  .Attendance-Table th,
+  .Attendance-Table td {
+    font-size: 0.6rem; /* Smaller font size */
+  }
+
+  .Sub1 {
+    font-size: 1.2rem; /* Reduced subject font size */
+  }
+
+  .Daily {
+    padding-bottom: 20%; /* More bottom padding */
+  }
+
+  .Back-button {
+    font-size: 1.2rem; /* Smaller font size */
+  }
+}
+
+/* For extra small screens */
+@media (max-width: 480px) {
+  .Attendance-Details {
+    font-size: 0.7rem; /* Smallest text size */
+  }
+
+  .Attendance-Table th,
+  .Attendance-Table td {
+    font-size: 0.5rem; /* Tiny font size for small phones */
+  }
+
+  .Sub1 {
+    font-size: 1rem;
+  }
+
+  .Back-button {
+    font-size: 1rem;
+  }
 }

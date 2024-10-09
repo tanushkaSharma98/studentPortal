@@ -77,9 +77,9 @@ return (
     <div className="teacher-attendanceContainer">
       <div className="teacher-TopButtons">
         {/* Subject Dropdown */}
-        <div className="teacher-subject-dropdown">
+        <div className="teacherSub-Dropdown">
         <select
-          className='portalselect'
+          className='PortalSelect'
             value={selectedSubject}
             onChange={(e) => handleSubjectChange(e.target.value)}
           >
@@ -101,8 +101,8 @@ return (
 
 
         {/* Marks Below Dropdown */}
-        <div className="teacher-MarksDropdown">
-          <select className='portalselect' value={selectedMarksBelow} onChange={handleMarksBelowChange}>
+        <div className="teacherMarks-Dropdown">
+          <select className='PortalSelect' value={selectedMarksBelow} onChange={handleMarksBelowChange}>
             <option value="">Marks below</option>
             <option value="Below 10">Below 10</option>
             <option value="Below 20">Below 20</option>
