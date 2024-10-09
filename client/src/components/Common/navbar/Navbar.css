@@ -73,11 +73,26 @@
 .slogin-button {
   display: inline-block; /* Keep login button inline */
 }
-.icon {
+.icon1 {
   width: 24px;    /* Increased size */
-  height: 24px;
+  height: 22px;
   margin-right: 8px;  /* Space between the icon and text */
   vertical-align: middle;
   vertical-align: text-top;
 }
 
+.icon {
+  width: 26px;    /* Increased size */
+  height: 25px;
+  margin-right: 8px;  /* Space between the icon and text */
+  vertical-align: middle;
+  vertical-align: text-top;
+}
+
+.icon2 {
+  width: 24px;    /* Increased size */
+  height: 19px;
+  margin-right: 8px;  /* Space between the icon and text */
+  vertical-align: middle;
+  vertical-align: text-top;
+}

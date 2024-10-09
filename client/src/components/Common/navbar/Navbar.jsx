@@ -3,6 +3,10 @@ import { Link as ScrollLink } from 'react-scroll'; // For smooth scrolling
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'; // For routing
 import './Navbar.css'; // Import the CSS file
 import profile from '/src/assets/AdminHeader/profileadmin.jpg'
+import account from '/src/assets/Navbar_icon/admin-panel.png'
+import contact from '/src/assets/Navbar_icon/contact.png'
+import home from '/src/assets/Navbar_icon/home-page-white-icon.webp'
+import info from '/src/assets/Navbar_icon/informationicon.webp'
 
 const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
   const location = useLocation(); // Get the current path
@@ -45,6 +49,11 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
         {isHomePage && (
           <li className="sli">
             <RouterLink to="/admin/admin-login" className="snav-link">
+            <img 
+                src={account}
+                alt="Home Icon" 
+                className="icon" 
+              />
               Admin Login
             </RouterLink>
           </li>
@@ -54,18 +63,18 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
           {isHomePage ? (
             <ScrollLink to="top" smooth={true} duration={500} className="snav-link">
               <img 
-                src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" 
+                src={home} 
                 alt="Home Icon" 
-                className="icon" 
+                className="icon1" 
               />
               Home
             </ScrollLink>
           ) : (
             <RouterLink to="/" className="snav-link">
               <img 
-                src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" 
+                src={home}
                 alt="Home Icon" 
-                className="icon" 
+                className="icon1" 
               />
               Home
             </RouterLink>
@@ -76,18 +85,18 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
           {isHomePage ? (
             <ScrollLink to="about-us" smooth={true} duration={500} className="snav-link">
               <img 
-                src="https://uxwing.com/wp-content/themes/uxwing/download/signs-and-symbols/round-information-white-icon.png" 
+                src={info} 
                 alt="About Us Icon" 
-                className="icon" 
+                className="icon1" 
               />
               About Us
             </ScrollLink>
           ) : (
             <RouterLink to="/about-us" className="snav-link">
               <img 
-                src="https://uxwing.com/wp-content/themes/uxwing/download/signs-and-symbols/round-information-white-icon.png" 
+                src={info} 
                 alt="About Us Icon" 
-                className="icon" 
+                className="icon1" 
               />
               About Us
             </RouterLink>
@@ -98,18 +107,18 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
           {isHomePage ? (
             <ScrollLink to="contact" smooth={true} duration={500} className="snav-link">
               <img 
-                src="https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/phone-ringing-white-icon.png" 
+                src={contact}
                 alt="Contact Icon" 
-                className="icon" 
+                className="icon2" 
               />
               Contact
             </ScrollLink>
           ) : (
             <RouterLink to="/contact" className="snav-link">
               <img 
-                src="https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/phone-ringing-white-icon.png" 
+                src={contact} 
                 alt="Contact Icon" 
-                className="icon" 
+                className="icon2" 
               />
               Contact
             </RouterLink>
