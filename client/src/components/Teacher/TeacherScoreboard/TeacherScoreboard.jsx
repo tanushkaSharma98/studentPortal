@@ -79,7 +79,7 @@ const TeacherScoreboard = () => {
         {/* Subject Dropdown */}
         <div className="teacher-subject-dropdown">
           <select
-            className='portalselect'
+            className='portal-select'
             value={selectedSubject}
             onChange={(e) => handleSubjectChange(e.target.value)}
           >
@@ -102,7 +102,7 @@ const TeacherScoreboard = () => {
         {/* Exam Dropdown */}
         <div className="teacher-exam-dropdown">
           <select
-            className='portalselect'
+            className='portal-select'
             value={selectedExam}
             onChange={(e) => handleExamSelect(e.target.value)}
           >
