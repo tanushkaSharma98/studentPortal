@@ -3,8 +3,10 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  height: 93vh; /* Full height of the viewport */
-  position: relative; /* Allows positioning of the back button */
+  min-height: 100vh; /* Use full height of the viewport */
+  position: relative;
+  padding-bottom: 12%;
+  padding: 10px; /* Add some padding for small screens */
 }
 
 /* Back button styles */
@@ -18,69 +20,100 @@
 .Back-button {
   background: none;
   border: none;
-  margin-top: -12%;
-  font-size: 40px;
+  font-size: 2rem; /* Adjust size */
   cursor: pointer; 
 } 
 
 .Attendance-Details {
-  padding-top: 20px;
+  margin-top: 20px;
   display: flex; /* Use flexbox to align items */
-  align-items: center; /* Center items vertically */
-  justify-content: space-between; /* Distribute items evenly with space between */
-  width: 60%; /* Take full width */
-  font-size: 20px;
+  flex-direction: column; /* Stack items on smaller screens */
+  align-items: center; /* Center items horizontally */
+  justify-content: center;
+  width: 90%; /* Full width for smaller screens, adjust for larger ones */
+  font-size: 1.2rem; /* Adjust text size */
   font-weight: bold;
+}
+
+.student-attendance-container {
+  width: 90%; /* Use a flexible width */
+  margin-top: 20px; /* Space between elements */
 }
 
 /* Attendance table styles */
 .Attendance-Table {
-  margin-top: 20px; /* Space between the attendance details and the table */
-  width: 80%; /* Adjust width as needed */
-  border-collapse: collapse; /* Combine borders */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
-  border-radius: 8px; /* Rounded corners */
-  overflow: hidden; /* Clip corners */
+  width: 100%; /* Table takes full container width */
+  margin-top: 20px;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .Attendance-Table th,
 .Attendance-Table td {
-  border: 1px solid #ddd; /* Border for table cells */
-  padding: 12px; /* Padding inside cells */
-  text-align: center; /* Center align text */
+  padding: 10px;
+  text-align: center;
 }
 
 .Attendance-Table th {
-  background-color: #363b36; /* Green background color for header */
-  color: white; /* White text color for header */
-  font-weight: bold; /* Make header text bold */
-  font-size: 1.2rem;
-}
-
-.Attendance-Table tr:nth-child(even) {
-  background-color: #f2f2f2; /* Zebra stripes for even rows */
-}
-
-.Attendance-Table tr:hover {
-  background-color: #ddd; /* Highlight row on hover */
-  cursor: pointer; /* Pointer cursor on hover */
+  background-color: #363b36; /* Dark header background */
+  color: white;
+  font-size: 1rem;
 }
 
 .Attendance-Table td {
-  color: #333; /* Dark text color for table cells */
+  color: #333;
 }
 
-/* Add margin between the two tables */
-.Second-Table {
-  margin-top: 20px; /* Space between the first and second table */
-}
-
+/* Larger font for subject name */
 .Sub1 {
-  font-size: 25px;
+  font-size: 1.5rem;
   font-weight: bold;
-  padding-top: 30px;
-  padding-left: 0; /* Changed to 0 for better alignment */
-  padding-right: 0; /* Changed to 0 for better alignment */
-  padding-bottom: 0; /* No padding bottom */
-  text-align: left; /* Align text to the left for better readability */
+  margin-top: 10px;
+  text-align: left;
+}
+
+/* Media query for laptops with smaller screens */
+@media (max-width: 1200px) {
+  .Attendance-Details {
+    width: 80%; /* Reduce width on smaller laptops */
+    font-size: 1rem;
+  }
+
+  .Attendance-Table th {
+    font-size: 0.9rem;
+  }
+
+  .Attendance-Table td {
+    font-size: 0.9rem;
+  }
+}
+
+/* Media query for smaller laptops and tablets */
+@media (max-width: 1024px) {
+  .Daily {
+    padding-bottom: 15%;
+  }
+
+  .Attendance-Details {
+    width: 95%;
+    font-size: 0.9rem;
+  }
+
+  .Attendance-Table th,
+  .Attendance-Table td {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .Back-button {
+    font-size: 1.5rem;
+  }
+
+  .Attendance-Table th,
+  .Attendance-Table td {
+    font-size: 0.7rem;
+  }
 }
