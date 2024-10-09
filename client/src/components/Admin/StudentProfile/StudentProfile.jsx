@@ -83,7 +83,7 @@ const StudentProfile = () => {
             <Link to="/admin/student-scoreboard">
               <button className="staction-button">View Marks</button>
             </Link>
-            <Link to="/admin/student-attendance">
+            <Link to="/admin/student-attendance/${userId}">
               <button className="staction-button">View Attendance</button>
             </Link>
           </div>

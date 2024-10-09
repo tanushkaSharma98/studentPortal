@@ -43,7 +43,7 @@ const Admin = () => {
       <Route path="/student-record" element={<StudentRecord />} />
       <Route path="/student-profile/:userId" element={<StudentProfile />} />
       <Route path="/student-scoreboard" element={<StudentScoreboard />} />
-      <Route path="/student-attendance" element={<StudentAttendance />} />
+      <Route path="/student-attendance/:userId" element={<StudentAttendance />} />
     </Routes>
   );
 };
