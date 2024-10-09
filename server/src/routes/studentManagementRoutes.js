@@ -4,6 +4,8 @@ const { getStudentCount, getStudentProfile, updateStudentIsActive } = require('.
 const { getAllStudents, getStudentsByBranchAndSemester, searchStudentsByName } = require('../controllers/adminStudentListController');
 const {createStudent} = require('../controllers/createStudentController');
 const  {updateStudentDetails} = require('../controllers/updateStudentDetailsController');
+const { getStudentAttendance, getStudentAttendanceTrend, getStudentDailyAttendance} = require('../controllers/adminStuAttenController');
+
 
 const router = express.Router();
 
@@ -18,6 +20,11 @@ router.get('/profile/:userId', getStudentProfile);
 router.put('/edit', updateStudentDetails);
 router.get('/Marks/:userId/:subjectId/:examId' , getStudentMarks);
 router.get('/marksPerformance/:userId', getStudentPerformance);
+
+// Route to get student attendance
+router.get('/attendance/:userId', getStudentAttendance);
+// Define the route for fetching attendance trend
+router.get('/attendance-trend', getStudentAttendanceTrend);
 
 router.post('/create', createStudent);
 
