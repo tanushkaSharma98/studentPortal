@@ -1,6 +1,8 @@
 .slogin-page {
   display: flex;
-  height: 89vh;
+  height: 95vh;
+  margin-top: 50px;
+  padding-top: 0;
   }
 
 /* Sidebar styling */
