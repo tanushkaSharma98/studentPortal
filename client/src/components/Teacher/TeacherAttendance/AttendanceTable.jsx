@@ -90,10 +90,14 @@
 // export default AttendanceTable;
 
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import './AttendanceTable.css';
 
 const AttendanceTable = ({ students = [], onAttendanceChange, onSave }) => {
   const buttonRefs = useRef([]);
+  const navigate = useNavigate();
+
 
   const toggleAttendance = (index) => {
     const updatedStudents = [...students];
@@ -157,7 +161,14 @@ const AttendanceTable = ({ students = [], onAttendanceChange, onSave }) => {
           )}
         </tbody>
       </table>
+
+      
       <div className="teacher-bottom-buttons">
+        
+      <button className="teacher-daily-record-btn" onClick={() => navigate('/daily-attendance-record')}>
+          Daily Attendance Record
+        </button>
+
         <button className="teacher-save-btn" onClick={onSave}>
           Save
         </button>

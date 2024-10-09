@@ -49,7 +49,7 @@ const getMarksBySubject = async (subjectCode) => {
 };
 
 // Insert marks for students into the Marks table
-const insertMarks = async (marksData, examId) => {
+const insertMarks = async (marksData) => {
   const transaction = await sequelize.transaction();
   try {
     const query = `
@@ -63,17 +63,15 @@ const insertMarks = async (marksData, examId) => {
         replacements: {
           studentId: mark.student_id,
           subjectId: mark.subject_id,
-          examId,
+          examId: mark.exam_id,
           marksObtained: mark.marks_obtained,
         },
-        transaction,
+        type: sequelize.QueryTypes.INSERT,
       });
     }
-    await transaction.commit();
   } catch (error) {
-    await transaction.rollback();
     console.error('Error inserting marks:', error);
-    throw error;
+    throw error; // Propagate the error to the controller
   }
 };
 
