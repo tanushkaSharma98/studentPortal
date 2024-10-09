@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import './StudentAttendance.css';
 import Header from '../../../common/Admin/Header';
-import { log } from 'console';
+// import { log } from 'console';
 
 const COLORS = ['#CD84A3', '#CBDEE6'];
 

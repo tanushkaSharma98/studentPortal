@@ -2,16 +2,16 @@ const { getStudentMarks, getStudentPerformance } = require('../services/studentM
 
 // Controller method to get student marks by student ID, subject ID, and exam ID
 exports.getStudentMarks = async (req, res) => {
-  const { subjectId, examId } = req.params;
+  const { examId } = req.params;
   const userId = req.user.user_id;
 
   // Validate input parameters
-  if (!userId || !subjectId || !examId) {
-    return res.status(400).json({ message: 'Missing required parameters: userId, subjectId, or examId' });
+  if (!userId || !examId) {
+    return res.status(400).json({ message: 'Missing required parameters: userId or examId' });
   }
 
   try {
-    const marks = await getStudentMarks(userId, subjectId, examId);
+    const marks = await getStudentMarks(userId, examId);
 
     if (marks) {
       return res.status(200).json(marks);

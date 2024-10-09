@@ -7,7 +7,7 @@ const { getStudentAttendance, getStudentAttendanceTrend, getStudentDailyAttendan
 // Route to get student data
 router.get('/profile', getStudentProfile);
 // Route to get student marks by student ID and subject ID
-router.get('/marks/:subjectId/:examId', getStudentMarks);
+router.get('/marks/:examId', getStudentMarks);
 router.get('/marksPerformance', getStudentPerformance);
 // Route to get student attendance
 router.get('/attendance', getStudentAttendance);

@@ -9,30 +9,60 @@ const StudentScoreboard = () => {
   const [subjects, setSubjects] = useState([]);
   const [openSubjects, setOpenSubjects] = useState({});
   const [examId, setExamId] = useState(1);
-  const [exam, setExam] = useState('Mid Term 1'); // Correctly set the initial exam
+  const [exam, setExam] = useState(''); // Initially no exam selected
+  const [exams, setExams] = useState([]); // State to hold fetched exams
 
-  const exams = ['Mid Term 1', 'Mid Term 2']; // List of exams
-
-  // Function to fetch marks for all subjects
-  const fetchMarks = async () => {
-    const token = localStorage.getItem('token');
-    const subjectIds = [1, 2, 3]; // Default subject IDs
-    const promises = subjectIds.map((subjectId) =>
-      fetch(`http://localhost:3000/api/students/marks/${subjectId}/${examId}`, {
+  // Function to fetch exams from the API
+  const fetchExams = async () => {
+    const token = localStorage.getItem('token'); // Retrieve token from local storage
+    try {
+      const response = await fetch('http://localhost:3000/api/admin/exams', {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`, // Use the token in the headers
         },
-      }).then((response) => response.json())
-    );
-
-    const results = await Promise.all(promises);
-    // Flatten the array and set state
-    setSubjects(results.flat());
+      });
+      const data = await response.json();
+      setExams(data); // Set exams in state
+      if (data.length > 0) {
+        setExam(data[0].exam_name); // Set the first exam name by default
+        setExamId(data[0].exam_id); // Set the first exam ID by default
+      }
+    } catch (error) {
+      console.error('Error fetching exams:', error);
+    }
   };
 
+  // Function to fetch marks for all subjects based on the selected exam
+  const fetchMarks = async () => {
+    const token = localStorage.getItem('token'); // Retrieve token from local storage
+    try {
+      const response = await fetch(`http://localhost:3000/api/students/marks/${examId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // Use the token in the headers
+        },
+      });
+      const results = await response.json();
+      const uniqueSubjects = results.filter(
+        (subject, index, self) =>
+          index === self.findIndex((s) => s.subject_code === subject.subject_code)
+      ); // Ensure unique subjects based on subject_code
+      setSubjects(uniqueSubjects); // Set subjects with no repetition
+    } catch (error) {
+      console.error('Error fetching marks:', error);
+    }
+  };
+
+  // Fetch exams when the component mounts
   useEffect(() => {
-    fetchMarks();
-  }, [examId]); // Re-fetch when examId changes
+    fetchExams();
+  }, []);
+
+  // Fetch marks when the examId changes
+  useEffect(() => {
+    if (examId) {
+      fetchMarks();
+    }
+  }, [examId]);
 
   const toggleSubject = (code) => {
     setOpenSubjects((prevState) => ({
@@ -42,10 +72,11 @@ const StudentScoreboard = () => {
   };
 
   const handleExamChange = (e) => {
-    const selectedExam = e.target.value;
-    const selectedId = selectedExam === 'Mid Term 1' ? 1 : 2;
-    setExamId(selectedId);
-    setExam(selectedExam); // Update the exam name
+    const selectedExam = exams.find((exam) => exam.exam_name === e.target.value);
+    if (selectedExam) {
+      setExamId(selectedExam.exam_id); // Update examId based on selection
+      setExam(selectedExam.exam_name); // Update exam name
+    }
   };
 
   const getPieChartData = (marksObtained, maxMarks) => {
@@ -67,10 +98,10 @@ const StudentScoreboard = () => {
         {/* Exam Dropdown */}
         <div className="student-exam-dropdown">
           <select id="student-exam-select" value={exam} onChange={handleExamChange}>
-            <option value=""> Exam</option>
-            {exams.map((examOption, index) => (
-              <option key={index} value={examOption}>
-                {examOption}
+            <option value="">Select Exam</option>
+            {exams.map((examOption) => (
+              <option key={examOption.exam_id} value={examOption.exam_name}>
+                {examOption.exam_name}
               </option>
             ))}
           </select>
