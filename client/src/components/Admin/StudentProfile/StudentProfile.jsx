@@ -148,9 +148,11 @@ const StudentProfile = () => {
             </div>
           </div>
           <div className="stprofile-actions">
-            <Link to="/admin/student-scoreboard">
+            {/* Update the Link to include userId for View Marks */}
+            <Link to={`/admin/student-scoreboard/${userId}`}>
               <button className="staction-button">View Marks</button>
             </Link>
+            {/* Update Link for View Attendance */}
             <Link to={`/admin/student-attendance/${userId}`}>
               <button className="staction-button">View Attendance</button>
             </Link>
