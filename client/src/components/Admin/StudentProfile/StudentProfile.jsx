@@ -31,6 +31,7 @@ const StudentProfile = () => {
           enrollment: response.data.enrollment_no,
           branch: response.data.branch_name,
           semester: response.data.semester,
+          email: response.data.email,
           contact: response.data.contact_no,
         });
       } catch (err) {
@@ -73,6 +74,7 @@ const StudentProfile = () => {
               <p><strong>Enrollment No:</strong> {student.enrollment}</p>
               <p><strong>Branch:</strong> {student.branch}</p>
               <p><strong>Semester:</strong> {student.semester}</p>
+              <p><strong>Email Id:</strong> {student.email}</p>
               <p><strong>Contact No.:</strong> {student.contact}</p>
               <button className="edit-button" onClick={handleEdit}>Edit</button>
             </div>
