@@ -9,6 +9,7 @@ const StudentProfile = () => {
   const { userId } = useParams();  // Get userId from URL parameters
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);  // Sidebar toggle state
   const [student, setStudent] = useState(null);  // State to hold student data
+  const [isEditing, setIsEditing] = useState(false);  // State to check if in editing mode
   const [error, setError] = useState(null);  // State to hold error messages
 
   const toggleSidebar = () => {
@@ -16,35 +17,64 @@ const StudentProfile = () => {
   };
 
   useEffect(() => {
-    const fetchStudentProfile = async () => {
-      try {
-        const token = localStorage.getItem('token'); // Get token from local storage
-        const response = await axios.get(`http://localhost:3000/api/admin/students/profile/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,  // Add token to headers
-          },
-        });
-        
-        // Set student data from response
-        setStudent({
-          name: response.data.student_name,
-          enrollment: response.data.enrollment_no,
-          branch: response.data.branch_name,
-          semester: response.data.semester,
-          email: response.data.email,
-          contact: response.data.contact_no,
-        });
-      } catch (err) {
-        setError(err.response ? err.response.data.message : 'Error fetching student profile');
-      }
-    };
-
-    fetchStudentProfile();  // Call the fetch function
+    fetchStudentProfile();  // Fetch student profile when component mounts or userId changes
   }, [userId]);  // Dependency on userId
 
+  const fetchStudentProfile = async () => {
+    try {
+      const token = localStorage.getItem('token'); // Get token from local storage
+      const response = await axios.get(`http://localhost:3000/api/admin/students/profile/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,  // Add token to headers
+        },
+      });
+
+      // Set student data from response
+      setStudent({
+        name: response.data.student_name,
+        enrollment: response.data.enrollment_no,
+        branch: response.data.branch_name,
+        semester: response.data.semester,
+        email: response.data.email,
+        contact: response.data.contact_no,
+      });
+    } catch (err) {
+      setError(err.response ? err.response.data.message : 'Error fetching student profile');
+    }
+  };
+
   const handleEdit = () => {
-    // Logic to edit student's profile
-    alert('Edit profile functionality to be implemented');
+    setIsEditing(!isEditing);  // Toggle editing state
+  };
+
+  const handleChange = (e) => {
+    setStudent({ ...student, [e.target.name]: e.target.value });  // Update student data
+  };
+
+  const handleSave = async () => {
+    try {
+      const token = localStorage.getItem('token'); // Get token from local storage
+      const response = await axios.post('http://localhost:3000/api/admin/students/edit', {
+        user_id: userId,
+        student_name: student.name,
+        enrollment_no: student.enrollment,
+        branch_name: student.branch,
+        semester: student.semester,
+        contact_no: student.contact,
+        email: student.email,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`,  // Add token to headers
+        },
+      });
+
+      console.log('Save response:', response); // Log the response
+      alert('Changes have been saved');  // Show alert for successful save
+      fetchStudentProfile();  // Re-fetch student profile to get updated information
+      setIsEditing(false);  // Exit editing mode after save
+    } catch (err) {
+      setError(err.response ? err.response.data.message : 'Error saving student profile');
+    }
   };
 
   // Loading and error states
@@ -70,20 +100,58 @@ const StudentProfile = () => {
               <span className="stprofile-icon">👤</span>
             </div>
             <div className="stprofile-info">
-              <p><strong>Name:</strong> {student.name}</p>
-              <p><strong>Enrollment No:</strong> {student.enrollment}</p>
-              <p><strong>Branch:</strong> {student.branch}</p>
-              <p><strong>Semester:</strong> {student.semester}</p>
-              <p><strong>Email Id:</strong> {student.email}</p>
-              <p><strong>Contact No.:</strong> {student.contact}</p>
-              <button className="edit-button" onClick={handleEdit}>Edit</button>
+              <p><strong>Name:</strong> 
+                {isEditing ? (
+                  <input type="text" name="name" value={student.name} onChange={handleChange} />
+                ) : (
+                  student.name
+                )}
+              </p>
+              <p><strong>Enrollment No:</strong> 
+                {isEditing ? (
+                  <input type="text" name="enrollment" value={student.enrollment} onChange={handleChange} />
+                ) : (
+                  student.enrollment
+                )}
+              </p>
+              <p><strong>Branch:</strong> 
+                {isEditing ? (
+                  <input type="text" name="branch" value={student.branch} onChange={handleChange} />
+                ) : (
+                  student.branch
+                )}
+              </p>
+              <p><strong>Semester:</strong> 
+                {isEditing ? (
+                  <input type="number" name="semester" value={student.semester} onChange={handleChange} />
+                ) : (
+                  student.semester
+                )}
+              </p>
+              <p><strong>Email Id:</strong> 
+                {isEditing ? (
+                  <input type="email" name="email" value={student.email} onChange={handleChange} />
+                ) : (
+                  student.email
+                )}
+              </p>
+              <p><strong>Contact No.:</strong> 
+                {isEditing ? (
+                  <input type="text" name="contact" value={student.contact} onChange={handleChange} />
+                ) : (
+                  student.contact
+                )}
+              </p>
+              <button className="edit-button" onClick={isEditing ? handleSave : handleEdit}>
+                {isEditing ? 'Save' : 'Edit'}
+              </button>
             </div>
           </div>
           <div className="stprofile-actions">
             <Link to="/admin/student-scoreboard">
               <button className="staction-button">View Marks</button>
             </Link>
-            <Link to="/admin/student-attendance/${userId}">
+            <Link to={`/admin/student-attendance/${userId}`}>
               <button className="staction-button">View Attendance</button>
             </Link>
           </div>
