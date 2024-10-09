@@ -1,11 +1,12 @@
 const express = require('express');
-const { getTeacherCount,  updateTeacherIsActive } = require('../controllers/teacherManagementController')
+const { getTeacherCount, getTeacherProfile, updateTeacherIsActive } = require('../controllers/teacherManagementController')
 const { getAllTeachers, getTeachersByBranchAndSemester, searchTeachersByName } = require('../controllers/adminTeacherlistController');
 const createTeacherController = require('../controllers/createTeacherController');
 const router = express.Router();
 
 router.get('/count', getTeacherCount);
 router.put('/update', updateTeacherIsActive);
+router.get('/profile/:userId', getTeacherProfile);
 
 router.get('/', getAllTeachers);
 
@@ -15,6 +16,6 @@ router.get('/branch-semester', getTeachersByBranchAndSemester);
 // API to search teachers by name
 router.get('/search', searchTeachersByName);
 
-router.post('/create', (req, res, next) => {}, createTeacherController.createTeacher);
+router.post('/create', createTeacherController.createTeacher);
 
 module.exports = router;

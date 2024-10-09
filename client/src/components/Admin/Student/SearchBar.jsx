@@ -68,7 +68,9 @@ const SearchBar = ({ onSearch, fetchInitialStudents }) => {
         name: student.student_name,
         enrollmentNumber: student.enrollment_no,
         email: student.email,
-        password: student.decrypted_password
+        password: student.decrypted_password,
+        userId: student.user_id,
+        is_active: student.is_active
       }));
 
       onSearch(formattedData);
@@ -108,7 +110,9 @@ const SearchBar = ({ onSearch, fetchInitialStudents }) => {
           name: student.student_name,
           enrollmentNumber: student.enrollment_no,
           email: student.email,
-          password: student.decrypted_password
+          password: student.decrypted_password,
+          userId: student.user_id,
+          is_active: student.is_active
         }));
 
         onSearch(formattedData); // Pass the new student list to the parent
