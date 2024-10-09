@@ -8,12 +8,16 @@ exports.getStudentDetailsById = async (userId) => {
             s.enrollment_no,
             s.contact_no,
             s.semester,
-            b.branch_name
+            b.branch_name,
+            u.email
         FROM
             student s
         JOIN
             branch b ON s.branch_id = b.branch_id
-        WHERE user_id = :userId
+        JOIN
+            users u ON s.user_id = u.user_id
+        WHERE
+            s.user_id = :userId;
     `;
     try {
         const result = await sequelize.query(query, {
