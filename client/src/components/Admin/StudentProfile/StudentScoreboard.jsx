@@ -92,7 +92,7 @@ const StudentScoreboard = () => {
       <Header />
       <div className="stscoreboard-container">
         <div className="stscoreboard-header">
-          <Link to="/admin/student-profile">
+          <Link to={`/admin/student-profile/${userId}`}>
             <button className="back-button">←</button>
           </Link>
           <h1 className="st-title">SCOREBOARD</h1>
