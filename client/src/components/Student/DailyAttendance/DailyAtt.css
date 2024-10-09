@@ -7,14 +7,15 @@
   position: relative;
   padding-bottom: 12%;
   padding: 10px; /* Padding for smaller screens */
-}
+  padding-top: 4%;
+  }
 
 /* Back button styles */
 .Backbtn {
   position: absolute;
   top: 15px;
-  left: 20px;
-  padding: 5px;
+  left:0;
+  padding: 3%;
 }
 
 .Back-button {

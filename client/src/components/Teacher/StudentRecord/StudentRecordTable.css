@@ -1,7 +1,8 @@
 /* Existing Table Styles */
 .teacher-student-record-table {
-    width: 100%;
+    width: 115%;
     padding-top: 2%;
+     white-space: nowrap; 
 }
 
 .teacher-student-record-table table {
