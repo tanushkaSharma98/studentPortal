@@ -13,7 +13,7 @@ exports.getStudentByUserId = async (user_id, transaction) => {
 
 // Fetch user by user_id
 exports.getUserByUserId = async (user_id, transaction) => {
-  const query = `SELECT * FROM users WHERE user_id = :user_id`;
+  const query = `SELECT email, updated_at FROM users WHERE user_id = :user_id`;
   const [user] = await sequelize.query(query, {
     replacements: { user_id },
     type: sequelize.QueryTypes.SELECT,
