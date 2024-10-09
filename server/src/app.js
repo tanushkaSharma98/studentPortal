@@ -29,6 +29,7 @@ const teacherPostAttendanceRoutes = require('./routes/teacherRoutes.js')
 
 
 // // Use routes
+app.get('/', (req, res) => res.send('Server is Running'));
 app.use('/api/auth', authRoutes);
 app.use(authenticate);
 // Authenticate middleware;
