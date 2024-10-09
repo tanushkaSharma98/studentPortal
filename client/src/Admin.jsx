@@ -42,7 +42,7 @@ const Admin = () => {
       <Route path="/attendance-record" element={<AttendanceRecord />} />
       <Route path="/student-record" element={<StudentRecord />} />
       <Route path="/student-profile/:userId" element={<StudentProfile />} />
-      <Route path="/student-scoreboard" element={<StudentScoreboard />} />
+      <Route path="/student-scoreboard/:userId" element={<StudentScoreboard />} />
       <Route path="/student-attendance/:userId" element={<StudentAttendance />} />
     </Routes>
   );

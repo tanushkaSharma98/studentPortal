@@ -9,6 +9,7 @@ exports.getMarks = async (userId, examId) => {
                 m.percentage,
                 s.subject_name,
                 s.subject_code,
+                s.sub_initials,
                 e.exam_name,
                 e.maximum_marks
             FROM 

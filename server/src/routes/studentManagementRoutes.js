@@ -18,7 +18,7 @@ router.put('/update', updateStudentIsActive);
 
 router.get('/profile/:userId', getStudentProfile);
 router.put('/edit', updateStudentDetails);
-router.get('/Marks/:userId/:subjectId/:examId' , getStudentMarks);
+router.get('/Marks/:userId/:examId' , getStudentMarks);
 router.get('/marksPerformance/:userId', getStudentPerformance);
 
 // Route to get student attendance
