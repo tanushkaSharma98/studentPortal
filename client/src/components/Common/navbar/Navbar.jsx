@@ -11,25 +11,29 @@ import info from '/src/assets/Navbar_icon/informationicon.webp';
 const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const location = useLocation(); // Get the current path
   const [showLogout, setShowLogout] = useState(false); // State to show/hide logout button
-
-  // Add a new state to manage the visibility of the links
   const [showLinks, setShowLinks] = useState(false); // State to show/hide the nav links in mobile view
-  
+  const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
+  const [userName, setUserName] = useState('User'); // Initially set the username to "User"
   const navigate = useNavigate(); // For navigation after logout
+  const dropdownRef = useRef(null); // Ref for the dropdown
   const isHomePage = location.pathname === '/';
 
   const toggleLogout = () => {
     setShowLogout((prevShowLogout) => !prevShowLogout);
   };
 
-  // Function to toggle the visibility of the links
   const toggleLinks = () => {
     setShowLinks((prevShowLinks) => !prevShowLinks);
+  };
+
+  const toggleDropdown = () => {
+    setShowDropdown((prevShowDropdown) => !prevShowDropdown);
   };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);  // Ensure isLoggedIn is updated
+    setUserName('User'); // Reset username to 'User' on logout
     if (!isHomePage) {
       navigate('/login');
     }
@@ -46,7 +50,6 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
     setShowDropdown(false); // Hide dropdown on page load or navigation
   }, [location, setIsLoggedIn]);
 
-  // Close the dropdown if clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -54,10 +57,8 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
       }
     };
 
-    // Add event listener to document
     document.addEventListener('mousedown', handleClickOutside);
 
-    // Cleanup the event listener when component unmounts
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -65,7 +66,6 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
 
   return (
     <nav className='snav'>
-      {/* Add 'show-links' class based on the showLinks state */}
       <ul className={`sul ${showLinks ? 'show-links' : ''}`}>
         <li className="snavlogo sli">XYZ UNIVERSITY</li>
 
@@ -82,7 +82,6 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
           </li>
         )}
 
-        {/* Navigation Links */}
         <li className='sli'>
           {isHomePage ? (
             <ScrollLink to="top" smooth={true} duration={500} className="snav-link">
@@ -149,22 +148,25 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
           )}
         </li>
 
-        {/* Attach the toggleLinks function to the profile image click event */}
-        <li className="snavprofile-container sli" onClick={toggleLinks}>
+        <li className="snavprofile-container sli" onClick={toggleDropdown} ref={dropdownRef}>
           <img
             src={profile}
             alt="Profile"
             className="snavprofile-img"
           />
-          {isLoggedIn && showLogout && (
-            <button onClick={handleLogout} className="snavbutton slogout-button">
-              Logout
-            </button>
-          )}
-          {!isLoggedIn && showLogout && (
-            <RouterLink to="/login" className="snavbutton slogin-button">
-              Login
-            </RouterLink>
+          {showDropdown && (
+            <div className="dropdown-menu">
+              <p className="username">Hello, {userName}!</p>
+              {isLoggedIn ? (
+                <button onClick={handleLogout} className="snavbutton slogout-button">
+                  Logout
+                </button>
+              ) : (
+                <RouterLink to="/login">
+                  <button className="snavbutton slogin-button">Login</button>
+                </RouterLink>
+              )}
+            </div>
           )}
         </li>
       </ul>
