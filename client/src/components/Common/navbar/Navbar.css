@@ -92,11 +92,51 @@
 .slogin-button:hover {
   background-color: #0056b3; /* Darker green on hover */
 }
-
-/* Icon styles */
-.icon {
-  width: 24px; /* Increased size */
-  height: 24px;
-  margin-right: 8px; /* Space between the icon and text */
+.icon1 {
+  width: 24px;    /* Increased size */
+  height: 22px;
+  margin-right: 8px;  /* Space between the icon and text */
   vertical-align: middle;
+  vertical-align: text-top;
+}
+
+.icon {
+  width: 26px;    /* Increased size */
+  height: 25px;
+  margin-right: 8px;  /* Space between the icon and text */
+  vertical-align: middle;
+  vertical-align: text-top;
+}
+
+.icon2 {
+  width: 24px;    /* Increased size */
+  height: 19px;
+  margin-right: 8px;  /* Space between the icon and text */
+  vertical-align: middle;
+  vertical-align: text-top;
+} 
+/* Media query for screens with a width of 768px or smaller */
+@media (max-width: 768px) {
+  .sli:not(.snavprofile-container) {
+    display: none; /* Hide all links except the profile image */
+  }
+
+  /* When showLinks is true, show the links */
+  .show-links .sli {
+    display: block; /* Show all the links on profile click */
+  }
+
+  .sul {
+    flex-direction: column; /* Stack links vertically */
+    align-items: center; /* Center align the links */
+  }
+
+  .snavprofile-img {
+    height: 35px; /* Adjust the profile image size */
+    cursor: pointer;
+  }
+
+  .snavprofile-container {
+    margin-left: auto;
+  }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import './StudentScoreboard.css';
@@ -33,7 +33,32 @@ const data = [
 const COLORS = ['#CD84A3', '#CBDEE6'];
 
 const StudentScoreboard = () => {
-  const [openAccordions, setOpenAccordions] = useState([]); // Track open accordions in an array
+  const [openAccordions, setOpenAccordions] = useState([]); // Track open accordions
+  const [exams, setExams] = useState([]); // State to hold exam data
+  const [selectedExam, setSelectedExam] = useState(""); // State for selected exam
+
+  useEffect(() => {
+    // Fetch exams from API
+    const fetchExams = async () => {
+      try {
+        const token = localStorage.getItem('token'); // Retrieve token from local storage
+        const response = await fetch('http://localhost:3000/api/admin/exams', {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include token in headers
+          },
+        });
+        if (!response.ok) {
+          throw new Error('Failed to fetch exams');
+        }
+        const data = await response.json();
+        setExams(data); // Set the fetched exams to state
+      } catch (error) {
+        console.error('Error fetching exams:', error);
+      }
+    };
+
+    fetchExams(); // Call the fetch function
+  }, []);
 
   const toggleAccordion = (index) => {
     if (openAccordions.includes(index)) {
@@ -57,76 +82,77 @@ const StudentScoreboard = () => {
 
   return (
     <div className='st-marks'>
-        <Header />
-        <div className="stscoreboard-container">
-           
-      <div className="stscoreboard-header">
-      <Link to="/admin/student-profile">
-        <button className="back-button">←</button>
-      </Link> 
-        <h1 className="st-title">SCOREBOARD</h1>
-        <div className="stexam-dropdown">
-          <select>
-            <option value="exam">Exam</option>
-            <option value="midterm">Midterm</option>
-            <option value="final">Final</option>
-          </select>
-        </div>
-      </div>
-
-      {/* Accordions */}
-      {data.map((item, index) => (
-        <div key={index} className={`staccordion ${openAccordions.includes(index) ? 'open' : ''}`}>
-          <div className="staccordion-header" onClick={() => toggleAccordion(index)}>
-            <p>{item.subjectName} ({item.subjectCode})</p>
-            <span className="staccordion-arrow">{openAccordions.includes(index) ? '⌄' : '⌄'}</span>
+      <Header />
+      <div className="stscoreboard-container">
+        <div className="stscoreboard-header">
+          <Link to="/admin/student-profile">
+            <button className="back-button">←</button>
+          </Link>
+          <h1 className="st-title">SCOREBOARD</h1>
+          <div className="stexam-dropdown">
+            <select value={selectedExam} onChange={(e) => setSelectedExam(e.target.value)}>
+              <option value=""> Exam</option>
+              {exams.map((exam) => (
+                <option key={exam.id} value={exam.exam_name}>
+                  {exam.exam_name} {/* Assuming the exam object has id and name properties */}
+                </option>
+              ))}
+            </select>
           </div>
-          {openAccordions.includes(index) && (
-            <div className="staccordion-content">
-              <div className="staccordion-details">
-                <p><strong>Subject Code:</strong> {item.subjectCode}</p>
-                <p><strong>Subject Name:</strong> {item.subjectName}</p>
-                <p><strong>Marks Obtained:</strong> {item.marksObtained}</p>
-                <p><strong>Maximum Marks:</strong> {item.maxMarks}</p>
-                <p><strong>Percentage Obtained:</strong> {item.percentage}%</p>
-              </div>
-              <div className="staccordion-chart">
-                <PieChart width={120} height={120}>
-                  <Pie
-                    data={getPieChartData(item.marksObtained, item.maxMarks)}
-                    dataKey="value"
-                    outerRadius={40}
-                    fill="#eac6ff"
-                  >
-                    {getPieChartData(item.marksObtained, item.maxMarks).map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                </PieChart>
-              </div>
-            </div>
-          )}
         </div>
-      ))}
 
-      {/* Bar Chart for all subjects */}
-      <div className="stall-subjects-chart">
-        <h3>All Subjects Performance:</h3>
-        <BarChart className='st-barchart'
-          width={400}
-          height={300}
-          data={barChartData}
-        >
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="percentage" fill="#9bbace" />
-        </BarChart>
+        {/* Accordions */}
+        {data.map((item, index) => (
+          <div key={index} className={`staccordion ${openAccordions.includes(index) ? 'open' : ''}`}>
+            <div className="staccordion-header" onClick={() => toggleAccordion(index)}>
+              <p>{item.subjectName} ({item.subjectCode})</p>
+              <span className="staccordion-arrow">{openAccordions.includes(index) ? '⌄' : '⌄'}</span>
+            </div>
+            {openAccordions.includes(index) && (
+              <div className="staccordion-content">
+                <div className="staccordion-details">
+                  <p><strong>Subject Code:</strong> {item.subjectCode}</p>
+                  <p><strong>Subject Name:</strong> {item.subjectName}</p>
+                  <p><strong>Marks Obtained:</strong> {item.marksObtained}</p>
+                  <p><strong>Maximum Marks:</strong> {item.maxMarks}</p>
+                  <p><strong>Percentage Obtained:</strong> {item.percentage}%</p>
+                </div>
+                <div className="staccordion-chart">
+                  <PieChart width={120} height={120}>
+                    <Pie
+                      data={getPieChartData(item.marksObtained, item.maxMarks)}
+                      dataKey="value"
+                      outerRadius={40}
+                      fill="#eac6ff"
+                    >
+                      {getPieChartData(item.marksObtained, item.maxMarks).map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                  </PieChart>
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Bar Chart for all subjects */}
+        <div className="stall-subjects-chart">
+          <h3>All Subjects Performance:</h3>
+          <BarChart className='st-barchart'
+            width={400}
+            height={300}
+            data={barChartData}
+          >
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="percentage" fill="#9bbace" />
+          </BarChart>
+        </div>
       </div>
     </div>
-    </div>
-    
   );
 };
 

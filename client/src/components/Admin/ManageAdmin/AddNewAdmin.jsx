@@ -3,9 +3,9 @@ import './AddNewAdmin.css';
 
 const AddNewAdmin = () => {
   const [formData, setFormData] = useState({
-    Adminname: '',
-    Email: '',
-    Password: '',
+    name: '',
+    email: '',
+    password: '',
   });
 
   const handleChange = (e) => {
@@ -13,18 +13,43 @@ const AddNewAdmin = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic (e.g., API call)
-    console.log('Form submitted:', formData);
+    try {
+      const response = await fetch('http://localhost:3000/api/admin/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Include token if needed for authentication
+          Authorization: `Bearer ${localStorage.getItem('token')}`, // Uncomment if using token for auth
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create admin');
+      }
+
+      const data = await response.json();
+      console.log('Admin created successfully:', data);
+
+      // Show alert with success message
+      alert(data.message); // Show success message from API
+
+      // Optionally reset form or redirect to another page
+      handleCancel(); // Reset form after successful submission
+    } catch (error) {
+      console.error('Error creating admin:', error);
+      alert('Error creating admin: ' + error.message); // Show error message
+    }
   };
 
   const handleCancel = () => {
-    // Reset form or redirect
+    // Reset form
     setFormData({
-      Adminname: '',
-      Email: '',
-      Password: '',
+      name: '',
+      email: '',
+      password: '',
     });
   };
 
@@ -38,8 +63,8 @@ const AddNewAdmin = () => {
             <input
               className="input"
               type="text"
-              name="Adminname"
-              value={formData.Adminname}
+              name="name"
+              value={formData.name}
               onChange={handleChange}
               required
             />
@@ -49,8 +74,8 @@ const AddNewAdmin = () => {
             <input
               className="input"
               type="email"
-              name="Email"  
-              value={formData.Email}
+              name="email"
+              value={formData.email}
               onChange={handleChange}
               required
             />
@@ -60,8 +85,8 @@ const AddNewAdmin = () => {
             <input
               className="input"
               type="password"
-              name="Password"  
-              value={formData.Password}
+              name="password"
+              value={formData.password}
               onChange={handleChange}
               required
             />

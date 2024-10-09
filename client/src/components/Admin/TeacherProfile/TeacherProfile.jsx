@@ -58,7 +58,8 @@ const TeacherProfile = () => {
             <div className="profile-info">
               <p><strong>Name:</strong> {teacher.teacher_name}</p>
               <p><strong>Designation:</strong> {teacher.designation}</p>
-              <p><strong>Subjects:</strong> {teacher.subjects.join(', ')}</p> {/* Assuming subjects is an array */}
+              <p><strong>Subjects:</strong> {teacher.subjects.join(', ')}</p> 
+              <p><strong>Email Id:</strong> {teacher.email}</p>
               <p><strong>Contact No.:</strong> {teacher.contact_no}</p>
               <button className="edit-button" onClick={handleEdit}>Edit</button>
             </div>

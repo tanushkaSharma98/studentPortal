@@ -3,25 +3,33 @@ import { Link as ScrollLink } from 'react-scroll'; // For smooth scrolling
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'; // For routing
 import './Navbar.css'; // Import the CSS file
 import profile from '/src/assets/AdminHeader/profileadmin.jpg';
+import account from '/src/assets/Navbar_icon/admin-panel.png';
+import contact from '/src/assets/Navbar_icon/contact.png';
+import home from '/src/assets/Navbar_icon/home-page-white-icon.webp';
+import info from '/src/assets/Navbar_icon/informationicon.webp';
 
 const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const location = useLocation(); // Get the current path
-  const [showDropdown, setShowDropdown] = useState(false); // State to show/hide dropdown
-  const [userName, setUserName] = useState('User'); // Initially set the username to "User"
-  const navigate = useNavigate(); // For navigation after logout
-  const dropdownRef = useRef(null); // Create a ref for the dropdown menu
+  const [showLogout, setShowLogout] = useState(false); // State to show/hide logout button
 
+  // Add a new state to manage the visibility of the links
+  const [showLinks, setShowLinks] = useState(false); // State to show/hide the nav links in mobile view
+  
+  const navigate = useNavigate(); // For navigation after logout
   const isHomePage = location.pathname === '/';
 
-  const toggleDropdown = () => {
-    setShowDropdown((prevShowDropdown) => !prevShowDropdown);
+  const toggleLogout = () => {
+    setShowLogout((prevShowLogout) => !prevShowLogout);
+  };
+
+  // Function to toggle the visibility of the links
+  const toggleLinks = () => {
+    setShowLinks((prevShowLinks) => !prevShowLinks);
   };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    setIsLoggedIn(false); // Ensure isLoggedIn is updated
-    setUserName('User'); // Reset username to 'User' on logout
-
+    setIsLoggedIn(false);  // Ensure isLoggedIn is updated
     if (!isHomePage) {
       navigate('/login');
     }
@@ -30,9 +38,9 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      setIsLoggedIn(true); // Set to logged in if token exists
+      setIsLoggedIn(true);
     } else {
-      setIsLoggedIn(false); // Set to logged out if no token exists
+      setIsLoggedIn(false);
     }
 
     setShowDropdown(false); // Hide dropdown on page load or navigation
@@ -57,12 +65,18 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
 
   return (
     <nav className='snav'>
-      <ul className='sul'>
+      {/* Add 'show-links' class based on the showLinks state */}
+      <ul className={`sul ${showLinks ? 'show-links' : ''}`}>
         <li className="snavlogo sli">XYZ UNIVERSITY</li>
 
         {isHomePage && (
           <li className="sli">
             <RouterLink to="/admin/admin-login" className="snav-link">
+              <img 
+                src={account}
+                alt="Admin Login Icon" 
+                className="icon" 
+              />
               Admin Login
             </RouterLink>
           </li>
@@ -72,12 +86,20 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
         <li className='sli'>
           {isHomePage ? (
             <ScrollLink to="top" smooth={true} duration={500} className="snav-link">
-              <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home Icon" className="icon" />
+              <img 
+                src={home} 
+                alt="Home Icon" 
+                className="icon1" 
+              />
               Home
             </ScrollLink>
           ) : (
             <RouterLink to="/" className="snav-link">
-              <img src="https://uxwing.com/wp-content/themes/uxwing/download/web-app-development/home-page-white-icon.png" alt="Home Icon" className="icon" />
+              <img 
+                src={home}
+                alt="Home Icon" 
+                className="icon1" 
+              />
               Home
             </RouterLink>
           )}
@@ -86,12 +108,20 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
         <li className='sli'>
           {isHomePage ? (
             <ScrollLink to="about-us" smooth={true} duration={500} className="snav-link">
-              <img src="https://uxwing.com/wp-content/themes/uxwing/download/signs-and-symbols/round-information-white-icon.png" alt="About Us Icon" className="icon" />
+              <img 
+                src={info} 
+                alt="About Us Icon" 
+                className="icon1" 
+              />
               About Us
             </ScrollLink>
           ) : (
             <RouterLink to="/about-us" className="snav-link">
-              <img src="https://uxwing.com/wp-content/themes/uxwing/download/signs-and-symbols/round-information-white-icon.png" alt="About Us Icon" className="icon" />
+              <img 
+                src={info} 
+                alt="About Us Icon" 
+                className="icon1" 
+              />
               About Us
             </RouterLink>
           )}
@@ -100,32 +130,41 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
         <li className='sli'>
           {isHomePage ? (
             <ScrollLink to="contact" smooth={true} duration={500} className="snav-link">
-              <img src="https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/phone-ringing-white-icon.png" alt="Contact Icon" className="icon" />
+              <img 
+                src={contact}
+                alt="Contact Icon" 
+                className="icon2" 
+              />
               Contact
             </ScrollLink>
           ) : (
             <RouterLink to="/contact" className="snav-link">
-              <img src="https://uxwing.com/wp-content/themes/uxwing/download/communication-chat-call/phone-ringing-white-icon.png" alt="Contact Icon" className="icon" />
+              <img 
+                src={contact} 
+                alt="Contact Icon" 
+                className="icon2" 
+              />
               Contact
             </RouterLink>
           )}
         </li>
 
-        <li className="snavprofile-container sli" onClick={toggleDropdown} ref={dropdownRef}>
-          <img src={profile} alt="Profile" className="snavprofile-img" />
-          {showDropdown && (
-            <div className="dropdown-menu">
-              <p className="username">Hello, User!</p>
-              {isLoggedIn ? (
-                <button onClick={handleLogout} className="snavbutton slogout-button">
-                  Logout
-                </button>
-              ) : (
-                <RouterLink to="/login">
-                  <button className="snavbutton slogin-button">Login</button>
-                </RouterLink>
-              )}
-            </div>
+        {/* Attach the toggleLinks function to the profile image click event */}
+        <li className="snavprofile-container sli" onClick={toggleLinks}>
+          <img
+            src={profile}
+            alt="Profile"
+            className="snavprofile-img"
+          />
+          {isLoggedIn && showLogout && (
+            <button onClick={handleLogout} className="snavbutton slogout-button">
+              Logout
+            </button>
+          )}
+          {!isLoggedIn && showLogout && (
+            <RouterLink to="/login" className="snavbutton slogin-button">
+              Login
+            </RouterLink>
           )}
         </li>
       </ul>
