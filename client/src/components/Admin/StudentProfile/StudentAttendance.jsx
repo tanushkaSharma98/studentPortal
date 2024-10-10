@@ -76,7 +76,7 @@ const StudentAttendance = () => {
       <Header />
       <div className="stattendance-container">
         <div className="stattendance-header">
-          <Link to="/admin/student-profile">
+          <Link to={`/admin/student-profile/${userId}`}>
             <button className="back-button">←</button>
           </Link>
           <h1 className="stattendance-title">ATTENDANCE</h1>
