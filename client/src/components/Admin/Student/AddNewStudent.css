@@ -1,5 +1,7 @@
 .add-student-container {
    padding-top: 5%; 
+   /* padding-left: 10%; */
+   padding-bottom: 2%;
   display: flex;
   flex-direction: column;
   height: auto;
@@ -67,9 +69,13 @@
 /* Media Query for smaller mobile devices (small screens) */
 @media only screen and (max-width: 480px) {
   .stuform-container {
-    padding-top: 5%;
-    margin-left: 2%; 
-    margin-right: 2%;
-    width: 95%;
+    margin-top: 25%;
+    padding-top: 0%;
+    margin-left: 0%;
+   width: 93%;
+
+  }
+  .add-student-container{
+    margin-left: 0%;
   }
 }
