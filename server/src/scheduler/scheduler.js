@@ -37,6 +37,6 @@ const runTask = async () => {
 };
 
 // Schedule the task to run every 10 minutes
-cron.schedule('*/10 * * * *', runTask);
+cron.schedule('*/5 * * * *', runTask);
 
-console.log('Cron job scheduled to run every 10 minutes.');
+console.log('Cron job scheduled to run every 5 minutes.');
