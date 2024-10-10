@@ -22,7 +22,7 @@ const TeacherScoreboard = () => {
       const fetchSubjectsAndExams = async () => {
         try {
           // Fetch subjects based on teacherId
-          const subjectResponse = await fetch('http://192.168.1.17:3000/api/teachers/subjects', {
+          const subjectResponse = await fetch('http://localhost:3000/api/teachers/subjects', {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ const TeacherScoreboard = () => {
           setSubjectList(subjectData);
 
           // Fetch exams
-          const examResponse = await fetch('http://192.168.1.17:3000/api/admin/exams', {
+          const examResponse = await fetch('http://localhost:3000/api/admin/exams', {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
@@ -56,7 +56,7 @@ const TeacherScoreboard = () => {
     setStudentList([]); // Clear student list before fetching new data
     try {
       // Fetch students based on the selected subject
-      const studentResponse = await fetch(`http://192.168.1.17:3000/api/teachers/subject-students?subjectCode=${subject}`, {
+      const studentResponse = await fetch(`http://localhost:3000/api/teachers/subject-students?subjectCode=${subject}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -89,7 +89,7 @@ const TeacherScoreboard = () => {
 
       try {
         const marksResponse = await fetch(
-          `http://192.168.1.17:3000/api/teachers/marks?subjectCode=${selectedSubject}`,
+          `http://localhost:3000/api/teachers/marks?subjectCode=${selectedSubject}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -149,7 +149,7 @@ const TeacherScoreboard = () => {
     }
 
     try {
-      const response = await fetch('http://192.168.1.17:3000/api/teachers/marks/upload', {
+      const response = await fetch('http://localhost:3000/api/teachers/marks/upload', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
