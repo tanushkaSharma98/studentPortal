@@ -4,23 +4,18 @@ import axios from 'axios';
 import StudentRecordTable from './StudentRecordTable'; 
 
 const StudentRecord = () => {
-  const [subjectDropdown, setSubjectDropdown] = useState(false);
-  const [marksBelowDropdown, setMarksBelowDropdown] = useState(false);
-  const [selectedSubject, setSelectedSubject] = useState('Subject');
-  const [selectedMarksBelow, setSelectedMarksBelow] = useState('Marks Below');
-  const [threshold, setThreshold] = useState(null); // Correctly define threshold and setThreshold
-  const [students, setStudents] = useState([]); // State for storing fetched student records
-  const [loading, setLoading] = useState(false); // State to manage loading
+  const [selectedSubject, setSelectedSubject] = useState('');
+  const [selectedMarksBelow, setSelectedMarksBelow] = useState('');
   const [subjectList, setSubjectList] = useState([]);
   const [studentList, setStudentList] = useState([]); 
-
+  const [threshold, setThreshold] = useState(null); // State to store selected threshold
   const token = localStorage.getItem('token');
 
+  // Fetch subjects on mount
   useEffect(() => {
     if (token) {
       const fetchSubjects = async () => {
         try {
-          // Fetch subjects based on teacherId
           const subjectResponse = await axios.get('http://localhost:3000/api/teachers/subjects', {
             headers: {
               'Authorization': `Bearer ${token}`,
@@ -29,14 +24,14 @@ const StudentRecord = () => {
           });
           setSubjectList(subjectResponse.data);
         } catch (error) {
-          console.error('Error fetching subjects :', error);
+          console.error('Error fetching subjects:', error);
         }
       };
-
       fetchSubjects();
     }
   }, [token]);
 
+  // Handle subject change and fetch students for the selected subject
   const handleSubjectChange = async (subject) => {
     setSelectedSubject(subject);
     try {
@@ -48,38 +43,43 @@ const StudentRecord = () => {
           },
         }
       );
-      setStudentList(studentResponse.data); // Update student list
+      setStudentList(studentResponse.data); // Update student list with fetched data
     } catch (error) {
       console.error('Error fetching students:', error);
     }
   };
 
-
-  const handleMarksBelowChange = (e) => {
+  // Handle Marks Below change and fetch students whose marks are below the selected threshold
+  const handleMarksBelowChange = async (e) => {
+    const selectedThreshold = e.target.value === 'Below 10' ? 10 : e.target.value === 'Below 20' ? 20 : null;
     setSelectedMarksBelow(e.target.value);
+    setThreshold(selectedThreshold);
 
-    // Set the threshold value based on the selected option
-    const threshold = e.target.value === 'Below 10' ? 10 : e.target.value === 'Below 20' ? 20 : null;
-
-    // Fetch students when a marks threshold is selected
-    fetchStudents(marks === 'Below 10' ? 10 : marks === 'Below 20' ? 20 : null);
-
-    // Close the dropdown after selection
-    setMarksBelowDropdown(false);
+    if (selectedSubject && selectedThreshold) {
+      try {
+        // Fetch students whose marks are below the selected threshold
+        const response = await axios.get(
+          `http://localhost:3000/api/below-threshold?subjectId=${selectedSubject}&threshold=${selectedThreshold}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setStudentList(response.data); // Update the student list with the filtered data
+      } catch (error) {
+        console.error('Error fetching students below threshold:', error);
+      }
+    }
   };
 
-  const handleExpandAttendance = () => {
-    navigate('/daily-attendance-record'); // Navigate to Daily Attendance Record page
-  };
-
-return (
-  
+  return (
     <div className="teacher-attendanceContainer">
       <div className="teacher-TopButtons">
         {/* Subject Dropdown */}
         <div className="teacherSub-Dropdown">
-        <select
-          className='PortalSelect'
+          <select
+            className='PortalSelect'
             value={selectedSubject}
             onChange={(e) => handleSubjectChange(e.target.value)}
           >
@@ -90,7 +90,7 @@ return (
                   key={index} 
                   value={subject.subject_code} // Display initials and code
                 >
-                  {`${subject.sub_initials}(${subject.subject_code})`} {/* Show sub_initials(subject_code) */}
+                  {`${subject.sub_initials} (${subject.subject_code})`} {/* Show sub_initials(subject_code) */}
                 </option>
               ))
             ) : (
@@ -98,7 +98,6 @@ return (
             )}
           </select>
         </div>
-
 
         {/* Marks Below Dropdown */}
         <div className="teacherMarks-Dropdown">
@@ -115,8 +114,9 @@ return (
         <span className="teacher-UpdatedLast">Updated Last: Yesterday</span>
         <span className="teacher-TotalLecture">Total Lecture: 10</span>
       </div>
-      <StudentRecordTable students= {studentList} />
-      
+
+      {/* Student Record Table */}
+      <StudentRecordTable students={studentList} />
     </div>
   );
 };
