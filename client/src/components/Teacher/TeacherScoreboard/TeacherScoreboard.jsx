@@ -11,6 +11,8 @@ const TeacherScoreboard = () => {
   const [studentList, setStudentList] = useState([]); // State for student list
   const [maxMarks, setMaxMarks] = useState(null); // State for maximum marks
   const [isUpdateMode, setIsUpdateMode] = useState(false); // To track if it's update mode
+  const [branchName, setBranchName] = useState(''); // State for branch name
+  const [semester, setSemester] = useState(''); // State for semester
 
   const token = localStorage.getItem('token');
 
@@ -20,7 +22,7 @@ const TeacherScoreboard = () => {
       const fetchSubjectsAndExams = async () => {
         try {
           // Fetch subjects based on teacherId
-          const subjectResponse = await fetch('http://localhost:3000/api/teachers/subjects', {
+          const subjectResponse = await fetch('http://192.168.1.17:3000/api/teachers/subjects', {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
@@ -30,7 +32,7 @@ const TeacherScoreboard = () => {
           setSubjectList(subjectData);
 
           // Fetch exams
-          const examResponse = await fetch('http://localhost:3000/api/admin/exams', {
+          const examResponse = await fetch('http://192.168.1.17:3000/api/admin/exams', {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
@@ -54,7 +56,7 @@ const TeacherScoreboard = () => {
     setStudentList([]); // Clear student list before fetching new data
     try {
       // Fetch students based on the selected subject
-      const studentResponse = await fetch(`http://localhost:3000/api/teachers/subject-students?subjectCode=${subject}`, {
+      const studentResponse = await fetch(`http://192.168.1.17:3000/api/teachers/subject-students?subjectCode=${subject}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -66,6 +68,13 @@ const TeacherScoreboard = () => {
 
       // Set the fetched student data directly to the studentList state
       setStudentList(studentData); // Use the API response as it is
+
+      // Update branch and semester based on selected subject
+      const selectedSubjectData = subjectList.find(s => s.subject_code === subject);
+      if (selectedSubjectData) {
+        setBranchName(selectedSubjectData.branch_name); // Set the branch name
+        setSemester(selectedSubjectData.semester); // Set the semester
+      }
 
       setIsUpdateMode(false); // Reset update mode since it's a new selection
     } catch (error) {
@@ -80,7 +89,7 @@ const TeacherScoreboard = () => {
 
       try {
         const marksResponse = await fetch(
-          `http://localhost:3000/api/teachers/marks?subjectCode=${selectedSubject}`,
+          `http://192.168.1.17:3000/api/teachers/marks?subjectCode=${selectedSubject}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -140,7 +149,7 @@ const TeacherScoreboard = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/teachers/marks/upload', {
+      const response = await fetch('http://192.168.1.17:3000/api/teachers/marks/upload', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -204,8 +213,8 @@ const TeacherScoreboard = () => {
 
       {/* Branch, Semester, Subject, Exam in a single row */}
       <div className="teacher-info-row">
-        <span>Branch: Computer Science</span>
-        <span>Semester: 7</span>
+        <span>Branch: {branchName || 'N/A'}</span>
+        <span>Semester: {semester || 'N/A'}</span>
         <span>Subject: {selectedSubject}</span>
         <span>Exam: {examList.find(exam => exam.exam_id === Number(selectedExam))?.exam_name || 'N/A'}</span>
       </div>
