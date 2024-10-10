@@ -168,7 +168,7 @@
     color: white;
     position: fixed;
     top: 0;
-    height: 5%; /* Reduce the width slightly */
+    height: 6%; /* Reduce the width slightly */
     z-index: 1000;
     margin: 0 auto; /* Center the navbar */
     left: 0%; /* Adjust to ensure it stays centered */
@@ -183,7 +183,7 @@
 
   .snavlogo {
     font-weight: bold;
-    font-size: x-large;
+    font-size: xx-large;
     margin-right: auto; /* Ensure it stays to the left */
   }
 
@@ -200,7 +200,8 @@
   }
 
   .snavprofile-img {
-    height: 27px; /* Ensure the profile image size */
+    height: 26px; /* Ensure the profile image size */
+  
   }
 
   
