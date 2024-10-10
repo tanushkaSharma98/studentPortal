@@ -38,6 +38,7 @@ const DailyAttendanceRecord = () => {
 
   const handleAttendanceChange = (e) => {
     setSelectedAttendance(e.target.value);
+    
   };
 
   return (

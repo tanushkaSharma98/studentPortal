@@ -20,30 +20,31 @@ import StudentRecord from './components/Admin/TeacherProfile/StudentRecord.jsx';
 import StudentProfile from './components/Admin/StudentProfile/StudentProfile.jsx'; 
 import StudentScoreboard from './components/Admin/StudentProfile/StudentScoreboard.jsx'; 
 import StudentAttendance from './components/Admin/StudentProfile/StudentAttendance.jsx'; 
+import AuthRoute from './routes/AuthRoute.jsx';
 
 const Admin = () => {
   return (
     <Routes>
       <Route path="/admin-login" element={<AdminLogin />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/students" element={<StudentList />} />
-      <Route path="/add-student" element={<AddNewStudent />} />
-      <Route path="/teachers" element={<TeacherList />} />
-      <Route path="/add-teacher" element={<AddNewTeacher />} />
-      <Route path="/subjects" element={<SubjectList />} />
-      <Route path="/add-subject" element={<AddNewSubject />} />
-      <Route path="/exams" element={<ExamList />} />
-      <Route path="/branches" element={<BranchList />} />
-      <Route path="/add-branch" element={<AddNewBranch />} />
-      <Route path="/manage-admin" element={<ManageAdminList />} />
-      <Route path="/activity" element={<UserActivityList />} />
-      <Route path="/change-password" element={<ChangePassword />} />
-      <Route path="/teacher-profile/:userId" element={<TeacherProfile />} />
-      <Route path="/attendance-record" element={<AttendanceRecord />} />
-      <Route path="/student-record" element={<StudentRecord />} />
-      <Route path="/student-profile/:userId" element={<StudentProfile />} />
-      <Route path="/student-scoreboard/:userId" element={<StudentScoreboard />} />
-      <Route path="/student-attendance/:userId" element={<StudentAttendance />} />
+      <Route path="/dashboard" element={<AuthRoute><Dashboard /></AuthRoute>} />
+      <Route path="/students" element={<AuthRoute><StudentList /></AuthRoute>} />
+      <Route path="/add-student" element={<AuthRoute><AddNewStudent /></AuthRoute>} />
+      <Route path="/teachers" element={<AuthRoute><TeacherList /></AuthRoute>} />
+      <Route path="/add-teacher" element={<AuthRoute><AddNewTeacher /></AuthRoute>} />
+      <Route path="/subjects" element={<AuthRoute><SubjectList /></AuthRoute>} />
+      <Route path="/add-subject" element={<AuthRoute><AddNewSubject /></AuthRoute>} />
+      <Route path="/exams" element={<AuthRoute><ExamList /></AuthRoute>} />
+      <Route path="/branches" element={<AuthRoute><BranchList /></AuthRoute>} />
+      <Route path="/add-branch" element={<AuthRoute><AddNewBranch /></AuthRoute>} />
+      <Route path="/manage-admin" element={<AuthRoute><ManageAdminList /></AuthRoute>} />
+      <Route path="/activity" element={<AuthRoute><UserActivityList /></AuthRoute>} />
+      <Route path="/change-password" element={<AuthRoute><ChangePassword /></AuthRoute>} />
+      <Route path="/teacher-profile/:userId" element={<AuthRoute><TeacherProfile /></AuthRoute>} />
+      <Route path="/attendance-record" element={<AuthRoute><AttendanceRecord /></AuthRoute>} />
+      <Route path="/student-record" element={<AuthRoute><StudentRecord /></AuthRoute>} />
+      <Route path="/student-profile/:userId" element={<AuthRoute><StudentProfile /></AuthRoute>} />
+      <Route path="/student-scoreboard/:userId" element={<AuthRoute><StudentScoreboard /></AuthRoute>} />
+      <Route path="/student-attendance/:userId" element={<AuthRoute><StudentAttendance /></AuthRoute>} />
     </Routes>
   );
 };

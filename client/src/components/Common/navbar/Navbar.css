@@ -168,7 +168,7 @@
     color: white;
     position: fixed;
     top: 0;
-    height: 4%; /* Reduce the width slightly */
+    height: 5%; /* Reduce the width slightly */
     z-index: 1000;
     margin: 0 auto; /* Center the navbar */
     left: 0%; /* Adjust to ensure it stays centered */
@@ -196,10 +196,11 @@
   .snavprofile-container {
     margin-left: 10px; /* Nudge left */
     margin-right: 10px; /* Add margin on the right */
+  ;
   }
 
   .snavprofile-img {
-    height: 30px; /* Ensure the profile image size */
+    height: 27px; /* Ensure the profile image size */
   }
 
   
@@ -217,5 +218,11 @@
   margin: 0;
   padding: 0;
   margin-left: 15px; /* Shift left */
+} 
+.icon1, .icon, .icon2 {
+  width: 2vw; /* Smaller icons for smaller screens */
+  height: 1.8vw;
 }
+
+
 }
