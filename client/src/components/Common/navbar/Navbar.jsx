@@ -1,80 +1,57 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link as ScrollLink } from 'react-scroll'; // For smooth scrolling
 import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom'; // For routing
 import './Navbar.css'; // Import the CSS file
-import profile from '/src/assets/AdminHeader/profileadmin.jpg';
-import account from '/src/assets/Navbar_icon/admin-panel.png';
-import contact from '/src/assets/Navbar_icon/contact.png';
-import home from '/src/assets/Navbar_icon/home-page-white-icon.webp';
-import info from '/src/assets/Navbar_icon/informationicon.webp';
+import profile from '/src/assets/AdminHeader/profileadmin.jpg'
+import account from '/src/assets/Navbar_icon/admin-panel.png'
+import contact from '/src/assets/Navbar_icon/contact.png'
+import home from '/src/assets/Navbar_icon/home-page-white-icon.webp'
+import info from '/src/assets/Navbar_icon/informationicon.webp'
 
-const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
+const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {  // Receive props
   const location = useLocation(); // Get the current path
   const [showLogout, setShowLogout] = useState(false); // State to show/hide logout button
-  const [showLinks, setShowLinks] = useState(false); // State to show/hide the nav links in mobile view
-  const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
-  const [userName, setUserName] = useState('User'); // Initially set the username to "User"
   const navigate = useNavigate(); // For navigation after logout
-  const dropdownRef = useRef(null); // Ref for the dropdown
+
   const isHomePage = location.pathname === '/';
 
   const toggleLogout = () => {
     setShowLogout((prevShowLogout) => !prevShowLogout);
   };
 
-  const toggleLinks = () => {
-    setShowLinks((prevShowLinks) => !prevShowLinks);
-  };
-
-  const toggleDropdown = () => {
-    setShowDropdown((prevShowDropdown) => !prevShowDropdown);
-  };
-
   const handleLogout = () => {
+    // Remove the token from local storage and update state
     localStorage.removeItem('token');
     setIsLoggedIn(false);  // Ensure isLoggedIn is updated
-    setUserName('User'); // Reset username to 'User' on logout
+
     if (!isHomePage) {
       navigate('/login');
     }
   };
 
+  // Check token on component mount or location change to determine login status
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      setIsLoggedIn(true);
+      setIsLoggedIn(true);  // Set to logged in if token exists
     } else {
-      setIsLoggedIn(false);
+      setIsLoggedIn(false); // Set to logged out if no token exists
     }
 
-    setShowDropdown(false); // Hide dropdown on page load or navigation
+    setShowLogout(false); // Hide logout button on page load or navigation
   }, [location, setIsLoggedIn]);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowDropdown(false); // Close the dropdown if clicking outside
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
 
   return (
     <nav className='snav'>
-      <ul className={`sul ${showLinks ? 'show-links' : ''}`}>
+      <ul className='sul'>
         <li className="snavlogo sli">XYZ UNIVERSITY</li>
-
+        
         {isHomePage && (
           <li className="sli">
             <RouterLink to="/admin/admin-login" className="snav-link">
-              <img 
+            <img 
                 src={account}
-                alt="Admin Login Icon" 
+                alt="Home Icon" 
                 className="icon" 
               />
               Admin Login
@@ -148,30 +125,25 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
           )}
         </li>
 
-        <li className="snavprofile-container sli" onClick={toggleDropdown} ref={dropdownRef}>
+        <li className="snavprofile-container sli" onClick={toggleLogout}>
           <img
             src={profile}
             alt="Profile"
             className="snavprofile-img"
           />
-          {showDropdown && (
-            <div className="dropdown-menu">
-              <p className="username">Hello, {userName}!</p>
-              {isLoggedIn ? (
-                <button onClick={handleLogout} className="snavbutton slogout-button">
-                  Logout
-                </button>
-              ) : (
-                <RouterLink to="/login">
-                  <button className="snavbutton slogin-button">Login</button>
-                </RouterLink>
-              )}
-            </div>
+          {isLoggedIn && showLogout && (
+            <button onClick={handleLogout} className="snavbutton slogout-button">
+              Logout
+            </button>
+          )}
+          {!isLoggedIn && showLogout && (
+            <RouterLink to="/login" className="snavbutton slogin-button">
+              Login
+            </RouterLink>
           )}
         </li>
       </ul>
     </nav>
   );
-};
-
+}; 
 export default Navbar;

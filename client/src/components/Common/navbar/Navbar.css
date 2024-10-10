@@ -114,29 +114,108 @@
   margin-right: 8px;  /* Space between the icon and text */
   vertical-align: middle;
   vertical-align: text-top;
-} 
-/* Media query for screens with a width of 768px or smaller */
-@media (max-width: 768px) {
-  .sli:not(.snavprofile-container) {
-    display: none; /* Hide all links except the profile image */
+}
+/* Media query for screens smaller than 768px */
+@media screen and (max-width: 768px) {
+  .snav {
+    padding: 0.5vw; /* Further reduced padding */
+    margin-right: 40px;
   }
 
-  /* When showLinks is true, show the links */
-  .show-links .sli {
-    display: block; /* Show all the links on profile click */
+  .sli:first-child {
+    font-size: 3vw; /* Slightly larger for small screens */
   }
 
-  .sul {
-    flex-direction: column; /* Stack links vertically */
-    align-items: center; /* Center align the links */
+  .snav-link {
+    font-size: 2vw; /* Adjusted font size for smaller screens */
+  }
+
+  .icon1, .icon, .icon2 {
+    width: 2vw; /* Smaller icons for smaller screens */
+    height: 1.8vw;
   }
 
   .snavprofile-img {
-    height: 35px; /* Adjust the profile image size */
-    cursor: pointer;
+    height: 2.5vw; /* Smaller profile image */
   }
 
-  .snavprofile-container {
-    margin-left: auto;
+  .snavbutton {
+    padding: 0.6vw 1.2vw;
+    font-size: 1.5vw;
   }
+  .snavprofile-container {
+    position: relative;
+    margin-left: 10px; /* Adjust this value to move it left */
+    margin-right: 20px; /* This will ensure it stays at the left */
+  }
+  .sul {
+    display: flex;
+    list-style: none;
+    justify-content: flex-start; /* Align items to the left */
+    margin: 0;
+    padding: 0;
+    margin-left: 30px; /* Shift left */
+  }
+}
+
+
+@media screen and (max-width: 504px) {
+
+
+  .snav {
+    padding: 0.5vw;
+    background-color: rgb(92, 120, 238);
+    color: white;
+    position: fixed;
+    top: 0;
+    height: 4%; /* Reduce the width slightly */
+    z-index: 1000;
+    margin: 0 auto; /* Center the navbar */
+    left: 0%; /* Adjust to ensure it stays centered */
+    right: 0%; /* Add some space on the right */
+  }
+  
+  .snav-link {
+    /* Hide text while keeping the icons */
+    font-size: 0; /* Hide text size */
+    width:24px; /* Ensure enough space for the icon */
+  }
+
+  .snavlogo {
+    font-weight: bold;
+    font-size: x-large;
+    margin-right: auto; /* Ensure it stays to the left */
+  }
+
+  .snav-link img {
+    display: block; /* Show only icons */
+    width: 24px; /* Adjust icon size if needed */
+    height: auto; /* Keep the aspect ratio */
+  }
+  /* Ensure the profile image is visible */
+  .snavprofile-container {
+    margin-left: 10px; /* Nudge left */
+    margin-right: 10px; /* Add margin on the right */
+  }
+
+  .snavprofile-img {
+    height: 30px; /* Ensure the profile image size */
+  }
+
+  
+
+  /* Optional: If you want to remove margins for better alignment */
+  .sli {
+    margin-left: 5px; /* Adjust margins to minimize gaps */
+    margin-right: 5px; /* Adjust margins to minimize gaps */
+  }
+
+.sul {
+  display: flex;
+  list-style: none;
+  justify-content: flex-start; /* Align items to the left */
+  margin: 0;
+  padding: 0;
+  margin-left: 15px; /* Shift left */
+}
 }
