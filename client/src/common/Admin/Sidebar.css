@@ -21,7 +21,7 @@
 
   .sidebar.open {
     transform: translateX(0); /* Show sidebar when open */
-    width: 100%; /* Sidebar width when visible */
+    width: 160%; /* Sidebar width when visible */
     display: block;
   }
 }

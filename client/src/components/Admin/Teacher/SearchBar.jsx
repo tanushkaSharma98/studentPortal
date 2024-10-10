@@ -119,11 +119,11 @@ const SearchBar = ({ onSearch, fetchInitialTeachers }) => {
       <div className="search-input-container">
         <input 
           type="text" 
-          placeholder="Search Teacher Name" 
+          placeholder="Search" 
           value={searchName}
           onChange={(e) => setSearchName(e.target.value)} 
         />
-        <button onClick={handleSearch}>Search</button>
+        <button className='search' onClick={handleSearch}>Search</button>
         <Link to="/admin/add-teacher">
           <button className="add-teacher-btn">Add New Teacher</button>
         </Link>
