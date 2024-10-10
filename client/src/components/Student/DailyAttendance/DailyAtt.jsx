@@ -57,25 +57,39 @@ const DailyAttendance = () => {
     fetchAttendanceData(); // Fetch attendance data when the component mounts
   }, []);
 
-  // Group attendance data by subject
+  // Group attendance data by subject for rendering
   const groupedData = attendanceData.reduce((acc, record) => {
-    const { subject_code, subject_name, date, status } = record;
+    const { subject_code, subject_name, attendance_record_id, date, total_lectures, percentage, status } = record;
 
+    if (!subject_code) return acc; // Skip if subject_code is not defined
+
+    // Initialize subject data if not already present
     if (!acc[subject_code]) {
       acc[subject_code] = {
         subject_name,
-        totalLectures: 0,
-        attendance: {},
+        records: [] // Store all records for each subject
       };
     }
 
-    acc[subject_code].totalLectures++;
-    acc[subject_code].attendance[date] = status === 'Present' ? 'P' : 'A';
+    // Push the current record into the subject's records array
+    acc[subject_code].records.push({
+      attendance_record_id,
+      date,
+      total_lectures,
+      percentage,
+      status
+    });
 
     return acc;
   }, {});
 
+  // Prepare attendance entries for rendering
   const attendanceEntries = Object.values(groupedData);
+
+  // Sort records within each subject by total lectures in ascending order
+  attendanceEntries.forEach(entry => {
+    entry.records.sort((a, b) => (a.total_lectures || 0) - (b.total_lectures || 0));
+  });
 
   return (
     <div className="Daily">
@@ -93,37 +107,45 @@ const DailyAttendance = () => {
 
       {/* Attendance data */}
       <div className='student-attendance-container'>
-        {attendanceEntries.map((entry, index) => (
-          <div key={index}>
-            <div className="Sub1">
-              <span>Subject: {entry.subject_name}</span>
-            </div>
+        {attendanceEntries.length === 0 ? (
+          <div>No attendance data available.</div>
+        ) : (
+          attendanceEntries.map((entry, index) => (
+            <div key={index}>
+              <div className="Sub1">
+                <span>Subject: {entry.subject_name}</span>
+              </div>
 
-            {/* Attendance table for each subject */}
-            <table className="Attendance-Table">
-              <thead>
-                <tr>
-                  <th>Total Lectures</th>
-                  <th>Percentage (%)</th>
-                  {/* Render dynamic date headers */}
-                  {Object.keys(entry.attendance).map((date) => (
-                    <th key={date}>{date}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{entry.totalLectures}</td>
-                  <td>{((Object.values(entry.attendance).filter(a => a === 'P').length / entry.totalLectures) * 100).toFixed(2)}</td>
-                  {/* Render attendance statuses for each date */}
-                  {Object.keys(entry.attendance).map((date) => (
-                    <td key={date}>{entry.attendance[date]}</td>
-                  ))}
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        ))}
+              {/* Attendance table for each subject */}
+              <table className="Attendance-Table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Total Lectures</th>
+                    <th>Percentage (%)</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {entry.records.length > 0 ? (
+                    entry.records.map((record, recordIndex) => (
+                      <tr key={recordIndex}>
+                        <td>{record.date || 'N/A'}</td>
+                        <td>{record.total_lectures !== null ? record.total_lectures : 'N/A'}</td>
+                        <td>{record.percentage || 'N/A'}</td>
+                        <td>{record.status || 'N/A'}</td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="4">No records available</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          ))
+        )}
       </div>
 
       {/* Back button */}
