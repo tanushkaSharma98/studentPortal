@@ -2,31 +2,9 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AttendanceTable.css';
 
-const AttendanceTable = ({ students = [], onAttendanceChange, onSave, isUpdating }) => {
+const AttendanceTable = ({ students = [], onSave, isUpdating }) => {
   const buttonRefs = useRef([]);
   const navigate = useNavigate();
-
-  const toggleAttendance = (index) => {
-    const updatedStudents = [...students];
-    const currentStatus = updatedStudents[index].status;
-
-    const attendanceStatus = currentStatus === 'Present' ? false : true;
-    onAttendanceChange(updatedStudents[index].enrollment_no, attendanceStatus);
-
-    updatedStudents[index].status = attendanceStatus ? 'Present' : 'Absent';
-  };
-
-  const handleKeyDown = (e, index) => {
-    e.preventDefault();
-
-    if (e.key === 'ArrowUp' && index > 0) {
-      buttonRefs.current[index - 1].focus();
-    } else if (e.key === 'ArrowDown' && index < students.length - 1) {
-      buttonRefs.current[index + 1].focus();
-    } else if (e.key === 'Enter') {
-      toggleAttendance(index);
-    }
-  };
 
   return (
     <div className="teacher-attendance-table">
@@ -49,13 +27,12 @@ const AttendanceTable = ({ students = [], onAttendanceChange, onSave, isUpdating
                 <td>{student.enrollment_no || 'N/A'}</td>
                 <td>
                   <button
-                    className={`teacher-attendance-button ${student.status ? student.status.toLowerCase() : 'mark'}`}
-                    onClick={() => toggleAttendance(index)}
+                    className={`teacher-attendance-button ${student.status ? student.status.toLowerCase() : 'unknown'}`} // Add a fallback class
                     tabIndex="0"
                     ref={(el) => (buttonRefs.current[index] = el)}
-                    onKeyDown={(e) => handleKeyDown(e, index)}
+                    disabled // Disable the button for fetched data
                   >
-                    {student.status || 'Mark'}
+                    {student.status || 'N/A'} {/* Fallback for undefined status */}
                   </button>
                 </td>
                 <td>{student.percentage || 'N/A'}</td>

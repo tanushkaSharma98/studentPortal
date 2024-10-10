@@ -48,17 +48,17 @@ exports.uploadAttendance = async (req, res) => {
     }
   };
   
-  // GET to retrieve uploaded attendance
-  exports.getUploadedAttendance = async (req, res) => {
-    try {
-      const { subjectCode } = req.query;
+  // GET to retrieve uploaded attendance by subjectCode, date, and lecture
+exports.getUploadedAttendance = async (req, res) => {
+  try {
+    const { subjectCode, date, lecture } = req.query;
   
-      // Call service to get attendance data
-      const attendanceData = await getUploadedAttendance(subjectCode);
+    // Call service to get attendance data
+    const attendanceData = await getUploadedAttendance(subjectCode, date, lecture);
   
-      res.status(200).json(attendanceData);
-    } catch (error) {
-      console.error('Error fetching uploaded attendance:', error);
-      res.status(500).json({ message: 'Error fetching uploaded attendance' });
-    }
-  };
+    res.status(200).json(attendanceData);
+  } catch (error) {
+    console.error('Error fetching uploaded attendance:', error);
+    res.status(500).json({ message: 'Error fetching uploaded attendance' });
+  }
+};

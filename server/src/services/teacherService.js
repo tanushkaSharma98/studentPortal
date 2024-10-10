@@ -41,11 +41,11 @@ exports.uploadAttendance = async (subjectCode, lecture, attendanceDate, attendan
     }
   };
   
-  // Retrieve uploaded attendance
-  exports.getUploadedAttendance = async (subjectCode) => {
-    const subjectId = await attendanceModel.getSubjectIdByCode(subjectCode);
-    if (!subjectId) throw new Error('Subject not found');
+  // Retrieve uploaded attendance based on subjectCode, date, and lecture
+exports.getUploadedAttendance = async (subjectCode, date, lecture) => {
+  const subjectId = await attendanceModel.getSubjectIdByCode(subjectCode);
+  if (!subjectId) throw new Error('Subject not found');
   
-    const attendanceData = await attendanceModel.getAttendanceDataBySubjectId(subjectId);
-    return attendanceData;
-  };
+  const attendanceData = await attendanceModel.getAttendanceDataBySubjectId(subjectId, date, lecture);
+  return attendanceData;
+};

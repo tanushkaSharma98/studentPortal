@@ -76,24 +76,25 @@ const insertAttendanceRecord = async (studentId, attendanceRecordId, attendance,
   console.log('Attendance record inserted successfully');
 };
 
-// Get attendance data by subject_id
-const getAttendanceDataBySubjectId = async (subjectId) => {
+// Get attendance data by subject_id, date, and lecture
+const getAttendanceDataBySubjectId = async (subjectId, date, lecture) => {
   const query = `
-    SELECT a.attendance_id, s.student_id, s.enrollment_no, a.attendance, ar.date
+    SELECT a.attendance_id, s.student_id, s.enrollment_no, a.attendance, a.percentage, ar.date
     FROM attendance a
     INNER JOIN student s ON a.student_id = s.student_id
     INNER JOIN attendance_record ar ON a.attendance_record_id = ar.attendance_record_id
-    WHERE ar.subject_id = :subjectId;
+    WHERE ar.subject_id = :subjectId
+      AND ar.date = :date
+      AND ar.lecture = :lecture;
   `;
 
   const result = await sequelize.query(query, {
-    replacements: { subjectId },
+    replacements: { subjectId, date, lecture },
     type: sequelize.QueryTypes.SELECT,
   });
 
   return result;
 };
-
 module.exports = {
   getSubjectIdByCode,
   createAttendanceRecord,
