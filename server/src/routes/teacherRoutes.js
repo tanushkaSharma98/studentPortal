@@ -10,14 +10,12 @@ const teachUpdateAttendanceController = require('../controllers/teachUpdateAtten
 const  {getAttendanceByDateRange}  = require('../controllers/fromToRangeController');
 
 
-// Define the route for fetching attendance by date range
-router.get('/attendance/range', getAttendanceByDateRange);
-
-// PUT route to update attendance
-router.put('/update/Att', teachUpdateAttendanceController.updateAttendance);
 
 // Teacher profile route
 router.get('/profile', getTeacherProfile);
+
+// Route to get subjects for a specific teacher
+router.get('/subjects', teacherSubController.getSubjectsByTeacher);
 
 // Route to get students by subject
 router.get('/subject-students', teacherSubStudentController.getStudentsBySubject);
@@ -28,8 +26,11 @@ router.post('/attendance/upload', uploadAttendance);
 // GET route to retrieve uploaded attendance
 router.get('/attendance/get', getUploadedAttendance);
 
-// Route to get subjects for a specific teacher
-router.get('/subjects', teacherSubController.getSubjectsByTeacher);
+// PUT route to update attendance
+router.put('/attendance/update', teachUpdateAttendanceController.updateAttendance);
+
+// Define the route for fetching attendance by date range
+router.get('/attendance/range', getAttendanceByDateRange);
 
 // Route to upload marks
 router.post('/marks/upload', teacherMarksController.uploadMarks);
