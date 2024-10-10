@@ -1,25 +1,31 @@
 const teacherPostMarksModel = require('../models/teacherPostMarksModel');
 
 // Prepare marks data by fetching subject details
-const prepareMarksData = async (subjectCode, examId, marks) => {
+// Prepare marks data by fetching subject details
+const prepareMarksData = async (marks, examId) => {
   try {
-    // Log subjectCode to verify it's being passed correctly
-    console.log('Preparing marks data for subjectCode:', subjectCode);
+    const marksData = [];
 
-    // Fetch subject details using subjectCode
-    const subjectDetails = await teacherPostMarksModel.getSubjectDetails(subjectCode);
+    // Fetch subject details for each mark entry
+    for (const mark of marks) {
+      const { subject_code } = mark;
 
-    if (!subjectDetails) {
-      throw new Error('Invalid subject code provided');
+      // Fetch subject details using subject_code
+      const subjectDetails = await teacherPostMarksModel.getSubjectDetails(subject_code);
+
+      if (!subjectDetails) {
+        throw new Error(`Invalid subject code provided: ${subject_code}`);
+      }
+
+      marksData.push({
+        student_id: mark.student_id,
+        subject_id: subjectDetails.subject_id,
+        exam_id: examId,
+        marks_obtained: mark.marks_obtained,
+      });
     }
 
-    // Process marks data
-    return marks.map(mark => ({
-      student_id: mark.student_id, // Make sure this matches your request body
-      subject_id: subjectDetails.subject_id,
-      exam_id: examId, // Include examId
-      marks_obtained: mark.marks_obtained,
-    }));
+    return marksData;
   } catch (error) {
     console.error('Error preparing marks data:', error);
     throw error;
@@ -30,11 +36,10 @@ const prepareMarksData = async (subjectCode, examId, marks) => {
 // Save marks into the database
 const saveMarks = async (marksData) => {
   try {
-    // Check if marksData is provided
     if (!marksData || marksData.length === 0) {
       throw new Error('No marks data provided to save');
     }
-    
+
     await teacherPostMarksModel.insertMarks(marksData);
     console.log('Marks saved successfully');
   } catch (error) {
@@ -49,22 +54,12 @@ const getMarksForSubject = async (subjectCode) => {
     throw new Error('Subject code is required to fetch marks');
   }
 
-  // Fetch marks data
   const marksData = await teacherPostMarksModel.getMarksBySubject(subjectCode);
   return marksData;
-};
-
-const getSubjectDetails = async (subjectCode) => {
-  if (!subjectCode) {
-    throw new Error('Subject code is required to fetch subject details');
-  }
-
-  return await teacherPostMarksModel.getSubjectDetails(subjectCode);
 };
 
 module.exports = {
   prepareMarksData,
   saveMarks,
   getMarksForSubject,
-  getSubjectDetails
 };

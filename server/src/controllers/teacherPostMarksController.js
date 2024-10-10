@@ -3,26 +3,33 @@ const teacherPostMarksService = require('../services/teacherPostMarksService');
 // Controller function to upload marks
 const uploadMarks = async (req, res) => {
   try {
-    const { examId, marks } = req.body;
+    const { exam_id, marks } = req.body;
 
-    // Check if marks are being sent correctly
+    // Validate marks
     if (!marks || !Array.isArray(marks) || marks.length === 0) {
       return res.status(400).json({ message: 'Marks data is required' });
     }
 
-    // Log received marks for debugging
-    console.log('Received marks:', marks);
+    // Validate each mark entry
+    for (const mark of marks) {
+      const { student_id, marks_obtained, subject_code } = mark;
 
-    // Assuming the subject_code is provided in the first mark entry
-    const subjectCode = marks[0].subject_code; // Use subject_code from the first entry
-    if (!subjectCode) {
-      return res.status(400).json({ message: 'Subject code is required' });
+      if (!student_id || !marks_obtained || !subject_code) {
+        return res.status(400).json({
+          message: 'Each mark entry must contain student_id, marks_obtained, and subject_id.'
+        });
+      }
     }
 
-    // Prepare marks data and fetch subject details
-    const marksData = await teacherPostMarksService.prepareMarksData(subjectCode, examId, marks);
+    // Validate exam ID
+    if (!exam_id) {
+      return res.status(400).json({ message: 'Exam ID is required' });
+    }
 
-    // Call service to save marks in the database
+    // Prepare marks data
+    const marksData = await teacherPostMarksService.prepareMarksData(marks, exam_id);
+
+    // Save marks in the database
     await teacherPostMarksService.saveMarks(marksData);
 
     res.status(200).json({ message: 'Marks uploaded successfully' });
@@ -40,7 +47,6 @@ const getMarks = async (req, res) => {
     // Trim the subjectCode to handle extra spaces
     const trimmedSubjectCode = subjectCode.trim();
 
-    // Ensure subjectCode is provided
     if (!trimmedSubjectCode) {
       return res.status(400).json({ message: 'Subject code is required' });
     }
