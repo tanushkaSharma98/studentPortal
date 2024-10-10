@@ -34,13 +34,14 @@ const StudentTable = ({ students, setStudents }) => {
   };
   
   return (
-    <table className="student-table">
+    <div class="table-container">
+      <table className="student-table">
       <thead>
         <tr>
           <th>S. No.</th>
           <th>Name</th>
           <th>Enrollment No.</th>
-          <th>Email</th>
+          <th className="email">Email</th>
           <th>Password</th>
           <th className="hide">UserId</th>
           <th>View</th>
@@ -83,6 +84,7 @@ const StudentTable = ({ students, setStudents }) => {
         })}
       </tbody>
     </table>
+ </div>
   );
 };
 

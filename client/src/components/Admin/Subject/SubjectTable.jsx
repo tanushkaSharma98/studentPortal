@@ -1,5 +1,5 @@
 import React from 'react';
-
+// import './SubjectTable.css';
 const SubjectTable = ({ subjects, setSubjects }) => {
   const handleDelete = async (index) => {
     const token = localStorage.getItem('token');

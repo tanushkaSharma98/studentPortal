@@ -63,7 +63,7 @@ const TeacherAttendance = () => {
         try {
           // Fetch attendance data based on subject code and date
           const response = await axios.get(
-            `http://localhost:3000/api/attendance/get?subjectCode=${selectedSubject}`,
+            `http://localhost:3000/api/teachers/attendance/get?subjectCode=${selectedSubject}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -106,47 +106,57 @@ const TeacherAttendance = () => {
       setLecture(value);
     }
   };
+  
 // Handle attendance submission on Save button click
 const handleAttendanceSubmit = async () => {
   if (!selectedSubject || !date || !lecture || attendanceList.length === 0) {
     alert('Please fill in all fields and mark attendance.');
     return;
   }
-    const attendanceData = {
-      subjectCode: selectedSubject,
-      lecture: Number(lecture),
-      attendanceDate: date,
-      attendanceList,
-    };
 
-    try {
-      const response = await axios.post('http://localhost:3000/api/attendance/upload', attendanceData, {
+  const attendanceData = {
+    subjectCode: selectedSubject,
+    lecture: Number(lecture),
+    attendanceDate: date,
+    attendanceList,
+  };
+
+  try {
+    const response = await axios.post(
+      'http://localhost:3000/api/teachers/attendance/upload',
+      attendanceData,
+      {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
-      });
-      
-      console.log('API Response:', response.data);  // Log the API response
-      alert('Attendance uploaded successfully!');
-      navigate('/dashboard');
-    } catch (error) {
-      if (error.response) {
-        // Server responded with a status other than 2xx
-        console.error('Error uploading attendance:', error.response.data);
-        alert(`Failed to upload attendance: ${error.response.data.message || 'Unknown error'}`);
-      } else if (error.request) {
-        // Request was made but no response was received
-        console.error('No response received from the server:', error.request);
-        //alert('Failed to upload attendance: No response from server');
-      } else {
-        // Something else went wrong
-        console.error('Error in uploading attendance:', error.message);
-        alert(`Failed to upload attendance: ${error.message}`);
       }
+    );
+
+    console.log('API Response:', response.data);
+    alert('Attendance uploaded successfully!');
+
+    // Reset attendance list, date, lecture, and trigger reset in the table
+    setAttendanceList([]); // Completely reset the attendance list
+    setDate(''); // Clear the date field
+    setLecture(''); // Clear the lecture field
+    setIsUpdating(false); // Exit update mode if applicable
+    navigate('/teacher-dashboard'); // You can navigate as intended
+  } catch (error) {
+    if (error.response) {
+      console.error('Error uploading attendance:', error.response.data);
+      alert(`Failed to upload attendance: ${error.response.data.message || 'Unknown error'}`);
+    } else if (error.request) {
+      console.error('No response received from the server:', error.request);
+      alert('Failed to upload attendance: No response from server');
+    } else {
+      console.error('Error in uploading attendance:', error.message);
+      alert(`Failed to upload attendance: ${error.message}`);
     }
-    
-  };    
+  }
+};
+
+
   return (
     <div className="teacher-attendance-container">
       {/* Subject Dropdown */}

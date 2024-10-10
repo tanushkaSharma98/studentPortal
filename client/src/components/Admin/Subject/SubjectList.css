@@ -1,6 +1,7 @@
 /* Subject Table Styles */
 .subject-table {
   margin-top: 20px;
+    overflow-x: auto; /* Allow horizontal scrolling if the content exceeds the width */
 }
 
 .subject-table table {
@@ -17,6 +18,10 @@
 .subject-table th {
   background-color: #f2f2f2;
   font-weight: bold;
+  font-size: 0.9rem;
+}
+.subject-table td {
+  font-size: 0.7rem;
 }
 
 .subject-table tr:nth-child(even) {

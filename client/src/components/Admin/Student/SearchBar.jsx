@@ -129,7 +129,7 @@ const SearchBar = ({ onSearch, fetchInitialStudents }) => {
       <div className="search-input-container">
         <input 
           type="text" 
-          placeholder="Search Student Name" 
+          placeholder="Search " 
           value={searchName} 
           onChange={(e) => setSearchName(e.target.value)} 
         />

@@ -61,7 +61,7 @@ const SearchBar = ({ onFilter }) => {
       <div className="search-input-container">
         <input
           type="text"
-          placeholder="Search Subject Name"
+          placeholder="Search"
           name="subject_name"
           value={filters.subject_name}
           onChange={(e) => setFilters({ ...filters, subject_name: e.target.value })}  // Handle subject name input
