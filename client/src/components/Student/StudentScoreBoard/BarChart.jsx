@@ -19,7 +19,7 @@ const BarChart = () => {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${token}`, // Include the token in the Authorization header
                     },
-                }); // Replace with your API endpoint
+                });
                 const rawData = await response.json();
 
                 // Transforming the data
@@ -36,7 +36,6 @@ const BarChart = () => {
                     }
                 });
 
-                // Prepare labels and data
                 const labels = Object.keys(subjects);
                 const midterm1Data = labels.map(subject => subjects[subject].Midterm1 || 0);
                 const midterm2Data = labels.map(subject => subjects[subject].Midterm2 || 0);
@@ -68,25 +67,44 @@ const BarChart = () => {
 
     const options = {
         responsive: true,
+        maintainAspectRatio: false, // Allow chart to adjust height based on screen size
         scales: {
             y: {
-                min: 0,     // Minimum value of the y-axis
-                max: 100,   // Maximum value of the y-axis
+                min: 0,
+                max: 100,
                 ticks: {
-                    stepSize: 10, // Optional: set the step size for ticks
-                    callback: (value) => `${value}%`, // Format the ticks to display as percentages
+                    stepSize: 10,
+                    callback: (value) => `${value}%`, // Show percentages
+                    font: {
+                        size: window.innerWidth < 800 ? 10 : 14 // Adjust font size for mobile
+                    }
                 },
             },
+            x: {
+                ticks: {
+                    font: {
+                        size: window.innerWidth < 800 ? 10 : 14 // Adjust font size for mobile
+                    }
+                }
+            }
         },
         plugins: {
             legend: {
                 position: 'top',
+                labels: {
+                    font: {
+                        size: window.innerWidth < 800 ? 10 : 14 // Adjust legend font size for mobile
+                    }
+                }
             },
             title: {
                 display: true,
                 text: 'Marks per Subject',
-            },
-        },
+                font: {
+                    size: window.innerWidth < 800 ? 14 : 18 // Adjust title font size for mobile
+                }
+            }
+        }
     };
 
     return loading ? (

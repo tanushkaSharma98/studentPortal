@@ -1,5 +1,13 @@
 .chart-container {
-    width: 50%; /* Adjust width as needed */
-    height: 250px; /* Adjust height as needed */
-    margin: auto; /* Center the chart */
+    width: 50%;
+    height: 300px;
+    margin: auto;
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 800px) {
+    .chart-container {
+        width: 90%; /* Make the chart wider on mobile */
+        height: 300px; /* Reduce the height for smaller screens */
+    }
 }
