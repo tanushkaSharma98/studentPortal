@@ -4,6 +4,7 @@ import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, Legend } fro
 import './StudentAttendance.css';
 import Header from '../../../common/Admin/Header';
 
+
 const COLORS = ['#CD84A3', '#CBDEE6'];
 
 const StudentAttendance = () => {
@@ -13,11 +14,19 @@ const StudentAttendance = () => {
   const [error, setError] = useState(null);
   const [activeAccordions, setActiveAccordions] = useState([]);
 
+  
   useEffect(() => {
-    
     const fetchAttendanceData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/admin/students/attendance/${userId}`);
+        const token = localStorage.getItem('token'); // Get the token from local storage
+        const response = await fetch(`http://localhost:3000/api/admin/students/attendance/${userId}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`, // Include the token in the request headers
+            'Content-Type': 'application/json', // Set content type to JSON
+          },
+        });
+
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
