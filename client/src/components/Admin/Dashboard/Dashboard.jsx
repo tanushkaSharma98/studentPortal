@@ -38,25 +38,21 @@ const Dashboard = () => {
         const studentRes = await fetch('http://localhost:3000/api/admin/students/count', { headers });
         if (!studentRes.ok) throw new Error(`Failed to fetch: ${studentRes.statusText}`);
         const studentData = await studentRes.json();
-        console.log('Student Data:', JSON.stringify(studentData, null, 2)); 
         setStudentCount(studentData.studentCount);
   
         const teacherRes = await fetch('http://localhost:3000/api/admin/teachers/count', { headers });
         if (!teacherRes.ok) throw new Error(`Failed to fetch: ${teacherRes.statusText}`);
         const teacherData = await teacherRes.json();
-        console.log('teacher Data:', JSON.stringify(teacherData, null, 2)); 
         setTeacherCount(teacherData.teacherCount);
   
         const branchRes = await fetch('http://localhost:3000/api/admin/branches/count', { headers });
         if (!branchRes.ok) throw new Error(`Failed to fetch: ${branchRes.statusText}`);
         const branchData = await branchRes.json();
-        console.log('branch Data:', JSON.stringify(branchData, null, 2)); 
         setBranchCount(branchData.branchCount);
   
         const subjectRes = await fetch('http://localhost:3000/api/admin/subjects/count', { headers });
         if (!subjectRes.ok) throw new Error(`Failed to fetch: ${subjectRes.statusText}`);
         const subjectData = await subjectRes.json();
-        console.log('subject Data:', JSON.stringify(subjectData, null, 2)); 
         setSubjectCount(subjectData.subjectCount);
       } catch (error) {
         console.error('Error fetching counts:', error);
@@ -90,6 +86,8 @@ const Dashboard = () => {
               backgroundColor: 'rgba(75, 192, 192, 0.6)', // Bar color
               borderColor: 'rgba(75, 192, 192, 1)', // Bar border color
               borderWidth: 1,
+              borderRadius: 8, // Rounded bar corners
+              barThickness: 'flex', // Automatically adjust bar thickness
             },
           ],
         });
@@ -101,23 +99,36 @@ const Dashboard = () => {
     fetchCounts();
     fetchBranchStudentCounts();
   }, []);
-  
 
   // Options for the bar chart
   const options = {
+    responsive: true,
+    maintainAspectRatio: false, // Disable aspect ratio for better resizing
     scales: {
       y: {
         beginAtZero: true,
         title: {
           display: true,
           text: 'Number of Students', // Y-axis title
+          font: {
+            size: 14,
+          },
         },
       },
       x: {
         title: {
           display: true,
           text: 'Branches', // X-axis title
+          font: {
+            size: 14,
+          },
         },
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top', // Position legend on top
       },
     },
   };
@@ -129,17 +140,18 @@ const Dashboard = () => {
       <main className="addashboard">
         <h1 className="adwelcome">Welcome <span className="adadmin-highlight">Admin!</span></h1>
         <div className="adcards-container">
-        <div className="adcard">Students<br />{studentCount || 'Loading...'}</div>
+          <div className="adcard">Students<br />{studentCount || 'Loading...'}</div>
           <div className="adcard">Teachers<br />{teacherCount || 'Loading...'}</div>
           <div className="adcard">Branches<br />{branchCount || 'Loading...'}</div>
           <div className="adcard">Subjects<br />{subjectCount || 'Loading...'}</div>
         </div>
         <div className="adgraph-container">
-          <Bar data={chartData} options={options} /> {/* Render the bar chart */}
+          <div className="adgraph-wrapper">
+            <Bar data={chartData} options={options} /> {/* Render the bar chart */}
+          </div>
         </div>
       </main>
     </div>
-   
   );
 };
 
