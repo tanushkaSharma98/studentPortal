@@ -4,7 +4,11 @@ const teacherPostMarksService = require('../services/teacherPostMarksService');
 const uploadMarks = async (req, res) => {
   try {
     const { exam_id, marks } = req.body;
+    const usertype = req.user.user_type;
 
+    if (usertype !== 2) {
+        return res.status(403).json({ message: 'Unauthorized: Not a teacher!' });
+    }
     // Validate marks
     if (!marks || !Array.isArray(marks) || marks.length === 0) {
       return res.status(400).json({ message: 'Marks data is required' });
@@ -43,7 +47,11 @@ const uploadMarks = async (req, res) => {
 const getMarks = async (req, res) => {
   try {
     let { subjectCode } = req.query;
+    const usertype = req.user.user_type;
 
+    if (usertype !== 2) {
+        return res.status(403).json({ message: 'Unauthorized: Not a teacher!' });
+    }
     // Trim the subjectCode to handle extra spaces
     const trimmedSubjectCode = subjectCode.trim();
 

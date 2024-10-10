@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import './TeacherScoreboard.css';
-import axios from 'axios';
 import StudentTable from './Table'; // Import StudentTable component
 
 const TeacherScoreboard = () => {
   const [examDropdown, setExamDropdown] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState('');
-  const [selectedExam, setSelectedExam] = useState('Exam');
+  const [selectedExam, setSelectedExam] = useState('');
   const [examList, setExamList] = useState([]);
   const [subjectList, setSubjectList] = useState([]);
   const [studentList, setStudentList] = useState([]); // State for student list
+  const [maxMarks, setMaxMarks] = useState(null); // State for maximum marks
+  const [isUpdateMode, setIsUpdateMode] = useState(false); // To track if it's update mode
 
   const token = localStorage.getItem('token');
 
@@ -19,22 +20,24 @@ const TeacherScoreboard = () => {
       const fetchSubjectsAndExams = async () => {
         try {
           // Fetch subjects based on teacherId
-          const subjectResponse = await axios.get('http://localhost:3000/api/teachers/subjects', {
+          const subjectResponse = await fetch('http://localhost:3000/api/teachers/subjects', {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
             }
           });
-          setSubjectList(subjectResponse.data);
+          const subjectData = await subjectResponse.json();
+          setSubjectList(subjectData);
 
           // Fetch exams
-          const examResponse = await axios.get('http://localhost:3000/api/admin/exams', {
+          const examResponse = await fetch('http://localhost:3000/api/admin/exams', {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
             }
           });
-          setExamList(examResponse.data);
+          const examData = await examResponse.json();
+          setExamList(examData);
         } catch (error) {
           console.error('Error fetching subjects or exams:', error);
         }
@@ -47,100 +50,110 @@ const TeacherScoreboard = () => {
   // Fetch students based on the selected subject
   const handleSubjectChange = async (subject) => {
     setSelectedSubject(subject);
+    setSelectedExam(''); // Reset selected exam
+    setStudentList([]); // Clear student list before fetching new data
     try {
-      const studentResponse = await axios.get(
-        `http://localhost:3000/api/teachers/subject-students?subjectCode=${subject}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const studentsWithMarks = studentResponse.data.map(student => ({
-        ...student,
-        Marks_Obtained: student.Marks_Obtained || 0 // Initialize marks if missing
-      }));
-      setStudentList(studentsWithMarks); // Update student list with default marks
+      // Fetch students based on the selected subject
+      const studentResponse = await fetch(`http://localhost:3000/api/teachers/subject-students?subjectCode=${subject}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const studentData = await studentResponse.json();
+
+      // Log the student data to check its structure
+      console.log('Fetched Student Data:', studentData);
+
+      // Set the fetched student data directly to the studentList state
+      setStudentList(studentData); // Use the API response as it is
+
+      setIsUpdateMode(false); // Reset update mode since it's a new selection
     } catch (error) {
       console.error('Error fetching students:', error);
     }
   };
 
-  // Handle exam selection
-  const handleExamSelect = (exam) => {
-    setSelectedExam(exam);
-    setExamDropdown(false);
+  // Fetch marks data when selectedExam is present
+  useEffect(() => {
+    const fetchMarksData = async () => {
+      if (!selectedExam || studentList.length === 0) return; // Early return if no exam or students
+
+      try {
+        const marksResponse = await fetch(
+          `http://localhost:3000/api/teachers/marks?subjectCode=${selectedSubject}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const marksData = await marksResponse.json();
+
+        // Check if there's data and filter based on selected exam ID
+        const updatedStudents = studentList.map(student => {
+          const studentMarks = marksData.find(
+            mark => mark.student_id === student.student_id && mark.exam_id === Number(selectedExam)
+          );
+          return {
+            ...student,
+            Marks_Obtained: studentMarks ? studentMarks.marks_obtained : undefined,
+            percentage: studentMarks ? studentMarks.percentage : undefined,
+          };
+        });
+
+        setStudentList(updatedStudents);
+        setIsUpdateMode(true); // Change mode to update if marks are present
+      } catch (error) {
+        console.error('Error fetching marks data:', error);
+      }
+    };
+
+    fetchMarksData();
+  }, [selectedExam, selectedSubject, token, studentList.length]); // Update dependencies
+
+  // Handle exam selection and update maximum marks
+  const handleExamSelect = (examId) => {
+    setSelectedExam(examId);
+
+    // Find the selected exam and update max marks
+    const selectedExamObj = examList.find(exam => exam.exam_id === Number(examId));
+    if (selectedExamObj) {
+      setMaxMarks(selectedExamObj.maximum_marks);
+    }
   };
 
-  // Handle save button to post marks to the API
-//   const handleSaveMarks = async () => {
-//     const payload = studentList.map((student) => ({
-//       student_id: student.student_id,
-//       Marks_Obtained: student.Marks_Obtained,
-//       subject_id: selectedSubject,
-//       exam_id: Number(selectedExam) 
-      
-//     })).filter(item => item.Marks_Obtained !== undefined && item.student_id); // Ensure we only send valid entries
-//     console.log('Payload:', payload);
-//     if (payload.length === 0) {
-//       alert("No valid marks to upload.");
-//       return; // Early exit if there are no valid marks
-//   }
+  // Save or update marks
+  const handleSaveMarks = async () => {
+    const payload = {
+      exam_id: Number(selectedExam),
+      marks: studentList.map((student) => ({
+        student_id: student.student_id,
+        enrollment_no: student.enrollment_no, // Include enrollment number in the payload
+        marks_obtained: student.Marks_Obtained,
+        subject_code: selectedSubject
+      })).filter(item => item.marks_obtained !== undefined && item.student_id)
+    };
 
-
-//   try {
-//     const response = await axios.post('http://localhost:3000/api/marks/upload', testPayload, {
-//         headers: {
-//             Authorization: `Bearer ${token}`, // Replace with actual token if required
-//             'Content-Type': 'application/json',
-//         },
-//     });
-//     console.log('Marks uploaded successfully:', response.data);
-// } catch (error) {
-//     console.error('Error uploading marks:', error.response?.data);
-// }
-
-//   };
-const handleSaveMarks = async () => {
-  const payload = studentList.map((student) => ({
-      student_id: student.student_id,
-      Marks_Obtained: student.Marks_Obtained,
-      subject_id: selectedSubject,
-      exam_id: Number(selectedExam)
-  })).filter(item => item.Marks_Obtained !== undefined && item.student_id);
-
-  console.log('Payload:', payload);
-  if (payload.length === 0) {
+    if (payload.marks.length === 0) {
       alert("No valid marks to upload.");
       return;
-  }
+    }
 
-  try {
-      const response = await axios.post('http://localhost:3000/api/teachers/marks/upload', payload, {
-          headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
-          },
+    try {
+      const response = await fetch('http://localhost:3000/api/teachers/marks/upload', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
       });
-      console.log('Marks uploaded successfully:', response.data);
-  } catch (error) {
-      // Enhanced error logging
-      if (error.response) {
-          // Server responded with a status other than 200 range
-          console.error('Error response data:', error.response.data);
-          console.error('Error response status:', error.response.status);
-          console.error('Error response headers:', error.response.headers);
-      } else if (error.request) {
-          // Request was made but no response was received
-          console.error('Error request data:', error.request);
-      } else {
-          // Something happened in setting up the request
-          console.error('Error message:', error.message);
-      }
-      console.error('Error config:', error.config);
-  }
-};
-
+      const result = await response.json();
+      console.log('Marks uploaded successfully:', result);
+    } catch (error) {
+      console.error('Error uploading marks:', error);
+    }
+  };
 
   return (
     <div className="teacher-scoreboard-container">
@@ -157,7 +170,7 @@ const handleSaveMarks = async () => {
               subjectList.map((subject, index) => (
                 <option 
                   key={index} 
-                  value={subject.subject_code} // Use subject_code for API call
+                  value={subject.subject_code}
                 >
                   {`${subject.sub_initials} (${subject.subject_code})`} 
                 </option>
@@ -177,8 +190,8 @@ const handleSaveMarks = async () => {
           >
             <option value="">Exam</option>
             {examList.length > 0 ? (
-              examList.map((exam, index) => (
-                <option key={index} value={exam.exam_name}>
+              examList.map((exam) => (
+                <option key={exam.exam_id} value={exam.exam_id}>
                   {exam.exam_name}
                 </option>
               ))
@@ -194,19 +207,21 @@ const handleSaveMarks = async () => {
         <span>Branch: Computer Science</span>
         <span>Semester: 7</span>
         <span>Subject: {selectedSubject}</span>
-        <span>Exam: {selectedExam}</span>
+        <span>Exam: {examList.find(exam => exam.exam_id === Number(selectedExam))?.exam_name || 'N/A'}</span>
       </div>
 
+      {/* Dynamic Maximum Marks */}
       <div className="teacher-maxmarks">
-        <span>Maximum marks: 30</span>
+        <span>Maximum marks: {maxMarks ? maxMarks : 'N/A'}</span>
       </div>
 
       {/* Render StudentTable with the fetched student list */}
-      {selectedSubject && selectedExam && (
+      {selectedSubject && (
         <StudentTable 
           students={studentList} 
           setStudents={setStudentList} 
           onSave={handleSaveMarks} // Pass the handleSaveMarks function to the StudentTable
+          buttonText={isUpdateMode ? 'Update Marks' : 'Save Marks'} // Change button text
         />
       )}
     </div>
