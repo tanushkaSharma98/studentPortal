@@ -14,23 +14,19 @@
 }
 
 /* Dropdown button styling */
-.teacher-dropdown-btn {
-  background-color: #35393b;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  font-size: 1.3rem;
+.portalselect{
+    padding: 10px 10px;
+    border: none;
+    background-color: #35393b; /* Dark gray background for the dropdown */
+    color: white; /* White text color */
+    font-size: 16px; /* Adjust font size */
+    border-radius: 8px; /* Adds rounded corners */
+    outline: none; /* Removes the default border on focus */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition effect */
 }
-
-/* Dropdown arrow styling */
-.teacher-arrow {
-  margin-left: 20px;
-  font-size: 13px;
+.teacher-subject-dropdown{
+  padding-left: 7%;
 }
 
 /* Dropdown container */

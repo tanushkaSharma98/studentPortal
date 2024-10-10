@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';  // Use NavLink for active class
+import { NavLink, useNavigate } from 'react-router-dom';  // Use useNavigate for redirection
 import './Header.css';  // Import specific styles for Header
 import mange_admin from '/src/assets/AdminHeader/mange_admin.png';
-import logout from '/src/assets/AdminHeader/logout.png' 
-import password from '/src/assets/AdminHeader/Change_password.png'
-import profile from '/src/assets/AdminHeader/profileadmin.jpg'
+import logout from '/src/assets/AdminHeader/logout.png'; 
+import password from '/src/assets/AdminHeader/Change_password.png';
+import profile from '/src/assets/AdminHeader/profileadmin.jpg';
+
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);  // State to toggle menu visibility on mobile
+  const navigate = useNavigate();  // Initialize useNavigate hook for redirection
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);  // Toggle the menu on profile image click
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');  // Remove the token from local storage
+    navigate('/admin/admin-login');  // Redirect to the login page
   };
 
   return (
     <div className="navbar">
       <h2>XYZ UNIVERSITY</h2>
       <div className="navbar-right">
-        
         {/* Menu options for larger screens or when profile image is clicked on mobile */}
         <div className={`menu-options ${showMenu ? 'show' : ''}`}>
           <NavLink 
@@ -33,7 +39,9 @@ const Header = () => {
           </NavLink>
           <NavLink 
             to="/admin/admin-login" 
-            className={({ isActive }) => isActive ? 'navbar-btn active-link' : 'navbar-btn'}>
+            className={({ isActive }) => isActive ? 'navbar-btn active-link' : 'navbar-btn'}
+            onClick={handleLogout}  // Call handleLogout on Logout click
+          >
             {/* Icon added in front of the Logout text */}
             <img src={logout} alt="Logout Icon" className="icon" />
             Logout

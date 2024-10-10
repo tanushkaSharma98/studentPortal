@@ -2,6 +2,7 @@
 .teacher-student-record-table {
     width: 115%;
     padding-top: 2%;
+     white-space: nowrap; 
 }
 
 .teacher-student-record-table table {

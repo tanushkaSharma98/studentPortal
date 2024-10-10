@@ -2,7 +2,7 @@
 .teacher-dailyAttendanceContainer {
     position: relative;
     width: 100%;
-    padding: 50px;
+    padding: 7%;
     box-sizing: border-box;
 }
 .Daily-att{
@@ -16,7 +16,7 @@
 /* Back button styles */
 .Teacher-back-button {
     position: absolute;
-    top: 0;
+    top: 7%;
     left: 1vw;
     font-size: 40px;
     font-weight:bolder;

@@ -7,7 +7,6 @@
   .teacher-top-buttons {
     display: flex;
     margin-bottom: 20px;
-    padding-left: 7%;
   }
  /* Info row styling */
   .teacher-info-row {
@@ -31,5 +30,16 @@
     font-weight:bold ;
 
   }
+  .portal-select{
+    padding: 10px 10px;
+    border: none;
+    background-color: #35393b; /* Dark gray background for the dropdown */
+    color: white; /* White text color */
+    font-size: 16px; /* Adjust font size */
+    border-radius: 8px; /* Adds rounded corners */
+    outline: none; /* Removes the default border on focus */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition effect */
  
+  }
   

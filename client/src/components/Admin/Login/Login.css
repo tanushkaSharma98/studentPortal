@@ -21,6 +21,7 @@
   text-align: left;
   font-size: 24px; /* Larger font size for the title */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  width: 110%;
 }
 
 /* Layout for content container */

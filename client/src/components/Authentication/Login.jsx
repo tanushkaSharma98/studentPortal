@@ -49,14 +49,16 @@ const Login = () => {
 
       const decodedToken = jwtDecode(token);
       console.log('User ID:', decodedToken.user_id);
-      setMessage('Login successful!');
-
+      
       if (decodedToken.user_type === 1) {
+        setMessage('Login successful!'); // Student
         setTimeout(() => navigate('/student-dashboard'), 1000);
       } else if (decodedToken.user_type === 2) {
+        setMessage('Login successful!'); // Teacher
         setTimeout(() => navigate('/teacher-dashboard'), 1000);
+      } else {
+        setMessage('Not authorized.'); // For any other user type
       }
-    
     } else {
       setMessage('Login failed: No token received.');
     }

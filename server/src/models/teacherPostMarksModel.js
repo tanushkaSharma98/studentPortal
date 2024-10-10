@@ -69,7 +69,9 @@ const insertMarks = async (marksData) => {
         type: sequelize.QueryTypes.INSERT,
       });
     }
+    await transaction.commit();
   } catch (error) {
+    await transaction.rollback();
     console.error('Error inserting marks:', error);
     throw error; // Propagate the error to the controller
   }

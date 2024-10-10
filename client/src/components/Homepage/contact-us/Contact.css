@@ -11,9 +11,18 @@
 
 .contact-info {
   display: flex;
+  flex-direction: row; /* Default to column for larger screens */
   justify-content: space-around;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
+
+/* Media query for phones */
+@media (max-width: 600px) {
+  .contact-info {
+    flex-direction: column; /* Change to row for smaller screens */
+  }
+}
+
 
 .info-item {
   flex: 1;

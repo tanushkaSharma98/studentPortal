@@ -3,7 +3,6 @@ import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import './BarChart.css'; 
 
-// Registering necessary components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const AttendanceTrendChart = () => {
@@ -42,8 +41,6 @@ const AttendanceTrendChart = () => {
                 const labels = subjects.map(subject => subject.sub_initials);
                 const data = subjects.map(subject => parseFloat(subject.percentage));
 
-                console.log(labels, data); // Log labels and data to verify they're populated
-
                 setChartData({
                     labels,
                     datasets: [
@@ -64,30 +61,55 @@ const AttendanceTrendChart = () => {
         fetchData();
     }, []);
 
+    const options = {
+        responsive: true,
+        maintainAspectRatio: false, // Allow the chart to resize properly on mobile
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Percentage',
+                },
+                ticks: {
+                    font: {
+                        size: window.innerWidth < 800 ? 10 : 14, // Smaller font for mobile
+                    },
+                },
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: 'Subjects',
+                },
+                ticks: {
+                    font: {
+                        size: window.innerWidth < 800 ? 10 : 14, // Smaller font for mobile
+                    },
+                },
+            },
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        size: window.innerWidth < 800 ? 10 : 14, // Smaller font for mobile
+                    },
+                },
+            },
+            title: {
+                display: true,
+                text: 'Attendance Trend by Subject',
+                font: {
+                    size: window.innerWidth < 800 ? 14 : 18, // Adjust title size based on screen size
+                },
+            },
+        },
+    };
+
     return (
         <div className="chart-container">
-            
-            <Bar
-                data={chartData}
-                options={{
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'Percentage',
-                            },
-                        },
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Subjects',
-                            },
-                        },
-                    },
-                }}
-            />
+            <Bar data={chartData} options={options} />
         </div>
     );
 };

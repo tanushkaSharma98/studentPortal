@@ -119,7 +119,11 @@ const getDailyAttendanceData = async (student_id) => {
             SELECT
                 a.subject_id,
                 ar.date, -- Fetching the date from attendance_record table
+                ar.total_lectures,
+                ar.lecture,
                 a.attendance, -- This field represents the present/absent status
+                a.percentage,
+                a.attendance_record_id,
                 CASE
                     WHEN a.attendance = true THEN 'Present'
                     ELSE 'Absent'
@@ -131,7 +135,11 @@ const getDailyAttendanceData = async (student_id) => {
         SELECT
             sl.subject_code,
             sl.subject_name,
+            da.attendance_record_id,
             da.date,
+            da.total_lectures,
+            da.percentage,
+            da.lecture,
             da.status
         FROM subject_list sl
         LEFT JOIN daily_attendance da ON sl.subject_id = da.subject_id

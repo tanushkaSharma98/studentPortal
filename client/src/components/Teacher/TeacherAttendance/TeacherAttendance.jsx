@@ -12,6 +12,7 @@ const TeacherAttendance = () => {
   const [subjectList, setSubjectList] = useState([]);
   const [studentList, setStudentList] = useState([]);
   const [attendanceList, setAttendanceList] = useState([]);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const token = localStorage.getItem('token');
 
@@ -53,6 +54,40 @@ const TeacherAttendance = () => {
     }
   };
 
+    // Handle date change
+    const handleDateChange = async (e) => {
+      const selectedDate = e.target.value;
+      setDate(selectedDate);
+  
+      if (selectedSubject && selectedDate && lecture) {
+        try {
+          // Fetch attendance data based on subject code and date
+          const response = await axios.get(
+            `http://localhost:3000/api/attendance/get?subjectCode=${selectedSubject}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+  
+          // If data exists, set it to the state and switch to update mode
+          if (response.data.length > 0) {
+            setAttendanceList(response.data);
+            setIsUpdating(true);
+            alert('Attendance data fetched for the selected date and subject.');
+          } else {
+            // Clear attendanceList if no data is found for the selected date and subject
+            setAttendanceList([]);
+            setIsUpdating(false); // Reset update mode since there's no existing data
+          }
+        } catch (error) {
+          console.error('Error fetching attendance data:', error);
+          alert('Error fetching attendance data.');
+        }
+      }
+    };
+
   // Handle attendance marking
   const handleAttendanceChange = (enrollmentNo, attendance) => {
     setAttendanceList((prev) =>
@@ -71,14 +106,12 @@ const TeacherAttendance = () => {
       setLecture(value);
     }
   };
-
-  // Handle attendance submission on Save button click
-  const handleAttendanceSubmit = async () => {
-    if (!selectedSubject || !date || !lecture || attendanceList.length === 0) {
-      alert('Please fill in all fields and mark attendance.');
-      return;
-    }
-
+// Handle attendance submission on Save button click
+const handleAttendanceSubmit = async () => {
+  if (!selectedSubject || !date || !lecture || attendanceList.length === 0) {
+    alert('Please fill in all fields and mark attendance.');
+    return;
+  }
     const attendanceData = {
       subjectCode: selectedSubject,
       lecture: Number(lecture),
@@ -93,6 +126,7 @@ const TeacherAttendance = () => {
           'Content-Type': 'application/json',
         },
       });
+      
       console.log('API Response:', response.data);  // Log the API response
       alert('Attendance uploaded successfully!');
       navigate('/dashboard');
@@ -111,6 +145,7 @@ const TeacherAttendance = () => {
         alert(`Failed to upload attendance: ${error.message}`);
       }
     }
+    
   };    
   return (
     <div className="teacher-attendance-container">
@@ -165,3 +200,4 @@ const TeacherAttendance = () => {
 };
 
 export default TeacherAttendance;
+
