@@ -22,20 +22,27 @@ const getSubjectsByTeacher = async (userId) => {
 
         const teacher_id = teacherResult[0].teacher_id;
 
-        // Now, get the subjects taught by this teacher
+        // Now, get the subjects taught by this teacher along with branch_name and semester
         const subjectQuery = `
-            SELECT s.subject_id, s.subject_code, s.subject_name,s.sub_initials 
+            SELECT 
+                s.subject_id, 
+                s.subject_code, 
+                s.subject_name, 
+                s.sub_initials, 
+                b.branch_name,
+                bss.semester
             FROM subject_teacher st 
             JOIN subject s ON st.subject_id = s.subject_id 
+            JOIN branch_sem_sub bss ON bss.subject_id = s.subject_id 
+            JOIN branch b ON b.branch_id = bss.branch_id 
             WHERE st.teacher_id = ?
         `;
 
-        // Execute the query to get subjects
+        // Execute the query to get subjects along with branch names and semesters
         const subjectResult = await sequelize.query(subjectQuery, {
             replacements: [teacher_id],
             type: sequelize.QueryTypes.SELECT
         });
-
 
         return subjectResult; // Return all rows from the query result (multiple subjects)
     } catch (error) {

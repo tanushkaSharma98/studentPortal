@@ -168,7 +168,7 @@
     color: white;
     position: fixed;
     top: 0;
-    height: 5%; /* Reduce the width slightly */
+    height: 6%; /* Reduce the width slightly */
     z-index: 1000;
     margin: 0 auto; /* Center the navbar */
     left: 0%; /* Adjust to ensure it stays centered */
@@ -183,7 +183,7 @@
 
   .snavlogo {
     font-weight: bold;
-    font-size: x-large;
+    font-size: xx-large;
     margin-right: auto; /* Ensure it stays to the left */
   }
 
@@ -200,7 +200,8 @@
   }
 
   .snavprofile-img {
-    height: 27px; /* Ensure the profile image size */
+    height: 26px; /* Ensure the profile image size */
+  
   }
 
   
@@ -227,3 +228,75 @@
 
 
 }
+    
+@media screen and (max-width: 413px) {
+
+
+  .snav {
+    padding: 0.5vw;
+    background-color: rgb(92, 120, 238);
+    color: white;
+    position: fixed;
+    top: 0;
+    height: 4%; /* Reduce the width slightly */
+    z-index: 1000;
+    margin: 0 auto; /* Center the navbar */
+    left: 0%; /* Adjust to ensure it stays centered */
+    right: 0%; /* Add some space on the right */
+  }
+  
+  .snav-link {
+    /* Hide text while keeping the icons */
+    font-size: 0; /* Hide text size */
+    width:24px; /* Ensure enough space for the icon */
+  }
+
+  .snavlogo {
+    font-weight: bold;
+    font-size: 110% !important; 
+    margin-right: auto; /* Ensure it stays to the left */
+  }
+
+  .snav-link img {
+    display: block; /* Show only icons */
+    width: 24px; /* Adjust icon size if needed */
+    height: auto; /* Keep the aspect ratio */
+  }
+  /* Ensure the profile image is visible */
+  .snavprofile-container {
+    margin-left: 10px; /* Nudge left */
+    margin-right: 10px; /* Add margin on the right */
+  ;
+  }
+
+  .snavprofile-img {
+    height: 26px; /* Ensure the profile image size */
+    
+  }
+
+  
+
+  /* Optional: If you want to remove margins for better alignment */
+  .sli {
+    margin-left: 5px; /* Adjust margins to minimize gaps */
+    margin-right: 5px; /* Adjust margins to minimize gaps */
+    font-size: 100%;
+  }
+
+.sul {
+  display: flex;
+  list-style: none;
+  justify-content: flex-start; /* Align items to the left */
+  margin-top: 1%;
+
+  padding: 0;
+  margin-right: 12px; /* Shift left */
+} 
+.icon1, .icon, .icon2 {
+  width: 2vw; /* Smaller icons for smaller screens */
+  height: 1.5vw;
+  align-items: center;
+}
+ 
+  
+} 

@@ -29,7 +29,7 @@ const getSubjectDetails = async (subjectCode) => {
 // Fetch marks for a given subject
 const getMarksBySubject = async (subjectCode) => {
   const query = `
-    SELECT m.student_id, st.student_name, m.subject_id, m.exam_id, m.marks_obtained, m.percentage
+    SELECT m.student_id, st.enrollment_no, st.student_name, m.subject_id, m.exam_id, m.marks_obtained, m.percentage
     FROM marks m
     JOIN subject s ON m.subject_id = s.subject_id
     JOIN student st ON m.student_id = st.student_id

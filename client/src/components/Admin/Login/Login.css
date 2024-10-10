@@ -165,3 +165,18 @@
   font-size: 20px; /* Adjust icon size as needed */
   color: #333; /* Icon color */
 }
+@media (max-width:750px){
+    
+  .adsidebar-title {
+    font-size: 20px;
+    white-space: nowrap; /* Prevent wrapping */
+    font-weight: bold; /* Bold text */
+    text-align: center;
+  }
+
+}
+@media (max-width: 626px) {
+  .adsidebar-section {
+    display: none; /* This hides the sidebar */
+  }
+}
