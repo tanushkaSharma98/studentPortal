@@ -46,4 +46,6 @@
     cursor: pointer;
     background-color: #fff;
   }
-  
+  .add-subject-btn{
+    white-space: nowrap;
+  }

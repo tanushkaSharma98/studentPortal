@@ -105,9 +105,10 @@ const AddNewStudent = () => {
   }, []);
 
   return (
+    <>
+    <Header />
+    <Sidebar />
     <div className="add-student-container">
-      <Header />
-      <Sidebar />
       <main className="stuform-container">
         <h2>Add New Student</h2>
         <form onSubmit={handleSubmit}>
@@ -153,6 +154,7 @@ const AddNewStudent = () => {
         </form>
       </main>
     </div>
+    </>
   );
 };
 

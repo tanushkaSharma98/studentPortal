@@ -1,68 +1,141 @@
 /* Basic styling for the table */
-.student-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  .student-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+.table-container {
+  width: 100%; /* Increase the box width to ensure the table fits */
+  max-width: 100%; /* Prevent it from exceeding the container */
+  overflow-x: auto; /* Allow horizontal scrolling if the content exceeds the width */
+  padding: 20px; /* Add some padding around the table */
+  box-sizing: border-box; /* Ensure padding doesn't overflow the box */
 }
-  .student-table th, .student-table td {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    text-align: center;
-  }
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2%;
+}
 
-  .student-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
+.student-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
 
-   /* Optional Hover Effect */
-   .student-table tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  /* Style for the deleted rows */
-  .row-deleted td {
-    color: rgb(255, 14, 14);
-  }
-  
-  /* View button - regular and disabled state */
-  .view-btn {
-    padding: 5px 10px;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    background-color: #4d88c7;
-    cursor: pointer;
-  }
-  
-  .view-btn:disabled {
-    background-color: grey;
-    cursor: not-allowed;
-  }
-  
-  /* Delete button */
-  .delete-btn {
-    padding: 5px 10px;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    background-color: rgb(250, 67, 67);
-    cursor: pointer;
-  }
-  
-  /* Add button */
-  .add-btn {
-    padding: 5px 10px;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    background-color: rgb(41, 117, 238);
-    cursor: pointer;
-  }
-  .hide{
-    display: none;
-  }
-  
+.student-table th, .student-table td {
+  padding: 3px 7px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.student-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Optional Hover Effect */
+.student-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Style for the deleted rows */
+.row-deleted td {
+  color: rgb(255, 14, 14);
+}
+
+/* View button - regular and disabled state */
+.view-btn {
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  background-color: #4d88c7;
+  cursor: pointer;
+}
+
+.view-btn:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+/* Delete button */
+.delete-btn {
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  background-color: rgb(250, 67, 67);
+  cursor: pointer;
+}
+
+/* Add button */
+.add-btn {
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  background-color: rgb(41, 117, 238);
+  cursor: pointer;
+}
+
+/* Hide class for UserId column */
+.hide {
+  display: none;
+}
+
+/* For small laptops (1024px to 1279px) */
+@media screen and (max-width: 1279px) {
+.student-table th,
+.student-table td {
+  padding: 5px 8px;
+  font-size: 10px;
+}
+
+.view-btn, .delete-btn {
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+/* Reduce table width slightly */
+.student-table {
+  width: 95%;
+}
+}
+
+/* For smaller laptops and tablets (768px to 1023px) */
+@media screen and (max-width: 1023px) {
+.student-table th,
+.student-table td {
+  padding: 4px 6px;
+  font-size: 11px;
+}
+
+.view-btn, .delete-btn {
+  padding: 3px 6px;
+  font-size: 10px;
+}
+
+/* Reduce table width more */
+.student-table {
+  width: 90%;
+}
+
+/* Hide UserId column for smaller screens */
+.hide {
+  display: none;
+}
+}
+
+/* For tablets and mobile screens (up to 767px) */
+@media screen and (max-width: 767px) {
+.student-table th,
+.student-table td {
+  font-size: 9px;
+
+}
+
+.view-btn, .delete-btn {
+  padding: 2px 5px;
+  font-size: 8px;
+}
+
+/* Reduce table width even further */
+.student-table {
+  width: 85%;
+}
+
+}
